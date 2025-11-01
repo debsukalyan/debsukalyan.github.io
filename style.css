@@ -193,6 +193,21 @@ body {
   margin: 0 0 1rem;
 }
 
+/* Lab info on the home page */
+.lab-info {
+  font-size: 0.9rem;
+  color: var(--text-dim);
+  margin-top: 0.5rem;
+  line-height: 1.4;
+}
+.lab-info a {
+  color: var(--accent);
+  text-decoration: none;
+}
+.lab-info a:hover {
+  text-decoration: underline;
+}
+
 /* --------- research focus cards --------- */
 
 .focus-grid {
