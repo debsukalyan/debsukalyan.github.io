@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Research | Sukalyan Deb</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="site-header">
+    <div class="nav-inner">
+      <div class="name-logo">Sukalyan Deb</div>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="research.html">Research</a>
+        <a href="professional.html">Professional</a>
+        <a href="cv.html">CV</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- INTRO -->
+  <section class="section" id="research-intro">
+    <div class="section-inner">
+      <h2>Research</h2>
+      <p>
+        My research aims to understand how emotion, reward, and expectation shape cognitive control. I combine behavioural experiments, eye-tracking, neuroimaging,
+        and computational modelling to examine how proactive control mechanisms resolve affective interference in the brain and behaviour.
+      </p>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="section alt" id="projects">
+    <div class="section-inner">
+      <!-- Reward project -->
+      <div class="research-card">
+        <div class="research-image">
+          <img src="diagram_reward.png" alt="Diagram summarizing the reward modulation study" />
+        </div>
+        <div class="research-text">
+          <h3>Reward &amp; Emotional Conflict</h3>
+          <p>
+            This project investigates how reward motivation modulates the resolution of emotional conflict. Participants perform an emotional conflict task
+            where each trial begins with a cue indicating the possibility of a monetary reward or no reward. The task phase requires identifying facial expressions
+            while ignoring incongruent word cues. We collected behavioural responses and fMRI data from 39 healthy adults. Analyses using multivariate pattern
+            analysis (MVPA) with linear support vector machines and representational similarity analysis (RSA) reveal that reward cues enhance proactive control,
+            reducing reaction time costs and increasing activation in fronto-striatal and limbic regions such as the anterior cingulate cortex and ventral striatum.
+          </p>
+        </div>
+      </div>
+
+      <!-- Expectancy project -->
+      <div class="research-card">
+        <div class="research-image">
+          <img src="diagram_expectancy.png" alt="Diagram summarizing the expectancy study" />
+        </div>
+        <div class="research-text">
+          <h3>Expectancy &amp; Proactive Control</h3>
+          <p>
+            Here we explore how informative cues about upcoming stimuli shape cognitive control of emotional conflict. Participants complete tasks in which
+            cue symbols indicate whether the forthcoming trial will be congruent or incongruent. Across two behavioural cohorts, we measure accuracy, reaction time,
+            and eye-tracking metrics such as pupil dilation and saccade patterns. Valid expectancy cues facilitate proactive control, as reflected in reduced
+            conflict costs and anticipatory adjustments in gaze behaviour. These findings highlight the role of expectation in preparing neural systems to filter
+            emotional interference.
+          </p>
+        </div>
+      </div>
+
+      <!-- Uncertainty project -->
+      <div class="research-card">
+        <div class="research-image">
+          <img src="diagram_uncertainty.png" alt="Diagram summarizing the uncertainty study" />
+        </div>
+        <div class="research-text">
+          <h3>Uncertainty &amp; Cognitive Control</h3>
+          <p>
+            Unpredictability can act as a motivational signal. In this line of work, we probe how variability in reward magnitude and probability influences
+            cognitive control allocation. Participants perform tasks where reward probability and outcome variance are manipulated across blocks, creating conditions
+            of high and low uncertainty. Hierarchical drift diffusion modelling (HDDM) of response times and accuracy indicates that high uncertainty evokes
+            more cautious decision strategies and shifts in decision dynamics. These results reveal how unpredictability in the reward structure shapes
+            proactive control mechanisms.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OTHER PROJECTS -->
+  <section class="section" id="other-projects">
+    <div class="section-inner">
+      <h2>Other Academic Projects</h2>
+      <ul class="exp-list">
+        <li><strong>Suprathreshold stochastic resonance in two-compartment neurons</strong> – Simulated synaptic-noise gain in NEURON,
+            revealing how noise can enhance signal detection in neuronal models.</li>
+        <li><strong>Attention-linked modulation of SSVEP power</strong> – Re-analysis of open EEG datasets demonstrating ≥15% gain in 12&nbsp;Hz
+            occipital steady-state visual evoked potentials with focused attention.</li>
+        <li><strong>Intrasexual competition in <span class="italic">Psammophilus dorsalis</span></strong> – Behavioural analysis of 200 hours of video to construct
+            state-transition matrices capturing lizard courtship dynamics.</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>© <span id="year"></span> Sukalyan Deb</div>
+      <div>Emotion · Cognition · Motivation</div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

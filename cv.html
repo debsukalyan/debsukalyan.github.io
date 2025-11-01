@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Curriculum Vitae | Sukalyan Deb</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- NAVBAR -->
+  <header class="site-header">
+    <div class="nav-inner">
+      <div class="name-logo">Sukalyan Deb</div>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="research.html">Research</a>
+        <a href="professional.html">Professional</a>
+        <a href="cv.html">CV</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="section-inner">
+      <h2>Curriculum Vitae</h2>
+      <p>
+        A detailed CV will be available here soon. In the meantime, please explore my Professional page
+        for information about my education, publications, conference presentations, skills, and outreach activities.
+      </p>
+      <p><a href="professional.html" class="cta-button">View Professional Details &raquo;</a></p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>© <span id="year"></span> Sukalyan Deb</div>
+      <div>Emotion · Cognition · Motivation</div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

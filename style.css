@@ -403,6 +403,14 @@ body {
   text-decoration: underline;
 }
 
+/* subtle note text in about section */
+.about-note {
+  font-size: 0.9rem;
+  color: var(--text-dim);
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+}
+
 .small-note {
   font-size: 0.8rem;
   color: var(--text-dim);
@@ -461,4 +469,165 @@ body {
   .main-nav {
     display: none; /* hide wide nav on very small screens for now */
   }
+}
+
+/* --------- custom layout for multi-page sections --------- */
+
+/* Generic row that places text and images side by side and wraps on small screens */
+.content-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.content-row .text-col {
+  flex: 1 1 300px;
+  min-width: 260px;
+}
+
+.content-row .image-col {
+  flex: 1 1 300px;
+  min-width: 260px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.content-row img {
+  max-width: 100%;
+  border-radius: var(--radius-card);
+  box-shadow: 0 16px 32px rgba(0,0,0,0.03);
+}
+
+/* Research page cards */
+.research-card {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+  align-items: flex-start;
+}
+
+.research-card .research-image,
+.research-card .research-text {
+  flex: 1 1 320px;
+  min-width: 260px;
+}
+
+.research-card .research-image img {
+  max-width: 100%;
+  border-radius: var(--radius-card);
+  box-shadow: 0 16px 32px rgba(0,0,0,0.05);
+}
+
+.research-card h3 {
+  margin-top: 0;
+  color: var(--accent);
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.research-card p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  color: var(--text-main);
+}
+
+/* Call to action button */
+.cta-button {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 30px;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+
+.cta-button:hover {
+  background: #07396f;
+}
+
+/* Hobbies grid */
+.hobbies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(260px,100%),1fr));
+  gap: 1rem;
+}
+
+.hobby-card {
+  background: #fff;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-card);
+  padding: 1rem 1rem 1.5rem;
+  box-shadow: 0 16px 32px rgba(0,0,0,0.03);
+}
+
+.hobby-card img {
+  width: 100%;
+  border-radius: var(--radius-card);
+  margin-bottom: 0.6rem;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+}
+
+.hobby-card h3 {
+  margin: 0.4rem 0 0.4rem;
+  font-size: 1rem;
+  color: var(--accent);
+}
+
+.hobby-card p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-main);
+  line-height: 1.4;
+}
+
+/* When a hobby card contains multiple images, use a flex container
+   to arrange them side by side with consistent spacing. Each image
+   automatically scales to fill available space without distortion. */
+.hobby-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.hobby-images img {
+  flex: 1 1 140px;
+  max-width: 100%;
+  border-radius: var(--radius-card);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+}
+
+/* Education entry with illustrative image */
+.edu-entry {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  align-items: center;
+}
+
+.edu-entry img {
+  flex: 0 0 140px;
+  width: 140px;
+  height: auto;
+  border-radius: var(--radius-card);
+  box-shadow: 0 16px 32px rgba(0,0,0,0.03);
+}
+
+.edu-entry .edu-info {
+  flex: 1 1 300px;
+  min-width: 260px;
+}
+
+.edu-entry .edu-title {
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 0.3rem;
 }

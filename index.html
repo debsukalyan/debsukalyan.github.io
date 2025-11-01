@@ -13,31 +13,24 @@
     <div class="nav-inner">
       <div class="name-logo">Sukalyan Deb</div>
       <nav class="main-nav">
-        <a href="#research-focus">Research</a>
-        <a href="#education">Education</a>
-        <a href="#experience">Research Experience</a>
-        <a href="#publications">Publications</a>
-        <a href="#talks">Talks</a>
-        <a href="#skills">Skills</a>
-        <a href="#teaching">Teaching</a>
-        <a href="#outreach">Outreach</a>
+        <a href="index.html">Home</a>
+        <a href="research.html">Research</a>
+        <a href="professional.html">Professional</a>
+        <a href="cv.html">CV</a>
         <a href="#contact">Contact</a>
       </nav>
     </div>
   </header>
 
-  <!-- HERO / BANNER -->
+  <!-- HERO -->
   <section class="hero">
     <div class="hero-bg">
-      <!-- background image set in CSS -->
       <div class="hero-overlay"></div>
     </div>
     <div class="hero-content">
       <div class="hero-text-block">
         <h1 class="hero-title">"Human Brain: A system trying to understand itself"</h1>
-        <p class="hero-subtitle">
-          PhD Candidate · Emotion &amp; Cognition Lab · IISc Bangalore, India
-        </p>
+        <p class="hero-subtitle">PhD Candidate · Emotion &amp; Cognition Lab · IISc Bangalore, India</p>
       </div>
       <div class="hero-profile-block">
         <img class="profile-pic" src="profile.jpg" alt="Sukalyan Deb portrait" />
@@ -45,299 +38,29 @@
     </div>
   </section>
 
-  <!-- ABOUT -->
-  <section class="about" id="about">
+  <!-- ABOUT ME -->
+  <section class="section about" id="about">
     <div class="section-inner">
       <h2>About Me</h2>
-      <p class="about-text">
-        I am a cognitive neuroscience researcher working at the intersection of emotion,
-        cognition, and motivation. As part of my research in the
-        <strong>Emotion and Cognition Lab, IISc Bangalore</strong>,
-        I design behavioural tasks, collect data, and analyse both behaviour and brain activity (fMRI)
-        to understand how reward and motivation shape cognitive control of emotional conflict.
-      </p>
-      <p class="about-text">
-        An allied interest of mine is applying behavioural science to solve
-        real-world problems — especially in marketing and consumer behaviour:
-        how attention, reward expectation, and perceived threat/safety change decisions in the wild.
-      </p>
-    </div>
-  </section>
-
-  <!-- RESEARCH FOCUS -->
-  <section class="section" id="research-focus">
-    <div class="section-inner">
-      <h2>Research Focus</h2>
-      <p class="tagline">
-        <strong>Cognitive control of emotional conflict:</strong>
-        How proactive control mechanisms resolve affective interference in the brain and behaviour.
-      </p>
-
-      <div class="focus-grid">
-        <div class="focus-card">
-          <h3>Emotion × Control</h3>
+      <div class="content-row">
+        <div class="text-col">
           <p>
-            How the brain exerts control when emotional stimuli try to hijack attention,
-            and how this shows up in behaviour and accuracy under conflict.
+            I have grown up all around the country owing to my father's job in the Army. One thing that always fascinated me was human behaviour.
+            Currently, I am a cognitive neuroscience researcher working at the intersection of emotion, cognition, and motivation. As part of my research in the
+            <strong>Emotion and Cognition Lab, IISc Bangalore</strong>, I design behavioural tasks, collect data, and analyse both behaviour and brain activity (fMRI)
+            to understand cognitive control of emotional conflict.
+          </p>
+          <p>
+            An allied interest of mine is applying behavioural science to solve real-world problems — especially in marketing and consumer behaviour.
           </p>
         </div>
-
-        <div class="focus-card">
-          <h3>Motivation &amp; Reward</h3>
-          <p>
-            How reward expectation drives proactive control:
-            can motivation prepare the system in advance to resist distraction?
-          </p>
-        </div>
-
-        <div class="focus-card">
-          <h3>Uncertainty</h3>
-          <p>
-            How uncertainty in expected outcomes (probability/variance of reward)
-            changes control allocation and decision dynamics, modelled with hierarchical DDMs.
-          </p>
+        <div class="image-col">
+          <img src="open-day.png" alt="Explaining research at IISc Open Day" />
+          <img src="lab-picture.png" alt="Emotion &amp; Cognition Lab group" />
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- EDUCATION -->
-  <section class="section alt" id="education">
-    <div class="section-inner">
-      <h2>Education</h2>
-
-      <div class="edu-item">
-        <div class="edu-date">2026 <span class="light">(exp.)</span></div>
-        <div class="edu-body">
-          <div class="edu-title"><strong>PhD – Cognitive Neuroscience</strong></div>
-          <div>Centre for Neuroscience, Indian Institute of Science (IISc) Bangalore</div>
-          <div>Dissertation: <em>Cognitive Control of Emotional Conflict</em></div>
-          <div>Advisor: Dr. Srikanth Padmala</div>
-        </div>
-      </div>
-
-      <div class="edu-item">
-        <div class="edu-date">2020</div>
-        <div class="edu-body">
-          <div class="edu-title"><strong>MSc course-phase (Integrated PhD)</strong></div>
-          <div>Centre for Neuroscience, IISc Bangalore — GPA 8.6/10</div>
-        </div>
-      </div>
-
-      <div class="edu-item">
-        <div class="edu-date">2018</div>
-        <div class="edu-body">
-          <div class="edu-title"><strong>BSc (Hons) Microbiology</strong></div>
-          <div>Ramakrishna Mission Vidyamandira, University of Calcutta</div>
-          <div>Silver Medallist — GPA 9.09/10</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- RESEARCH EXPERIENCE -->
-  <section class="section" id="experience">
-    <div class="section-inner">
-      <h2>Research Experience</h2>
-
-      <div class="exp-block">
-        <div class="exp-header">
-          <div class="exp-role"><strong>PhD Project — Emotion &amp; Cognition Lab, IISc</strong></div>
-          <div class="exp-date">2020 – present</div>
-        </div>
-        <ul class="exp-list">
-          <li>
-            <em>Reward-driven proactive control of emotional conflict:</em>
-            behavioural + fMRI; stimuli via Psychtoolbox/PsychoPy; analyses in AFNI
-            with MVPA (linear SVM) and RSA; manuscript in prep.
-          </li>
-          <li>
-            <em>Informative cue modulation of emotional conflict:</em>
-            two behavioural cohorts; running eye-tracking (Gazepoint GP3) for
-            pupil dilation &amp; saccades with custom analysis.
-          </li>
-          <li>
-            <em>Uncertainty as a motivational signal for cognitive control:</em>
-            behavioural tasks manipulating reward probability/outcome variance;
-            hierarchical DDM (HDDM).
-          </li>
-        </ul>
-      </div>
-
-      <div class="exp-block">
-        <div class="exp-header">
-          <div class="exp-role"><strong>Other Academic Projects</strong></div>
-        </div>
-        <ul class="exp-list">
-          <li>
-            <em>Suprathreshold stochastic resonance in two-compartment neurons</em> —
-            simulated synaptic-noise gain in NEURON.
-          </li>
-          <li>
-            <em>Attention-linked modulation of SSVEP power</em> —
-            re-analysis of open EEG; ≥15% occipital 12&nbsp;Hz gain.
-          </li>
-          <li>
-            <em>Intrasexual competition in <span class="italic">Psammophilus dorsalis</span></em> —
-            200 h video-coded; state-transition matrices.
-          </li>
-        </ul>
-      </div>
-
-      <div class="exp-block">
-        <div class="exp-header">
-          <div class="exp-role"><strong>Industry &amp; Consultancy</strong></div>
-        </div>
-        <ul class="exp-list">
-          <li>
-            <strong>1001 Stories (India)</strong> — Remote intern, Jul–Aug 2024:
-            45 cross-cultural interviews on “premium” perceptions;
-            built 5 consumer-journey personas for e- and quick-commerce.
-          </li>
-          <li>
-            <strong>Hive Science.ai (USA)</strong> — Remote Consultant, Aug–Nov 2024:
-            Psychopy visual-search and IAT ad-effectiveness tasks;
-            pandas pipelines; insight dashboards for AI model training.
-          </li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- PUBLICATIONS -->
-  <section class="section alt" id="publications">
-    <div class="section-inner">
-      <h2>Publications (in preparation)</h2>
-
-      <div class="pub-item">
-        <div class="pub-title">
-          Deb, S., Padmala, S. (in prep). <strong>Reward-driven proactive control of emotional conflict:</strong>
-          Behavioural and fMRI evidence for motivation-linked regulation of affective interference.
-        </div>
-        <div class="pub-status">
-          Status: Manuscript in preparation.
-        </div>
-      </div>
-
-      <div class="pub-item">
-        <div class="pub-title">
-          Deb, S., Padmala, S. (in prep). <strong>Informative cues and anticipatory control in emotional conflict:</strong>
-          Behavioural evidence for strategic upregulation of attention under threat.
-        </div>
-        <div class="pub-status">
-          Status: Manuscript in preparation.
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TALKS / CONFERENCES -->
-  <section class="section" id="talks">
-    <div class="section-inner">
-      <h2>Conference Presentations &amp; Invited Talks</h2>
-      <ul class="exp-list">
-        <li>
-          Poster, <em>Reward-driven proactive control of emotional conflict</em>,
-          OHBM, Seoul (2024)
-        </li>
-        <li>
-          Poster, <em>Informative cue modulation of emotional conflict</em>,
-          CNS In-house Symposium, IISc (2023)
-        </li>
-        <li>
-          Poster, <em>Proactive control and temporal unpredictability</em>,
-          ACCS-X, IIT Kanpur (2023)
-        </li>
-        <li>
-          Oral, <em>Reward-driven proactive control of emotional conflict</em>,
-          CNS In-house Symposium, IISc (2024)
-        </li>
-        <li>
-          Invited talk, <em>Cognitive control and its mechanisms</em>,
-          Brain &amp; Behaviour Conf., Christ Univ. (2023)
-        </li>
-        <li>
-          Attendee, Behavioural Science &amp; Policy Association (BSPA) Annual Conference (online),
-          2–3 May 2024
-        </li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- SKILLS -->
-  <section class="section alt" id="skills">
-    <div class="section-inner">
-      <h2>Technical Skills</h2>
-
-      <div class="skills-grid">
-        <div class="skill-col">
-          <div class="skill-head">Experimental design</div>
-          <div class="skill-body">Psychtoolbox; PsychoPy; JavaScript</div>
-
-          <div class="skill-head">Neuroimaging</div>
-          <div class="skill-body">AFNI; MVPA (TDT); RSA; SPM; FSL</div>
-
-          <div class="skill-head">Programming</div>
-          <div class="skill-body">Python; MATLAB; NEURON; JavaScript; Bash; pandas/NumPy; MySQL; HTML/CSS</div>
-        </div>
-
-        <div class="skill-col">
-          <div class="skill-head">Behaviour &amp; stats</div>
-          <div class="skill-body">R/RStudio; JASP; DDM (HDDM &amp; HSSM); mixed-effects RT</div>
-
-          <div class="skill-head">Media &amp; outreach</div>
-          <div class="skill-body">Adobe Premiere Pro; DaVinci Resolve; Canva; VN</div>
-
-          <div class="skill-head">Professional Memberships</div>
-          <div class="skill-body">
-            Organization for Human Brain Mapping (2024–)<br/>
-            Society for Neuroscience (2025–)
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TEACHING -->
-  <section class="section" id="teaching">
-    <div class="section-inner">
-      <h2>Teaching &amp; Mentorship</h2>
-      <ul class="exp-list">
-        <li>
-          TA — <em>UB 201L Introduction to Biology III – Neurobiology</em> (Aug 2021);
-          <em>UB 304L Experiments in Neurobiology</em> (Jan 2022)
-        </li>
-        <li>
-          Online STEM tutor, Tutor.com — 120 h biology &amp; statistics (2020)
-        </li>
-        <li>
-          Supervised student projects: Yukta Thyagraj, Moon Majumdar,
-          Athulya Krishnan, Pabitra Sharma, Ashlin Daniel
-        </li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- OUTREACH -->
-  <section class="section alt" id="outreach">
-    <div class="section-inner">
-      <h2>Outreach &amp; Extracurricular</h2>
-      <ul class="exp-list">
-        <li>
-          Produce neuroscience reels on Instagram &amp; YouTube (2k followers)
-          in vernacular language
-        </li>
-        <li>
-          Founder – ScholarOP (LinkedIn + Instagram, 4k members, Researcher Community)
-        </li>
-        <li>
-          Actor, <em>Rangmanch</em> theatre group, IISc (5 productions)
-        </li>
-        <li>
-          Quiz wins – Army Public School Cluster Quiz 2012;
-          Environment Day Quiz 2013
-        </li>
-      </ul>
+      <p class="about-note">Discover how I combine rigorous experiments with real-world curiosity.</p>
+      <p><a href="research.html" class="cta-button">Explore My Research &raquo;</a></p>
     </div>
   </section>
 
@@ -349,7 +72,6 @@
         <p>
           <strong>Email:</strong>
           <a href="mailto:sukalyandeb@iisc.ac.in">sukalyandeb@iisc.ac.in</a><br/>
-          <strong>Phone:</strong> +91-86172-67320<br/>
           <strong>LinkedIn:</strong>
           <a href="https://linkedin.com/in/sukalyandeb">linkedin.com/in/sukalyandeb</a>
         </p>
@@ -358,7 +80,6 @@
           Indian Institute of Science (IISc), Bangalore, India
         </p>
       </div>
-
       <div class="ref-block">
         <h3>Referees</h3>
         <p>
@@ -383,13 +104,12 @@
   <footer class="footer">
     <div class="footer-inner">
       <div>© <span id="year"></span> Sukalyan Deb</div>
-      <div>“Emotion · Cognition · Motivation”</div>
+      <div>Emotion · Cognition · Motivation</div>
     </div>
   </footer>
 
   <script>
-    // set current year in footer
-    document.getElementById("year").textContent = new Date().getFullYear();
+    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
