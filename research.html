@@ -15,9 +15,9 @@
       <nav class="main-nav">
         <a href="index.html">Home</a>
         <a href="research.html">Research</a>
-        <a href="professional.html">Professional</a>
-        <a href="cv.html">CV</a>
-        <a href="index.html#contact">Contact</a>
+        <a href="academic.html">Academic</a>
+        <a href="applied.html">Applied</a>
+        <a href="experiments.html">Experiments</a>
       </nav>
     </div>
   </header>
@@ -36,54 +36,44 @@
   <!-- PROJECTS -->
   <section class="section alt" id="projects">
     <div class="section-inner">
-      <!-- Reward project -->
-      <div class="research-card">
-        <div class="research-image">
-          <img src="diagram_reward.png" alt="Diagram summarizing the reward modulation study" />
-        </div>
-        <div class="research-text">
+      <div class="project-grid">
+        <!-- Reward project card -->
+        <div class="project-card">
+          <img src="diagram_reward_final.png" alt="Reward modulation project diagram" />
           <h3>Reward &amp; Emotional Conflict</h3>
-          <p>
-            This project investigates how reward motivation modulates the resolution of emotional conflict. Participants perform an emotional conflict task
-            where each trial begins with a cue indicating the possibility of a monetary reward or no reward. The task phase requires identifying facial expressions
-            while ignoring incongruent word cues. We collected behavioural responses and fMRI data from 39 healthy adults. Analyses using multivariate pattern
-            analysis (MVPA) with linear support vector machines and representational similarity analysis (RSA) reveal that reward cues enhance proactive control,
-            reducing reaction time costs and increasing activation in fronto-striatal and limbic regions such as the anterior cingulate cortex and ventral striatum.
-          </p>
+          <p>Examining how reward motivation can modulate emotional conflict in the brain and behaviour.</p>
+          <ul>
+            <li><strong>Paradigm:</strong> An emotional conflict task is preceded by reward vs. no‑reward cues. Participants (n&nbsp;≈&nbsp;40) identify facial expressions (happy/fear) while ignoring incongruent emotion words.</li>
+            <li><strong>Measurements:</strong> Behaviour (accuracy, reaction time) and 3T fMRI were recorded to capture both behavioural performance and neural activation patterns during conflict resolution.</li>
+            <li><strong>Analysis:</strong> Multivariate pattern analysis (linear SVM) and representational similarity analysis (RSA) were applied to fMRI data; behavioural conflict costs were compared across reward vs. no‑reward blocks.</li>
+            <li><strong>Findings:</strong> Reward cues attenuated conflict costs and increased preparatory activation in fronto‑striatal and limbic regions (ACC, ventral striatum), highlighting motivation‑driven proactive control.</li>
+          </ul>
         </div>
-      </div>
 
-      <!-- Expectancy project -->
-      <div class="research-card">
-        <div class="research-image">
-          <img src="diagram_expectancy.png" alt="Diagram summarizing the expectancy study" />
-        </div>
-        <div class="research-text">
+        <!-- Expectancy project card -->
+        <div class="project-card">
+          <img src="diagram_expectancy_final.png" alt="Expectancy project diagram" />
           <h3>Expectancy &amp; Proactive Control</h3>
-          <p>
-            Here we explore how informative cues about upcoming stimuli shape cognitive control of emotional conflict. Participants complete tasks in which
-            cue symbols indicate whether the forthcoming trial will be congruent or incongruent. Across two behavioural cohorts, we measure accuracy, reaction time,
-            and eye-tracking metrics such as pupil dilation and saccade patterns. Valid expectancy cues facilitate proactive control, as reflected in reduced
-            conflict costs and anticipatory adjustments in gaze behaviour. These findings highlight the role of expectation in preparing neural systems to filter
-            emotional interference.
-          </p>
+          <p>Investigating how informative cues about upcoming trials shape preparatory control of emotional conflict.</p>
+          <ul>
+            <li><strong>Paradigm:</strong> Symbolic cues predict whether the upcoming trial will be congruent or incongruent. Two cohorts perform the emotional conflict task while expecting conflict or non‑conflict trials.</li>
+            <li><strong>Measurements:</strong> Behavioural accuracy and reaction times are complemented by eye‑tracking metrics (pupil dilation and saccadic latency) using a Gazepoint&nbsp;GP3 system to capture preparatory adjustments.</li>
+            <li><strong>Analysis:</strong> Behavioural and oculometric data are compared across valid vs. invalid expectancy cues to quantify proactive control. Pupillometry and gaze patterns reveal anticipatory adjustments.</li>
+            <li><strong>Findings:</strong> Informative cues reduce conflict costs and elicit early gaze shifts and pupil dilation, indicating that predictive information enables strategic up‑regulation of attention.</li>
+          </ul>
         </div>
-      </div>
 
-      <!-- Uncertainty project -->
-      <div class="research-card">
-        <div class="research-image">
-          <img src="diagram_uncertainty.png" alt="Diagram summarizing the uncertainty study" />
-        </div>
-        <div class="research-text">
+        <!-- Uncertainty project card -->
+        <div class="project-card">
+          <img src="diagram_uncertainty_final.png" alt="Uncertainty project diagram" />
           <h3>Uncertainty &amp; Cognitive Control</h3>
-          <p>
-            Unpredictability can act as a motivational signal. In this line of work, we probe how variability in reward magnitude and probability influences
-            cognitive control allocation. Participants perform tasks where reward probability and outcome variance are manipulated across blocks, creating conditions
-            of high and low uncertainty. Hierarchical drift diffusion modelling (HDDM) of response times and accuracy indicates that high uncertainty evokes
-            more cautious decision strategies and shifts in decision dynamics. These results reveal how unpredictability in the reward structure shapes
-            proactive control mechanisms.
-          </p>
+          <p>Probing how unpredictability in reward structure influences control allocation and decision dynamics.</p>
+          <ul>
+            <li><strong>Paradigm:</strong> Modified conflict tasks systematically vary reward probability and outcome variance, producing blocks with high vs. low uncertainty about whether a correct response will be rewarded.</li>
+            <li><strong>Measurements:</strong> Reaction times and accuracy across participants are fitted with hierarchical drift diffusion models (HDDM) to estimate latent parameters such as drift rate and boundary separation.</li>
+            <li><strong>Analysis:</strong> Model‑based comparisons of high‑ and low‑uncertainty blocks reveal how uncertainty modulates evidence accumulation (drift) and caution (threshold). Behavioural conflict costs are assessed across conditions.</li>
+            <li><strong>Findings:</strong> High uncertainty triggers more conservative decision thresholds and slower evidence accumulation, implying that unpredictability of rewards acts as a motivational signal for cognitive control.</li>
+          </ul>
         </div>
       </div>
     </div>
