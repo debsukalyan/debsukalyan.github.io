@@ -723,11 +723,13 @@ body {
 
 /* In the lab wrap, shrink the photo further to emphasise the descriptive text */
 .about .lab-wrap img {
-       /* Enlarge the lab group photo further – double the size again for more presence */
-       /* The previous size was 480px; doubling it to 960px as requested */
-       flex: 0 0 960px;
-       width: 960px;
-       height: 960px;
+       /* Resize the lab group photo to be large but not overwhelming. The previous
+        * update increased the image to 960 px, which looked oversized on the
+        * page. Here we reduce the dimensions to 600 px so the picture still
+        * has presence without dominating the layout. */
+       flex: 0 0 600px;
+       width: 600px;
+       height: 600px;
   object-fit: cover;
   border-radius: var(--radius-card);
   box-shadow: 0 8px 16px rgba(0,0,0,0.05);
