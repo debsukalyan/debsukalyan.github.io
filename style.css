@@ -717,6 +717,8 @@ body {
   align-items: flex-start;
   gap: 0.8rem;
   margin-bottom: 1rem;
+  /* Allow the image and description to wrap on smaller screens so the text doesn’t get squashed into a narrow column */
+  flex-wrap: wrap;
 }
 
 /* In the lab wrap, shrink the photo further to emphasise the descriptive text */
