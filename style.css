@@ -722,9 +722,10 @@ body {
 /* In the lab wrap, shrink the photo further to emphasise the descriptive text */
 .about .lab-wrap img {
   /* Increase the size of the lab group photo to make it more prominent */
-  flex: 0 0 120px;
-  width: 120px;
-  height: 120px;
+  /* Double the size of the lab group photo for better prominence */
+  flex: 0 0 240px;
+  width: 240px;
+  height: 240px;
   object-fit: cover;
   border-radius: var(--radius-card);
   box-shadow: 0 8px 16px rgba(0,0,0,0.05);
