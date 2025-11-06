@@ -721,10 +721,10 @@ body {
 
 /* In the lab wrap, shrink the photo further to emphasise the descriptive text */
 .about .lab-wrap img {
-  /* make the lab group photo smaller to avoid overpowering the accompanying text */
-  flex: 0 0 60px;
-  width: 60px;
-  height: 60px;
+  /* Increase the size of the lab group photo to make it more prominent */
+  flex: 0 0 120px;
+  width: 120px;
+  height: 120px;
   object-fit: cover;
   border-radius: var(--radius-card);
   box-shadow: 0 8px 16px rgba(0,0,0,0.05);
