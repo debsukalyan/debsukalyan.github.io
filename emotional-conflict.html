@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Falling Emoji Challenge</title>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fce4ec;
+    }
+    /* Intro Screen */
+    #instructions {
+      text-align: center;
+      padding: 40px;
+    }
+    #instructions h1 {
+      font-size: 48px;
+      color: #d81b60;
+      margin-bottom: 20px;
+    }
+    #instructions p {
+      font-size: 20px;
+      color: #6a1b9a;
+      margin-bottom: 30px;
+    }
+    #instructions button {
+      font-size: 24px;
+      padding: 10px 20px;
+      background-color: #d81b60;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    /* Animated widget for intro */
+    #introAnimation {
+      margin: 20px auto;
+      width: 100px;
+      height: 100px;
+    }
+    .animatedEmoji {
+      font-size: 80px;
+      animation: bounce 1s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+    /* Main Game Area */
+    #gameArea {
+      display: none;
+      position: relative;
+      width: 100%;
+      height: 800px;
+      border: 3px solid #d81b60;
+      background-color: #fff9c4;
+      overflow: hidden;
+    }
+    /* Larger falling emoji container */
+    .fallingEmoji {
+      width: 200px;
+      height: 200px;
+      font-size: 130px;
+      text-align: center;
+      position: absolute;
+      cursor: grab;
+      user-select: none;
+    }
+    .fallingEmoji .emoji {
+      line-height: 200px;
+    }
+    /* Word is always red, near center (slightly lower) */
+    .fallingEmoji .word {
+      position: absolute;
+      top: 57%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 34px;
+      font-weight: bold;
+      color: red;   /* Always red now */
+      pointer-events: none;
+      white-space: nowrap;
+    }
+    /* Score counter at top right */
+    #scoreCounter {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 24px;
+      background: #fff;
+      padding: 5px 10px;
+      border: 2px solid #d81b60;
+      border-radius: 10px;
+    }
+    /* Drop zones container */
+    #dropZones {
+      position: absolute;
+      bottom: 20px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 50px;
+      padding: 10px 0;
+    }
+    /* Drop zone baskets */
+    #dropZones div {
+      width: 150px;
+      height: 150px;
+      border: 3px dashed #333;
+      border-radius: 20px;
+      font-size: 32px;
+      text-align: center;
+      line-height: 150px;
+      font-weight: bold;
+      transition: transform 0.2s;
+    }
+    #happyDrop {
+      background-color: #ffeb3b;
+      border-color: #fbc02d;
+      color: #e65100;
+    }
+    #sadDrop {
+      background-color: #90caf9;
+      border-color: #64b5f6;
+      color: #0d47a1;
+    }
+    /* Bottom instruction text */
+    #bottomInstructions {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      text-align: center;
+      background-color: #f8bbd0;
+      padding: 8px;
+      font-size: 18px;
+      color: #880e4f;
+    }
+    /* End Game Scoreboard */
+    #scoreBoard {
+      display: none;
+      text-align: center;
+      padding: 40px;
+    }
+    #scoreBoard h2 {
+      font-size: 40px;
+      color: #d81b60;
+    }
+    #scoreBoard p {
+      font-size: 24px;
+      color: #6a1b9a;
+    }
+    #scoreBoard button {
+      font-size: 24px;
+      padding: 10px 20px;
+      background-color: #d81b60;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    /* Trial Examples in Scoreboard */
+    #trialExamples {
+      margin-top: 30px;
+    }
+    .example {
+      display: inline-block;
+      margin: 20px;
+      text-align: center;
+    }
+    .exampleEmoji {
+      width: 120px;
+      height: 120px;
+      font-size: 80px;
+      position: relative;
+      border: 2px solid #333;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+    .exampleEmoji .emoji {
+      line-height: 120px;
+    }
+    .exampleEmoji .word {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 24px;
+      font-weight: bold;
+      color: red; /* Also always red in examples */
+      pointer-events: none;
+      white-space: nowrap;
+    }
+    /* RT Chart styling */
+    #rtChart {
+      margin-top: 20px;
+      border: 1px solid #333;
+      background: #fff;
+    }
+
+    /* Animation when emoji is successfully dropped in a basket */
+    @keyframes dropBounce {
+      0% { transform: scale(1); }
+      30% { transform: scale(1.3); }
+      50% { transform: scale(0.8); }
+      70% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
+    /* Basket bounce when correct drop */
+    .basket-correct {
+      animation: basketBounce 0.5s;
+    }
+    @keyframes basketBounce {
+      0%, 100% { transform: scale(1); }
+      30% { transform: scale(1.2); }
+      70% { transform: scale(0.9); }
+    }
+
+    /* Star effect */
+    .star {
+      position: absolute;
+      font-size: 30px;
+      animation: starFly 1s forwards ease-out;
+      pointer-events: none; /* Make sure it's not interactive */
+    }
+    @keyframes starFly {
+      0% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+      50% {
+        transform: scale(1.2) translateY(-50px);
+      }
+      100% {
+        opacity: 0;
+        transform: scale(0.8) translateY(-100px);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Instructions Screen -->
+  <div id="instructions">
+    <h1>Falling Emoji Challenge</h1>
+    <div id="introAnimation">
+      <!-- Using a simple smile face for the intro's bounce animation -->
+      <div class="animatedEmoji">🙂</div>
+    </div>
+    <p>
+      Hello folks! Catch the falling emojis based on their face and drop them into the correct basket – ignore the word.
+    </p>
+    <button id="startGame">Start Game</button>
+  </div>
+
+  <!-- Game Area -->
+  <div id="gameArea">
+    <div id="scoreCounter">Score: 0</div>
+    <!-- Falling emojis will be added dynamically -->
+    <div id="dropZones">
+      <div id="happyDrop" data-type="happy">HAPPY</div>
+      <div id="sadDrop" data-type="sad">SAD</div>
+    </div>
+    <div id="bottomInstructions">
+      Drag the falling emoji into the correct basket by looking at its face – ignore the word!
+    </div>
+  </div>
+
+  <!-- Final Scoreboard -->
+  <div id="scoreBoard">
+    <h2>Game Over!</h2>
+    <p>Total Score: <span id="finalScore"></span> / <span id="totalTrials"></span></p>
+    <p>Congruent Correct: <span id="congruentScore"></span></p>
+    <p>Incongruent Correct: <span id="incongruentScore"></span></p>
+    <p>Congruent Average RT: <span id="avgRTCongruent"></span> ms</p>
+    <p>Incongruent Average RT: <span id="avgRTIncongruent"></span> ms</p>
+    <canvas id="rtChart" width="400" height="300"></canvas>
+    <div id="trialExamples">
+      <div class="example">
+        <div class="exampleEmoji">
+          <!-- Congruent example: face and word match, both in red text -->
+          <div class="emoji">🙂</div>
+          <div class="word">HAPPY</div>
+        </div>
+        <p>Congruent</p>
+      </div>
+      <div class="example">
+        <div class="exampleEmoji">
+          <!-- Incongruent example: face and word do not match, also in red -->
+          <div class="emoji">🙂</div>
+          <div class="word">SAD</div>
+        </div>
+        <p>Incongruent</p>
+      </div>
+    </div>
+    <button id="restartGame">Play Again</button>
+  </div>
+
+  <script>
+    // Global game variables
+    let trials = [];
+    const totalTrials = 30; // <-- 30 total
+    let currentTrial = 0;
+    let overallScore = 0;
+    let congruentScore = 0;
+    let incongruentScore = 0;
+    // Arrays to hold reaction times (RT) for dropped trials (in ms)
+    let rtCongruent = [];
+    let rtIncongruent = [];
+
+    // Generate trials
+    function generateTrials() {
+      trials = [];
+      const congruentCount = totalTrials / 2;  // 15
+      const incongruentCount = totalTrials / 2;  // 15
+      // Create congruent trials
+      for (let i = 0; i < congruentCount; i++) {
+        const expr = Math.random() < 0.5 ? "happy" : "sad";
+        trials.push({ congruent: true, actual: expr, written: expr });
+      }
+      // Create incongruent trials
+      for (let i = 0; i < incongruentCount; i++) {
+        const expr = Math.random() < 0.5 ? "happy" : "sad";
+        const written = expr === "happy" ? "sad" : "happy";
+        trials.push({ congruent: false, actual: expr, written: written });
+      }
+      // Shuffle
+      trials.sort(() => Math.random() - 0.5);
+    }
+
+    function updateScoreCounter() {
+      document.getElementById('scoreCounter').textContent = 'Score: ' + overallScore;
+    }
+
+    // Collision detection
+    function isColliding(el1, el2) {
+      const rect1 = el1.getBoundingClientRect();
+      const rect2 = el2.getBoundingClientRect();
+      return !(
+        rect1.top > rect2.bottom ||
+        rect1.bottom < rect2.top ||
+        rect1.right < rect2.left ||
+        rect1.left > rect2.right
+      );
+    }
+
+    // Create & animate a falling emoji
+    function createFallingEmoji(trial) {
+      const gameArea = document.getElementById('gameArea');
+      const emojiDiv = document.createElement('div');
+      emojiDiv.className = 'fallingEmoji';
+      emojiDiv.setAttribute('data-actual', trial.actual);
+      emojiDiv.setAttribute('data-congruent', trial.congruent);
+
+      // Decide which face
+      // Happy face = "🙂"
+      // Sad face   = "🙁"
+      const face = (trial.actual === "happy") ? "🙂" : "🙁";
+      
+      // The word is always in red
+      emojiDiv.innerHTML = `
+        <div class="emoji">${face}</div>
+        <div class="word">${trial.written.toUpperCase()}</div>
+      `;
+      
+      // Random position at top
+      emojiDiv.style.top = '0px';
+      const maxLeft = gameArea.clientWidth - 200; // bigger width
+      emojiDiv.style.left = (Math.random() * maxLeft) + 'px';
+      
+      // RT start time
+      emojiDiv.startTime = Date.now();
+      
+      gameArea.appendChild(emojiDiv);
+      
+      // Drag-variables
+      let dragging = false;
+      let offsetX = 0, offsetY = 0;
+
+      emojiDiv.addEventListener('mousedown', (e) => {
+        dragging = true;
+        cancelAnimationFrame(emojiDiv.fallAnimation);
+        const rect = emojiDiv.getBoundingClientRect();
+        offsetX = e.clientX - rect.left;
+        offsetY = e.clientY - rect.top;
+        e.preventDefault();
+      });
+
+      function onMouseMove(e) {
+        if (dragging) {
+          const gameRect = gameArea.getBoundingClientRect();
+          let newLeft = e.clientX - gameRect.left - offsetX;
+          let newTop = e.clientY - gameRect.top - offsetY;
+          newLeft = Math.max(0, Math.min(newLeft, gameArea.clientWidth - 200));
+          newTop = Math.max(0, Math.min(newTop, gameArea.clientHeight - 200));
+          emojiDiv.style.left = newLeft + 'px';
+          emojiDiv.style.top = newTop + 'px';
+        }
+      }
+      
+      function onMouseUp() {
+        if (dragging) {
+          dragging = false;
+          document.removeEventListener('mousemove', onMouseMove);
+          document.removeEventListener('mouseup', onMouseUp);
+          
+          let droppedIn = null;
+          const happyDrop = document.getElementById('happyDrop');
+          const sadDrop = document.getElementById('sadDrop');
+          if (isColliding(emojiDiv, happyDrop)) {
+            droppedIn = 'happy';
+          } else if (isColliding(emojiDiv, sadDrop)) {
+            droppedIn = 'sad';
+          }
+
+          let reactionTime = Date.now() - emojiDiv.startTime;
+          const actual = emojiDiv.getAttribute('data-actual');
+          const isCongruent = (emojiDiv.getAttribute('data-congruent') === 'true');
+          
+          // Update score & special effects if correct
+          if (droppedIn && droppedIn === actual) {
+            overallScore++;
+            if (isCongruent) {
+              congruentScore++;
+            } else {
+              incongruentScore++;
+            }
+            
+            // 1) Add bounce to the basket
+            const correctBasket = (droppedIn === 'happy') ? happyDrop : sadDrop;
+            correctBasket.classList.add('basket-correct');
+            setTimeout(() => {
+              correctBasket.classList.remove('basket-correct');
+            }, 500);
+
+            // 2) Create a little star effect at the basket
+            createStarEffect(correctBasket, gameArea);
+          }
+
+          // Record RT only if dropped in a basket (regardless of correctness)
+          if (droppedIn) {
+            if (isCongruent) {
+              rtCongruent.push(reactionTime);
+            } else {
+              rtIncongruent.push(reactionTime);
+            }
+            // Add a small bounce animation on the emoji
+            emojiDiv.style.animation = 'dropBounce 0.5s';
+            // Remove after the bounce finishes
+            setTimeout(() => {
+              if (gameArea.contains(emojiDiv)) {
+                gameArea.removeChild(emojiDiv);
+              }
+              nextTrialOrEnd();
+            }, 500);
+          } else {
+            // Not dropped in any basket, remove immediately
+            if (gameArea.contains(emojiDiv)) {
+              gameArea.removeChild(emojiDiv);
+            }
+            nextTrialOrEnd();
+          }
+          updateScoreCounter();
+        }
+      }
+      
+      document.addEventListener('mousemove', onMouseMove);
+      document.addEventListener('mouseup', onMouseUp);
+
+      // Animate falling
+      const speed = 10; 
+      function fall() {
+        if (!dragging) {
+          let currentTop = parseFloat(emojiDiv.style.top);
+          let newTop = currentTop + speed;
+          emojiDiv.style.top = newTop + 'px';
+          // if it goes past the bottom
+          if (newTop > gameArea.clientHeight - 200) {
+            if (gameArea.contains(emojiDiv)) {
+              gameArea.removeChild(emojiDiv);
+            }
+            currentTrial++;
+            if (currentTrial < totalTrials) {
+              nextTrial();
+            } else {
+              endGame();
+            }
+            return;
+          }
+        }
+        emojiDiv.fallAnimation = requestAnimationFrame(fall);
+      }
+      emojiDiv.fallAnimation = requestAnimationFrame(fall);
+    }
+
+    // Function to display a star animation from basket's center
+    function createStarEffect(basketEl, gameArea) {
+      const starSpan = document.createElement('span');
+      starSpan.className = 'star';
+      starSpan.textContent = '⭐';
+      
+      // Get bounding boxes to place star near basket center
+      const basketRect = basketEl.getBoundingClientRect();
+      const gameRect = gameArea.getBoundingClientRect();
+      const basketCenterX = basketRect.left + basketRect.width/2;
+      const basketCenterY = basketRect.top + basketRect.height/2;
+
+      // Convert basket center to gameArea coordinates
+      const offsetX = basketCenterX - gameRect.left;
+      const offsetY = basketCenterY - gameRect.top;
+      starSpan.style.left = (offsetX - 15) + 'px'; // shift a bit left
+      starSpan.style.top = (offsetY - 15) + 'px';  // shift a bit up
+
+      gameArea.appendChild(starSpan);
+
+      // Remove the star after its animation finishes
+      starSpan.addEventListener('animationend', () => {
+        starSpan.remove();
+      });
+    }
+
+    function nextTrialOrEnd() {
+      currentTrial++;
+      if (currentTrial < totalTrials) {
+        setTimeout(nextTrial, 300);
+      } else {
+        setTimeout(endGame, 300);
+      }
+    }
+
+    function nextTrial() {
+      if (currentTrial < totalTrials) {
+        const trial = trials[currentTrial];
+        createFallingEmoji(trial);
+      } else {
+        endGame();
+      }
+    }
+
+    // Simple bar chart for RT
+    function drawRTChart(avgCongruent, avgIncongruent) {
+      const canvas = document.getElementById('rtChart');
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const chartWidth = canvas.width;
+      const chartHeight = canvas.height;
+      const margin = 40;
+      const barWidth = 80;
+      const spaceBetween = (chartWidth - 2 * margin - 2 * barWidth);
+      const xCongruent = margin;
+      const xIncongruent = margin + barWidth + spaceBetween;
+      // Choose a max scale based on whichever is larger or 1000
+      const maxValue = Math.max(avgCongruent, avgIncongruent, 1000);
+      const scale = (chartHeight - 2 * margin) / maxValue;
+      const barHeightCongruent = avgCongruent * scale;
+      const barHeightIncongruent = avgIncongruent * scale;
+      // Congruent bar
+      ctx.fillStyle = '#d81b60';
+      ctx.fillRect(xCongruent, chartHeight - margin - barHeightCongruent, barWidth, barHeightCongruent);
+      // Incongruent bar
+      ctx.fillStyle = '#64b5f6';
+      ctx.fillRect(xIncongruent, chartHeight - margin - barHeightIncongruent, barWidth, barHeightIncongruent);
+      // Labels
+      ctx.fillStyle = 'black';
+      ctx.font = '16px Arial';
+      ctx.fillText('Congruent', xCongruent, chartHeight - margin + 20);
+      ctx.fillText('Incongruent', xIncongruent, chartHeight - margin + 20);
+      // Values above bars
+      ctx.fillText(Math.round(avgCongruent) + ' ms', xCongruent, chartHeight - margin - barHeightCongruent - 10);
+      ctx.fillText(Math.round(avgIncongruent) + ' ms', xIncongruent, chartHeight - margin - barHeightIncongruent - 10);
+    }
+
+    // End game
+    function endGame() {
+      document.getElementById('gameArea').style.display = 'none';
+      document.getElementById('scoreBoard').style.display = 'block';
+      document.getElementById('finalScore').textContent = overallScore;
+      document.getElementById('totalTrials').textContent = totalTrials;
+      document.getElementById('congruentScore').textContent = congruentScore;
+      document.getElementById('incongruentScore').textContent = incongruentScore;
+      
+      // Average RT
+      let avgRTCongruent = rtCongruent.length 
+        ? rtCongruent.reduce((a, b) => a + b, 0) / rtCongruent.length 
+        : 0;
+      let avgRTIncongruent = rtIncongruent.length 
+        ? rtIncongruent.reduce((a, b) => a + b, 0) / rtIncongruent.length 
+        : 0;
+      document.getElementById('avgRTCongruent').textContent = Math.round(avgRTCongruent);
+      document.getElementById('avgRTIncongruent').textContent = Math.round(avgRTIncongruent);
+      
+      // Draw RT bar graph
+      drawRTChart(avgRTCongruent, avgRTIncongruent);
+    }
+
+    // Start / Restart
+    document.getElementById('startGame').addEventListener('click', () => {
+      document.getElementById('instructions').style.display = 'none';
+      document.getElementById('scoreBoard').style.display = 'none';
+      document.getElementById('gameArea').style.display = 'block';
+      generateTrials();
+      currentTrial = 0;
+      overallScore = 0;
+      congruentScore = 0;
+      incongruentScore = 0;
+      rtCongruent = [];
+      rtIncongruent = [];
+      updateScoreCounter();
+      nextTrial();
+    });
+    document.getElementById('restartGame').addEventListener('click', () => {
+      document.getElementById('scoreBoard').style.display = 'none';
+      document.getElementById('instructions').style.display = 'block';
+      document.getElementById('gameArea').style.display = 'block';
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Word Bubble Pop</title>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      min-height: 100vh;
+    }
+    #instructions {
+      text-align: center;
+      padding: 40px;
+      background: white;
+      border-radius: 20px;
+      max-width: 650px;
+      margin: 0 auto;
+    }
+    #instructions h1 {
+      font-size: 42px;
+      color: #4facfe;
+      margin-bottom: 20px;
+    }
+    #instructions p {
+      font-size: 18px;
+      color: #333;
+      margin-bottom: 15px;
+      line-height: 1.6;
+    }
+    #instructions button {
+      font-size: 24px;
+      padding: 12px 35px;
+      background-color: #4facfe;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: transform 0.2s;
+    }
+    #instructions button:hover {
+      transform: scale(1.05);
+    }
+    #gameArea {
+      display: none;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    #topPanel {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    #categoryDisplay {
+      font-size: 36px;
+      font-weight: bold;
+      color: #4facfe;
+      margin-bottom: 10px;
+    }
+    #timer {
+      font-size: 48px;
+      font-weight: bold;
+      color: #e74c3c;
+      margin: 10px 0;
+    }
+    #scoreDisplay {
+      font-size: 24px;
+      color: #333;
+    }
+    #bubbleZone {
+      position: relative;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 20px;
+      height: 500px;
+      overflow: hidden;
+      border: 3px solid white;
+    }
+    .bubble {
+      position: absolute;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 15px 25px;
+      border-radius: 50px;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      animation: float 3s ease-in-out infinite;
+    }
+    .bubble:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    }
+    .bubble.correct {
+      background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+      animation: popCorrect 0.5s forwards;
+    }
+    .bubble.wrong {
+      background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+      animation: popWrong 0.5s forwards;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+    @keyframes popCorrect {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.3); }
+      100% { transform: scale(0); opacity: 0; }
+    }
+    @keyframes popWrong {
+      0% { transform: scale(1) rotate(0deg); opacity: 1; }
+      25% { transform: scale(1.1) rotate(-10deg); }
+      75% { transform: scale(1.1) rotate(10deg); }
+      100% { transform: scale(0) rotate(0deg); opacity: 0; }
+    }
+    #resultsScreen {
+      display: none;
+      text-align: center;
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    #resultsScreen h2 {
+      font-size: 40px;
+      color: #4facfe;
+      margin-bottom: 20px;
+    }
+    #resultsScreen p {
+      font-size: 22px;
+      margin: 15px 0;
+      color: #333;
+    }
+    #resultsScreen button {
+      font-size: 22px;
+      padding: 12px 30px;
+      background-color: #4facfe;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    .round-transition {
+      text-align: center;
+      font-size: 32px;
+      color: white;
+      font-weight: bold;
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="instructions">
+    <h1>💭 Word Bubble Pop</h1>
+    <p><strong>How to Play:</strong></p>
+    <p>1. You'll see a CATEGORY (like "Animals" or "Colors").</p>
+    <p>2. Word bubbles will float up - some belong to the category, some don't!</p>
+    <p>3. Click ONLY the bubbles that match the category within 30 seconds.</p>
+    <p>4. Three rounds with different categories.</p>
+    <p><strong>Scoring:</strong> +10 for correct pops, -5 for wrong pops!</p>
+    <p>This tests your semantic memory and processing speed! 🧠⚡</p>
+    <button id="startBtn">Start Popping!</button>
+  </div>
+
+  <div id="gameArea">
+    <div id="topPanel">
+      <div id="categoryDisplay">Category: ANIMALS</div>
+      <div id="timer">30</div>
+      <div id="scoreDisplay">Score: 0 | Correct: 0 | Wrong: 0</div>
+    </div>
+    <div id="bubbleZone"></div>
+  </div>
+
+  <div id="resultsScreen">
+    <h2>🎉 Popping Complete!</h2>
+    <p>Total Score: <span id="finalScore"></span></p>
+    <p>Correct Pops: <span id="totalCorrect"></span></p>
+    <p>Wrong Pops: <span id="totalWrong"></span></p>
+    <p>Missed Targets: <span id="totalMissed"></span></p>
+    <p>Accuracy: <span id="accuracy"></span>%</p>
+    <canvas id="resultChart" width="600" height="300"></canvas>
+    <button id="restartBtn">Play Again</button>
+  </div>
+
+  <script>
+    const categories = [
+      {
+        name: 'ANIMALS',
+        targets: ['DOG', 'CAT', 'LION', 'TIGER', 'BEAR', 'ELEPHANT', 'MONKEY', 'ZEBRA'],
+        distractors: ['CAR', 'CHAIR', 'BOOK', 'APPLE', 'PHONE', 'TREE', 'CLOUD', 'HOUSE']
+      },
+      {
+        name: 'COLORS',
+        targets: ['RED', 'BLUE', 'GREEN', 'YELLOW', 'PURPLE', 'ORANGE', 'PINK', 'BROWN'],
+        distractors: ['HAPPY', 'FAST', 'LOUD', 'SOFT', 'COLD', 'DARK', 'HEAVY', 'LIGHT']
+      },
+      {
+        name: 'FRUITS',
+        targets: ['APPLE', 'BANANA', 'ORANGE', 'GRAPE', 'MANGO', 'PEACH', 'CHERRY', 'LEMON'],
+        distractors: ['CARROT', 'POTATO', 'ONION', 'CHEESE', 'BREAD', 'RICE', 'MEAT', 'FISH']
+      }
+    ];
+
+    let currentRound = 0;
+    let score = 0;
+    let correctPops = 0;
+    let wrongPops = 0;
+    let missedTargets = 0;
+    let timer = 30;
+    let timerInterval;
+    let bubbleInterval;
+    let currentWords = [];
+    let roundStats = [];
+
+    function startRound() {
+      if (currentRound >= categories.length) {
+        showResults();
+        return;
+      }
+
+      const category = categories[currentRound];
+      document.getElementById('categoryDisplay').textContent = `Category: ${category.name}`;
+      document.getElementById('timer').textContent = timer;
+      updateScoreDisplay();
+
+      currentWords = [];
+      let wordPool = [...category.targets, ...category.targets, ...category.distractors];
+      wordPool.sort(() => Math.random() - 0.5);
+
+      let wordIndex = 0;
+      bubbleInterval = setInterval(() => {
+        if (wordIndex < wordPool.length) {
+          createBubble(wordPool[wordIndex], category.targets.includes(wordPool[wordIndex]));
+          wordIndex++;
+        }
+      }, 1500);
+
+      timerInterval = setInterval(() => {
+        timer--;
+        document.getElementById('timer').textContent = timer;
+        if (timer <= 0) {
+          endRound();
+        }
+      }, 1000);
+    }
+
+    function createBubble(word, isTarget) {
+      const bubble = document.createElement('div');
+      bubble.className = 'bubble';
+      bubble.textContent = word;
+      bubble.dataset.target = isTarget;
+      
+      const zone = document.getElementById('bubbleZone');
+      const left = Math.random() * (zone.clientWidth - 150);
+      bubble.style.left = left + 'px';
+      bubble.style.bottom = '-50px';
+      
+      zone.appendChild(bubble);
+      currentWords.push({ word, isTarget, popped: false });
+
+      let bottom = -50;
+      const riseInterval = setInterval(() => {
+        bottom += 2;
+        bubble.style.bottom = bottom + 'px';
+        
+        if (bottom > zone.clientHeight) {
+          clearInterval(riseInterval);
+          if (bubble.parentNode) {
+            bubble.remove();
+            if (isTarget && !bubble.dataset.popped) {
+              missedTargets++;
+            }
+          }
+        }
+      }, 30);
+
+      bubble.onclick = () => {
+        if (bubble.dataset.popped) return;
+        bubble.dataset.popped = 'true';
+        
+        const wasTarget = bubble.dataset.target === 'true';
+        if (wasTarget) {
+          score += 10;
+          correctPops++;
+          bubble.classList.add('correct');
+        } else {
+          score -= 5;
+          wrongPops++;
+          bubble.classList.add('wrong');
+        }
+        
+        updateScoreDisplay();
+        
+        setTimeout(() => {
+          if (bubble.parentNode) {
+            bubble.remove();
+          }
+        }, 500);
+      };
+    }
+
+    function updateScoreDisplay() {
+      document.getElementById('scoreDisplay').textContent = 
+        `Score: ${score} | Correct: ${correctPops} | Wrong: ${wrongPops}`;
+    }
+
+    function endRound() {
+      clearInterval(timerInterval);
+      clearInterval(bubbleInterval);
+      
+      roundStats.push({
+        round: currentRound + 1,
+        score: score,
+        correct: correctPops,
+        wrong: wrongPops
+      });
+
+      document.getElementById('bubbleZone').innerHTML = '';
+      
+      currentRound++;
+      timer = 30;
+      
+      if (currentRound < categories.length) {
+        setTimeout(() => {
+          startRound();
+        }, 2000);
+      } else {
+        setTimeout(() => {
+          showResults();
+        }, 1000);
+      }
+    }
+
+    function showResults() {
+      document.getElementById('gameArea').style.display = 'none';
+      document.getElementById('resultsScreen').style.display = 'block';
+      
+      const totalAttempts = correctPops + wrongPops;
+      const accuracy = totalAttempts > 0 ? Math.round((correctPops / totalAttempts) * 100) : 0;
+      
+      document.getElementById('finalScore').textContent = score;
+      document.getElementById('totalCorrect').textContent = correctPops;
+      document.getElementById('totalWrong').textContent = wrongPops;
+      document.getElementById('totalMissed').textContent = missedTargets;
+      document.getElementById('accuracy').textContent = accuracy;
+
+      drawChart();
+    }
+
+    function drawChart() {
+      const canvas = document.getElementById('resultChart');
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      const barWidth = 120;
+      const maxHeight = 200;
+      const spacing = 150;
+      const startX = 80;
+
+      const values = [correctPops, wrongPops, missedTargets];
+      const labels = ['Correct Pops', 'Wrong Pops', 'Missed'];
+      const colors = ['#2ecc71', '#e74c3c', '#f39c12'];
+
+      const maxVal = Math.max(...values, 1);
+
+      values.forEach((val, i) => {
+        const x = startX + i * spacing;
+        const height = (val / maxVal) * maxHeight;
+        
+        ctx.fillStyle = colors[i];
+        ctx.fillRect(x, 250 - height, barWidth, height);
+        
+        ctx.fillStyle = 'black';
+        ctx.font = '14px Arial';
+        ctx.fillText(labels[i], x + 10, 280);
+        ctx.fillText(val, x + 50, 240 - height);
+      });
+    }
+
+    document.getElementById('startBtn').addEventListener('click', () => {
+      document.getElementById('instructions').style.display = 'none';
+      document.getElementById('gameArea').style.display = 'block';
+      currentRound = 0;
+      score = 0;
+      correctPops = 0;
+      wrongPops = 0;
+      missedTargets = 0;
+      timer = 30;
+      roundStats = [];
+      startRound();
+    });
+
+    document.getElementById('restartBtn').addEventListener('click', () => {
+      document.getElementById('resultsScreen').style.display = 'none';
+      document.getElementById('instructions').style.display = 'block';
+    });
+  </script>
+</body>
+</html>

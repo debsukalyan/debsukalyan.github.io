@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Shape Shifter Challenge</title>
+  <style>
+    body {
+      font-family: 'Trebuchet MS', sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      min-height: 100vh;
+    }
+    #instructions {
+      text-align: center;
+      padding: 40px;
+      background: white;
+      border-radius: 20px;
+      max-width: 650px;
+      margin: 0 auto;
+    }
+    #instructions h1 {
+      font-size: 42px;
+      color: #f5576c;
+      margin-bottom: 20px;
+    }
+    #instructions p {
+      font-size: 18px;
+      color: #333;
+      margin-bottom: 15px;
+      line-height: 1.6;
+    }
+    #instructions button {
+      font-size: 24px;
+      padding: 12px 35px;
+      background-color: #f5576c;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: transform 0.2s;
+    }
+    #instructions button:hover {
+      transform: scale(1.05);
+    }
+    #gameArea {
+      display: none;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    #scorePanel {
+      background: white;
+      padding: 15px 30px;
+      border-radius: 15px;
+      margin-bottom: 25px;
+      display: flex;
+      justify-content: space-around;
+      font-size: 20px;
+      font-weight: bold;
+      color: #333;
+    }
+    #shapeContainer {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      margin: 30px 0;
+      gap: 30px;
+    }
+    .shapeBox {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    #targetShape {
+      border: 4px solid #f5576c;
+    }
+    .optionShape {
+      cursor: pointer;
+      transition: all 0.3s;
+      border: 4px solid transparent;
+    }
+    .optionShape:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+    }
+    .optionShape.correct {
+      border-color: #2ecc71;
+      animation: correctBounce 0.5s;
+    }
+    .optionShape.wrong {
+      border-color: #e74c3c;
+      animation: wrongShake 0.5s;
+    }
+    @keyframes correctBounce {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+    @keyframes wrongShake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-10px); }
+      75% { transform: translateX(10px); }
+    }
+    canvas {
+      display: block;
+    }
+    #resultsScreen {
+      display: none;
+      text-align: center;
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    #resultsScreen h2 {
+      font-size: 40px;
+      color: #f5576c;
+      margin-bottom: 20px;
+    }
+    #resultsScreen p {
+      font-size: 22px;
+      margin: 15px 0;
+      color: #333;
+    }
+    #resultsScreen button {
+      font-size: 22px;
+      padding: 12px 30px;
+      background-color: #f5576c;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    .instruction-label {
+      text-align: center;
+      color: white;
+      font-size: 26px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+    #optionsContainer {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+  <div id="instructions">
+    <h1>🔄 Shape Shifter Challenge</h1>
+    <p><strong>How to Play:</strong></p>
+    <p>1. You'll see a TARGET shape on the left.</p>
+    <p>2. Two shapes appear on the right - one is the SAME shape rotated, one is different (mirror image).</p>
+    <p>3. Click on the shape that matches the target (just rotated, not mirrored)!</p>
+    <p><strong>Tip:</strong> Try to mentally rotate the shapes in your mind. This tests your spatial reasoning! 🧠</p>
+    <p>25 rounds - can you master mental rotation?</p>
+    <button id="startBtn">Start Challenge</button>
+  </div>
+
+  <div id="gameArea">
+    <div id="scorePanel">
+      <div>Round: <span id="roundNum">1</span>/25</div>
+      <div>Score: <span id="score">0</span></div>
+      <div>Accuracy: <span id="accuracy">0%</span></div>
+    </div>
+    <div id="shapeContainer">
+      <div>
+        <div class="instruction-label">TARGET</div>
+        <div class="shapeBox" id="targetShape">
+          <canvas id="targetCanvas" width="200" height="200"></canvas>
+        </div>
+      </div>
+      <div>
+        <div class="instruction-label">Which one MATCHES? (Click it!)</div>
+        <div id="optionsContainer">
+          <div class="shapeBox optionShape" id="option1">
+            <canvas id="option1Canvas" width="200" height="200"></canvas>
+          </div>
+          <div class="shapeBox optionShape" id="option2">
+            <canvas id="option2Canvas" width="200" height="200"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="resultsScreen">
+    <h2>🎨 Challenge Complete!</h2>
+    <p>Final Score: <span id="finalScore"></span> / 25</p>
+    <p>Accuracy: <span id="finalAccuracy"></span>%</p>
+    <p>Average Response Time: <span id="avgRT"></span> ms</p>
+    <p>Small Rotation (0-90°) Correct: <span id="smallRotCorrect"></span></p>
+    <p>Large Rotation (90-180°) Correct: <span id="largeRotCorrect"></span></p>
+    <canvas id="resultChart" width="500" height="300"></canvas>
+    <button id="restartBtn">Play Again</button>
+  </div>
+
+  <script>
+    let currentTrial = 0;
+    let score = 0;
+    let responseTimes = [];
+    let trialStartTime = 0;
+    let smallRotationCorrect = 0;
+    let largeRotationCorrect = 0;
+    let trials = [];
+    const totalTrials = 25;
+
+    function generateShape(ctx, rotation, mirrored = false) {
+      ctx.clearRect(0, 0, 200, 200);
+      ctx.save();
+      ctx.translate(100, 100);
+      ctx.rotate((rotation * Math.PI) / 180);
+      if (mirrored) ctx.scale(-1, 1);
+
+      // Draw L-shaped block
+      ctx.fillStyle = '#f5576c';
+      ctx.fillRect(-60, -60, 80, 40);
+      ctx.fillRect(-60, -60, 40, 120);
+      
+      // Add some details
+      ctx.fillStyle = '#fff';
+      ctx.fillRect(-50, -50, 20, 20);
+      ctx.fillRect(-50, 10, 20, 20);
+
+      ctx.restore();
+    }
+
+    function generateTrials() {
+      trials = [];
+      for (let i = 0; i < totalTrials; i++) {
+        const targetRotation = Math.floor(Math.random() * 360);
+        const correctRotation = (targetRotation + Math.floor(Math.random() * 180) + 90) % 360;
+        const rotationDiff = Math.abs(correctRotation - targetRotation);
+        const isSmallRotation = rotationDiff <= 90;
+        
+        trials.push({
+          targetRotation,
+          correctRotation,
+          isSmallRotation
+        });
+      }
+    }
+
+    function showTrial() {
+      if (currentTrial >= totalTrials) {
+        showResults();
+        return;
+      }
+
+      const trial = trials[currentTrial];
+      
+      // Draw target
+      const targetCtx = document.getElementById('targetCanvas').getContext('2d');
+      generateShape(targetCtx, trial.targetRotation);
+
+      // Randomly assign correct and mirrored to options
+      const correctFirst = Math.random() < 0.5;
+      const option1Ctx = document.getElementById('option1Canvas').getContext('2d');
+      const option2Ctx = document.getElementById('option2Canvas').getContext('2d');
+
+      if (correctFirst) {
+        generateShape(option1Ctx, trial.correctRotation, false);
+        generateShape(option2Ctx, trial.correctRotation, true);
+        document.getElementById('option1').dataset.correct = 'true';
+        document.getElementById('option2').dataset.correct = 'false';
+      } else {
+        generateShape(option1Ctx, trial.correctRotation, true);
+        generateShape(option2Ctx, trial.correctRotation, false);
+        document.getElementById('option1').dataset.correct = 'false';
+        document.getElementById('option2').dataset.correct = 'true';
+      }
+
+      // Reset styles
+      document.getElementById('option1').className = 'shapeBox optionShape';
+      document.getElementById('option2').className = 'shapeBox optionShape';
+
+      trialStartTime = Date.now();
+
+      document.getElementById('option1').onclick = () => handleChoice('option1');
+      document.getElementById('option2').onclick = () => handleChoice('option2');
+    }
+
+    function handleChoice(optionId) {
+      const rt = Date.now() - trialStartTime;
+      responseTimes.push(rt);
+
+      const option = document.getElementById(optionId);
+      const isCorrect = option.dataset.correct === 'true';
+
+      document.getElementById('option1').onclick = null;
+      document.getElementById('option2').onclick = null;
+
+      if (isCorrect) {
+        score++;
+        option.classList.add('correct');
+        if (trials[currentTrial].isSmallRotation) {
+          smallRotationCorrect++;
+        } else {
+          largeRotationCorrect++;
+        }
+      } else {
+        option.classList.add('wrong');
+      }
+
+      updateScore();
+
+      setTimeout(() => {
+        currentTrial++;
+        showTrial();
+      }, 1000);
+    }
+
+    function updateScore() {
+      document.getElementById('roundNum').textContent = currentTrial + 1;
+      document.getElementById('score').textContent = score;
+      const accuracy = currentTrial > 0 ? Math.round((score / currentTrial) * 100) : 0;
+      document.getElementById('accuracy').textContent = accuracy;
+    }
+
+    function showResults() {
+      document.getElementById('gameArea').style.display = 'none';
+      document.getElementById('resultsScreen').style.display = 'block';
+
+      const accuracy = Math.round((score / totalTrials) * 100);
+      const avgRT = Math.round(responseTimes.reduce((a, b) => a + b, 0) / responseTimes.length);
+
+      document.getElementById('finalScore').textContent = score;
+      document.getElementById('finalAccuracy').textContent = accuracy;
+      document.getElementById('avgRT').textContent = avgRT;
+      document.getElementById('smallRotCorrect').textContent = smallRotationCorrect;
+      document.getElementById('largeRotCorrect').textContent = largeRotationCorrect;
+
+      drawChart();
+    }
+
+    function drawChart() {
+      const canvas = document.getElementById('resultChart');
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      const smallTotal = trials.filter(t => t.isSmallRotation).length;
+      const largeTotal = totalTrials - smallTotal;
+      const smallAcc = smallTotal > 0 ? (smallRotationCorrect / smallTotal) * 100 : 0;
+      const largeAcc = largeTotal > 0 ? (largeRotationCorrect / largeTotal) * 100 : 0;
+
+      const barWidth = 120;
+      const maxHeight = 200;
+      const x1 = 120;
+      const x2 = 280;
+
+      ctx.fillStyle = '#3498db';
+      const h1 = (smallAcc / 100) * maxHeight;
+      ctx.fillRect(x1, 250 - h1, barWidth, h1);
+
+      ctx.fillStyle = '#e74c3c';
+      const h2 = (largeAcc / 100) * maxHeight;
+      ctx.fillRect(x2, 250 - h2, barWidth, h2);
+
+      ctx.fillStyle = 'black';
+      ctx.font = '16px Arial';
+      ctx.fillText('Small Rotation', x1, 280);
+      ctx.fillText('Large Rotation', x2, 280);
+      ctx.fillText(Math.round(smallAcc) + '%', x1 + 40, 240 - h1);
+      ctx.fillText(Math.round(largeAcc) + '%', x2 + 40, 240 - h2);
+    }
+
+    document.getElementById('startBtn').addEventListener('click', () => {
+      document.getElementById('instructions').style.display = 'none';
+      document.getElementById('gameArea').style.display = 'block';
+      generateTrials();
+      currentTrial = 0;
+      score = 0;
+      smallRotationCorrect = 0;
+      largeRotationCorrect = 0;
+      responseTimes = [];
+      updateScore();
+      showTrial();
+    });
+
+    document.getElementById('restartBtn').addEventListener('click', () => {
+      document.getElementById('resultsScreen').style.display = 'none';
+      document.getElementById('instructions').style.display = 'block';
+    });
+  </script>
+</body>
+</html>

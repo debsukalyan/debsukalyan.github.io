@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Number Sequence Detective</title>
+  <style>
+    body {
+      font-family: 'Courier New', monospace;
+      margin: 0;
+      padding: 20px;
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+      min-height: 100vh;
+      color: white;
+    }
+    #instructions {
+      text-align: center;
+      padding: 40px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      max-width: 650px;
+      margin: 0 auto;
+      color: #333;
+    }
+    #instructions h1 {
+      font-size: 42px;
+      color: #1e3c72;
+      margin-bottom: 20px;
+    }
+    #instructions p {
+      font-size: 18px;
+      margin-bottom: 15px;
+      line-height: 1.6;
+    }
+    #instructions button {
+      font-size: 24px;
+      padding: 12px 35px;
+      background-color: #1e3c72;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: transform 0.2s;
+    }
+    #instructions button:hover {
+      transform: scale(1.05);
+    }
+    #gameArea {
+      display: none;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    #scoreBar {
+      background: rgba(255, 255, 255, 0.9);
+      color: #333;
+      padding: 15px 30px;
+      border-radius: 15px;
+      margin-bottom: 30px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 20px;
+      font-weight: bold;
+    }
+    #numberDisplay {
+      background: white;
+      color: #1e3c72;
+      font-size: 120px;
+      font-weight: bold;
+      padding: 80px;
+      border-radius: 20px;
+      text-align: center;
+      margin: 30px 0;
+      min-height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    #buttonContainer {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 30px;
+    }
+    .responseBtn {
+      font-size: 28px;
+      padding: 20px 50px;
+      border: none;
+      border-radius: 15px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+    #yesBtn {
+      background-color: #2ecc71;
+      color: white;
+    }
+    #noBtn {
+      background-color: #e74c3c;
+      color: white;
+    }
+    .responseBtn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    }
+    .responseBtn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+    #resultsScreen {
+      display: none;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.95);
+      color: #333;
+      padding: 40px;
+      border-radius: 20px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    #resultsScreen h2 {
+      font-size: 40px;
+      color: #1e3c72;
+      margin-bottom: 20px;
+    }
+    #resultsScreen p {
+      font-size: 22px;
+      margin: 15px 0;
+    }
+    #resultsScreen button {
+      font-size: 22px;
+      padding: 12px 30px;
+      background-color: #1e3c72;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    .instruction-text {
+      font-size: 24px;
+      text-align: center;
+      margin: 20px 0;
+      color: white;
+      font-weight: bold;
+    }
+    @keyframes flash {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+    .correct-flash {
+      animation: flash 0.3s 2;
+    }
+  </style>
+</head>
+<body>
+  <div id="instructions">
+    <h1>🔢 Number Sequence Detective</h1>
+    <p><strong>How to Play:</strong></p>
+    <p>1. Numbers will appear one at a time on screen.</p>
+    <p>2. Press <strong>YES</strong> if the current number is the SAME as the number shown 2 steps back.</p>
+    <p>3. Press <strong>NO</strong> if it's different.</p>
+    <p><strong>Example:</strong> If you see 5 → 3 → 5, press YES (current 5 matches 2 steps back).</p>
+    <p>This tests your working memory - stay sharp! 🧠</p>
+    <button id="startBtn">Start Game</button>
+  </div>
+
+  <div id="gameArea">
+    <div id="scoreBar">
+      <div>Round: <span id="roundNum">1</span>/30</div>
+      <div>Score: <span id="score">0</span></div>
+      <div>Streak: <span id="streak">0</span>🔥</div>
+    </div>
+    <div class="instruction-text">Is this number the SAME as 2 steps back?</div>
+    <div id="numberDisplay">?</div>
+    <div id="buttonContainer">
+      <button class="responseBtn" id="yesBtn">YES ✓</button>
+      <button class="responseBtn" id="noBtn">NO ✗</button>
+    </div>
+  </div>
+
+  <div id="resultsScreen">
+    <h2>🎯 Mission Complete!</h2>
+    <p>Final Score: <span id="finalScore"></span> / 30</p>
+    <p>Accuracy: <span id="finalAccuracy"></span>%</p>
+    <p>Hits (Correct YES): <span id="hits"></span></p>
+    <p>Correct Rejections (Correct NO): <span id="correctRejections"></span></p>
+    <p>False Alarms (Wrong YES): <span id="falseAlarms"></span></p>
+    <p>Misses (Wrong NO): <span id="misses"></span></p>
+    <p>Best Streak: <span id="bestStreak"></span>🔥</p>
+    <canvas id="resultChart" width="600" height="300"></canvas>
+    <button id="restartBtn">Play Again</button>
+  </div>
+
+  <script>
+    let sequence = [];
+    let currentIndex = 0;
+    let score = 0;
+    let streak = 0;
+    let bestStreak = 0;
+    let hits = 0;
+    let correctRejections = 0;
+    let falseAlarms = 0;
+    let misses = 0;
+    const totalTrials = 30;
+    const nBack = 2;
+
+    function generateSequence() {
+      sequence = [];
+      // First 2 numbers are random (no judgment needed)
+      for (let i = 0; i < nBack; i++) {
+        sequence.push(Math.floor(Math.random() * 9) + 1);
+      }
+      // Rest with controlled matches
+      for (let i = nBack; i < totalTrials; i++) {
+        if (Math.random() < 0.35) { // 35% matches
+          sequence.push(sequence[i - nBack]);
+        } else {
+          let num;
+          do {
+            num = Math.floor(Math.random() * 9) + 1;
+          } while (num === sequence[i - nBack]);
+          sequence.push(num);
+        }
+      }
+    }
+
+    function updateScore() {
+      document.getElementById('roundNum').textContent = currentIndex + 1;
+      document.getElementById('score').textContent = score;
+      document.getElementById('streak').textContent = streak;
+    }
+
+    function showNumber() {
+      if (currentIndex >= totalTrials) {
+        showResults();
+        return;
+      }
+
+      const display = document.getElementById('numberDisplay');
+      display.textContent = sequence[currentIndex];
+      display.classList.remove('correct-flash');
+
+      const yesBtn = document.getElementById('yesBtn');
+      const noBtn = document.getElementById('noBtn');
+      
+      // Disable buttons for first 2 numbers
+      if (currentIndex < nBack) {
+        yesBtn.disabled = true;
+        noBtn.disabled = true;
+        setTimeout(() => {
+          currentIndex++;
+          showNumber();
+        }, 1500);
+      } else {
+        yesBtn.disabled = false;
+        noBtn.disabled = false;
+      }
+    }
+
+    function handleResponse(userSaidYes) {
+      const display = document.getElementById('numberDisplay');
+      const isMatch = sequence[currentIndex] === sequence[currentIndex - nBack];
+      const correct = userSaidYes === isMatch;
+
+      if (correct) {
+        score++;
+        streak++;
+        bestStreak = Math.max(bestStreak, streak);
+        display.style.backgroundColor = '#2ecc71';
+        
+        if (isMatch) hits++;
+        else correctRejections++;
+      } else {
+        streak = 0;
+        display.style.backgroundColor = '#e74c3c';
+        
+        if (userSaidYes) falseAlarms++;
+        else misses++;
+      }
+
+      display.classList.add('correct-flash');
+      
+      document.getElementById('yesBtn').disabled = true;
+      document.getElementById('noBtn').disabled = true;
+
+      updateScore();
+
+      setTimeout(() => {
+        display.style.backgroundColor = 'white';
+        currentIndex++;
+        showNumber();
+      }, 800);
+    }
+
+    function showResults() {
+      document.getElementById('gameArea').style.display = 'none';
+      document.getElementById('resultsScreen').style.display = 'block';
+      
+      const accuracy = Math.round((score / (totalTrials - nBack)) * 100);
+      
+      document.getElementById('finalScore').textContent = score;
+      document.getElementById('finalAccuracy').textContent = accuracy;
+      document.getElementById('hits').textContent = hits;
+      document.getElementById('correctRejections').textContent = correctRejections;
+      document.getElementById('falseAlarms').textContent = falseAlarms;
+      document.getElementById('misses').textContent = misses;
+      document.getElementById('bestStreak').textContent = bestStreak;
+
+      drawChart();
+    }
+
+    function drawChart() {
+      const canvas = document.getElementById('resultChart');
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      const categories = ['Hits', 'Correct\nRejections', 'False\nAlarms', 'Misses'];
+      const values = [hits, correctRejections, falseAlarms, misses];
+      const colors = ['#2ecc71', '#3498db', '#e67e22', '#e74c3c'];
+
+      const barWidth = 100;
+      const maxHeight = 200;
+      const spacing = 130;
+      const startX = 50;
+
+      values.forEach((val, i) => {
+        const x = startX + i * spacing;
+        const height = (val / Math.max(...values)) * maxHeight;
+        
+        ctx.fillStyle = colors[i];
+        ctx.fillRect(x, 250 - height, barWidth, height);
+        
+        ctx.fillStyle = 'black';
+        ctx.font = '14px Arial';
+        ctx.fillText(categories[i], x + 10, 280);
+        ctx.fillText(val, x + 40, 240 - height);
+      });
+    }
+
+    document.getElementById('startBtn').addEventListener('click', () => {
+      document.getElementById('instructions').style.display = 'none';
+      document.getElementById('gameArea').style.display = 'block';
+      generateSequence();
+      currentIndex = 0;
+      score = 0;
+      streak = 0;
+      bestStreak = 0;
+      hits = 0;
+      correctRejections = 0;
+      falseAlarms = 0;
+      misses = 0;
+      updateScore();
+      showNumber();
+    });
+
+    document.getElementById('yesBtn').addEventListener('click', () => handleResponse(true));
+    document.getElementById('noBtn').addEventListener('click', () => handleResponse(false));
+
+    document.getElementById('restartBtn').addEventListener('click', () => {
+      document.getElementById('resultsScreen').style.display = 'none';
+      document.getElementById('instructions').style.display = 'block';
+    });
+  </script>
+</body>
+</html>

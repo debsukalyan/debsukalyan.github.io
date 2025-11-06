@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Speed Sorter Pro</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+      min-height: 100vh;
+    }
+    #instructions {
+      text-align: center;
+      padding: 40px;
+      background: white;
+      border-radius: 20px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    #instructions h1 {
+      font-size: 42px;
+      color: #ff6b6b;
+      margin-bottom: 20px;
+    }
+    #instructions p {
+      font-size: 18px;
+      color: #333;
+      margin-bottom: 15px;
+      line-height: 1.6;
+    }
+    #instructions button {
+      font-size: 24px;
+      padding: 12px 35px;
+      background-color: #ff6b6b;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: transform 0.2s;
+    }
+    #instructions button:hover {
+      transform: scale(1.05);
+    }
+    #gameArea {
+      display: none;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    #topBar {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 22px;
+      font-weight: bold;
+    }
+    #ruleDisplay {
+      font-size: 36px;
+      color: #ff6b6b;
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      margin-bottom: 20px;
+      border: 4px solid #ff6b6b;
+    }
+    #cardDisplay {
+      background: white;
+      width: 250px;
+      height: 250px;
+      margin: 30px auto;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 80px;
+      font-weight: bold;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      border: 5px solid #333;
+    }
+    #sortButtons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 30px;
+    }
+    .sortBtn {
+      font-size: 28px;
+      padding: 20px 40px;
+      border: none;
+      border-radius: 15px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    #leftBtn {
+      background-color: #4ecdc4;
+      color: white;
+    }
+    #rightBtn {
+      background-color: #ffe66d;
+      color: #333;
+    }
+    .sortBtn:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+    .sortBtn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+    #resultsScreen {
+      display: none;
+      text-align: center;
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    #resultsScreen h2 {
+      font-size: 40px;
+      color: #ff6b6b;
+      margin-bottom: 20px;
+    }
+    #resultsScreen p {
+      font-size: 22px;
+      margin: 15px 0;
+      color: #333;
+    }
+    #resultsScreen button {
+      font-size: 22px;
+      padding: 12px 30px;
+      background-color: #ff6b6b;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    .feedback {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 60px;
+      font-weight: bold;
+      padding: 30px 60px;
+      border-radius: 20px;
+      z-index: 1000;
+      animation: feedbackPop 0.6s;
+    }
+    .feedback.correct {
+      background: #2ecc71;
+      color: white;
+    }
+    .feedback.wrong {
+      background: #e74c3c;
+      color: white;
+    }
+    @keyframes feedbackPop {
+      0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+      50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+      100% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div id="instructions">
+    <h1>⚡ Speed Sorter Pro</h1>
+    <p><strong>How to Play:</strong></p>
+    <p>1. You'll see cards with NUMBERS in different COLORS.</p>
+    <p>2. A RULE appears at the top - either "SORT BY NUMBER" or "SORT BY COLOR".</p>
+    <p>3. Click LEFT if the card matches the left category, RIGHT if it matches the right.</p>
+    <p><strong>Example:</strong></p>
+    <p>Rule: "SORT BY NUMBER: ODD ← | → EVEN"<br>You see a red "7" → Click LEFT (7 is odd)</p>
+    <p>Rule: "SORT BY COLOR: WARM ← | → COOL"<br>You see a blue "3" → Click RIGHT (blue is cool)</p>
+    <p><strong>Challenge:</strong> The rule CHANGES! Stay flexible and switch quickly! 🧠</p>
+    <p>40 trials - test your mental flexibility!</p>
+    <button id="startBtn">Start Sorting!</button>
+  </div>
+
+  <div id="gameArea">
+    <div id="topBar">
+      <div>Trial: <span id="trialNum">1</span>/40</div>
+      <div>Score: <span id="score">0</span></div>
+      <div>Switch Cost: <span id="switchCost">--</span>ms</div>
+    </div>
+    <div id="ruleDisplay">SORT BY NUMBER: ODD ← | → EVEN</div>
+    <div id="cardDisplay" style="color: red;">5</div>
+    <div id="sortButtons">
+      <button class="sortBtn" id="leftBtn">LEFT</button>
+      <button class="sortBtn" id="rightBtn">RIGHT</button>
+    </div>
+  </div>
+
+  <div id="resultsScreen">
+    <h2>🏆 Sorting Complete!</h2>
+    <p>Total Score: <span id="finalScore"></span> / 40</p>
+    <p>Accuracy: <span id="finalAccuracy"></span>%</p>
+    <p>Stay Trials Correct: <span id="stayCorrect"></span></p>
+    <p>Switch Trials Correct: <span id="switchCorrect"></span></p>
+    <p>Average RT (Stay): <span id="avgStayRT"></span> ms</p>
+    <p>Average RT (Switch): <span id="avgSwitchRT"></span> ms</p>
+    <p>Switch Cost: <span id="finalSwitchCost"></span> ms</p>
+    <canvas id="resultChart" width="600" height="350"></canvas>
+    <button id="restartBtn">Play Again</button>
+  </div>
+
+  <script>
+    const colors = ['red', 'blue', 'green', 'orange'];
+    const warmColors = ['red', 'orange'];
+    const coolColors = ['blue', 'green'];
+    
+    let trials = [];
+    let currentTrial = 0;
+    let score = 0;
+    let stayTrialsCorrect = 0;
+    let switchTrialsCorrect = 0;
+    let stayRTs = [];
+    let switchRTs = [];
+    let trialStartTime = 0;
+    const totalTrials = 40;
+
+    function generateTrials() {
+      trials = [];
+      let lastRule = null;
+      
+      for (let i = 0; i < totalTrials; i++) {
+        const ruleType = Math.random() < 0.5 ? 'number' : 'color';
+        const number = Math.floor(Math.random() * 9) + 1;
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        
+        const isSwitch = lastRule !== null && lastRule !== ruleType;
+        
+        let correctSide;
+        if (ruleType === 'number') {
+          correctSide = (number % 2 === 1) ? 'left' : 'right';
+        } else {
+          correctSide = warmColors.includes(color) ? 'left' : 'right';
+        }
+        
+        trials.push({
+          ruleType,
+          number,
+          color,
+          correctSide,
+          isSwitch
+        });
+        
+        lastRule = ruleType;
+      }
+    }
+
+    function showTrial() {
+      if (currentTrial >= totalTrials) {
+        showResults();
+        return;
+      }
+
+      const trial = trials[currentTrial];
+      
+      // Update rule display
+      if (trial.ruleType === 'number') {
+        document.getElementById('ruleDisplay').textContent = 'SORT BY NUMBER: ODD ← | → EVEN';
+      } else {
+        document.getElementById('ruleDisplay').textContent = 'SORT BY COLOR: WARM ← | → COOL';
+      }
+      
+      // Update card
+      const cardDisplay = document.getElementById('cardDisplay');
+      cardDisplay.textContent = trial.number;
+      cardDisplay.style.color = trial.color;
+      
+      // Update score display
+      document.getElementById('trialNum').textContent = currentTrial + 1;
+      document.getElementById('score').textContent = score;
+      
+      // Enable buttons
+      document.getElementById('leftBtn').disabled = false;
+      document.getElementById('rightBtn').disabled = false;
+      
+      trialStartTime = Date.now();
+    }
+
+    function handleResponse(side) {
+      const rt = Date.now() - trialStartTime;
+      const trial = trials[currentTrial];
+      const correct = side === trial.correctSide;
+      
+      // Disable buttons
+      document.getElementById('leftBtn').disabled = true;
+      document.getElementById('rightBtn').disabled = true;
+      
+      // Show feedback
+      const feedback = document.createElement('div');
+      feedback.className = 'feedback ' + (correct ? 'correct' : 'wrong');
+      feedback.textContent = correct ? '✓ CORRECT' : '✗ WRONG';
+      document.body.appendChild(feedback);
+      
+      setTimeout(() => feedback.remove(), 600);
+      
+      if (correct) {
+        score++;
+        if (trial.isSwitch) {
+          switchTrialsCorrect++;
+          switchRTs.push(rt);
+        } else {
+          stayTrialsCorrect++;
+          stayRTs.push(rt);
+        }
+      }
+      
+      // Update switch cost display
+      if (switchRTs.length > 0 && stayRTs.length > 0) {
+        const avgSwitch = switchRTs.reduce((a, b) => a + b, 0) / switchRTs.length;
+        const avgStay = stayRTs.reduce((a, b) => a + b, 0) / stayRTs.length;
+        const switchCost = Math.round(avgSwitch - avgStay);
+        document.getElementById('switchCost').textContent = switchCost;
+      }
+      
+      setTimeout(() => {
+        currentTrial++;
+        showTrial();
+      }, 800);
+    }
+
+    function showResults() {
+      document.getElementById('gameArea').style.display = 'none';
+      document.getElementById('resultsScreen').style.display = 'block';
+      
+      const accuracy = Math.round((score / totalTrials) * 100);
+      const avgStayRT = stayRTs.length > 0 ? Math.round(stayRTs.reduce((a, b) => a + b, 0) / stayRTs.length) : 0;
+      const avgSwitchRT = switchRTs.length > 0 ? Math.round(switchRTs.reduce((a, b) => a + b, 0) / switchRTs.length) : 0;
+      const switchCost = avgSwitchRT - avgStayRT;
+      
+      document.getElementById('finalScore').textContent = score;
+      document.getElementById('finalAccuracy').textContent = accuracy;
+      document.getElementById('stayCorrect').textContent = stayTrialsCorrect;
+      document.getElementById('switchCorrect').textContent = switchTrialsCorrect;
+      document.getElementById('avgStayRT').textContent = avgStayRT;
+      document.getElementById('avgSwitchRT').textContent = avgSwitchRT;
+      document.getElementById('finalSwitchCost').textContent = switchCost;
+      
+      drawChart();
+    }
+
+    function drawChart() {
+      const canvas = document.getElementById('resultChart');
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      const stayTotal = trials.filter(t => !t.isSwitch).length;
+      const switchTotal = trials.filter(t => t.isSwitch).length;
+      const stayAcc = stayTotal > 0 ? (stayTrialsCorrect / stayTotal) * 100 : 0;
+      const switchAcc = switchTotal > 0 ? (switchTrialsCorrect / switchTotal) * 100 : 0;
+      
+      const avgStayRT = stayRTs.length > 0 ? stayRTs.reduce((a, b) => a + b, 0) / stayRTs.length : 0;
+      const avgSwitchRT = switchRTs.length > 0 ? switchRTs.reduce((a, b) => a + b, 0) / switchRTs.length : 0;
+      
+      // Accuracy bars
+      ctx.fillStyle = '#4ecdc4';
+      const h1 = (stayAcc / 100) * 150;
+      ctx.fillRect(80, 200 - h1, 100, h1);
+      
+      ctx.fillStyle = '#ff6b6b';
+      const h2 = (switchAcc / 100) * 150;
+      ctx.fillRect(220, 200 - h2, 100, h2);
+      
+      ctx.fillStyle = 'black';
+      ctx.font = '14px Arial';
+      ctx.fillText('Stay Trials', 85, 230);
+      ctx.fillText('Switch Trials', 215, 230);
+      ctx.fillText(Math.round(stayAcc) + '%', 110, 190 - h1);
+      ctx.fillText(Math.round(switchAcc) + '%', 250, 190 - h2);
+      
+      // RT bars (scaled)
+      const maxRT = Math.max(avgStayRT, avgSwitchRT, 1000);
+      const scale = 150 / maxRT;
+      
+      ctx.fillStyle = '#4ecdc4';
+      const h3 = avgStayRT * scale;
+      ctx.fillRect(380, 200 - h3, 100, h3);
+      
+      ctx.fillStyle = '#ff6b6b';
+      const h4 = avgSwitchRT * scale;
+      ctx.fillRect(520, 200 - h4, 100, h4);
+      
+      ctx.fillText('Stay RT', 400, 230);
+      ctx.fillText('Switch RT', 535, 230);
+      ctx.fillText(Math.round(avgStayRT) + 'ms', 400, 190 - h3);
+      ctx.fillText(Math.round(avgSwitchRT) + 'ms', 535, 190 - h4);
+      
+      // Labels
+      ctx.font = 'bold 16px Arial';
+      ctx.fillText('Accuracy', 130, 260);
+      ctx.fillText('Response Time', 420, 260);
+    }
+
+    document.getElementById('startBtn').addEventListener('click', () => {
+      document.getElementById('instructions').style.display = 'none';
+      document.getElementById('gameArea').style.display = 'block';
+      generateTrials();
+      currentTrial = 0;
+      score = 0;
+      stayTrialsCorrect = 0;
+      switchTrialsCorrect = 0;
+      stayRTs = [];
+      switchRTs = [];
+      showTrial();
+    });
+
+    document.getElementById('leftBtn').addEventListener('click', () => handleResponse('left'));
+    document.getElementById('rightBtn').addEventListener('click', () => handleResponse('right'));
+
+    document.getElementById('restartBtn').addEventListener('click', () => {
+      document.getElementById('resultsScreen').style.display = 'none';
+      document.getElementById('instructions').style.display = 'block';
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Color Stroop Memory Match</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+    }
+    #instructions {
+      text-align: center;
+      padding: 40px;
+      background: white;
+      border-radius: 20px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    #instructions h1 {
+      font-size: 42px;
+      color: #667eea;
+      margin-bottom: 20px;
+    }
+    #instructions p {
+      font-size: 18px;
+      color: #333;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+    #instructions button {
+      font-size: 22px;
+      padding: 12px 30px;
+      background-color: #667eea;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    #instructions button:hover {
+      transform: scale(1.05);
+    }
+    #gameArea {
+      display: none;
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    #scorePanel {
+      background: white;
+      padding: 15px;
+      border-radius: 15px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-around;
+      font-size: 20px;
+      font-weight: bold;
+    }
+    #displayCard {
+      background: white;
+      padding: 60px;
+      border-radius: 20px;
+      margin: 20px auto;
+      font-size: 72px;
+      font-weight: bold;
+      min-height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #cardsGrid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      max-width: 600px;
+      margin: 20px auto;
+    }
+    .memoryCard {
+      background: white;
+      padding: 40px 20px;
+      border-radius: 15px;
+      font-size: 48px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+      border: 3px solid transparent;
+    }
+    .memoryCard:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+    .memoryCard.correct {
+      animation: correctPulse 0.5s;
+      border-color: #4caf50;
+    }
+    .memoryCard.wrong {
+      animation: wrongShake 0.5s;
+      border-color: #f44336;
+    }
+    @keyframes correctPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+    @keyframes wrongShake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-10px); }
+      75% { transform: translateX(10px); }
+    }
+    #resultsScreen {
+      display: none;
+      text-align: center;
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    #resultsScreen h2 {
+      font-size: 40px;
+      color: #667eea;
+      margin-bottom: 20px;
+    }
+    #resultsScreen p {
+      font-size: 22px;
+      margin: 15px 0;
+      color: #333;
+    }
+    #resultsScreen button {
+      font-size: 22px;
+      padding: 12px 30px;
+      background-color: #667eea;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    .phase-title {
+      color: white;
+      font-size: 28px;
+      margin-bottom: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div id="instructions">
+    <h1>🎨 Color Stroop Memory Match</h1>
+    <p><strong>How to Play:</strong></p>
+    <p>1. <strong>Memorize Phase:</strong> You'll see 6 color words displayed in different colors. Remember BOTH the word AND its color!</p>
+    <p>2. <strong>Match Phase:</strong> Click on cards to find the one that matches what you saw (same word in the same color).</p>
+    <p>3. You have 20 trials. Can you beat the Stroop effect and remember accurately?</p>
+    <p><em>Tip: Some words match their colors (congruent), some don't (incongruent) - stay focused!</em></p>
+    <button id="startBtn">Start Game</button>
+  </div>
+
+  <div id="gameArea">
+    <div id="scorePanel">
+      <div>Round: <span id="roundNum">1</span>/20</div>
+      <div>Score: <span id="score">0</span></div>
+      <div>Accuracy: <span id="accuracy">0%</span></div>
+    </div>
+    <div class="phase-title" id="phaseTitle">Memorization Phase</div>
+    <div id="displayCard"></div>
+    <div id="cardsGrid" style="display: none;"></div>
+  </div>
+
+  <div id="resultsScreen">
+    <h2>🎉 Game Complete!</h2>
+    <p>Total Score: <span id="finalScore"></span> / 20</p>
+    <p>Accuracy: <span id="finalAccuracy"></span>%</p>
+    <p>Congruent Trials Correct: <span id="congruentCorrect"></span></p>
+    <p>Incongruent Trials Correct: <span id="incongruentCorrect"></span></p>
+    <p>Average Response Time: <span id="avgRT"></span> ms</p>
+    <canvas id="resultChart" width="500" height="300"></canvas>
+    <button id="restartBtn">Play Again</button>
+  </div>
+
+  <script>
+    const colors = ['RED', 'BLUE', 'GREEN', 'YELLOW', 'PURPLE', 'ORANGE'];
+    const colorValues = {
+      'RED': '#e74c3c',
+      'BLUE': '#3498db',
+      'GREEN': '#2ecc71',
+      'YELLOW': '#f1c40f',
+      'PURPLE': '#9b59b6',
+      'ORANGE': '#e67e22'
+    };
+
+    let trials = [];
+    let currentTrial = 0;
+    let score = 0;
+    let congruentCorrect = 0;
+    let incongruentCorrect = 0;
+    let responseTimes = [];
+    let trialStartTime = 0;
+    const totalTrials = 20;
+
+    function generateTrials() {
+      trials = [];
+      for (let i = 0; i < totalTrials; i++) {
+        const word = colors[Math.floor(Math.random() * colors.length)];
+        const isCongruent = Math.random() < 0.5;
+        const color = isCongruent ? word : colors.filter(c => c !== word)[Math.floor(Math.random() * 5)];
+        trials.push({ word, color, isCongruent });
+      }
+    }
+
+    function updateScore() {
+      document.getElementById('roundNum').textContent = currentTrial + 1;
+      document.getElementById('score').textContent = score;
+      const accuracy = currentTrial > 0 ? Math.round((score / currentTrial) * 100) : 0;
+      document.getElementById('accuracy').textContent = accuracy;
+    }
+
+    function showMemorizationPhase() {
+      document.getElementById('phaseTitle').textContent = 'Memorization Phase - Remember this!';
+      const trial = trials[currentTrial];
+      const displayCard = document.getElementById('displayCard');
+      displayCard.textContent = trial.word;
+      displayCard.style.color = colorValues[trial.color];
+      document.getElementById('cardsGrid').style.display = 'none';
+      displayCard.style.display = 'flex';
+
+      setTimeout(() => {
+        displayCard.style.display = 'none';
+        showMatchPhase();
+      }, 3000);
+    }
+
+    function showMatchPhase() {
+      document.getElementById('phaseTitle').textContent = 'Match Phase - Find the matching card!';
+      const trial = trials[currentTrial];
+      const cardsGrid = document.getElementById('cardsGrid');
+      cardsGrid.innerHTML = '';
+      cardsGrid.style.display = 'grid';
+
+      // Generate options
+      let options = [{ word: trial.word, color: trial.color, isCorrect: true }];
+      
+      // Add distractors
+      while (options.length < 6) {
+        const word = colors[Math.floor(Math.random() * colors.length)];
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        const exists = options.some(opt => opt.word === word && opt.color === color);
+        if (!exists) {
+          options.push({ word, color, isCorrect: false });
+        }
+      }
+
+      // Shuffle
+      options.sort(() => Math.random() - 0.5);
+
+      trialStartTime = Date.now();
+
+      options.forEach(option => {
+        const card = document.createElement('div');
+        card.className = 'memoryCard';
+        card.textContent = option.word;
+        card.style.color = colorValues[option.color];
+        card.onclick = () => handleCardClick(option.isCorrect, card);
+        cardsGrid.appendChild(card);
+      });
+    }
+
+    function handleCardClick(isCorrect, card) {
+      const rt = Date.now() - trialStartTime;
+      responseTimes.push(rt);
+
+      // Disable all cards
+      document.querySelectorAll('.memoryCard').forEach(c => c.onclick = null);
+
+      if (isCorrect) {
+        score++;
+        card.classList.add('correct');
+        if (trials[currentTrial].isCongruent) {
+          congruentCorrect++;
+        } else {
+          incongruentCorrect++;
+        }
+      } else {
+        card.classList.add('wrong');
+      }
+
+      updateScore();
+
+      setTimeout(() => {
+        currentTrial++;
+        if (currentTrial < totalTrials) {
+          showMemorizationPhase();
+        } else {
+          showResults();
+        }
+      }, 1000);
+    }
+
+    function showResults() {
+      document.getElementById('gameArea').style.display = 'none';
+      document.getElementById('resultsScreen').style.display = 'block';
+      
+      const accuracy = Math.round((score / totalTrials) * 100);
+      const avgRT = Math.round(responseTimes.reduce((a, b) => a + b, 0) / responseTimes.length);
+      
+      document.getElementById('finalScore').textContent = score;
+      document.getElementById('finalAccuracy').textContent = accuracy;
+      document.getElementById('congruentCorrect').textContent = congruentCorrect;
+      document.getElementById('incongruentCorrect').textContent = incongruentCorrect;
+      document.getElementById('avgRT').textContent = avgRT;
+
+      drawChart();
+    }
+
+    function drawChart() {
+      const canvas = document.getElementById('resultChart');
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      const congruentTotal = trials.filter(t => t.isCongruent).length;
+      const incongruentTotal = totalTrials - congruentTotal;
+      const congruentAcc = congruentTotal > 0 ? (congruentCorrect / congruentTotal) * 100 : 0;
+      const incongruentAcc = incongruentTotal > 0 ? (incongruentCorrect / incongruentTotal) * 100 : 0;
+
+      const barWidth = 100;
+      const maxHeight = 200;
+      const x1 = 120;
+      const x2 = 280;
+
+      // Draw bars
+      ctx.fillStyle = '#2ecc71';
+      const h1 = (congruentAcc / 100) * maxHeight;
+      ctx.fillRect(x1, 250 - h1, barWidth, h1);
+
+      ctx.fillStyle = '#e74c3c';
+      const h2 = (incongruentAcc / 100) * maxHeight;
+      ctx.fillRect(x2, 250 - h2, barWidth, h2);
+
+      // Labels
+      ctx.fillStyle = 'black';
+      ctx.font = '16px Arial';
+      ctx.fillText('Congruent', x1 + 10, 280);
+      ctx.fillText('Incongruent', x2, 280);
+      ctx.fillText(Math.round(congruentAcc) + '%', x1 + 30, 240 - h1);
+      ctx.fillText(Math.round(incongruentAcc) + '%', x2 + 30, 240 - h2);
+    }
+
+    document.getElementById('startBtn').addEventListener('click', () => {
+      document.getElementById('instructions').style.display = 'none';
+      document.getElementById('gameArea').style.display = 'block';
+      generateTrials();
+      currentTrial = 0;
+      score = 0;
+      congruentCorrect = 0;
+      incongruentCorrect = 0;
+      responseTimes = [];
+      updateScore();
+      showMemorizationPhase();
+    });
+
+    document.getElementById('restartBtn').addEventListener('click', () => {
+      document.getElementById('resultsScreen').style.display = 'none';
+      document.getElementById('instructions').style.display = 'block';
+    });
+  </script>
+</body>
+</html>

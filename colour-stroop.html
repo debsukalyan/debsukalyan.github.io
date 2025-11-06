@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Color Carnival Stroop Game 🎪</title>
+  <style>
+    body {
+      font-family: cursive, Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #ffe6f2 url('data:image/svg+xml,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path fill="%23FFD1DC" d="M44.7,-65.1C56.7,-57.4,64.2,-42.7,69.7,-27.4C75.2,-12.1,78.6,3.8,74.2,16.3C69.8,28.8,57.6,38.9,45.7,48.9C33.8,58.8,22.2,68.6,7.2,73.2C-7.8,77.7,-25.1,77,-37.3,69.1C-49.5,61.1,-56.5,45.9,-63.9,31.7C-71.3,17.5,-79.1,4.3,-77.8,-8.3C-76.5,-20.9,-66.1,-32.9,-55.3,-40.9C-44.6,-48.8,-33.5,-52.6,-21.5,-60.3C-9.6,-68,3.3,-79.5,15.7,-77.9C28.1,-76.4,39.9,-61.8,44.7,-65.1Z"/></svg>');
+      background-size: cover;
+      min-height: 100vh;
+    }
+
+    #instructions {
+      text-align: center;
+      padding: 40px;
+      background: linear-gradient(135deg, #ff99cc, #99ccff);
+      color: white;
+      border-radius: 20px;
+      margin: 20px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+
+    #instructions h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    #gameArea {
+      display: none;
+      position: relative;
+      width: 95%;
+      height: 80vh;
+      border: 4px solid white;
+      background: rgba(255,255,255,0.9);
+      overflow: hidden;
+      margin: 20px auto;
+      border-radius: 20px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+
+    .fallingWord {
+      position: absolute;
+      font-size: 40px;
+      font-weight: bold;
+      text-transform: uppercase;
+      cursor: grab;
+      user-select: none;
+      top: 0;
+      transition: transform 0.2s;
+      background: white;
+      padding: 15px 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      border: 3px solid #fff;
+    }
+    .fallingWord:active {
+      cursor: grabbing;
+      transform: scale(1.1) rotate(3deg);
+    }
+
+    #scoreCounter {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 32px;
+      background: #fff;
+      padding: 15px 30px;
+      border: 3px solid #ff99cc;
+      border-radius: 25px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      color: #ff6699;
+    }
+
+    #dropZones {
+      position: absolute;
+      bottom: 30px;
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0;
+    }
+
+    .basket {
+      width: 160px;
+      height: 160px;
+      border: 4px solid white;
+      border-radius: 25px;
+      text-align: center;
+      line-height: 160px;
+      font-size: 28px;
+      font-weight: bold;
+      position: relative;
+      background-blend-mode: multiply;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+      background-image: url('data:image/svg+xml,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="40" fill="white" fill-opacity="0.2"/></svg>');
+    }
+
+    .basket::after {
+      content: '🧺';
+      position: absolute;
+      font-size: 40px;
+      bottom: -50px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .basket:hover {
+      transform: scale(1.05) rotate(3deg);
+    }
+    #redBasket { background-color: #ff6666; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+    #blueBasket { background-color: #6699ff; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+    #greenBasket { background-color: #66cc66; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+    #yellowBasket { background-color: #ffff66; color: #333; text-shadow: 2px 2px 4px rgba(255,255,255,0.5); }
+
+    .correct-flash {
+      animation: correctFlash 0.5s;
+    }
+    @keyframes correctFlash {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1) rotate(5deg); background-color: #90EE90; }
+      100% { transform: scale(1); }
+    }
+
+    .confetti {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      animation: confettiFall 1s linear;
+      z-index: 999;
+    }
+    @keyframes confettiFall {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
+
+    #stats {
+      display: none;
+      padding: 40px;
+      text-align: center;
+      background: linear-gradient(135deg, #ff99cc, #99ccff);
+      color: white;
+      margin: 20px;
+      border-radius: 20px;
+    }
+    #stats h2 {
+      margin-top: 0;
+    }
+
+    button {
+      font-size: 24px;
+      padding: 15px 30px;
+      background-color: #ff6699;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin: 20px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    }
+    button:hover {
+      transform: scale(1.1);
+      background-color: #ff3385;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    /* Canvas styling for the reaction time chart */
+    #reactionTimeChart {
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="instructions">
+    <h1>🎨 Color Carnival Game! 🎠</h1>
+    <p>🌈 Drag the COLOR words to matching boxes! 🎯 Hurry before they disappear! ⏳</p>
+    <button id="startGame">Start Party! 🎉</button>
+  </div>
+  
+  <div id="gameArea">
+    <div id="scoreCounter">🎖️ Score: 0</div>
+    <div id="dropZones">
+      <div class="basket" id="redBasket" data-color="red">RED</div>
+      <div class="basket" id="blueBasket" data-color="blue">BLUE</div>
+      <div class="basket" id="greenBasket" data-color="green">GREEN</div>
+      <div class="basket" id="yellowBasket" data-color="yellow">YELLOW</div>
+    </div>
+  </div>
+
+  <div id="stats">
+    <h2>🎉 Party Results! 🏆</h2>
+    <div id="performanceStats"></div>
+    <!-- Canvas for Reaction Time Chart -->
+    <canvas id="reactionTimeChart" width="400" height="300"></canvas>
+    <button onclick="location.reload()">Play Again? 🔄</button>
+  </div>
+
+  <script>
+    const colors = ["red", "blue", "green", "yellow"];
+    const words = ["RED", "BLUE", "GREEN", "YELLOW"];
+
+    let score = 0;
+    let totalTrials = 30;  
+    let trials = [];
+    let currentTrial = 0;
+
+    let isDragging = false;
+    let currentDragElement = null;
+    let startX, startY, elementX, elementY;
+
+    // Reaction time and accuracy counters
+    let startTime; 
+    let reactionTimes = [];
+    let congruentCorrect = 0;
+    let incongruentCorrect = 0;
+
+    // Falling speed (pixels per animation frame)
+    const fallSpeed = 8;
+
+    // Generate a balanced set of congruent & incongruent trials
+    function generateTrials() {
+      trials = [];
+      // Half congruent
+      for (let i = 0; i < totalTrials / 2; i++) {
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        trials.push({ word: color.toUpperCase(), color, congruent: true });
+      }
+      // Half incongruent
+      for (let i = 0; i < totalTrials / 2; i++) {
+        let word, color;
+        do {
+          word = words[Math.floor(Math.random() * words.length)];
+          color = colors[Math.floor(Math.random() * colors.length)];
+        } while (word.toLowerCase() === color);
+        trials.push({ word, color, congruent: false });
+      }
+      // Shuffle
+      trials.sort(() => Math.random() - 0.5);
+    }
+
+    // Show end stats
+    function showStats() {
+      document.getElementById('gameArea').style.display = 'none';
+      document.getElementById('stats').style.display = 'block';
+      
+      // Simple textual stats
+      const statsHTML = `
+        <p>🎉 Total Score: ${score}/${totalTrials}</p>
+        <p>✅ Matching (Congruent) Correct: ${congruentCorrect}</p>
+        <p>🎭 Mixed (Incongruent) Correct: ${incongruentCorrect}</p>
+      `;
+      document.getElementById('performanceStats').innerHTML = statsHTML;
+
+      // Prepare reaction time data
+      const congruentTimes = reactionTimes.filter(r => r.congruent).map(r => r.time);
+      const incongruentTimes = reactionTimes.filter(r => !r.congruent).map(r => r.time);
+
+      const avgCongruent = congruentTimes.length
+        ? congruentTimes.reduce((a,b) => a+b, 0) / congruentTimes.length
+        : 0;
+      const avgIncongruent = incongruentTimes.length
+        ? incongruentTimes.reduce((a,b) => a+b, 0) / incongruentTimes.length
+        : 0;
+
+      // Draw the reaction time chart
+      drawReactionTimeChart(avgCongruent, avgIncongruent);
+    }
+
+    // Create some confetti at (x, y)
+    function createConfetti(x, y) {
+      const confettiColors = ['#ff6699', '#99ccff', '#ffff66', '#66cc66'];
+      for (let i = 0; i < 20; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.backgroundColor = confettiColors[Math.floor(Math.random() * confettiColors.length)];
+        confetti.style.left = x + 'px';
+        confetti.style.top = y + 'px';
+        confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 1000);
+      }
+    }
+
+    // Check if the dragged word is inside the correct basket
+    function handleCollision(wordElement) {
+      const baskets = document.querySelectorAll('.basket');
+      const wordRect = wordElement.getBoundingClientRect();
+      let matched = false;
+      const reactionTime = Date.now() - startTime;
+
+      baskets.forEach(basket => {
+        const basketRect = basket.getBoundingClientRect();
+        if (
+          wordRect.left + 20 < basketRect.right - 20 &&
+          wordRect.right - 20 > basketRect.left + 20 &&
+          wordRect.top + 20 < basketRect.bottom - 20 &&
+          wordRect.bottom - 20 > basketRect.top + 20
+        ) {
+          // If color matches, increment score
+          if (basket.dataset.color === wordElement.dataset.color) {
+            createConfetti(basketRect.left + 80, basketRect.top + 80);
+            basket.classList.add('correct-flash');
+            setTimeout(() => basket.classList.remove('correct-flash'), 500);
+            
+            score++;
+            if(wordElement.trial.congruent) congruentCorrect++;
+            else incongruentCorrect++;
+
+            reactionTimes.push({ time: reactionTime, congruent: wordElement.trial.congruent });
+            matched = true;
+          }
+        }
+      });
+      return matched;
+    }
+
+    // Start dragging
+    function startDragging(e) {
+      if (e.target.classList.contains('fallingWord')) {
+        isDragging = true;
+        currentDragElement = e.target;
+        // Stop its falling animation
+        cancelAnimationFrame(currentDragElement.animationId);
+        
+        startX = e.clientX;
+        startY = e.clientY;
+        elementX = parseFloat(currentDragElement.style.left) || 0;
+        elementY = parseFloat(currentDragElement.style.top) || 0;
+        
+        currentDragElement.style.zIndex = 999;
+        currentDragElement.style.cursor = 'grabbing';
+      }
+    }
+    // During drag
+    function drag(e) {
+      if (isDragging && currentDragElement) {
+        const deltaX = e.clientX - startX;
+        const deltaY = e.clientY - startY;
+        currentDragElement.style.left = elementX + deltaX + "px";
+        currentDragElement.style.top = elementY + deltaY + "px";
+      }
+    }
+    // Stop dragging
+    function stopDragging() {
+      if (isDragging && currentDragElement) {
+        isDragging = false;
+        currentDragElement.style.cursor = 'grab';
+        currentDragElement.style.zIndex = 0;
+        
+        // Check collision
+        if (handleCollision(currentDragElement)) {
+          document.getElementById('scoreCounter').textContent = `🎖️ Score: ${score}`;
+        }
+        
+        // Remove that word element
+        currentDragElement.remove();
+        currentTrial++;
+        nextTrial();
+        currentDragElement = null;
+      }
+    }
+
+    // Move on to the next trial or end
+    function nextTrial() {
+      if (currentTrial >= totalTrials) {
+        showStats();
+        return;
+      }
+
+      const trial = trials[currentTrial];
+      const wordDiv = document.createElement("div");
+      wordDiv.className = "fallingWord";
+      wordDiv.style.color = trial.color;
+      wordDiv.textContent = trial.word;
+      wordDiv.dataset.color = trial.color;
+      wordDiv.trial = trial;
+      wordDiv.style.left = Math.random() * (window.innerWidth - 200) + "px";
+      wordDiv.style.top = "0px";
+      
+      // Mark start time
+      startTime = Date.now();
+
+      // Attach drag listeners
+      wordDiv.addEventListener('mousedown', startDragging);
+      document.addEventListener('mousemove', drag);
+      document.addEventListener('mouseup', stopDragging);
+
+      document.getElementById("gameArea").appendChild(wordDiv);
+      
+      // Animate falling
+      function animate() {
+        const top = parseFloat(wordDiv.style.top) || 0;
+        // If not dragging, let it fall
+        if (!isDragging || currentDragElement !== wordDiv) {
+          wordDiv.style.top = (top + fallSpeed) + "px";
+        }
+        
+        // If still in area, keep falling
+        if (top < document.getElementById("gameArea").offsetHeight - 100) {
+          wordDiv.animationId = requestAnimationFrame(animate);
+        } else {
+          // If it reached bottom (not dragged), remove and next
+          if (!isDragging) {
+            wordDiv.remove();
+            currentTrial++;
+            nextTrial();
+          }
+        }
+      }
+      animate();
+    }
+
+    // === Updated function to draw Reaction Time bar chart ===
+    function drawReactionTimeChart(avgCongruent, avgIncongruent) {
+      const canvas = document.getElementById('reactionTimeChart');
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      const topMargin = 50;
+      const bottomMargin = 50;
+      const sideMargin = 40;
+
+      const chartWidth = canvas.width - sideMargin * 2;
+      const chartHeight = canvas.height - topMargin - bottomMargin;
+
+      const maxValue = Math.max(avgCongruent, avgIncongruent) || 1; 
+      const barWidth = 60; 
+
+      // Positions for two bars
+      const congruentX = sideMargin + chartWidth * 0.25 - barWidth / 2;
+      const incongruentX = sideMargin + chartWidth * 0.75 - barWidth / 2;
+
+      const congruentBarHeight = (avgCongruent / maxValue) * chartHeight;
+      const incongruentBarHeight = (avgIncongruent / maxValue) * chartHeight;
+
+      // Chart title
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.font = "18px Arial";
+      ctx.fillStyle = "#000000";
+      ctx.fillText("Average Reaction Times", canvas.width / 2, topMargin / 2);
+
+      // Congruent bar
+      ctx.fillStyle = "#66cc66";
+      const conY = canvas.height - bottomMargin - congruentBarHeight;
+      ctx.fillRect(congruentX, conY, barWidth, congruentBarHeight);
+
+      // Congruent value & label
+      ctx.font = "16px Arial";
+      ctx.fillStyle = "#000000";
+      ctx.fillText(
+        Math.round(avgCongruent) + " ms",
+        congruentX + barWidth / 2,
+        conY - 10
+      );
+      ctx.fillText(
+        "Congruent",
+        congruentX + barWidth / 2,
+        canvas.height - bottomMargin / 2
+      );
+
+      // Incongruent bar
+      ctx.fillStyle = "#ff6699";
+      const incY = canvas.height - bottomMargin - incongruentBarHeight;
+      ctx.fillRect(incongruentX, incY, barWidth, incongruentBarHeight);
+
+      // Incongruent value & label
+      ctx.fillStyle = "#000000";
+      ctx.fillText(
+        Math.round(avgIncongruent) + " ms",
+        incongruentX + barWidth / 2,
+        incY - 10
+      );
+      ctx.fillText(
+        "Incongruent",
+        incongruentX + barWidth / 2,
+        canvas.height - bottomMargin / 2
+      );
+    }
+
+    // Start game button
+    document.getElementById("startGame").addEventListener("click", () => {
+      document.getElementById("instructions").style.display = "none";
+      document.getElementById("gameArea").style.display = "block";
+      // Reset everything
+      score = 0;
+      currentTrial = 0;
+      congruentCorrect = 0;
+      incongruentCorrect = 0;
+      reactionTimes = [];
+
+      generateTrials();
+      nextTrial();
+      document.getElementById('scoreCounter').textContent = "🎖️ Score: 0";
+    });
+  </script>
+</body>
+</html>
