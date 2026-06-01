@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fluid vs Crystallized Intelligence Demo</title>
+  <style>
+    :root {
+      --bg: #f7f4ef;
+      --card: #ffffff;
+      --ink: #171717;
+      --muted: #616161;
+      --line: #ded6ca;
+      --accent: #2c5f5d;
+      --accent2: #b8643c;
+      --good: #1f7a4d;
+      --bad: #b13d33;
+      --soft: #efe8dc;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #fffaf0 0, var(--bg) 38%, #efe8dc 100%);
+      color: var(--ink);
+      line-height: 1.55;
+    }
+
+    header {
+      padding: 48px 20px 28px;
+      text-align: center;
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .badge {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.75);
+      color: var(--accent);
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(32px, 6vw, 68px);
+      letter-spacing: -0.055em;
+      line-height: 0.96;
+    }
+
+    .subtitle {
+      margin: 18px auto 0;
+      max-width: 760px;
+      color: var(--muted);
+      font-size: clamp(16px, 2.2vw, 20px);
+    }
+
+    .notice {
+      max-width: 960px;
+      margin: 20px auto 0;
+      padding: 16px 18px;
+      border: 1px solid #ead1bd;
+      background: #fff7ed;
+      border-radius: 18px;
+      color: #6e3d1f;
+      text-align: left;
+      font-size: 15px;
+    }
+
+    main {
+      width: min(1040px, calc(100% - 32px));
+      margin: 0 auto 60px;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 28px 0;
+    }
+
+    .tab-btn, .primary-btn, .secondary-btn {
+      border: 0;
+      cursor: pointer;
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-weight: 800;
+      transition: 0.18s ease;
+      font-size: 15px;
+    }
+
+    .tab-btn {
+      background: var(--card);
+      color: var(--ink);
+      border: 1px solid var(--line);
+    }
+
+    .tab-btn.active {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+
+    .primary-btn {
+      background: var(--accent);
+      color: white;
+      box-shadow: 0 10px 24px rgba(44,95,93,0.18);
+    }
+
+    .secondary-btn {
+      background: var(--soft);
+      color: var(--ink);
+      border: 1px solid var(--line);
+    }
+
+    .section {
+      display: none;
+      animation: fade 0.22s ease;
+    }
+
+    .section.active { display: block; }
+
+    @keyframes fade {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card {
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: clamp(18px, 3vw, 30px);
+      box-shadow: 0 18px 60px rgba(42, 34, 24, 0.08);
+      margin-bottom: 18px;
+    }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: start;
+      margin-bottom: 16px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(26px, 4vw, 42px);
+      letter-spacing: -0.035em;
+      line-height: 1.05;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--soft);
+      color: var(--accent2);
+      font-weight: 800;
+      border-radius: 999px;
+      padding: 7px 12px;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .question {
+      border-top: 1px solid var(--line);
+      padding-top: 22px;
+      margin-top: 22px;
+    }
+
+    .q-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: baseline;
+      margin-bottom: 12px;
+    }
+
+    .q-title {
+      font-size: 18px;
+      font-weight: 900;
+    }
+
+    .q-type {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .matrix-wrap {
+      display: grid;
+      grid-template-columns: minmax(220px, 340px) 1fr;
+      gap: 20px;
+      align-items: center;
+    }
+
+    @media (max-width: 760px) {
+      .matrix-wrap { grid-template-columns: 1fr; }
+      .section-title { flex-direction: column; }
+    }
+
+    .matrix {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      background: #f5f0e8;
+      padding: 10px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+    }
+
+    .cell {
+      min-height: 74px;
+      background: white;
+      border: 1px solid #e5ded4;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      font-size: 32px;
+      font-weight: 900;
+      letter-spacing: -0.05em;
+      overflow: hidden;
+    }
+
+    .missing {
+      color: var(--accent2);
+      background: #fff4ea;
+      border-style: dashed;
+    }
+
+    .small { font-size: 18px; }
+    .medium { font-size: 28px; }
+    .large { font-size: 40px; }
+
+    .options {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(120px, 1fr));
+      gap: 10px;
+    }
+
+    @media (max-width: 520px) {
+      .options { grid-template-columns: 1fr; }
+    }
+
+    .option {
+      text-align: left;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: white;
+      padding: 14px 14px;
+      min-height: 56px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 700;
+      transition: 0.15s ease;
+    }
+
+    .option:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.06);
+    }
+
+    .option.selected {
+      border-color: var(--accent);
+      background: #eaf3f2;
+      color: var(--accent);
+    }
+
+    .result-panel {
+      display: none;
+      background: #101b1b;
+      color: white;
+      border-radius: 28px;
+      padding: 28px;
+      margin-top: 22px;
+      box-shadow: 0 18px 60px rgba(16,27,27,0.25);
+    }
+
+    .result-panel.show { display: block; }
+
+    .score-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin: 20px 0;
+    }
+
+    @media (max-width: 760px) {
+      .score-grid { grid-template-columns: 1fr; }
+    }
+
+    .score-card {
+      background: rgba(255,255,255,0.09);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 20px;
+      padding: 18px;
+    }
+
+    .score-num {
+      font-size: 38px;
+      font-weight: 950;
+      letter-spacing: -0.05em;
+      line-height: 1;
+    }
+
+    .score-label {
+      color: rgba(255,255,255,0.74);
+      margin-top: 8px;
+      font-size: 14px;
+    }
+
+    .interpretation {
+      background: rgba(255,255,255,0.08);
+      border-left: 4px solid #f0b37e;
+      padding: 14px 16px;
+      border-radius: 12px;
+      margin-top: 14px;
+    }
+
+    .references li {
+      margin-bottom: 10px;
+    }
+
+    footer {
+      color: var(--muted);
+      text-align: center;
+      padding: 28px 16px 44px;
+      font-size: 14px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 22px;
+    }
+
+    .progress {
+      margin-top: 10px;
+      height: 10px;
+      background: #e6ded2;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      transition: 0.25s ease;
+    }
+
+    .tagline {
+      font-weight: 900;
+      color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="badge">🧠 Original educational demo</div>
+    <h1>Fluid vs Crystallized Intelligence</h1>
+    <p class="subtitle">
+      A short interactive demo showing the difference between solving new patterns
+      and using learned verbal/conceptual knowledge.
+    </p>
+    <div class="notice">
+      <strong>Important:</strong> This is <strong>not</strong> Raven’s Progressive Matrices, not WAIS,
+      and not a diagnostic IQ test. It uses original demo items inspired by common task formats:
+      matrix-pattern reasoning for fluid intelligence and vocabulary/general-knowledge items
+      for crystallized intelligence.
+    </div>
+  </header>
+
+  <main>
+    <div class="tabs">
+      <button class="tab-btn active" onclick="showSection('intro')">Start</button>
+      <button class="tab-btn" onclick="showSection('fluid')">Fluid Demo</button>
+      <button class="tab-btn" onclick="showSection('crystal')">Crystallized Demo</button>
+      <button class="tab-btn" onclick="showSection('results')">Results</button>
+      <button class="tab-btn" onclick="showSection('methods')">Method & References</button>
+    </div>
+
+    <section id="intro" class="section active">
+      <div class="card">
+        <div class="section-title">
+          <h2>What are we testing?</h2>
+          <span class="pill">~5–8 minutes</span>
+        </div>
+        <p>
+          <span class="tagline">Fluid intelligence</span> is your ability to solve new problems,
+          spot patterns, and reason when the answer is not already memorized.
+        </p>
+        <p>
+          <span class="tagline">Crystallized intelligence</span> is your ability to use knowledge,
+          vocabulary, concepts, and information accumulated through learning and experience.
+        </p>
+        <p>
+          This demo is designed for educational/social-media use — for example, to show why
+          “intelligence” is not one single school-subject hierarchy.
+        </p>
+        <div class="actions">
+          <button class="primary-btn" onclick="showSection('fluid')">Begin Fluid Demo</button>
+          <button class="secondary-btn" onclick="showSection('methods')">Read Method Note</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="fluid" class="section">
+      <div class="card">
+        <div class="section-title">
+          <div>
+            <h2>Fluid Reasoning Demo</h2>
+            <p>Choose the option that best completes the missing cell.</p>
+          </div>
+          <span class="pill"><span id="fluidAnswered">0</span>/8 answered</span>
+        </div>
+        <div class="progress"><div id="fluidBar" class="bar"></div></div>
+        <div id="fluidQuestions"></div>
+        <div class="actions">
+          <button class="primary-btn" onclick="showSection('crystal')">Continue to Crystallized Demo</button>
+          <button class="secondary-btn" onclick="resetSection('fluid')">Reset Fluid Answers</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="crystal" class="section">
+      <div class="card">
+        <div class="section-title">
+          <div>
+            <h2>Crystallized Knowledge Demo</h2>
+            <p>Choose the best answer based on vocabulary, concepts, and learned knowledge.</p>
+          </div>
+          <span class="pill"><span id="crystalAnswered">0</span>/10 answered</span>
+        </div>
+        <div class="progress"><div id="crystalBar" class="bar"></div></div>
+        <div id="crystalQuestions"></div>
+        <div class="actions">
+          <button class="primary-btn" onclick="showSection('results'); calculateResults();">See My Results</button>
+          <button class="secondary-btn" onclick="resetSection('crystal')">Reset Crystallized Answers</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="results" class="section">
+      <div class="card">
+        <div class="section-title">
+          <h2>Your Demo Results</h2>
+          <span class="pill">Not an IQ score</span>
+        </div>
+        <p>
+          Click below after answering the questions. Your score stays in this browser only;
+          nothing is uploaded anywhere.
+        </p>
+        <button class="primary-btn" onclick="calculateResults()">Calculate Results</button>
+
+        <div id="resultPanel" class="result-panel">
+          <h2>Score Summary</h2>
+          <div class="score-grid">
+            <div class="score-card">
+              <div id="fluidScore" class="score-num">0/8</div>
+              <div class="score-label">Fluid reasoning demo</div>
+            </div>
+            <div class="score-card">
+              <div id="crystalScore" class="score-num">0/10</div>
+              <div class="score-label">Crystallized knowledge demo</div>
+            </div>
+            <div class="score-card">
+              <div id="totalScore" class="score-num">0/18</div>
+              <div class="score-label">Total demo score</div>
+            </div>
+          </div>
+          <div id="interpretation" class="interpretation"></div>
+          <div class="actions">
+            <button class="secondary-btn" onclick="copyResults()">Copy Result Text</button>
+            <button class="secondary-btn" onclick="resetAll()">Reset All</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="methods" class="section">
+      <div class="card">
+        <div class="section-title">
+          <h2>Method Note</h2>
+          <span class="pill">For educational use</span>
+        </div>
+        <p>
+          This demo is based on the distinction between <strong>fluid</strong> and
+          <strong>crystallized</strong> intelligence. The fluid section uses original
+          matrix-style items because matrix reasoning tasks are commonly used to assess
+          abstract, nonverbal reasoning. The crystallized section uses original vocabulary,
+          similarity, and general-knowledge-style items because crystallized intelligence
+          depends more on accumulated language, knowledge, and conceptual learning.
+        </p>
+        <p>
+          It intentionally avoids real Raven’s Progressive Matrices and WAIS items. Real
+          standardized tests require licensed materials, controlled administration, validated
+          norms, and professional interpretation.
+        </p>
+        <h3>References and background</h3>
+        <ul class="references">
+          <li>Cattell, R. B. (1963). <em>Theory of fluid and crystallized intelligence: A critical experiment.</em> Journal of Educational Psychology, 54(1), 1–22.</li>
+          <li>Horn, J. L., & Cattell, R. B. (1966/1967). Work extending the theory of fluid and crystallized intelligence across development and aging.</li>
+          <li>Raven’s Progressive Matrices are widely described as nonverbal pattern-reasoning tasks used to estimate abstract/fluid reasoning.</li>
+          <li>WAIS-style verbal comprehension tasks often include vocabulary, similarities, and general information, reflecting learned verbal/conceptual knowledge.</li>
+          <li>Use this only as a classroom, outreach, or social-media demonstration — not for diagnosis, selection, or claims about a person’s “real IQ.”</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Made as an original educational demo. It does not reproduce protected psychometric test items.
+  </footer>
+
+  <script>
+    const fluidItems = [
+      {
+        id: "f1",
+        matrix: [["○","○○","○○○"],["□","□□","□□□"],["△","△△","?"]],
+        options: ["△","△△","△△△","○○○"],
+        answer: 2,
+        note: "Rows keep shape; columns increase count."
+      },
+      {
+        id: "f2",
+        matrix: [["○","□","△"],["□","△","○"],["△","○","?"]],
+        options: ["○","□","△","○□"],
+        answer: 1,
+        note: "Each row cycles the same three shapes."
+      },
+      {
+        id: "f3",
+        matrix: [["●","○","●"],["○","●","○"],["●","○","?"]],
+        options: ["●","○","□","△"],
+        answer: 0,
+        note: "Checkerboard alternation."
+      },
+      {
+        id: "f4",
+        matrix: [["↑","→","↓"],["→","↓","←"],["↓","←","?"]],
+        options: ["↑","→","↓","←"],
+        answer: 0,
+        note: "Each step rotates 90 degrees clockwise."
+      },
+      {
+        id: "f5",
+        matrix: [["○","○+□","○+□+△"],["□","□+△","□+△+○"],["△","△+○","?"]],
+        options: ["△+○","△+○+□","○+□+△","□+△+○"],
+        answer: 1,
+        note: "Each row accumulates the next symbol in a cycle."
+      },
+      {
+        id: "f6",
+        matrix: [["1","2","3"],["2","3","4"],["3","4","?"]],
+        options: ["4","5","6","7"],
+        answer: 1,
+        note: "Numbers increase by one across rows and columns."
+      },
+      {
+        id: "f7",
+        matrix: [["○","○○","○○○"],["○○","○○○","○○○○"],["○○○","○○○○","?"]],
+        options: ["○○○","○○○○","○○○○○","○○○○○○"],
+        answer: 2,
+        note: "Count increases by one across and down."
+      },
+      {
+        id: "f8",
+        matrix: [["small ○","medium ○","large ○"],["small □","medium □","large □"],["small △","medium △","?"]],
+        options: ["small △","medium △","large △","large □"],
+        answer: 2,
+        note: "Columns preserve size; rows preserve shape."
+      }
+    ];
+
+    const crystalItems = [
+      {
+        id: "c1",
+        prompt: "Ambiguous means:",
+        options: ["clear", "uncertain or having more than one meaning", "very old", "emotionally intense"],
+        answer: 1
+      },
+      {
+        id: "c2",
+        prompt: "Inevitable means:",
+        options: ["avoidable", "impossible", "certain to happen", "accidental"],
+        answer: 2
+      },
+      {
+        id: "c3",
+        prompt: "Meticulous means:",
+        options: ["careless", "very careful and detailed", "angry", "imaginary"],
+        answer: 1
+      },
+      {
+        id: "c4",
+        prompt: "Transient means:",
+        options: ["permanent", "temporary", "powerful", "hidden"],
+        answer: 1
+      },
+      {
+        id: "c5",
+        prompt: "Which is the best abstract similarity between maths and music?",
+        options: ["Both are always difficult", "Both involve patterns, structure, and relationships", "Both require a laboratory", "Both are the same school subject"],
+        answer: 1
+      },
+      {
+        id: "c6",
+        prompt: "Which is the best abstract similarity between biology and engineering?",
+        options: ["Both only require memorization", "Both study systems, mechanisms, and structure-function relationships", "Both avoid mathematics", "Both are unrelated to problem-solving"],
+        answer: 1
+      },
+      {
+        id: "c7",
+        prompt: "A hypothesis is best described as:",
+        options: ["a final truth", "a testable explanation or prediction", "a random opinion", "a statistical error"],
+        answer: 1
+      },
+      {
+        id: "c8",
+        prompt: "Correlation means:",
+        options: ["one variable definitely causes another", "two variables are statistically related", "two variables are identical", "one variable is fake"],
+        answer: 1
+      },
+      {
+        id: "c9",
+        prompt: "The hippocampus is often associated with:",
+        options: ["memory formation", "digestion", "muscle contraction only", "hair growth"],
+        answer: 0
+      },
+      {
+        id: "c10",
+        prompt: "The phrase 'cognitive bias' usually refers to:",
+        options: ["a systematic tendency in thinking or judgment", "a brain scan machine", "a perfect logical proof", "a type of neuron"],
+        answer: 0
+      }
+    ];
+
+    const state = {
+      fluid: {},
+      crystal: {}
+    };
+
+    function shapeClass(text) {
+      if (text.includes("small")) return "small";
+      if (text.includes("medium")) return "medium";
+      if (text.includes("large")) return "large";
+      return "";
+    }
+
+    function cleanCell(text) {
+      return text.replace("small ", "").replace("medium ", "").replace("large ", "");
+    }
+
+    function renderFluid() {
+      const container = document.getElementById("fluidQuestions");
+      container.innerHTML = fluidItems.map((item, idx) => `
+        <div class="question">
+          <div class="q-head">
+            <div class="q-title">Question ${idx + 1}</div>
+            <div class="q-type">pattern completion</div>
+          </div>
+          <div class="matrix-wrap">
+            <div class="matrix">
+              ${item.matrix.flat().map(cell => `
+                <div class="cell ${cell === "?" ? "missing" : ""} ${shapeClass(cell)}">${cleanCell(cell)}</div>
+              `).join("")}
+            </div>
+            <div>
+              <div class="options">
+                ${item.options.map((opt, oidx) => `
+                  <button class="option" id="${item.id}-${oidx}" onclick="selectAnswer('fluid','${item.id}',${oidx})">
+                    ${String.fromCharCode(65+oidx)}. ${opt}
+                  </button>
+                `).join("")}
+              </div>
+            </div>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function renderCrystal() {
+      const container = document.getElementById("crystalQuestions");
+      container.innerHTML = crystalItems.map((item, idx) => `
+        <div class="question">
+          <div class="q-head">
+            <div class="q-title">Question ${idx + 1}</div>
+            <div class="q-type">knowledge / vocabulary</div>
+          </div>
+          <p><strong>${item.prompt}</strong></p>
+          <div class="options">
+            ${item.options.map((opt, oidx) => `
+              <button class="option" id="${item.id}-${oidx}" onclick="selectAnswer('crystal','${item.id}',${oidx})">
+                ${String.fromCharCode(65+oidx)}. ${opt}
+              </button>
+            `).join("")}
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function selectAnswer(section, id, optionIndex) {
+      state[section][id] = optionIndex;
+      const prefix = section === "fluid" ? "f" : "c";
+      const allButtons = document.querySelectorAll(`[id^="${id}-"]`);
+      allButtons.forEach(btn => btn.classList.remove("selected"));
+      document.getElementById(`${id}-${optionIndex}`).classList.add("selected");
+      updateProgress();
+    }
+
+    function updateProgress() {
+      const fAnswered = Object.keys(state.fluid).length;
+      const cAnswered = Object.keys(state.crystal).length;
+      document.getElementById("fluidAnswered").textContent = fAnswered;
+      document.getElementById("crystalAnswered").textContent = cAnswered;
+      document.getElementById("fluidBar").style.width = `${(fAnswered / fluidItems.length) * 100}%`;
+      document.getElementById("crystalBar").style.width = `${(cAnswered / crystalItems.length) * 100}%`;
+    }
+
+    function score(items, answers) {
+      return items.reduce((sum, item) => sum + (answers[item.id] === item.answer ? 1 : 0), 0);
+    }
+
+    function calculateResults() {
+      const f = score(fluidItems, state.fluid);
+      const c = score(crystalItems, state.crystal);
+      const total = f + c;
+      document.getElementById("fluidScore").textContent = `${f}/8`;
+      document.getElementById("crystalScore").textContent = `${c}/10`;
+      document.getElementById("totalScore").textContent = `${total}/18`;
+
+      let profile = "";
+      if (f >= 6 && c >= 8) {
+        profile = "You performed strongly on both parts of this mini-demo. In real cognitive testing, this would still require standardized norms before making any serious interpretation.";
+      } else if (f >= 6 && c < 8) {
+        profile = "Your score was relatively stronger on novel pattern-solving than on learned verbal/conceptual knowledge in this demo. That illustrates the idea that people can have different cognitive profiles.";
+      } else if (f < 6 && c >= 8) {
+        profile = "Your score was relatively stronger on learned verbal/conceptual knowledge than on novel pattern-solving in this demo. That illustrates why intelligence is not just one thing.";
+      } else {
+        profile = "This demo may have felt difficult, incomplete, or unfamiliar. That is fine: a short web demo cannot diagnose intelligence, and performance can be affected by attention, language, device, fatigue, and prior exposure.";
+      }
+
+      document.getElementById("interpretation").innerHTML = `
+        <strong>Interpretation:</strong> ${profile}<br><br>
+        <strong>Takeaway:</strong> Fluid intelligence is closer to solving new patterns.
+        Crystallized intelligence is closer to using accumulated knowledge. Neither score is your “real IQ.”
+      `;
+      document.getElementById("resultPanel").classList.add("show");
+    }
+
+    function showSection(id) {
+      document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
+      document.getElementById(id).classList.add("active");
+      document.querySelectorAll(".tab-btn").forEach(btn => btn.classList.remove("active"));
+      const labels = { intro: "Start", fluid: "Fluid Demo", crystal: "Crystallized Demo", results: "Results", methods: "Method & References" };
+      [...document.querySelectorAll(".tab-btn")].find(b => b.textContent === labels[id])?.classList.add("active");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function resetSection(section) {
+      state[section] = {};
+      const ids = section === "fluid" ? fluidItems.map(i => i.id) : crystalItems.map(i => i.id);
+      ids.forEach(id => document.querySelectorAll(`[id^="${id}-"]`).forEach(btn => btn.classList.remove("selected")));
+      updateProgress();
+      calculateResults();
+    }
+
+    function resetAll() {
+      state.fluid = {};
+      state.crystal = {};
+      document.querySelectorAll(".option").forEach(btn => btn.classList.remove("selected"));
+      document.getElementById("resultPanel").classList.remove("show");
+      updateProgress();
+    }
+
+    function copyResults() {
+      const f = score(fluidItems, state.fluid);
+      const c = score(crystalItems, state.crystal);
+      const text = `Fluid vs Crystallized Intelligence Demo\nFluid reasoning: ${f}/8\nCrystallized knowledge: ${c}/10\nNote: This is an educational mini-demo, not an IQ test.`;
+      navigator.clipboard.writeText(text).then(() => alert("Result copied!"));
+    }
+
+    renderFluid();
+    renderCrystal();
+    updateProgress();
+  </script>
+</body>
+</html>
