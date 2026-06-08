@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>fMRI Starter Kit for Students</title>
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --paper: #ffffff;
+      --ink: #172033;
+      --muted: #5d667c;
+      --line: #dfe4ef;
+      --accent: #4656d9;
+      --accent-2: #0f766e;
+      --accent-3: #b45309;
+      --soft: #edf0ff;
+      --soft-green: #eaf7f3;
+      --soft-amber: #fff5e5;
+      --danger-soft: #fff1f2;
+      --shadow: 0 18px 45px rgba(23, 32, 51, 0.09);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.65;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(70, 86, 217, 0.15), transparent 28rem),
+        radial-gradient(circle at 90% 20%, rgba(15, 118, 110, 0.11), transparent 24rem),
+        var(--bg);
+    }
+
+    a { color: var(--accent); text-decoration: none; font-weight: 650; }
+    a:hover { text-decoration: underline; }
+
+    .page { max-width: 1180px; margin: 0 auto; padding: 28px; }
+
+    header.hero {
+      margin-top: 18px;
+      padding: 56px 42px;
+      border-radius: 34px;
+      background: linear-gradient(135deg, #111827 0%, #2736b8 48%, #0f766e 100%);
+      color: white;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    header.hero::after {
+      content: "";
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      right: -160px;
+      top: -150px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.11);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 999px;
+      font-size: 0.85rem;
+      letter-spacing: .03em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.85);
+    }
+
+    h1 {
+      font-size: clamp(2.25rem, 5vw, 4.4rem);
+      line-height: 1.02;
+      margin: 22px 0 16px;
+      max-width: 900px;
+      letter-spacing: -0.05em;
+    }
+
+    .subtitle {
+      font-size: clamp(1.05rem, 2vw, 1.28rem);
+      max-width: 820px;
+      color: rgba(255,255,255,0.88);
+      margin: 0;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 32px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-card {
+      background: rgba(255,255,255,0.13);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 18px;
+      padding: 16px;
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-card strong { display:block; font-size: 1.05rem; }
+    .hero-card span { color: rgba(255,255,255,0.78); font-size: 0.94rem; }
+
+    nav.toc {
+      margin: 22px 0;
+      padding: 16px;
+      border-radius: var(--radius);
+      background: rgba(255,255,255,0.72);
+      border: 1px solid var(--line);
+      box-shadow: 0 10px 28px rgba(23, 32, 51, 0.06);
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      backdrop-filter: blur(12px);
+    }
+
+    .toc-inner {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .toc a, .tag, .filter-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 8px 12px;
+      background: #fff;
+      border: 1px solid var(--line);
+      color: var(--ink);
+      font-size: 0.92rem;
+      font-weight: 650;
+    }
+
+    section {
+      margin: 28px 0;
+      padding: 34px;
+      border-radius: 30px;
+      background: rgba(255,255,255,0.82);
+      border: 1px solid var(--line);
+      box-shadow: 0 12px 34px rgba(23, 32, 51, 0.06);
+    }
+
+    h2 {
+      font-size: clamp(1.7rem, 3vw, 2.55rem);
+      line-height: 1.15;
+      letter-spacing: -0.035em;
+      margin: 0 0 14px;
+    }
+
+    h3 {
+      font-size: 1.25rem;
+      line-height: 1.25;
+      margin: 0 0 10px;
+    }
+
+    .lead { color: var(--muted); font-size: 1.05rem; max-width: 880px; margin-top: 0; }
+
+    .grid { display: grid; gap: 16px; }
+    .grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid.four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: 0 8px 24px rgba(23, 32, 51, 0.05);
+    }
+
+    .card p { margin-bottom: 0; color: var(--muted); }
+    .card ul, .card ol { margin-bottom: 0; padding-left: 1.25rem; }
+    .card li { margin: 6px 0; color: var(--muted); }
+
+    .pill-row { display:flex; flex-wrap: wrap; gap:8px; margin-top: 12px; }
+    .pill {
+      display:inline-flex;
+      align-items:center;
+      padding: 5px 9px;
+      border-radius:999px;
+      background: var(--soft);
+      color:#303b9f;
+      font-size:.82rem;
+      font-weight:700;
+    }
+    .pill.green { background: var(--soft-green); color: var(--accent-2); }
+    .pill.amber { background: var(--soft-amber); color: var(--accent-3); }
+    .pill.red { background: var(--danger-soft); color:#be123c; }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 10px;
+      margin: 20px 0 4px;
+    }
+
+    .step {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 14px;
+      min-height: 130px;
+      position: relative;
+    }
+
+    .step .num {
+      width: 30px; height: 30px;
+      border-radius: 999px;
+      display: inline-grid;
+      place-items: center;
+      background: var(--soft);
+      color: var(--accent);
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .step strong { display:block; line-height: 1.25; }
+    .step small { color: var(--muted); display:block; margin-top: 6px; }
+
+    .callout {
+      border-radius: 22px;
+      padding: 20px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, #ffffff, #f7f8ff);
+      margin: 18px 0;
+    }
+
+    .callout.warning { background: linear-gradient(180deg, #fff, #fff7ed); border-color: #fed7aa; }
+    .callout.green { background: linear-gradient(180deg, #fff, #ecfdf5); border-color: #bbf7d0; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 18px;
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+    th, td {
+      text-align: left;
+      vertical-align: top;
+      padding: 14px;
+      border-bottom: 1px solid var(--line);
+    }
+    th { background: #f1f4fb; font-size: 0.92rem; letter-spacing: .02em; text-transform: uppercase; }
+    tr:last-child td { border-bottom: none; }
+    td { color: var(--muted); }
+    td strong { color: var(--ink); }
+
+    .resource-controls {
+      display: grid;
+      grid-template-columns: minmax(220px, 1fr) auto;
+      gap: 12px;
+      margin: 20px 0;
+      align-items: center;
+    }
+
+    input[type="search"] {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 13px 15px;
+      font-size: 1rem;
+      background: #fff;
+      color: var(--ink);
+      outline: none;
+    }
+    input[type="search"]:focus { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(70,86,217,0.12); }
+
+    .filters { display:flex; flex-wrap: wrap; gap: 8px; }
+    .filter-btn { cursor:pointer; }
+    .filter-btn.active { background: var(--ink); color:#fff; border-color: var(--ink); }
+
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .resource-card {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-height: 250px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 20px;
+      box-shadow: 0 8px 22px rgba(23, 32, 51, 0.04);
+    }
+    .resource-card h3 { margin: 0; }
+    .resource-card p { margin: 0; color: var(--muted); }
+    .resource-card .meta { display:flex; gap:8px; flex-wrap: wrap; margin-top:auto; }
+    .level { font-size: .78rem; font-weight: 800; padding: 4px 8px; border-radius: 999px; background:#f1f5f9; color:#334155; }
+    .category { font-size: .78rem; font-weight: 800; padding: 4px 8px; border-radius: 999px; background: var(--soft); color:#303b9f; }
+
+    .timeline {
+      display: grid;
+      gap: 14px;
+      counter-reset: week;
+    }
+    .week {
+      display:grid;
+      grid-template-columns: 110px 1fr;
+      gap: 18px;
+      align-items: start;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background:#fff;
+    }
+    .week-badge {
+      border-radius: 16px;
+      padding: 12px;
+      background: var(--soft);
+      color: var(--accent);
+      font-weight: 900;
+      text-align: center;
+    }
+    .week p { margin-top: 4px; color: var(--muted); }
+
+    .checklist {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .check {
+      display:flex;
+      gap: 10px;
+      align-items:flex-start;
+      padding: 12px;
+      border:1px solid var(--line);
+      border-radius: 16px;
+      background:#fff;
+      color: var(--muted);
+    }
+    .check::before { content:"✓"; color: var(--accent-2); font-weight: 900; }
+
+    footer {
+      padding: 34px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid, .grid.four, .flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .grid.three, .resource-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 720px) {
+      .page { padding: 16px; }
+      header.hero { padding: 36px 24px; border-radius: 26px; }
+      section { padding: 24px; border-radius: 24px; }
+      .hero-grid, .grid.two, .grid.three, .grid.four, .resource-grid, .checklist, .flow { grid-template-columns: 1fr; }
+      .resource-controls { grid-template-columns: 1fr; }
+      .week { grid-template-columns: 1fr; }
+      nav.toc { position: relative; }
+    }
+
+    @media print {
+      body { background: #fff; }
+      nav.toc, .resource-controls { display: none; }
+      .page { max-width: none; padding: 0; }
+      section, header.hero, .card, .resource-card, .step, .week { box-shadow: none; break-inside: avoid; }
+      a::after { content: " (" attr(href) ")"; font-weight: normal; color: #555; font-size: .85em; }
+      header.hero { color: #111; background: #fff; border: 1px solid #ddd; }
+      .subtitle, .eyebrow, .hero-card span { color: #444; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <div class="eyebrow">🧠 Student roadmap • fMRI & neuroimaging</div>
+      <h1>fMRI Starter Kit for Students</h1>
+      <p class="subtitle">A practical, beginner-friendly guide to understand what fMRI measures, how experiments are done, what can go wrong, which skills to build, and where to get hands-on experience with real neuroimaging data.</p>
+      <div class="hero-grid">
+        <div class="hero-card"><strong>Start with concepts</strong><span>BOLD signal, task design, scanner workflow, interpretation.</span></div>
+        <div class="hero-card"><strong>Build core skills</strong><span>Linux, Python/MATLAB/R, statistics, BIDS, reproducible workflows.</span></div>
+        <div class="hero-card"><strong>Run real analyses</strong><span>Use OpenNeuro data and public tutorials in AFNI, FSL, SPM, Nilearn.</span></div>
+        <div class="hero-card"><strong>Think like a researcher</strong><span>QC, motion, multiple comparisons, reproducibility, reporting standards.</span></div>
+      </div>
+    </header>
+
+    <nav class="toc" aria-label="Table of contents">
+      <div class="toc-inner">
+        <a href="#overview">Overview</a>
+        <a href="#workflow">Experiment workflow</a>
+        <a href="#challenges">Challenges</a>
+        <a href="#skills">Skills roadmap</a>
+        <a href="#hands-on">Hands-on path</a>
+        <a href="#resources">Resource library</a>
+        <a href="#projects">Starter projects</a>
+        <a href="#checklist">Checklist</a>
+      </div>
+    </nav>
+
+    <section id="overview">
+      <h2>1. What is fMRI?</h2>
+      <p class="lead">Functional Magnetic Resonance Imaging, or fMRI, is a non-invasive way of studying human brain function. Instead of directly recording neurons, most fMRI studies measure the BOLD signal: blood-oxygen-level-dependent changes related to local blood flow, oxygenation and neurovascular coupling.</p>
+      <div class="grid three">
+        <div class="card">
+          <h3>What it measures</h3>
+          <p>Most fMRI studies measure changes in blood oxygenation. The signal is useful because neural activity changes local energy demand, which changes blood flow and oxygenation.</p>
+        </div>
+        <div class="card">
+          <h3>What it does not measure</h3>
+          <p>It is not a direct measure of action potentials or “thoughts”. Interpretation requires caution because the BOLD response is vascular, delayed, noisy and model-dependent.</p>
+        </div>
+        <div class="card">
+          <h3>Why researchers use it</h3>
+          <p>fMRI can map activity across the whole brain with millimetre-scale spatial resolution while participants perform tasks, rest, watch movies, make decisions, remember, feel emotions or process language.</p>
+        </div>
+      </div>
+      <div class="callout warning">
+        <strong>Key intuition:</strong> fMRI is powerful because it lets us study human brain function in vivo, but the result is always a statistical inference from a noisy biological and physical signal. A good fMRI researcher learns both neuroscience and data hygiene.
+      </div>
+    </section>
+
+    <section id="workflow">
+      <h2>2. How is an fMRI experiment done?</h2>
+      <p class="lead">A typical fMRI project moves from a psychological question to experimental design, scanning, preprocessing, modelling, group statistics and interpretation. Each step can affect the final result.</p>
+      <div class="flow" aria-label="fMRI workflow">
+        <div class="step"><span class="num">1</span><strong>Question</strong><small>Define the cognitive process, contrast, hypothesis and expected direction.</small></div>
+        <div class="step"><span class="num">2</span><strong>Task design</strong><small>Choose block, event-related, mixed, resting-state or naturalistic design.</small></div>
+        <div class="step"><span class="num">3</span><strong>Ethics & safety</strong><small>Screen for metal, claustrophobia, pregnancy rules, consent and data privacy.</small></div>
+        <div class="step"><span class="num">4</span><strong>Scanning</strong><small>Acquire anatomical T1w images, BOLD runs, fieldmaps and behavioural logs.</small></div>
+        <div class="step"><span class="num">5</span><strong>Preprocess</strong><small>Correct motion, align images, normalize to template, smooth, estimate confounds.</small></div>
+        <div class="step"><span class="num">6</span><strong>Model</strong><small>Build GLM, contrasts, connectivity, MVPA or other analysis depending on question.</small></div>
+        <div class="step"><span class="num">7</span><strong>Report</strong><small>Check quality, correct for multiple comparisons, share code/maps where possible.</small></div>
+      </div>
+
+      <div class="grid two" style="margin-top: 18px;">
+        <div class="card">
+          <h3>Common task designs</h3>
+          <ul>
+            <li><strong>Block design:</strong> high statistical power; useful when conditions can be sustained for several seconds.</li>
+            <li><strong>Event-related design:</strong> flexible and trial-level; useful for randomised cognitive tasks.</li>
+            <li><strong>Mixed design:</strong> separates sustained state effects from trial-level responses.</li>
+            <li><strong>Resting-state:</strong> participants rest while spontaneous BOLD correlations are analysed.</li>
+            <li><strong>Naturalistic:</strong> movies/stories/games; useful for richer real-world cognition.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Core analysis outputs</h3>
+          <ul>
+            <li><strong>Activation maps:</strong> where BOLD signal differs between conditions.</li>
+            <li><strong>Contrasts:</strong> statistical tests like Incongruent &gt; Congruent.</li>
+            <li><strong>Connectivity:</strong> how regions covary over time or conditions.</li>
+            <li><strong>Decoding/MVPA:</strong> whether distributed activity patterns classify mental states or stimuli.</li>
+            <li><strong>ROI analysis:</strong> targeted tests in pre-defined brain regions.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="challenges">
+      <h2>3. Main challenges in fMRI research</h2>
+      <p class="lead">Good fMRI is not only about running software. It is about understanding what can bias the result and building safeguards into design, preprocessing, statistics and reporting.</p>
+      <div class="grid three">
+        <div class="card"><h3>Motion</h3><p>Even tiny head movements can produce structured artefacts, especially in group differences and connectivity analyses.</p><div class="pill-row"><span class="pill red">QC essential</span></div></div>
+        <div class="card"><h3>Low signal-to-noise</h3><p>The BOLD signal is small relative to thermal noise, physiology, scanner drift and participant variability.</p><div class="pill-row"><span class="pill amber">Design matters</span></div></div>
+        <div class="card"><h3>Indirect signal</h3><p>BOLD is related to neurovascular coupling, so it should not be interpreted as a direct readout of neuronal firing.</p><div class="pill-row"><span class="pill amber">Interpret carefully</span></div></div>
+        <div class="card"><h3>Multiple comparisons</h3><p>Whole-brain maps test thousands of voxels. Without correction, false positives become likely.</p><div class="pill-row"><span class="pill red">Statistics essential</span></div></div>
+        <div class="card"><h3>Flexible pipelines</h3><p>Different preprocessing, smoothing, denoising, template and threshold choices can change results.</p><div class="pill-row"><span class="pill green">Pre-register when possible</span></div></div>
+        <div class="card"><h3>Reverse inference</h3><p>Seeing activation in a region does not prove a specific mental process unless the task and evidence support that inference.</p><div class="pill-row"><span class="pill amber">Theory matters</span></div></div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2>4. Skills students should build</h2>
+      <p class="lead">You do not need to master everything before starting. But you should gradually build enough skill to understand the full pipeline rather than treating fMRI analysis as a black box.</p>
+      <table>
+        <thead>
+          <tr><th>Skill area</th><th>Why it matters</th><th>How to start</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Basic neuroscience</strong></td><td>Helps you ask biologically meaningful questions and interpret regions/networks cautiously.</td><td>Learn brain anatomy, systems neuroscience, cognitive psychology and experimental logic.</td></tr>
+          <tr><td><strong>MRI & BOLD basics</strong></td><td>Helps you understand what the scanner measures and why artefacts occur.</td><td>Start with MIT fMRI Bootcamp or Principles of fMRI before deep physics.</td></tr>
+          <tr><td><strong>Experimental design</strong></td><td>Poor timing, weak contrasts or confounded tasks cannot be fixed later by software.</td><td>Learn block/event-related designs, jitter, contrasts, behavioural logging and timing precision.</td></tr>
+          <tr><td><strong>Linux command line</strong></td><td>Most neuroimaging workflows run on Linux/HPC with shell scripts.</td><td>Use Software Carpentry or MIT Missing Semester; practise moving files, loops and scripts.</td></tr>
+          <tr><td><strong>Programming</strong></td><td>Needed for cleaning logs, automating pipelines, plotting results and reproducibility.</td><td>Python first for most students; MATLAB if using SPM/TDT; R for statistics and publication plots.</td></tr>
+          <tr><td><strong>Statistics</strong></td><td>fMRI analysis is modelling: GLM, contrasts, mixed effects, correction, power and uncertainty.</td><td>Learn linear models, design matrices, multiple comparisons, cross-validation and effect sizes.</td></tr>
+          <tr><td><strong>BIDS & data organisation</strong></td><td>Modern pipelines expect consistent file names and metadata.</td><td>Convert a small dataset to BIDS, run BIDS Validator, and inspect the folder structure.</td></tr>
+          <tr><td><strong>QC & reproducibility</strong></td><td>Publications are stronger when analyses are documented, inspectable and shareable.</td><td>Use MRIQC/fMRIPrep reports, Git, README files, fixed environments and documented exclusions.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="hands-on">
+      <h2>5. A practical 8-week learning path</h2>
+      <p class="lead">This is a realistic route for a psychology, neuroscience, biology or cognitive science student who wants to start working with fMRI data.</p>
+      <div class="timeline">
+        <div class="week"><div class="week-badge">Week 1</div><div><h3>Understand the big picture</h3><p>Watch an introductory fMRI lecture series. Learn what BOLD is, what a contrast is, and why design matters.</p></div></div>
+        <div class="week"><div class="week-badge">Week 2</div><div><h3>Learn the command line</h3><p>Practise folders, paths, shell commands, loops, permissions and simple scripts. This removes the biggest barrier for beginners.</p></div></div>
+        <div class="week"><div class="week-badge">Week 3</div><div><h3>Open real MRI files</h3><p>Download a small OpenNeuro dataset. View T1w and BOLD images in FSLeyes, AFNI or Nilearn. Learn NIfTI, TR, voxel size and image orientation.</p></div></div>
+        <div class="week"><div class="week-badge">Week 4</div><div><h3>Learn BIDS</h3><p>Understand subject/session/run folders and JSON metadata. Run the BIDS Validator and fix basic errors.</p></div></div>
+        <div class="week"><div class="week-badge">Week 5</div><div><h3>Run preprocessing</h3><p>Read fMRIPrep/MRIQC reports. Learn motion correction, registration, normalization, confounds and why visual QC is non-negotiable.</p></div></div>
+        <div class="week"><div class="week-badge">Week 6</div><div><h3>Run a task GLM</h3><p>Use Andy’s Brain Book, FSL, SPM or AFNI to model a simple task dataset. Inspect the design matrix and contrasts.</p></div></div>
+        <div class="week"><div class="week-badge">Week 7</div><div><h3>Try one advanced direction</h3><p>Choose one: resting-state connectivity, ROI analysis, MVPA/decoding, surface analysis, or naturalistic analysis.</p></div></div>
+        <div class="week"><div class="week-badge">Week 8</div><div><h3>Make a reproducible mini-project</h3><p>Create a short report with research question, data source, methods, QC screenshots, results, limitations and code link.</p></div></div>
+      </div>
+    </section>
+
+    <section id="resources">
+      <h2>6. Curated resource library</h2>
+      <p class="lead">Use the search box or category buttons to find the right resource. Start with “Beginner + Course/Tutorial”, then move to software-specific resources once you know what analysis you want to run.</p>
+      <div class="resource-controls">
+        <input id="resourceSearch" type="search" placeholder="Search resources: e.g., BIDS, AFNI, GLM, connectivity, MVPA, QC..." aria-label="Search resources" />
+        <div class="filters" aria-label="Filter resource categories">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="course">Courses</button>
+          <button class="filter-btn" data-filter="tutorial">Tutorials</button>
+          <button class="filter-btn" data-filter="data">Data</button>
+          <button class="filter-btn" data-filter="software">Software</button>
+          <button class="filter-btn" data-filter="standards">Standards</button>
+          <button class="filter-btn" data-filter="community">Community</button>
+        </div>
+      </div>
+
+      <div class="resource-grid" id="resourceGrid">
+        <article class="resource-card" data-category="tutorial course" data-level="beginner" data-keywords="andy brain book fmri spm fsl afni beginner glm tutorial"><h3><a href="https://andysbrainbook.readthedocs.io/" target="_blank" rel="noopener">Andy’s Brain Book</a></h3><p>Probably the most beginner-friendly practical fMRI analysis guide. Includes step-by-step tutorials for SPM, FSL, AFNI, fMRIPrep, connectivity and MVPA.</p><div class="meta"><span class="level">Beginner</span><span class="category">Tutorial</span><span class="category">Hands-on</span></div></article>
+        <article class="resource-card" data-category="course" data-level="beginner" data-keywords="mit fmri bootcamp bold signal analysis lectures"><h3><a href="https://ocw.mit.edu/courses/res-9-005-fmri-bootcamp-fall-2017/" target="_blank" rel="noopener">MIT fMRI Bootcamp</a></h3><p>Video lecture series introducing anatomical MRI, functional MRI, BOLD signal and analysis thinking. Good before touching software.</p><div class="meta"><span class="level">Beginner</span><span class="category">Course</span></div></article>
+        <article class="resource-card" data-category="course" data-level="beginner intermediate" data-keywords="principles of fmri coursera wager lindquist design acquisition glm"><h3><a href="https://www.coursera.org/learn/functional-mri" target="_blank" rel="noopener">Principles of fMRI 1</a></h3><p>Structured course covering design, acquisition, MR physics, preprocessing and GLM concepts. Useful for conceptual depth.</p><div class="meta"><span class="level">Beginner–Intermediate</span><span class="category">Course</span></div></article>
+        <article class="resource-card" data-category="tutorial standards" data-level="beginner intermediate" data-keywords="princeton handbook reproducible neuroimaging fmri experiment best practices"><h3><a href="https://brainhack-princeton.github.io/handbook/" target="_blank" rel="noopener">Princeton Handbook for Reproducible Neuroimaging</a></h3><p>A practical handbook for running reproducible fMRI research, including design, OpenNeuro, software and best practices.</p><div class="meta"><span class="level">Beginner–Intermediate</span><span class="category">Best practices</span></div></article>
+        <article class="resource-card" data-category="tutorial course" data-level="beginner intermediate" data-keywords="neuroimaging data science python nilearn nibabel book"><h3><a href="https://neuroimaging-data-science.org/" target="_blank" rel="noopener">Neuroimaging and Data Science</a></h3><p>Open online book introducing data science skills for neuroimaging, including Python, image data structures and reproducible analysis.</p><div class="meta"><span class="level">Beginner–Intermediate</span><span class="category">Book</span></div></article>
+        <article class="resource-card" data-category="course tutorial" data-level="beginner intermediate" data-keywords="brainhack school neuroimaging python open science project based"><h3><a href="https://school-brainhack.github.io/" target="_blank" rel="noopener">Brainhack School</a></h3><p>Project-based training in neuroimaging, data science and open science. Good for students who learn by building.</p><div class="meta"><span class="level">Beginner–Intermediate</span><span class="category">Course</span></div></article>
+        <article class="resource-card" data-category="tutorial software" data-level="beginner intermediate" data-keywords="neurodesk education tutorials reproducible neuroimaging containers"><h3><a href="https://neurodesk.org/edu/intro.html" target="_blank" rel="noopener">NeurodeskEDU</a></h3><p>Step-by-step neuroimaging tutorials using reproducible software environments. Especially helpful when installation becomes a barrier.</p><div class="meta"><span class="level">Beginner–Intermediate</span><span class="category">Tutorial</span><span class="category">Reproducibility</span></div></article>
+        <article class="resource-card" data-category="standards data" data-level="beginner intermediate" data-keywords="bids brain imaging data structure standard organization"><h3><a href="https://bids.neuroimaging.io/" target="_blank" rel="noopener">BIDS: Brain Imaging Data Structure</a></h3><p>The core standard for organising neuroimaging datasets so that humans, collaborators and software can understand them.</p><div class="meta"><span class="level">Beginner</span><span class="category">Standard</span></div></article>
+        <article class="resource-card" data-category="standards software" data-level="beginner intermediate" data-keywords="bids validator check dataset compliance"><h3><a href="https://bids-standard.github.io/bids-validator/" target="_blank" rel="noopener">BIDS Validator</a></h3><p>Checks whether a dataset follows the BIDS standard. Use before fMRIPrep, sharing data or starting a reproducible workflow.</p><div class="meta"><span class="level">Beginner</span><span class="category">Tool</span></div></article>
+        <article class="resource-card" data-category="data" data-level="beginner intermediate" data-keywords="openneuro public datasets bids mri fmri eeg"><h3><a href="https://openneuro.org/" target="_blank" rel="noopener">OpenNeuro</a></h3><p>Public platform for BIDS-compatible neuroimaging datasets. Best place to get real data for tutorials and mini-projects.</p><div class="meta"><span class="level">Beginner</span><span class="category">Data</span></div></article>
+        <article class="resource-card" data-category="data" data-level="intermediate" data-keywords="neurovault statistical maps atlases unthresholded maps"><h3><a href="https://neurovault.org/" target="_blank" rel="noopener">NeuroVault</a></h3><p>Repository for statistical maps, atlases and parcellations. Useful for meta-analysis, visualising maps and open science.</p><div class="meta"><span class="level">Intermediate</span><span class="category">Data</span></div></article>
+        <article class="resource-card" data-category="software" data-level="intermediate" data-keywords="fmriprep preprocessing bids app bold reproducible"><h3><a href="https://fmriprep.org/en/stable/" target="_blank" rel="noopener">fMRIPrep</a></h3><p>Widely used BIDS App for robust, reproducible fMRI preprocessing with visual reports and standardized outputs.</p><div class="meta"><span class="level">Intermediate</span><span class="category">Preprocessing</span></div></article>
+        <article class="resource-card" data-category="software" data-level="intermediate" data-keywords="mriqc quality control iqms visual reports"><h3><a href="https://mriqc.readthedocs.io/" target="_blank" rel="noopener">MRIQC</a></h3><p>Extracts image quality metrics and produces reports for quality control of structural, functional and diffusion MRI data.</p><div class="meta"><span class="level">Intermediate</span><span class="category">QC</span></div></article>
+        <article class="resource-card" data-category="software" data-level="intermediate" data-keywords="xcp-d resting state postprocessing connectivity denoising"><h3><a href="https://xcp-d.readthedocs.io/" target="_blank" rel="noopener">XCP-D</a></h3><p>Post-processing pipeline commonly used after fMRIPrep for functional connectivity and denoised BOLD outputs.</p><div class="meta"><span class="level">Intermediate</span><span class="category">Connectivity</span></div></article>
+        <article class="resource-card" data-category="software tutorial" data-level="beginner intermediate" data-keywords="fsl course feat fsleyes glm registration"><h3><a href="https://fsl.fmrib.ox.ac.uk/fslcourse/" target="_blank" rel="noopener">FSL Course</a></h3><p>Self-paced lectures and practicals for FSL, including structural, functional and diffusion image analysis.</p><div class="meta"><span class="level">Beginner–Intermediate</span><span class="category">Software</span></div></article>
+        <article class="resource-card" data-category="software tutorial" data-level="beginner intermediate" data-keywords="spm tutorials matlab fmri glm dcm"><h3><a href="https://www.fil.ion.ucl.ac.uk/spm/docs/tutorials/" target="_blank" rel="noopener">SPM Tutorials</a></h3><p>Official tutorials for SPM, including fMRI, VBM, M/EEG and DCM. Strong option for MATLAB-based labs.</p><div class="meta"><span class="level">Beginner–Intermediate</span><span class="category">Software</span></div></article>
+        <article class="resource-card" data-category="software tutorial" data-level="beginner intermediate" data-keywords="afni nimh bootcamp 3ddeconvolve 3dttest fmri"><h3><a href="https://afni.nimh.nih.gov/" target="_blank" rel="noopener">AFNI</a></h3><p>Powerful command-line and GUI suite for fMRI analysis, visualisation, GLM modelling, statistics and scripting.</p><div class="meta"><span class="level">Intermediate</span><span class="category">Software</span></div></article>
+        <article class="resource-card" data-category="course tutorial software" data-level="beginner intermediate" data-keywords="afni bootcamp mit training videos"><h3><a href="https://ocw.mit.edu/courses/res-9-006-afni-training-bootcamp-spring-2018/pages/video-session/" target="_blank" rel="noopener">AFNI Training Bootcamp</a></h3><p>Video sessions for learning AFNI workflows, data inspection, alignment, regression and practical fMRI analysis.</p><div class="meta"><span class="level">Intermediate</span><span class="category">Course</span></div></article>
+        <article class="resource-card" data-category="software tutorial" data-level="beginner intermediate" data-keywords="nilearn python glm connectivity machine learning decoding"><h3><a href="https://nilearn.github.io/" target="_blank" rel="noopener">Nilearn</a></h3><p>Python library for statistical learning, GLM, decoding, connectivity and visualisation of brain volumes and surfaces.</p><div class="meta"><span class="level">Beginner–Advanced</span><span class="category">Python</span></div></article>
+        <article class="resource-card" data-category="software" data-level="beginner intermediate" data-keywords="nibabel nifti python image data formats"><h3><a href="https://nipy.org/nibabel/" target="_blank" rel="noopener">NiBabel</a></h3><p>Python package for reading and writing neuroimaging formats such as NIfTI, GIFTI, CIFTI, MINC and FreeSurfer files.</p><div class="meta"><span class="level">Beginner–Intermediate</span><span class="category">Python</span></div></article>
+        <article class="resource-card" data-category="software" data-level="intermediate advanced" data-keywords="nipype workflows pipeline interfaces fsl spm afni reproducibility"><h3><a href="https://nipype.readthedocs.io/" target="_blank" rel="noopener">Nipype</a></h3><p>Python framework for building reproducible workflows that connect multiple neuroimaging tools and interfaces.</p><div class="meta"><span class="level">Intermediate–Advanced</span><span class="category">Workflow</span></div></article>
+        <article class="resource-card" data-category="software tutorial" data-level="beginner intermediate" data-keywords="conn toolbox functional connectivity resting state task spm"><h3><a href="https://www.conn-toolbox.org/" target="_blank" rel="noopener">CONN Toolbox</a></h3><p>SPM-based toolbox for functional connectivity analyses in resting-state and task fMRI, with GUI-driven workflows.</p><div class="meta"><span class="level">Beginner–Intermediate</span><span class="category">Connectivity</span></div></article>
+        <article class="resource-card" data-category="software" data-level="intermediate advanced" data-keywords="tdt decoding toolbox mvpa matlab spm searchlight rsa"><h3><a href="https://sites.google.com/site/tdtdecodingtoolbox/" target="_blank" rel="noopener">The Decoding Toolbox</a></h3><p>MATLAB toolbox for MVPA/decoding, including searchlight, ROI, whole-brain and representational similarity analyses.</p><div class="meta"><span class="level">Intermediate–Advanced</span><span class="category">MVPA</span></div></article>
+        <article class="resource-card" data-category="software tutorial" data-level="advanced" data-keywords="brainiak python mvpa srm rsa isc advanced fmri"><h3><a href="https://brainiak.org/" target="_blank" rel="noopener">BrainIAK</a></h3><p>Advanced Python toolkit for fMRI machine learning: MVPA, shared response modelling, RSA, ISC/ISFC and more.</p><div class="meta"><span class="level">Advanced</span><span class="category">Advanced fMRI</span></div></article>
+        <article class="resource-card" data-category="software" data-level="intermediate" data-keywords="freesurfer cortical surface reconstruction anatomy"><h3><a href="https://surfer.nmr.mgh.harvard.edu/" target="_blank" rel="noopener">FreeSurfer</a></h3><p>Core tool for cortical reconstruction, segmentation, surface analysis and anatomical processing in MRI studies.</p><div class="meta"><span class="level">Intermediate</span><span class="category">Anatomy</span></div></article>
+        <article class="resource-card" data-category="software standards" data-level="intermediate" data-keywords="templateflow templates atlases mni space reproducibility"><h3><a href="https://www.templateflow.org/" target="_blank" rel="noopener">TemplateFlow</a></h3><p>Version-controlled resource for brain templates and atlases, useful for reproducible template/space choices.</p><div class="meta"><span class="level">Intermediate</span><span class="category">Templates</span></div></article>
+        <article class="resource-card" data-category="standards" data-level="intermediate" data-keywords="cobidas ohbm best practices reporting mri neuroimaging reproducibility"><h3><a href="https://www.humanbrainmapping.org/i4a/pages/index.cfm?pageid=3728" target="_blank" rel="noopener">COBIDAS MRI</a></h3><p>Best-practice recommendations for MRI neuroimaging analysis, sharing and reporting. Useful when writing methods.</p><div class="meta"><span class="level">Intermediate</span><span class="category">Reporting</span></div></article>
+        <article class="resource-card" data-category="community" data-level="beginner advanced" data-keywords="neurostars questions software support fmri bids fmriprep nilearn"><h3><a href="https://neurostars.org/" target="_blank" rel="noopener">Neurostars</a></h3><p>Question-and-answer forum for neuroimaging researchers and developers. Search here when software errors appear.</p><div class="meta"><span class="level">All levels</span><span class="category">Community</span></div></article>
+        <article class="resource-card" data-category="data software community" data-level="beginner advanced" data-keywords="nitrc neuroimaging tools resources repository"><h3><a href="https://www.nitrc.org/" target="_blank" rel="noopener">NITRC</a></h3><p>Neuroimaging Tools and Resources Collaboratory: software, data repositories, computing resources and community tools.</p><div class="meta"><span class="level">All levels</span><span class="category">Repository</span></div></article>
+        <article class="resource-card" data-category="tutorial software" data-level="beginner" data-keywords="fsleyes viewer nifti fsl visualisation"><h3><a href="https://open.oxcin.ox.ac.uk/pages/fsl/fsleyes/fsleyes/userdoc/" target="_blank" rel="noopener">FSLeyes Documentation</a></h3><p>Documentation for viewing 3D/4D MRI data. A good first viewer for students learning what MRI files actually look like.</p><div class="meta"><span class="level">Beginner</span><span class="category">Viewer</span></div></article>
+        <article class="resource-card" data-category="tutorial course" data-level="beginner" data-keywords="software carpentry unix shell git python r"><h3><a href="https://software-carpentry.org/lessons/" target="_blank" rel="noopener">Software Carpentry Lessons</a></h3><p>Free lessons on Unix shell, Git and programming. Strong starting point for students without a coding background.</p><div class="meta"><span class="level">Beginner</span><span class="category">Coding</span></div></article>
+        <article class="resource-card" data-category="course tutorial" data-level="beginner intermediate" data-keywords="mit missing semester command line git shell tools"><h3><a href="https://missing.csail.mit.edu/" target="_blank" rel="noopener">MIT Missing Semester</a></h3><p>Excellent training in command-line tools, version control and computing habits that make neuroimaging workflows easier.</p><div class="meta"><span class="level">Beginner–Intermediate</span><span class="category">Computing</span></div></article>
+        <article class="resource-card" data-category="software tutorial" data-level="beginner" data-keywords="jupyter notebooks python analysis interactive reports"><h3><a href="https://jupyter.org/" target="_blank" rel="noopener">Project Jupyter</a></h3><p>Interactive computational notebooks for combining code, equations, narrative text and visualisation in one document.</p><div class="meta"><span class="level">Beginner</span><span class="category">Coding</span></div></article>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2>7. Hands-on mini-project ideas</h2>
+      <p class="lead">The best way to enter neuroimaging is to finish a small analysis end-to-end. These projects are realistic for a student portfolio or lab application.</p>
+      <div class="grid two">
+        <div class="card">
+          <h3>Project A: First fMRI dataset tour</h3>
+          <ol>
+            <li>Download a small task-fMRI dataset from OpenNeuro.</li>
+            <li>Inspect anatomical and functional files in FSLeyes/AFNI.</li>
+            <li>Identify TR, voxel size, number of volumes and task events.</li>
+            <li>Write a one-page “what is in this dataset?” report.</li>
+          </ol>
+        </div>
+        <div class="card">
+          <h3>Project B: BIDS + validation</h3>
+          <ol>
+            <li>Take a tiny sample dataset or BIDS example.</li>
+            <li>Learn the folder naming structure.</li>
+            <li>Run BIDS Validator.</li>
+            <li>Fix or document warnings and errors.</li>
+          </ol>
+        </div>
+        <div class="card">
+          <h3>Project C: Simple task GLM</h3>
+          <ol>
+            <li>Use a Flanker, motor, n-back or emotional task dataset.</li>
+            <li>Run one first-level GLM using Andy’s Brain Book/FSL/SPM/AFNI.</li>
+            <li>Make one contrast map and one design matrix figure.</li>
+            <li>Explain the contrast in plain language.</li>
+          </ol>
+        </div>
+        <div class="card">
+          <h3>Project D: QC report</h3>
+          <ol>
+            <li>Run or inspect fMRIPrep/MRIQC reports.</li>
+            <li>Identify motion, registration and signal dropout issues.</li>
+            <li>Make a table of accepted/excluded runs.</li>
+            <li>Write transparent exclusion criteria.</li>
+          </ol>
+        </div>
+        <div class="card">
+          <h3>Project E: Functional connectivity</h3>
+          <ol>
+            <li>Use resting-state or task residual data.</li>
+            <li>Extract seed time series from an ROI.</li>
+            <li>Correlate with other regions or whole brain.</li>
+            <li>Report why denoising and motion control matter.</li>
+          </ol>
+        </div>
+        <div class="card">
+          <h3>Project F: Decoding/MVPA</h3>
+          <ol>
+            <li>Use Haxby-style visual category data or another labelled task.</li>
+            <li>Train a classifier with Nilearn or TDT.</li>
+            <li>Use cross-validation correctly.</li>
+            <li>Report accuracy, chance level, leakage risks and limitations.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section id="checklist">
+      <h2>8. Beginner’s checklist before joining an fMRI project</h2>
+      <p class="lead">You do not need to tick every box to start, but each item will make you more useful in a neuroimaging lab.</p>
+      <div class="checklist">
+        <div class="check">I can explain BOLD in simple language without saying it directly measures thoughts.</div>
+        <div class="check">I know the difference between anatomical MRI and functional MRI.</div>
+        <div class="check">I understand what a task contrast is.</div>
+        <div class="check">I can navigate folders and run basic Linux commands.</div>
+        <div class="check">I can open a NIfTI file and inspect image orientation/slices.</div>
+        <div class="check">I know what BIDS is and why it matters.</div>
+        <div class="check">I understand motion correction, registration and normalization at a basic level.</div>
+        <div class="check">I can read a design matrix and ask whether regressors are sensible.</div>
+        <div class="check">I know why multiple-comparison correction matters.</div>
+        <div class="check">I can write a clear README for data, code and outputs.</div>
+      </div>
+
+      <div class="callout green">
+        <strong>Suggested order for absolute beginners:</strong> MIT fMRI Bootcamp → Software Carpentry/Missing Semester → Andy’s Brain Book → OpenNeuro dataset → BIDS Validator → fMRIPrep/MRIQC reports → one simple GLM → one mini-report.
+      </div>
+    </section>
+
+    <section id="glossary">
+      <h2>9. Tiny glossary</h2>
+      <div class="grid three">
+        <div class="card"><h3>BOLD</h3><p>Blood-oxygen-level-dependent signal; the most common fMRI contrast.</p></div>
+        <div class="card"><h3>Voxel</h3><p>A 3D pixel: the smallest volume element in an MRI image.</p></div>
+        <div class="card"><h3>TR</h3><p>Repetition time: how often a whole brain volume is acquired.</p></div>
+        <div class="card"><h3>HRF</h3><p>Hemodynamic response function: model of the delayed BOLD response after neural events.</p></div>
+        <div class="card"><h3>GLM</h3><p>General Linear Model: the standard modelling framework for task-fMRI activation analysis.</p></div>
+        <div class="card"><h3>Contrast</h3><p>A statistical comparison, often between conditions, such as Reward &gt; No Reward.</p></div>
+        <div class="card"><h3>ROI</h3><p>Region of interest: a predefined anatomical or functional brain region.</p></div>
+        <div class="card"><h3>MVPA</h3><p>Multi-voxel pattern analysis: decoding information from distributed patterns of activity.</p></div>
+        <div class="card"><h3>BIDS</h3><p>A standard structure for organising brain imaging data and metadata.</p></div>
+      </div>
+    </section>
+
+    <footer>
+      <p><strong>Compiled for students entering fMRI/neuroimaging research.</strong><br />Last verified: 24 May 2026. Open resource links may change; always check tool documentation before running analyses.</p>
+    </footer>
+  </div>
+
+  <script>
+    const searchInput = document.getElementById('resourceSearch');
+    const cards = Array.from(document.querySelectorAll('.resource-card'));
+    const buttons = Array.from(document.querySelectorAll('.filter-btn'));
+    let activeFilter = 'all';
+
+    function normalize(text) {
+      return (text || '').toLowerCase().trim();
+    }
+
+    function updateCards() {
+      const query = normalize(searchInput.value);
+      cards.forEach(card => {
+        const categories = normalize(card.dataset.category);
+        const text = normalize(card.innerText + ' ' + card.dataset.keywords + ' ' + card.dataset.level);
+        const matchesFilter = activeFilter === 'all' || categories.includes(activeFilter);
+        const matchesQuery = !query || text.includes(query);
+        card.style.display = matchesFilter && matchesQuery ? 'flex' : 'none';
+      });
+    }
+
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        buttons.forEach(b => b.classList.remove('active'));
+        button.classList.add('active');
+        activeFilter = button.dataset.filter;
+        updateCards();
+      });
+    });
+
+    searchInput.addEventListener('input', updateCards);
+  </script>
+</body>
+</html>

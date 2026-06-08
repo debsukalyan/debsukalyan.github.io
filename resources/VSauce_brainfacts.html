@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Neuroscience Starter Pack — Comment BRAIN</title>
+  <meta name="description" content="A curated neuroscience resource guide: fun videos, beginner explainers, deep dives, courses, datasets, books, podcasts, and a 30-day roadmap." />
+  <style>
+    :root{
+      --bg:#141b1f; --panel:#1f292e; --panel2:#263239; --ink:#f5f0e6; --muted:#c9c0b2;
+      --accent:#f5ad3d; --accent2:#ffd37a; --line:#5b4b33; --soft:#11171a;
+      --green:#8fd694; --blue:#9ecbff; --pink:#f7a1c4;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:radial-gradient(circle at top left,#202a2f 0,#141b1f 38%,#101619 100%);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.6}
+    a{color:var(--accent2);text-decoration:none;border-bottom:1px solid rgba(245,173,61,.35)}
+    a:hover{color:white;border-bottom-color:white}
+    .wrap{max-width:1120px;margin:0 auto;padding:28px 18px 80px}
+    header{padding:54px 0 34px;text-align:center;position:relative}
+    .pill{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:999px;padding:8px 18px;color:var(--ink);letter-spacing:.18em;text-transform:uppercase;font-weight:800;font-size:12px;background:rgba(0,0,0,.18)}
+    h1{font-size:clamp(42px,8vw,88px);line-height:.98;margin:24px auto 14px;max-width:930px;color:var(--accent);letter-spacing:.02em;font-weight:900}
+    .subtitle{max-width:790px;margin:0 auto;color:var(--ink);font-size:clamp(18px,2vw,24px)}
+    .byline{color:var(--muted);margin-top:14px;font-size:15px}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:28px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 16px;border-radius:14px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font-weight:800;box-shadow:0 10px 30px rgba(0,0,0,.18)}
+    .btn.primary{background:var(--accent);color:#1b160b;border-color:var(--accent)}
+    .section{margin-top:34px;padding-top:8px}
+    h2{font-size:clamp(30px,4.5vw,52px);line-height:1.05;color:var(--accent);margin:42px 0 14px}
+    h3{font-size:24px;line-height:1.2;margin:0 0 8px;color:var(--ink)}
+    .lead{font-size:18px;color:var(--muted);max-width:900px;margin:0 0 20px}
+    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+    .grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .card{background:linear-gradient(180deg,var(--panel),#1a2328);border:1px solid rgba(245,173,61,.28);border-radius:24px;padding:20px;box-shadow:0 18px 45px rgba(0,0,0,.18);position:relative;overflow:hidden}
+    .card:before{content:"";position:absolute;right:-40px;top:-40px;width:120px;height:120px;border:1px solid rgba(245,173,61,.12);border-radius:50%}
+    .tag{display:inline-block;color:#151a1e;background:var(--accent);padding:4px 10px;border-radius:999px;font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px}
+    .tag.blue{background:var(--blue)}.tag.green{background:var(--green)}.tag.pink{background:var(--pink)}
+    .small{font-size:14px;color:var(--muted)}
+    .why{margin:10px 0 0;color:var(--muted)}
+    ul{padding-left:22px;margin:10px 0 0} li{margin:6px 0}
+    .toc{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:24px}
+    .toc a{border:1px solid rgba(245,173,61,.28);border-radius:999px;padding:8px 12px;color:var(--ink);background:rgba(255,255,255,.03);font-size:14px}
+    .path{display:grid;grid-template-columns:90px 1fr;gap:16px;align-items:start;padding:16px;border-left:3px solid var(--accent);background:rgba(255,255,255,.035);border-radius:18px;margin:12px 0}
+    .day{font-weight:900;color:var(--accent);font-size:22px;text-align:center;border:1px solid rgba(245,173,61,.35);border-radius:18px;padding:12px 8px;background:#172025}
+    .callout{background:linear-gradient(135deg,rgba(245,173,61,.18),rgba(255,255,255,.03));border:1px solid rgba(245,173,61,.35);border-radius:26px;padding:24px;margin:30px 0;color:var(--ink)}
+    .resource-list{display:grid;grid-template-columns:1fr;gap:12px}
+    .resource{display:grid;grid-template-columns:170px 1fr;gap:18px;border:1px solid rgba(255,255,255,.09);border-radius:20px;background:rgba(255,255,255,.035);padding:16px}
+    .resource .type{font-weight:900;color:var(--accent);text-transform:uppercase;letter-spacing:.08em;font-size:12px}
+    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#fff;background:rgba(0,0,0,.22);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:2px 7px}
+    .footer{margin-top:50px;text-align:center;color:var(--muted);font-size:14px}
+    .print-note{display:none}
+    @media(max-width:850px){.grid,.grid.two{grid-template-columns:1fr}.resource{grid-template-columns:1fr}.path{grid-template-columns:1fr}.day{text-align:left}h1{font-size:45px}.wrap{padding-left:14px;padding-right:14px}}
+    @media print{body{background:white;color:#111}.card,.callout,.resource,.path{box-shadow:none;background:white;color:#111;border-color:#bbb}.pill,.btn,.toc{display:none}.print-note{display:block}.wrap{max-width:100%;padding:0}a{color:#0645ad}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="pill">Comment BRAIN resource pack</div>
+      <h1>Neuroscience Starter Pack</h1>
+      <p class="subtitle">Fun videos, beginner-friendly explainers, serious courses, datasets, books, podcasts, and a practical roadmap for anyone who finds the brain fascinating.</p>
+      <p class="byline">Curated for students exploring neuroscience — from curiosity to research readiness.</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#quick-start">Start here</a>
+        <a class="btn" href="#deep-dives">Go deeper</a>
+        <a class="btn" href="#roadmap">30-day roadmap</a>
+      </div>
+      <div class="toc">
+        <a href="#quick-start">Quick Start</a><a href="#fun">Fun Stuff</a><a href="#read">Read</a><a href="#watch">Watch</a><a href="#courses">Courses</a><a href="#tools">Tools</a><a href="#books">Books</a><a href="#podcasts">Podcasts</a><a href="#roadmap">Roadmap</a>
+      </div>
+    </header>
+
+    <section id="quick-start" class="section">
+      <h2>Start with these 6</h2>
+      <p class="lead">Pick one from each column. Do not try to finish everything. The goal is to build curiosity, vocabulary, and a sense of what neuroscience actually studies.</p>
+      <div class="grid">
+        <article class="card"><span class="tag">Fun entry</span><h3>VSauce Mind Field</h3><p class="why">A brilliant way to get hooked on human behavior, consciousness, social experiments, decision-making, and the weirdness of the mind.</p><ul><li>Search on YouTube: <span class="mono">VSauce Mind Field</span></li><li>Start with: Isolation, Conformity, Freedom of Choice</li><li>Best for: curiosity first, concepts later</li></ul><p><a href="https://www.youtube.com/user/Vsauce" target="_blank" rel="noopener">Open VSauce YouTube channel</a></p></article>
+        <article class="card"><span class="tag green">Reliable facts</span><h3>BrainFacts.org</h3><p class="why">An accessible neuroscience site from the Society for Neuroscience, with sections on behavior, disorders, anatomy, technology, the lab, 3D Brain, Core Concepts, glossary, and educator resources.</p><p><a href="https://www.brainfacts.org/" target="_blank" rel="noopener">Open BrainFacts.org</a></p></article>
+        <article class="card"><span class="tag blue">Quick explainers</span><h3>Neuroscientifically Challenged</h3><p class="why">Short videos and articles that explain neuroscience clearly, especially the “2-Minute Neuroscience” and “Know Your Brain” style content.</p><p><a href="https://neuroscientificallychallenged.com/" target="_blank" rel="noopener">Open Neuroscientifically Challenged</a></p></article>
+        <article class="card"><span class="tag pink">Basics</span><h3>Crash Course Neuroscience / Nervous System</h3><p class="why">Fast-paced foundation videos for nervous system basics before jumping into textbooks.</p><p><a href="https://thecrashcourse.com/courses/the-nervous-system-part-1-crash-course-ap-8/" target="_blank" rel="noopener">Start with Nervous System Part 1</a></p></article>
+        <article class="card"><span class="tag">Interactive</span><h3>BrainFacts 3D Brain</h3><p class="why">Rotate and explore brain structures visually. Helpful for remembering anatomy without getting lost in dense diagrams.</p><p><a href="https://www.brainfacts.org/3d-brain" target="_blank" rel="noopener">Open 3D Brain</a></p></article>
+        <article class="card"><span class="tag green">For serious learners</span><h3>Neuromatch Academy</h3><p class="why">A code-first computational neuroscience coursebook for people ready to learn models, Python, neural data, dynamical systems, ML, and causality.</p><p><a href="https://compneuro.neuromatch.io/" target="_blank" rel="noopener">Open Neuromatch CompNeuro</a></p></article>
+      </div>
+    </section>
+
+    <section id="fun" class="section">
+      <h2>Fun neuroscience: build curiosity first</h2>
+      <div class="resource-list">
+        <div class="resource"><div><div class="type">Video series</div><h3>VSauce Mind Field</h3></div><div><p>Best first exposure if you are fascinated by the mind. Episodes feel like documentaries mixed with social experiments. Watch when you want neuroscience to feel alive, strange, and human.</p><p><strong>Suggested order:</strong> Isolation → Conformity → Freedom of Choice → Artificial Intelligence → Do You Know Yourself?</p><p><a href="https://www.youtube.com/user/Vsauce" target="_blank" rel="noopener">YouTube: VSauce</a></p></div></div>
+        <div class="resource"><div><div class="type">Brain + behavior</div><h3>BrainFacts videos</h3></div><div><p>Good for short, reliable videos on sensory experience, mental health, brain anatomy, and research methods. Also useful for explaining neuroscience to non-specialists.</p><p><a href="https://www.brainfacts.org/" target="_blank" rel="noopener">BrainFacts.org</a> · <a href="https://www.brainfacts.org/3d-brain" target="_blank" rel="noopener">3D Brain</a> · <a href="https://www.brainfacts.org/core-concepts" target="_blank" rel="noopener">Core Concepts</a></p></div></div>
+        <div class="resource"><div><div class="type">Quick videos</div><h3>2-Minute Neuroscience</h3></div><div><p>Use this when you hear a word like hippocampus, amygdala, dopamine, basal ganglia, action potential, or fMRI and want a quick explanation.</p><p><a href="https://neuroscientificallychallenged.com/videos" target="_blank" rel="noopener">Videos page</a> · <a href="https://neuroscientificallychallenged.com/articles" target="_blank" rel="noopener">Articles page</a></p></div></div>
+        <div class="resource"><div><div class="type">YouTube learning</div><h3>Ninja Nerd Neuroscience</h3></div><div><p>More detailed, board-style explanations. Useful for biology, medicine, and neuroanatomy learners who like long-form teaching.</p><p><a href="https://www.youtube.com/@NinjaNerdOfficial/search?query=neuroscience" target="_blank" rel="noopener">Search Ninja Nerd neuroscience</a></p></div></div>
+      </div>
+    </section>
+
+    <section id="read" class="section">
+      <h2>Beginner-friendly reading</h2>
+      <div class="grid two">
+        <article class="card"><span class="tag green">Website</span><h3>BrainFacts Core Concepts</h3><p>Start here if you want the “big ideas”: your complex brain, how neurons communicate, how the brain processes information, experience-dependent plasticity, planning/problem-solving, language, curiosity, and health benefits of research.</p><p><a href="https://www.brainfacts.org/core-concepts" target="_blank" rel="noopener">Open Core Concepts</a></p></article>
+        <article class="card"><span class="tag green">Website</span><h3>The Brain Facts Book</h3><p>A compact overview of brain basics. Good when you want something more structured than random articles.</p><p><a href="https://www.brainfacts.org/the-brain-facts-book" target="_blank" rel="noopener">Open The Brain Facts Book</a></p></article>
+        <article class="card"><span class="tag blue">Website</span><h3>Knowing Neurons</h3><p>Student-friendly neuroscience communication: explainers, interviews, and posts on the brain, behavior, disorders, and methods.</p><p><a href="https://knowingneurons.com/" target="_blank" rel="noopener">Open Knowing Neurons</a></p></article>
+        <article class="card"><span class="tag pink">Deep but accessible</span><h3>Nature / Scientific American Neuroscience</h3><p>Use these for popular science-level deep dives once you have basic vocabulary.</p><p><a href="https://www.nature.com/subjects/neuroscience" target="_blank" rel="noopener">Nature Neuroscience topic</a> · <a href="https://www.scientificamerican.com/neuroscience/" target="_blank" rel="noopener">Scientific American Neuroscience</a></p></article>
+      </div>
+    </section>
+
+    <section id="watch" class="section">
+      <h2>Watch by interest</h2>
+      <div class="grid">
+        <article class="card"><span class="tag">Mind + behavior</span><h3>Consciousness, choices, social behavior</h3><ul><li>VSauce Mind Field</li><li>TED-Ed brain videos</li><li>BrainFacts “Thinking, Sensing & Behaving”</li></ul><p><a href="https://www.brainfacts.org/thinking-sensing-and-behaving" target="_blank" rel="noopener">Explore behavior topics</a></p></article>
+        <article class="card"><span class="tag blue">Anatomy</span><h3>Brain regions + nervous system</h3><ul><li>Crash Course Nervous System</li><li>BrainFacts 3D Brain</li><li>Ninja Nerd neuroanatomy</li></ul><p><a href="https://www.brainfacts.org/brain-anatomy-and-function/anatomy" target="_blank" rel="noopener">BrainFacts Anatomy</a></p></article>
+        <article class="card"><span class="tag green">Methods</span><h3>How research is done</h3><ul><li>fMRI, EEG, eye-tracking explainers</li><li>BrainFacts “In the Lab”</li><li>Allen Institute tutorials</li></ul><p><a href="https://www.brainfacts.org/in-the-lab/tools-and-techniques" target="_blank" rel="noopener">Tools & Techniques</a></p></article>
+      </div>
+    </section>
+
+    <section id="courses" class="section">
+      <h2>Free / structured courses</h2>
+      <div class="resource-list">
+        <div class="resource"><div><div class="type">Computational</div><h3>Neuromatch Academy — Computational Neuroscience</h3></div><div><p>For students who want to model neural systems and analyze data using Python. Best after you know basic Python, statistics, linear algebra, and basic neuroscience.</p><p><a href="https://compneuro.neuromatch.io/" target="_blank" rel="noopener">Course book</a> · <a href="https://compneuro.neuromatch.io/prereqs/ComputationalNeuroscience.html" target="_blank" rel="noopener">Prerequisites</a> · <a href="https://neuromatch.io/courses/" target="_blank" rel="noopener">Neuromatch courses</a></p></div></div>
+        <div class="resource"><div><div class="type">Computational</div><h3>Coursera — Computational Neuroscience</h3></div><div><p>A classic online course route for basic computational neuroscience ideas: neurons, coding, models, decision-making, and learning.</p><p><a href="https://www.coursera.org/learn/computational-neuroscience" target="_blank" rel="noopener">Open course</a></p></div></div>
+        <div class="resource"><div><div class="type">Human neuroimaging</div><h3>Andy’s Brain Book</h3></div><div><p>Hands-on tutorials for fMRI analysis tools like SPM, FSL, and AFNI. Great after you understand what fMRI is and want practical analysis skills.</p><p><a href="https://andysbrainbook.readthedocs.io/" target="_blank" rel="noopener">Open Andy’s Brain Book</a></p></div></div>
+        <div class="resource"><div><div class="type">Open textbook</div><h3>Neuroscience Online</h3></div><div><p>A free online neuroscience textbook from UTHealth Houston. More textbook-like, useful for systematic foundations.</p><p><a href="https://nba.uth.tmc.edu/neuroscience/" target="_blank" rel="noopener">Open Neuroscience Online</a></p></div></div>
+        <div class="resource"><div><div class="type">Visual learning</div><h3>MIT OpenCourseWare neuroscience courses</h3></div><div><p>Use this when you want university-level lectures, notes, assignments, or syllabus structure.</p><p><a href="https://ocw.mit.edu/search/?q=neuroscience" target="_blank" rel="noopener">Search MIT OCW neuroscience</a></p></div></div>
+      </div>
+    </section>
+
+    <section id="tools" class="section">
+      <h2>Tools, datasets, and deep-dive portals</h2>
+      <p class="lead">These are not just for reading. They let you see what real neuroscience data and methods look like.</p>
+      <div class="grid two">
+        <article class="card"><span class="tag green">Atlas</span><h3>Allen Brain Map</h3><p>Large-scale, public brain datasets and atlases from the Allen Institute. Useful for exploring gene expression, cell types, connectivity, and brain organization.</p><p><a href="https://brain-map.org/" target="_blank" rel="noopener">Open Allen Brain Map</a> · <a href="https://brain-map.org/bkp/explore/abc-atlas" target="_blank" rel="noopener">ABC Atlas</a></p></article>
+        <article class="card"><span class="tag blue">Neuroimaging data</span><h3>OpenNeuro</h3><p>A public platform for sharing MRI, fMRI, EEG, MEG, iEEG, and other neuroimaging datasets. Good for students who want hands-on practice.</p><p><a href="https://openneuro.org/" target="_blank" rel="noopener">Open OpenNeuro</a></p></article>
+        <article class="card"><span class="tag pink">Human brain data</span><h3>Human Connectome Project</h3><p>Major public resource for human brain connectivity data. Best for people interested in fMRI, diffusion MRI, and connectomics.</p><p><a href="https://www.humanconnectome.org/" target="_blank" rel="noopener">Open HCP</a></p></article>
+        <article class="card"><span class="tag">Methods</span><h3>Neurostars + Nilearn</h3><p>Neurostars is a Q&A forum for neuroimaging tools. Nilearn is a Python library for machine learning/statistics with neuroimaging data.</p><p><a href="https://neurostars.org/" target="_blank" rel="noopener">Neurostars</a> · <a href="https://nilearn.github.io/" target="_blank" rel="noopener">Nilearn</a></p></article>
+      </div>
+    </section>
+
+    <section id="deep-dives" class="section">
+      <h2>Deep dives by topic</h2>
+      <div class="grid">
+        <article class="card"><span class="tag">Cognitive neuroscience</span><h3>Mind, attention, memory, emotion</h3><ul><li>Start: Mind Field + BrainFacts behavior articles</li><li>Next: cognitive psychology textbook chapters</li><li>Then: fMRI/EEG papers + Andy’s Brain Book</li></ul></article>
+        <article class="card"><span class="tag green">Molecular / cellular</span><h3>Neurons, synapses, genes</h3><ul><li>Start: BrainFacts cells & circuits</li><li>Next: Neuroscience Online</li><li>Then: Allen Brain Map + single-cell atlas content</li></ul></article>
+        <article class="card"><span class="tag blue">Computational</span><h3>Models, coding, neural data</h3><ul><li>Start: Python + statistics + linear algebra</li><li>Next: Neuromatch Academy</li><li>Then: open datasets + small analysis projects</li></ul></article>
+        <article class="card"><span class="tag pink">Neurotech</span><h3>BCI, EEG, implants, digital health</h3><ul><li>Start: BrainFacts tech & the brain</li><li>Next: EEG basics + signal processing</li><li>Then: build small BCI/EEG demo projects</li></ul></article>
+        <article class="card"><span class="tag">Clinical neuroscience</span><h3>Disorders, psychiatry, neurology</h3><ul><li>Start: BrainFacts diseases & disorders</li><li>Next: clinical papers and review articles</li><li>Then: RA/CRC roles in clinical labs</li></ul></article>
+        <article class="card"><span class="tag green">Consciousness</span><h3>Self, agency, perception</h3><ul><li>Start: Mind Field and popular science</li><li>Next: cognitive neuroscience + philosophy</li><li>Then: consciousness science centres and PhD projects</li></ul></article>
+      </div>
+    </section>
+
+    <section id="books" class="section">
+      <h2>Books worth keeping on your shelf</h2>
+      <div class="grid two">
+        <article class="card"><span class="tag">Beginner</span><h3>The Brain: The Story of You — David Eagleman</h3><p>Readable, visual, and good for first exposure to big brain questions.</p></article>
+        <article class="card"><span class="tag">Beginner</span><h3>Your Brain, Explained — Marc Dingman</h3><p>Friendly explanations of everyday experiences: sleep, memory, pleasure, fear, language.</p></article>
+        <article class="card"><span class="tag green">Textbook</span><h3>Neuroscience — Purves et al.</h3><p>Solid foundations across cellular, systems, sensory, motor, development, and cognition.</p></article>
+        <article class="card"><span class="tag green">Textbook</span><h3>Principles of Neural Science — Kandel et al.</h3><p>The big reference text. Not a first read, but useful when you want depth.</p></article>
+        <article class="card"><span class="tag blue">Computational</span><h3>Theoretical Neuroscience — Dayan & Abbott</h3><p>Classic for computational neuroscience; better after math/programming basics.</p></article>
+        <article class="card"><span class="tag blue">Methods</span><h3>Analyzing Neural Time Series Data — Mike X Cohen</h3><p>Excellent for EEG/time-frequency/signal processing style work.</p></article>
+      </div>
+    </section>
+
+    <section id="podcasts" class="section">
+      <h2>Podcasts and long-form conversations</h2>
+      <div class="grid">
+        <article class="card"><span class="tag pink">Podcast</span><h3>Brain Science with Ginger Campbell</h3><p>Accessible conversations about neuroscience, cognition, consciousness, and books.</p><p><a href="https://brainsciencepodcast.com/" target="_blank" rel="noopener">Open podcast</a></p></article>
+        <article class="card"><span class="tag pink">Podcast</span><h3>Huberman Lab</h3><p>Popular long-form discussions on neuroscience, health, behavior, and performance. Use selectively and cross-check claims.</p><p><a href="https://www.hubermanlab.com/" target="_blank" rel="noopener">Open Huberman Lab</a></p></article>
+        <article class="card"><span class="tag pink">Podcast</span><h3>The Naked Scientists — Neuroscience</h3><p>Good for science communication style episodes and current topics.</p><p><a href="https://www.thenakedscientists.com/podcasts" target="_blank" rel="noopener">Open podcasts</a></p></article>
+      </div>
+    </section>
+
+    <section id="roadmap" class="section">
+      <h2>A simple 30-day roadmap</h2>
+      <div class="callout"><strong>Rule:</strong> Do one small thing every day. Neuroscience feels huge because it connects biology, psychology, medicine, AI, engineering, and philosophy. You only need one entry point.</div>
+      <div class="path"><div class="day">Days 1–3</div><div><h3>Get hooked</h3><p>Watch 2–3 episodes of VSauce Mind Field. Write down 5 questions that genuinely excite you.</p></div></div>
+      <div class="path"><div class="day">Days 4–7</div><div><h3>Build vocabulary</h3><p>Read BrainFacts Core Concepts. Learn these words: neuron, synapse, circuit, plasticity, neurotransmitter, cortex, hippocampus, amygdala, prefrontal cortex.</p></div></div>
+      <div class="path"><div class="day">Week 2</div><div><h3>Pick a branch</h3><p>Choose one: cognitive neuroscience, molecular/cellular neuroscience, computational neuroscience, neuroimaging, neurotech/BCI, clinical neuroscience, consciousness science.</p></div></div>
+      <div class="path"><div class="day">Week 3</div><div><h3>Do a mini project</h3><p>Examples: summarize one paper, analyze a small open dataset, build a reaction-time experiment, explain one brain region in a reel, or make a concept map of one disorder.</p></div></div>
+      <div class="path"><div class="day">Week 4</div><div><h3>Convert curiosity into direction</h3><p>Find 5 labs working on your chosen topic. Read their recent work. Make a one-page note: what they study, methods they use, skills needed, and why you care.</p></div></div>
+    </section>
+
+    <section class="section">
+      <h2>What to learn based on your background</h2>
+      <div class="grid">
+        <article class="card"><span class="tag">Psychology</span><h3>Your advantage</h3><p>Behavior, cognition, emotion, experiments.</p><ul><li>Add: statistics, coding, neuroanatomy, fMRI/EEG basics</li><li>Best fit: cognitive neuroscience, clinical research, decision-making, social neuroscience</li></ul></article>
+        <article class="card"><span class="tag green">Biology</span><h3>Your advantage</h3><p>Cells, molecules, physiology, genetics.</p><ul><li>Add: systems thinking, behavior, coding/data analysis</li><li>Best fit: molecular, cellular, developmental, neurogenetics, systems neuroscience</li></ul></article>
+        <article class="card"><span class="tag blue">Engineering / CS</span><h3>Your advantage</h3><p>Coding, math, signals, models, systems.</p><ul><li>Add: basic neurobiology, experimental design, statistics</li><li>Best fit: computational neuroscience, BCI, neurotech, AI for brain data</li></ul></article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Full link bank</h2>
+      <div class="resource-list">
+        <div class="resource"><div class="type">Fun</div><div><a href="https://www.youtube.com/user/Vsauce" target="_blank" rel="noopener">VSauce / Mind Field on YouTube</a></div></div>
+        <div class="resource"><div class="type">Reliable basics</div><div><a href="https://www.brainfacts.org/" target="_blank" rel="noopener">BrainFacts.org</a></div></div>
+        <div class="resource"><div class="type">Interactive</div><div><a href="https://www.brainfacts.org/3d-brain" target="_blank" rel="noopener">BrainFacts 3D Brain</a></div></div>
+        <div class="resource"><div class="type">Beginner concepts</div><div><a href="https://www.brainfacts.org/core-concepts" target="_blank" rel="noopener">BrainFacts Core Concepts</a></div></div>
+        <div class="resource"><div class="type">Quick explainers</div><div><a href="https://neuroscientificallychallenged.com/" target="_blank" rel="noopener">Neuroscientifically Challenged</a></div></div>
+        <div class="resource"><div class="type">YouTube basics</div><div><a href="https://thecrashcourse.com/courses/the-nervous-system-part-1-crash-course-ap-8/" target="_blank" rel="noopener">Crash Course: Nervous System Part 1</a></div></div>
+        <div class="resource"><div class="type">Comp neuro</div><div><a href="https://compneuro.neuromatch.io/" target="_blank" rel="noopener">Neuromatch Computational Neuroscience</a></div></div>
+        <div class="resource"><div class="type">Prereqs</div><div><a href="https://compneuro.neuromatch.io/prereqs/ComputationalNeuroscience.html" target="_blank" rel="noopener">Neuromatch prerequisites</a></div></div>
+        <div class="resource"><div class="type">fMRI tutorials</div><div><a href="https://andysbrainbook.readthedocs.io/" target="_blank" rel="noopener">Andy’s Brain Book</a></div></div>
+        <div class="resource"><div class="type">Atlas</div><div><a href="https://brain-map.org/" target="_blank" rel="noopener">Allen Brain Map</a></div></div>
+        <div class="resource"><div class="type">Cell atlas</div><div><a href="https://brain-map.org/bkp/explore/abc-atlas" target="_blank" rel="noopener">Allen Brain Cell Atlas</a></div></div>
+        <div class="resource"><div class="type">Open data</div><div><a href="https://openneuro.org/" target="_blank" rel="noopener">OpenNeuro</a></div></div>
+        <div class="resource"><div class="type">Connectivity</div><div><a href="https://www.humanconnectome.org/" target="_blank" rel="noopener">Human Connectome Project</a></div></div>
+        <div class="resource"><div class="type">Python</div><div><a href="https://nilearn.github.io/" target="_blank" rel="noopener">Nilearn</a></div></div>
+        <div class="resource"><div class="type">Q&A</div><div><a href="https://neurostars.org/" target="_blank" rel="noopener">Neurostars</a></div></div>
+        <div class="resource"><div class="type">Open textbook</div><div><a href="https://nba.uth.tmc.edu/neuroscience/" target="_blank" rel="noopener">Neuroscience Online</a></div></div>
+        <div class="resource"><div class="type">Open lectures</div><div><a href="https://ocw.mit.edu/search/?q=neuroscience" target="_blank" rel="noopener">MIT OpenCourseWare neuroscience search</a></div></div>
+        <div class="resource"><div class="type">Student-friendly writing</div><div><a href="https://knowingneurons.com/" target="_blank" rel="noopener">Knowing Neurons</a></div></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="callout">
+        <h2 style="margin-top:0">How to use this file</h2>
+        <p>Save it. Pick one resource today. After 7 days, pick one track: cognitive, molecular/cellular, computational, neuroimaging, neurotech, clinical, or consciousness science.</p>
+        <p><strong>Best first move:</strong> Watch one Mind Field episode + read one BrainFacts Core Concept + watch one 2-Minute Neuroscience video.</p>
+      </div>
+    </section>
+
+    <p class="footer">Made for people who commented <strong>BRAIN</strong>. Links may change over time, so always check the official pages.</p>
+  </div>
+</body>
+</html>

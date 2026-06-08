@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Computational Neuroscience Resource Pack</title>
+  <style>
+    :root{
+      --bg:#171d20;
+      --panel:#20282c;
+      --panel2:#263036;
+      --ink:#f5f1e8;
+      --muted:#c9c1b2;
+      --accent:#f4ad3d;
+      --accent2:#ffe0a3;
+      --line:#51483c;
+      --green:#9bd18b;
+      --blue:#8ab4f8;
+      --pink:#ff9bc2;
+      --shadow: 0 18px 40px rgba(0,0,0,.28);
+      --radius: 22px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background:
+        radial-gradient(circle at 20% 0%, rgba(244,173,61,.08), transparent 28%),
+        radial-gradient(circle at 80% 20%, rgba(138,180,248,.07), transparent 28%),
+        var(--bg);
+      color:var(--ink);
+      line-height:1.55;
+    }
+    a{color:var(--accent2); text-decoration:none; border-bottom:1px dashed rgba(244,173,61,.55)}
+    a:hover{color:#fff; border-bottom-color:#fff}
+    .wrap{max-width:1160px; margin:0 auto; padding:28px 18px 70px}
+    header{
+      padding:46px 24px 32px;
+      border:1px solid rgba(244,173,61,.35);
+      border-radius:32px;
+      background:linear-gradient(135deg, rgba(32,40,44,.93), rgba(23,29,32,.94));
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+    header:after{
+      content:"";
+      position:absolute;
+      right:-80px; top:-80px;
+      width:260px; height:260px;
+      border:2px solid rgba(244,173,61,.25);
+      border-radius:50%;
+    }
+    .eyebrow{
+      color:var(--accent);
+      font-weight:800;
+      letter-spacing:.09em;
+      text-transform:uppercase;
+      font-size:.86rem;
+      margin-bottom:10px;
+    }
+    h1{
+      font-size:clamp(2.1rem, 7vw, 5rem);
+      line-height:.98;
+      margin:0 0 16px;
+      letter-spacing:-.05em;
+      max-width:880px;
+    }
+    h1 span{color:var(--accent)}
+    .hero-text{font-size:1.12rem; color:var(--muted); max-width:780px}
+    .credit{
+      margin-top:20px;
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:9px 13px;
+      border:1px solid rgba(244,173,61,.38);
+      border-radius:999px;
+      color:var(--accent2);
+      background:rgba(244,173,61,.07);
+      font-size:.92rem;
+      font-weight:700;
+    }
+    .nav{
+      display:flex; flex-wrap:wrap; gap:10px;
+      margin:22px 0 28px;
+      position:sticky; top:0; z-index:20;
+      padding:12px 0;
+      background:linear-gradient(180deg, var(--bg), rgba(23,29,32,.86));
+      backdrop-filter: blur(8px);
+    }
+    .nav a{
+      border:1px solid rgba(255,255,255,.12);
+      color:var(--ink);
+      background:rgba(255,255,255,.04);
+      padding:9px 12px;
+      border-radius:999px;
+      font-weight:700;
+      font-size:.9rem;
+    }
+    .nav a:hover{background:rgba(244,173,61,.12); border-color:rgba(244,173,61,.45)}
+    section{margin:34px 0}
+    .section-title{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:12px; margin:0 0 16px;
+    }
+    h2{
+      font-size:clamp(1.5rem, 4vw, 2.4rem);
+      line-height:1.08;
+      margin:0;
+      letter-spacing:-.035em;
+    }
+    .subtitle{color:var(--muted); margin:6px 0 18px; max-width:850px}
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:16px;
+    }
+    .grid.two{grid-template-columns:repeat(2, minmax(0,1fr))}
+    .card{
+      background:linear-gradient(180deg, rgba(38,48,54,.92), rgba(32,40,44,.92));
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:var(--radius);
+      padding:18px;
+      box-shadow:0 12px 26px rgba(0,0,0,.18);
+      min-height:180px;
+    }
+    .card h3{
+      margin:0 0 8px;
+      font-size:1.18rem;
+      line-height:1.15;
+      color:#fff;
+    }
+    .tagline{color:var(--accent); font-weight:800; font-size:.92rem; margin:0 0 8px}
+    .card p{color:var(--muted); margin:.5rem 0}
+    .card ul{padding-left:1.1rem; color:var(--muted); margin:.55rem 0}
+    .card li{margin:.22rem 0}
+    .level{
+      display:inline-block;
+      font-size:.72rem;
+      font-weight:900;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      padding:5px 8px;
+      border-radius:999px;
+      background:rgba(255,255,255,.07);
+      color:var(--accent2);
+      margin-bottom:10px;
+    }
+    .button{
+      display:inline-block;
+      margin-top:10px;
+      padding:10px 12px;
+      border-radius:12px;
+      background:rgba(244,173,61,.12);
+      border:1px solid rgba(244,173,61,.38);
+      color:var(--accent2);
+      font-weight:800;
+    }
+    .roadmap{
+      counter-reset:step;
+      display:grid;
+      gap:14px;
+    }
+    .step{
+      display:grid;
+      grid-template-columns:58px 1fr;
+      gap:14px;
+      align-items:start;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.11);
+      border-radius:20px;
+      padding:16px;
+    }
+    .num{
+      width:44px; height:44px; border-radius:50%;
+      display:grid; place-items:center;
+      background:var(--accent);
+      color:#171d20;
+      font-weight:1000;
+      font-size:1.25rem;
+    }
+    .step h3{margin:0 0 4px; color:#fff}
+    .step p{margin:0; color:var(--muted)}
+    .highlight{
+      border:1px solid rgba(244,173,61,.45);
+      background:linear-gradient(135deg, rgba(244,173,61,.13), rgba(255,255,255,.04));
+      border-radius:26px;
+      padding:20px;
+    }
+    .checklist{
+      display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px;
+      margin-top:12px;
+    }
+    .check{
+      padding:12px 14px;
+      background:rgba(255,255,255,.045);
+      border:1px solid rgba(255,255,255,.1);
+      border-radius:16px;
+      color:var(--muted);
+    }
+    .check strong{color:#fff}
+    .callout{
+      background:rgba(138,180,248,.08);
+      border:1px solid rgba(138,180,248,.26);
+      padding:16px 18px;
+      border-radius:20px;
+      color:var(--muted);
+    }
+    .resource-table{
+      width:100%;
+      border-collapse:separate;
+      border-spacing:0 10px;
+    }
+    .resource-table th{
+      text-align:left; color:var(--accent); font-size:.9rem; text-transform:uppercase; letter-spacing:.06em;
+      padding:0 12px;
+    }
+    .resource-table td{
+      background:rgba(255,255,255,.045);
+      border-top:1px solid rgba(255,255,255,.09);
+      border-bottom:1px solid rgba(255,255,255,.09);
+      padding:14px 12px;
+      vertical-align:top;
+      color:var(--muted);
+    }
+    .resource-table td:first-child{border-left:1px solid rgba(255,255,255,.09); border-radius:16px 0 0 16px; color:#fff; font-weight:800}
+    .resource-table td:last-child{border-right:1px solid rgba(255,255,255,.09); border-radius:0 16px 16px 0}
+    details{
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.1);
+      border-radius:18px;
+      padding:14px 16px;
+      margin:10px 0;
+    }
+    summary{cursor:pointer; font-weight:900; color:#fff}
+    .footer{
+      margin-top:44px;
+      padding:28px;
+      border-radius:30px;
+      background:linear-gradient(135deg, rgba(244,173,61,.14), rgba(32,40,44,.9));
+      border:1px solid rgba(244,173,61,.35);
+    }
+    .copybox{
+      background:#101416;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:16px;
+      padding:14px;
+      color:var(--ink);
+      white-space:pre-wrap;
+      font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size:.92rem;
+    }
+    .small{font-size:.88rem; color:var(--muted)}
+    @media (max-width:900px){
+      .grid,.grid.two{grid-template-columns:1fr}
+      .checklist{grid-template-columns:1fr}
+      .resource-table{font-size:.92rem}
+      .resource-table thead{display:none}
+      .resource-table, .resource-table tbody, .resource-table tr, .resource-table td{display:block; width:100%}
+      .resource-table td{border:1px solid rgba(255,255,255,.09); border-radius:0!important; border-bottom:0}
+      .resource-table td:first-child{border-radius:16px 16px 0 0!important}
+      .resource-table td:last-child{border-radius:0 0 16px 16px!important; border-bottom:1px solid rgba(255,255,255,.09)}
+    }
+    @media print{
+      body{background:#fff;color:#111}
+      header,.card,.step,.highlight,.callout,details,.footer{box-shadow:none;background:#fff;color:#111;border-color:#ddd}
+      a{color:#0645ad}
+      .nav{display:none}
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Comment NEURO resource pack</div>
+    <h1>Computational <span>Neuroscience</span> Roadmap</h1>
+    <p class="hero-text">
+      A practical, beginner-friendly resource list for students who want to enter computational neuroscience from biology, psychology, engineering, computer science, medicine, or data science.
+      Use this as a menu — do not try to finish everything.
+    </p>
+    <div class="credit">
+      <span class="pill">🧠 Neuroscience + Python + Statistics</span>
+      <span class="pill">📚 Courses + books + datasets</span>
+      <span class="pill">🚀 Project-first roadmap</span>
+    </div>
+  </header>
+
+  <nav class="nav">
+    <a href="#start">Start here</a>
+    <a href="#courses">Courses</a>
+    <a href="#foundations">Foundations</a>
+    <a href="#tools">Tools</a>
+    <a href="#datasets">Datasets</a>
+    <a href="#projects">Projects</a>
+    <a href="#india">India routes</a>
+    <a href="#plan">12-week plan</a>
+    <a href="#templates">Email templates</a>
+  </nav>
+
+  <section id="start">
+    <div class="section-title"><h2>First: what is computational neuroscience?</h2></div>
+    <p class="subtitle">
+      It uses mathematics, coding, statistics, and models to understand how neurons, circuits, brains, and behaviour work. It can be close to biology, psychology, AI/ML, physics, engineering, or neuroimaging depending on the question.
+    </p>
+    <div class="grid">
+      <div class="card">
+        <div class="level">If you like biology</div>
+        <h3>Model neurons and circuits</h3>
+        <p>Start with spikes, synapses, Hodgkin–Huxley, integrate-and-fire models, neural coding, and circuit dynamics.</p>
+      </div>
+      <div class="card">
+        <div class="level">If you like psychology</div>
+        <h3>Model behaviour</h3>
+        <p>Start with perception, attention, decision-making, reinforcement learning, drift diffusion models, and cognitive tasks.</p>
+      </div>
+      <div class="card">
+        <div class="level">If you like engineering / CS</div>
+        <h3>Analyze brain data</h3>
+        <p>Start with Python, signal processing, EEG/fMRI, machine learning, neural networks, and open datasets.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="courses">
+    <div class="section-title"><h2>Best structured courses</h2></div>
+    <p class="subtitle">Start with one structured course. Build notes, reproduce tutorials, and make one small project from it.</p>
+    <div class="grid two">
+      <div class="card">
+        <div class="level">Best all-round start</div>
+        <h3>Neuromatch Academy — Computational Neuroscience</h3>
+        <p>Three-week immersive course, with hands-on tutorials and a global peer-learning community. Good if you want structure + coding notebooks + community.</p>
+        <ul>
+          <li>Good for: beginners to intermediate learners</li>
+          <li>Needs: Python basics, math basics, some neuroscience exposure</li>
+          <li>Use it for: a guided entry into the field</li>
+        </ul>
+        <a class="button" href="https://neuromatch.io/computational-neuroscience/" target="_blank">Open official page</a>
+        <a class="button" href="https://compneuro.neuromatch.io/" target="_blank">Open coursebook</a>
+        <a class="button" href="https://compneuro.neuromatch.io/prereqs/ComputationalNeuroscience.html" target="_blank">Check prerequisites</a>
+      </div>
+
+      <div class="card">
+        <div class="level">Classic intro</div>
+        <h3>University of Washington — Computational Neuroscience</h3>
+        <p>A classic introductory online course covering computational methods for nervous systems, including vision, learning, memory, spiking neurons, and networks.</p>
+        <ul>
+          <li>Good for: first exposure</li>
+          <li>Needs: comfort with basic math/coding helps</li>
+          <li>Use it for: conceptual grounding</li>
+        </ul>
+        <a class="button" href="https://www.coursera.org/learn/computational-neuroscience" target="_blank">Open Coursera course</a>
+        <a class="button" href="https://courses.cs.washington.edu/courses/cse528/" target="_blank">Open UW course page</a>
+      </div>
+
+      <div class="card">
+        <div class="level">Neuron models</div>
+        <h3>Neuronal Dynamics — EPFL online book</h3>
+        <p>Excellent for single-neuron models, network dynamics, decision models, and mathematical foundations. Includes online book, lectures, Python exercises, and teaching material.</p>
+        <ul>
+          <li>Good for: stronger theoretical foundations</li>
+          <li>Use it for: integrate-and-fire, Hodgkin–Huxley, networks</li>
+        </ul>
+        <a class="button" href="https://neuronaldynamics.epfl.ch/" target="_blank">Open book site</a>
+        <a class="button" href="https://neuronaldynamics.epfl.ch/online/index.html" target="_blank">Open online version</a>
+      </div>
+
+      <div class="card">
+        <div class="level">Advanced reference</div>
+        <h3>Theoretical Neuroscience — Dayan & Abbott</h3>
+        <p>A standard textbook for mathematical and computational modelling of neural systems. Use slowly, chapter-by-chapter, once you are comfortable with the basics.</p>
+        <ul>
+          <li>Good for: graduate-level depth</li>
+          <li>Use it for: coding/decoding, networks, learning, decision models</li>
+        </ul>
+        <a class="button" href="https://mitpress.mit.edu/9780262041997/theoretical-neuroscience/" target="_blank">Open MIT Press page</a>
+        <a class="button" href="https://www.gatsby.ucl.ac.uk/~dayan/book/exercises.html" target="_blank">Exercises/code/data</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="foundations">
+    <div class="section-title"><h2>What to learn before / alongside courses</h2></div>
+    <div class="highlight">
+      <strong>Minimum starter stack:</strong> basic neuroscience + Python + Jupyter + linear algebra + probability/statistics + plotting + one project.
+      You do not need to master all of calculus or machine learning before starting.
+    </div>
+    <div class="checklist">
+      <div class="check"><strong>Neuroscience basics:</strong> neurons, synapses, action potentials, sensory systems, learning, memory.</div>
+      <div class="check"><strong>Python:</strong> variables, loops, functions, arrays, notebooks, reading files, plotting.</div>
+      <div class="check"><strong>Math:</strong> vectors, matrices, eigenvalues intuition, derivatives, simple differential equations.</div>
+      <div class="check"><strong>Statistics:</strong> distributions, regression, correlation, hypothesis testing, confidence intervals.</div>
+      <div class="check"><strong>Signal processing:</strong> filtering, Fourier transform, time-series, noise, sampling rate.</div>
+      <div class="check"><strong>ML basics:</strong> train/test split, classification, regression, cross-validation, overfitting.</div>
+    </div>
+  </section>
+
+  <section id="tools">
+    <div class="section-title"><h2>Tools you should know</h2></div>
+    <table class="resource-table">
+      <thead><tr><th>Tool</th><th>Why it matters</th><th>Start with</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Python</td>
+          <td>The default language for most computational neuroscience tutorials and data analysis.</td>
+          <td><a href="https://www.python.org/" target="_blank">python.org</a></td>
+        </tr>
+        <tr>
+          <td>Jupyter</td>
+          <td>Most tutorials and analyses are shared as notebooks.</td>
+          <td><a href="https://jupyter.org/" target="_blank">jupyter.org</a></td>
+        </tr>
+        <tr>
+          <td>NumPy / SciPy</td>
+          <td>Numerical computing, linear algebra, optimization, signal processing.</td>
+          <td><a href="https://numpy.org/" target="_blank">NumPy</a> · <a href="https://scipy.org/" target="_blank">SciPy</a></td>
+        </tr>
+        <tr>
+          <td>Matplotlib / Seaborn</td>
+          <td>Plotting results clearly — essential for projects and publications.</td>
+          <td><a href="https://matplotlib.org/" target="_blank">Matplotlib</a> · <a href="https://seaborn.pydata.org/" target="_blank">Seaborn</a></td>
+        </tr>
+        <tr>
+          <td>scikit-learn</td>
+          <td>Machine learning basics for decoding, prediction, regression and classification.</td>
+          <td><a href="https://scikit-learn.org/" target="_blank">scikit-learn</a></td>
+        </tr>
+        <tr>
+          <td>PyTorch</td>
+          <td>Deep learning and neural network modelling.</td>
+          <td><a href="https://pytorch.org/" target="_blank">pytorch.org</a></td>
+        </tr>
+        <tr>
+          <td>MNE-Python</td>
+          <td>EEG/MEG analysis: preprocessing, epochs, evoked responses, decoding.</td>
+          <td><a href="https://mne.tools/stable/index.html" target="_blank">mne.tools</a></td>
+        </tr>
+        <tr>
+          <td>Nilearn</td>
+          <td>Machine learning and statistics for neuroimaging / fMRI.</td>
+          <td><a href="https://nilearn.github.io/stable/index.html" target="_blank">nilearn</a></td>
+        </tr>
+        <tr>
+          <td>Brian2 / NEURON</td>
+          <td>Simulating spiking neurons and neural circuits.</td>
+          <td><a href="https://brian2.readthedocs.io/" target="_blank">Brian2</a> · <a href="https://www.neuron.yale.edu/neuron/" target="_blank">NEURON</a></td>
+        </tr>
+        <tr>
+          <td>GitHub</td>
+          <td>Share reproducible projects, notebooks, and analysis code with labs.</td>
+          <td><a href="https://github.com/" target="_blank">github.com</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="datasets">
+    <div class="section-title"><h2>Open datasets for beginner projects</h2></div>
+    <p class="subtitle">Pick one dataset and ask one small question. A simple finished analysis is better than a huge unfinished project.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>OpenNeuro</h3>
+        <p>Open platform for BIDS-compliant MRI, PET, MEG, EEG and iEEG data.</p>
+        <a class="button" href="https://openneuro.org/" target="_blank">OpenNeuro</a>
+      </div>
+      <div class="card">
+        <h3>DANDI Archive</h3>
+        <p>Public archive for neurophysiology: electrophysiology, optophysiology, behavioural time-series and related data.</p>
+        <a class="button" href="https://about.dandiarchive.org/" target="_blank">DANDI</a>
+        <a class="button" href="https://dandi.github.io/example-notebooks/" target="_blank">Example notebooks</a>
+      </div>
+      <div class="card">
+        <h3>Allen Brain Map</h3>
+        <p>Large-scale public brain atlases and datasets for anatomy, connectivity and gene expression.</p>
+        <a class="button" href="https://brain-map.org/" target="_blank">Allen Brain Map</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="section-title"><h2>Project ideas that actually help</h2></div>
+    <p class="subtitle">Use these for GitHub, SOPs, RA applications, internship emails, or interviews.</p>
+    <div class="grid two">
+      <div class="card">
+        <h3>Beginner projects</h3>
+        <ul>
+          <li>Simulate an integrate-and-fire neuron and show firing rate vs input current.</li>
+          <li>Reproduce one Neuromatch tutorial and write a short explanation in your own words.</li>
+          <li>Analyze a simple behavioural dataset: RT, accuracy, regression, plots.</li>
+          <li>Use OpenNeuro sample data and make a basic brain-imaging visualization.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Intermediate projects</h3>
+        <ul>
+          <li>Build a drift diffusion model explanation with simulated reaction-time data.</li>
+          <li>Use MNE-Python to preprocess an EEG dataset and plot event-related potentials.</li>
+          <li>Use scikit-learn for basic fMRI/EEG decoding with cross-validation.</li>
+          <li>Train a simple neural network to model a perceptual decision task.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Advanced projects</h3>
+        <ul>
+          <li>Compare encoding vs decoding approaches on an open brain dataset.</li>
+          <li>Implement a reinforcement learning model for decision-making behaviour.</li>
+          <li>Fit multiple computational models and compare AIC/BIC or cross-validated performance.</li>
+          <li>Write a short report like a mini-paper: question, method, result, limitation.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>What to put on GitHub</h3>
+        <ul>
+          <li>README: one-paragraph goal + figure preview.</li>
+          <li>Clean notebook with comments.</li>
+          <li>Data source and citation.</li>
+          <li>Final plots and a short interpretation.</li>
+          <li>One “what I learned” section.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="india">
+    <div class="section-title"><h2>India-focused routes to watch</h2></div>
+    <p class="subtitle">For Indian students, entry is often through internships, project assistant / RA roles, integrated PhD routes, institute-specific PhD interviews, COGJET-style cognitive science routes, GATE/JAM routes, and lab-specific openings.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>IISc Bangalore</h3>
+        <p>Look at Centre for Neuroscience, Computational and Data Sciences, CSA/EE/ECE labs, and interdisciplinary PhD/Integrated PhD routes depending on your background.</p>
+        <a class="button" href="https://iisc.ac.in/admissions/" target="_blank">IISc admissions</a>
+        <a class="button" href="https://cns.iisc.ac.in/" target="_blank">IISc CNS</a>
+        <a class="button" href="https://cds.iisc.ac.in/" target="_blank">IISc CDS</a>
+      </div>
+      <div class="card">
+        <h3>NBRC / NIMHANS / NCBS-TIFR</h3>
+        <p>Strong places to watch for neuroscience, neuroimaging, computational psychiatry, systems neuroscience, and biology-facing computational work.</p>
+        <a class="button" href="https://www.nbrc.ac.in/" target="_blank">NBRC</a>
+        <a class="button" href="https://nimhans.ac.in/" target="_blank">NIMHANS</a>
+        <a class="button" href="https://www.ncbs.res.in/" target="_blank">NCBS</a>
+      </div>
+      <div class="card">
+        <h3>IITs / IIITs / IISERs</h3>
+        <p>Look for cognitive science, AI/ML, biomedical engineering, neuroengineering, computational biology, and brain-computer interface labs.</p>
+        <a class="button" href="https://cogs.iitgn.ac.in/" target="_blank">IIT Gandhinagar CogSci</a>
+        <a class="button" href="https://www.iitb.ac.in/" target="_blank">IIT Bombay</a>
+        <a class="button" href="https://www.iiit.ac.in/" target="_blank">IIIT Hyderabad</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="plan">
+    <div class="section-title"><h2>A simple 12-week plan</h2></div>
+    <div class="roadmap">
+      <div class="step"><div class="num">1</div><div><h3>Weeks 1–2: Foundations</h3><p>Python basics, Jupyter, NumPy, plotting, basic neuron/synapse concepts. Goal: one notebook with clean plots.</p></div></div>
+      <div class="step"><div class="num">2</div><div><h3>Weeks 3–4: One structured course</h3><p>Start Neuromatch or UW Coursera. Do not just watch — run notebooks and write your own notes.</p></div></div>
+      <div class="step"><div class="num">3</div><div><h3>Weeks 5–6: Modelling basics</h3><p>Simulate integrate-and-fire neurons, tuning curves, simple neural networks or decision models.</p></div></div>
+      <div class="step"><div class="num">4</div><div><h3>Weeks 7–8: Open data</h3><p>Pick OpenNeuro, DANDI or Allen data. Ask one question and make 2–3 publication-style plots.</p></div></div>
+      <div class="step"><div class="num">5</div><div><h3>Weeks 9–10: Mini-project</h3><p>Write a small report: question, method, result, what it means, limitations. Push code to GitHub.</p></div></div>
+      <div class="step"><div class="num">6</div><div><h3>Weeks 11–12: Apply / email labs</h3><p>Use the project as proof of seriousness. Email 5–10 labs with a tailored message.</p></div></div>
+    </div>
+  </section>
+
+  <section id="templates">
+    <div class="section-title"><h2>Email templates</h2></div>
+    <details open>
+      <summary>Template 1 — Asking for internship / RA opportunity</summary>
+      <div class="copybox">Subject: Interest in computational neuroscience internship / RA opportunity
+
+Dear Dr. [Name],
+
+I am [your name], currently studying [degree/college]. I am interested in computational neuroscience, especially [specific topic from their lab: decision-making / EEG / fMRI / neural modelling / BCI / learning].
+
+I have been building my foundation in [Python / statistics / neuroscience / signal processing] and recently completed a small project on [1-line project]. The code/report is here: [GitHub/Drive link].
+
+I wanted to ask whether there may be any opportunity to assist with ongoing work in your lab, even in a small remote or short-term capacity. I would be happy to start with literature review, data cleaning, coding, or reproducing an analysis pipeline.
+
+Thank you for your time.
+
+Best regards,
+[Name]
+[CV link] | [GitHub] | [Email]</div>
+    </details>
+
+    <details>
+      <summary>Template 2 — Asking for advice from a senior / PhD student</summary>
+      <div class="copybox">Hi [Name],
+
+I saw your work on [topic] and found it very interesting because I am trying to move into computational neuroscience from [your background].
+
+I am currently learning [course/resource] and working on a small project on [topic]. Could I ask you 2–3 questions about how to build the right skills and what kind of projects are useful for applying to labs?
+
+I understand you may be busy, so even a short reply would be very helpful.
+
+Thanks,
+[Name]</div>
+    </details>
+  </section>
+
+  <section>
+    <div class="section-title"><h2>Common mistakes to avoid</h2></div>
+    <div class="grid">
+      <div class="card"><h3>Only watching courses</h3><p>Watching feels productive, but labs want evidence. Run code. Make plots. Write short reports.</p></div>
+      <div class="card"><h3>Trying to learn everything</h3><p>You do not need all of ML, all of neuroscience, and all of math. Choose one entry point and build depth slowly.</p></div>
+      <div class="card"><h3>No visible proof</h3><p>A small GitHub project or report can make your email much stronger than “I am interested in neuroscience.”</p></div>
+    </div>
+  </section>
+
+  <div class="footer">
+    <h2>Want a personalized roadmap?</h2>
+    <p class="hero-text">Reply with your background, current degree, coding level, and what excites you most: behaviour, brain imaging, neurons, AI/ML, or BCI.</p>
+    <div class="copybox">Comment “NEURO” and I’ll send the resource pack + help you choose a starting path.</div>
+    <p class="small">Tip: Choose one course + one dataset + one project. That is enough to begin.</p>
+  </div>
+</div>
+</body>
+</html>
