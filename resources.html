@@ -1,33 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Resources | Sukalyan Deb</title>
-  <link rel="stylesheet" href="style.css">
+  <!-- Link to the site-wide stylesheet for consistent styling -->
+  <link rel="stylesheet" href="style.css" />
+  <!-- Page‑specific styles for the resources grid -->
+  <style>
+    /* A responsive grid to display resource cards */
+    .resources-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    /* Individual resource card styling */
+    .resource-card {
+      background: var(--bg-alt);
+      padding: 1rem;
+      border-radius: var(--radius-card);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      display: flex;
+      flex-direction: column;
+    }
+    .resource-card h3 {
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+      color: var(--accent);
+    }
+    .resource-card p {
+      margin: 0 0 0.5rem 0;
+      color: var(--text-main);
+      font-size: 0.9rem;
+    }
+    .resource-card iframe {
+      width: 100%;
+      height: 260px;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-card);
+      margin-bottom: 0.5rem;
+    }
+    .resource-card .btn {
+      align-self: flex-start;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.8rem;
+    }
+  </style>
 </head>
 <body>
-<header class="site-header">
-  <div class="nav-inner">
-    <div class="name-logo">Sukalyan Deb</div>
-    <nav class="main-nav">
-      <a href="index.html">Home</a>
-      <a href="research.html">Research</a>
-      <a href="academic.html">Academic</a>
-      <a href="applied.html">Applied</a>
-      <a href="experiments.html">Experiments</a>
-      <a href="resources.html">Resources</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </div>
-</header>
-<main style="padding: 20px;">
-  <h2>Resources</h2>
-  <ul>
-    <li><a href="resources/fluid-crystallized-intelligence.html">Fluid vs Crystallized Intelligence Demo</a></li>
-    <li><a href="resources/roadmap-neuroscience.html">Neuroscience Roadmap</a></li>
-    <li><a href="resources/neuroscience_fnirs_resource_hub.html">fNIRS Resources</a></li>
-  </ul>
-</main>
+  <!-- Site header with navigation -->
+  <header class="site-header">
+    <div class="nav-inner">
+      <div class="name-logo"><a href="index.html">Sukalyan&nbsp;Deb</a></div>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="research.html">Research</a>
+        <a href="academic.html">Academic</a>
+        <a href="applied.html">Applied</a>
+        <a href="experiments.html">Experiments</a>
+        <a href="resources.html" class="active">Resources</a>
+      </nav>
+      <a href="contact.html" class="btn primary">Contact</a>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="section-inner">
+      <h2>Resources</h2>
+      <p class="tagline">
+        Explore curated neuroscience resources, demos and guides. Each card below provides a short description and a preview of the resource. Click
+        the button to open the full page in a new tab.
+      </p>
+      <div class="resources-grid">
+        <!-- Fluid vs Crystallized Intelligence Demo -->
+        <div class="resource-card">
+          <h3>Fluid vs&nbsp;Crystallized Intelligence Demo</h3>
+          <p>An interactive demonstration illustrating the distinction between fluid and crystallized intelligence.</p>
+          <iframe src="resources/fluid-crystallized-intelligence.html" loading="lazy" title="Fluid vs Crystallized Intelligence Demo preview"></iframe>
+          <a class="btn primary" href="resources/fluid-crystallized-intelligence.html" target="_blank">Open Demo</a>
+        </div>
+        <!-- Neuroscience Roadmap -->
+        <div class="resource-card">
+          <h3>Neuroscience Roadmap</h3>
+          <p>A comprehensive roadmap offering guidance on careers and study paths in neuroscience.</p>
+          <iframe src="resources/roadmap-neuroscience.html" loading="lazy" title="Neuroscience Roadmap preview"></iframe>
+          <a class="btn primary" href="resources/roadmap-neuroscience.html" target="_blank">Open Roadmap</a>
+        </div>
+        <!-- fNIRS Resources -->
+        <div class="resource-card">
+          <h3>fNIRS Resources</h3>
+          <p>A curated collection of functional Near‑Infrared Spectroscopy (fNIRS) resources and guides.</p>
+          <iframe src="resources/neuroscience_fnirs_resource_hub.html" loading="lazy" title="fNIRS Resources preview"></iframe>
+          <a class="btn primary" href="resources/neuroscience_fnirs_resource_hub.html" target="_blank">Open fNIRS Resources</a>
+        </div>
+        <!-- VSauce Brain Facts -->
+        <div class="resource-card">
+          <h3>VSauce Brain Facts</h3>
+          <p>A curated neuroscience starter pack featuring fun videos, explainers and deep dives compiled by VSauce.</p>
+          <iframe src="resources/VSauce_brainfacts.html" loading="lazy" title="VSauce Brain Facts preview"></iframe>
+          <a class="btn primary" href="resources/VSauce_brainfacts.html" target="_blank">Open Brain Facts</a>
+        </div>
+        <!-- Computational Neuroscience Pack -->
+        <div class="resource-card">
+          <h3>Computational Neuroscience Pack</h3>
+          <p>An extensive resource pack of tutorials and materials for computational neuroscience learners.</p>
+          <iframe src="resources/computational_neuroscience_resource_pack.html" loading="lazy" title="Computational Neuroscience Pack preview"></iframe>
+          <a class="btn primary" href="resources/computational_neuroscience_resource_pack.html" target="_blank">Open Comp. Neuroscience Pack</a>
+        </div>
+        <!-- fMRI Starter Kit -->
+        <div class="resource-card">
+          <h3>fMRI Starter Kit</h3>
+          <p>A beginner‑friendly starter kit for functional MRI, including guides and example workflows.</p>
+          <iframe src="resources/fMRI_StarterKit.html" loading="lazy" title="fMRI Starter Kit preview"></iframe>
+          <a class="btn primary" href="resources/fMRI_StarterKit.html" target="_blank">Open fMRI Starter Kit</a>
+        </div>
+        <!-- Neuroscience Opportunities List -->
+        <div class="resource-card">
+          <h3>Neuroscience Opportunities List</h3>
+          <p>A regularly updated list of internships, fellowships and programs for aspiring neuroscientists.</p>
+          <iframe src="resources/neuroscience_opportunities_link_list%20(1).html" loading="lazy" title="Neuroscience Opportunities List preview"></iframe>
+          <a class="btn primary" href="resources/neuroscience_opportunities_link_list%20(1).html" target="_blank">Open Opportunities List</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Site footer -->
+  <footer class="contact-section">
+    <div class="section-inner">
+      <h2>Get in touch</h2>
+      <p>If you have questions or suggestions for additional resources, feel free to reach out via the contact page.</p>
+      <a class="btn primary" href="contact.html">Contact</a>
+    </div>
+  </footer>
 </body>
 </html>
