@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neuroscience + fNIRS Resource Hub</title>
+  <meta name="description" content="A compact resource hub linking an fNIRS learning guide, the Neuroscience Roadmap PDF, and Rajesh's bioRxiv preprint." />
+  <style>
+    :root {
+      --bg: #07111f;
+      --bg2: #0d1a2e;
+      --card: rgba(255,255,255,0.075);
+      --card2: rgba(255,255,255,0.105);
+      --line: rgba(255,255,255,0.14);
+      --text: #edf5ff;
+      --muted: #aab8cc;
+      --accent: #f5b841;
+      --accent2: #49d1c3;
+      --accent3: #8ab6ff;
+      --danger: #ff8da1;
+      --shadow: 0 18px 60px rgba(0,0,0,0.35);
+      --radius: 22px;
+      --radius2: 14px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(circle at 8% 12%, rgba(73,209,195,0.18), transparent 28%),
+        radial-gradient(circle at 80% 8%, rgba(245,184,65,0.20), transparent 28%),
+        radial-gradient(circle at 70% 80%, rgba(138,182,255,0.16), transparent 30%),
+        linear-gradient(135deg, var(--bg), var(--bg2));
+      color: var(--text);
+      line-height: 1.58;
+    }
+
+    a { color: inherit; }
+
+    .wrap {
+      width: min(var(--max), calc(100% - 36px));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: rgba(7,17,31,0.78);
+      border-bottom: 1px solid var(--line);
+    }
+
+    nav {
+      min-height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      font-weight: 850;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 13px;
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      box-shadow: 0 10px 28px rgba(73,209,195,0.18);
+    }
+
+    .navlinks {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .navlinks a {
+      text-decoration: none;
+      color: var(--muted);
+      padding: 9px 12px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      font-size: 0.92rem;
+    }
+
+    .navlinks a:hover {
+      color: var(--text);
+      border-color: var(--line);
+      background: rgba(255,255,255,0.06);
+    }
+
+    .hero {
+      padding: 76px 0 38px;
+    }
+
+    .eyebrow {
+      color: var(--accent2);
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      font-weight: 800;
+      font-size: 0.78rem;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      font-size: clamp(2.55rem, 6vw, 5.8rem);
+      line-height: 0.96;
+      letter-spacing: -0.065em;
+      margin: 0 0 22px;
+      max-width: 980px;
+    }
+
+    .hero p {
+      max-width: 850px;
+      font-size: clamp(1.05rem, 1.6vw, 1.35rem);
+      color: #d5deed;
+      margin: 0 0 26px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 22px;
+      align-items: stretch;
+      margin-top: 34px;
+    }
+
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .panel-inner { padding: 24px; }
+
+    .quick-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .stat-card {
+      padding: 18px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.055);
+    }
+
+    .stat-card strong {
+      display: block;
+      color: var(--accent);
+      font-size: 1.65rem;
+      line-height: 1;
+      margin-bottom: 7px;
+    }
+
+    .stat-card span {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
+      border-radius: 999px;
+      padding: 12px 16px;
+      min-height: 46px;
+      font-weight: 780;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.07);
+      color: var(--text);
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, var(--accent), #ffd987);
+      color: #1a1402;
+      border-color: transparent;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+
+    .notice {
+      border-left: 4px solid var(--accent2);
+      padding: 16px 18px;
+      background: rgba(73,209,195,0.095);
+      border-radius: 16px;
+      color: #dcecff;
+    }
+
+    section {
+      padding: 34px 0;
+    }
+
+    h2 {
+      font-size: clamp(1.75rem, 3.2vw, 3rem);
+      line-height: 1.05;
+      letter-spacing: -0.045em;
+      margin: 0 0 12px;
+    }
+
+    .section-lead {
+      color: var(--muted);
+      max-width: 850px;
+      margin: 0 0 24px;
+      font-size: 1.04rem;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .resource-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 245px;
+      padding: 22px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.072);
+      box-shadow: var(--shadow);
+    }
+
+    .tag {
+      display: inline-flex;
+      width: fit-content;
+      border-radius: 999px;
+      border: 1px solid rgba(73,209,195,0.35);
+      color: var(--accent2);
+      padding: 5px 10px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 14px;
+    }
+
+    .resource-card h3 {
+      margin: 0 0 8px;
+      font-size: 1.28rem;
+      line-height: 1.2;
+    }
+
+    .resource-card p {
+      margin: 0 0 16px;
+      color: var(--muted);
+    }
+
+    .resource-card .btn { margin-top: auto; width: fit-content; }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .mini-list {
+      display: grid;
+      gap: 12px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .mini-list li {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.055);
+      border-radius: 16px;
+      padding: 14px 15px;
+    }
+
+    .mini-list strong {
+      display: block;
+      margin-bottom: 4px;
+      color: #ffffff;
+    }
+
+    .mini-list span { color: var(--muted); }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .step {
+      min-height: 150px;
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.055);
+    }
+
+    .step b {
+      display: inline-grid;
+      place-items: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: rgba(245,184,65,0.15);
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .step strong { display: block; line-height: 1.2; }
+    .step span { display: block; color: var(--muted); margin-top: 7px; font-size: 0.92rem; }
+
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .link-card {
+      text-decoration: none;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 15px 16px;
+      background: rgba(255,255,255,0.055);
+      transition: 0.2s ease;
+      display: block;
+    }
+
+    .link-card:hover {
+      background: rgba(255,255,255,0.105);
+      transform: translateY(-2px);
+    }
+
+    .link-card strong { display: block; margin-bottom: 4px; }
+    .link-card span { color: var(--muted); font-size: 0.92rem; }
+
+    .checklist {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .check {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.055);
+      border-radius: 16px;
+      padding: 14px 15px;
+    }
+
+    .check::before {
+      content: "✓";
+      color: var(--accent2);
+      font-weight: 900;
+      margin-right: 8px;
+    }
+
+    .footer {
+      margin-top: 34px;
+      padding: 34px 0 50px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .small { font-size: 0.88rem; color: var(--muted); }
+
+    .searchbar {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.08);
+      color: var(--text);
+      outline: none;
+      margin-bottom: 16px;
+    }
+
+    .searchbar::placeholder { color: rgba(237,245,255,0.55); }
+
+    @media (max-width: 920px) {
+      nav { align-items: flex-start; flex-direction: column; padding: 14px 0; }
+      .navlinks { justify-content: flex-start; }
+      .hero-grid, .two-col { grid-template-columns: 1fr; }
+      .quick-grid, .cards { grid-template-columns: 1fr; }
+      .flow { grid-template-columns: repeat(2, 1fr); }
+      .link-grid, .checklist { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 560px) {
+      .wrap { width: min(100% - 24px, var(--max)); }
+      .hero { padding-top: 44px; }
+      .flow { grid-template-columns: 1fr; }
+      .panel-inner, .resource-card { padding: 18px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="wrap">
+      <a class="brand" href="#top" aria-label="Resource hub home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>Neuro Resource Hub</span>
+      </a>
+      <div class="navlinks" aria-label="Main navigation">
+        <a href="#resources">Main links</a>
+        <a href="#fnirs">fNIRS guide</a>
+        <a href="#tools">Tools</a>
+        <a href="#workflow">Workflow</a>
+        <a href="#checklist">Checklist</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero wrap">
+      <div class="eyebrow">fNIRS • neuroscience roadmap • paper links</div>
+      <h1>Neuroscience resources, all in one place.</h1>
+      <p>
+        A shareable resource page for students and early researchers. It includes a beginner-friendly fNIRS resource pack,
+        the Neuroscience Roadmap PDF, and Rajesh's bioRxiv preprint on wearable fNIRS and spatial memory.
+      </p>
+
+      <div class="hero-grid">
+        <div class="panel">
+          <div class="panel-inner">
+            <div class="quick-grid" aria-label="Resource counts">
+              <div class="stat-card"><strong>01</strong><span>fNIRS learning path</span></div>
+              <div class="stat-card"><strong>10+</strong><span>analysis + open science links</span></div>
+              <div class="stat-card"><strong>03</strong><span>core resources linked</span></div>
+            </div>
+            <div class="actions">
+              <a class="btn primary" href="#fnirs">Start with fNIRS</a>
+              <a class="btn" href="roadmap-neuroscience.pdf" target="_blank" rel="noopener">Open Neuroscience Roadmap PDF</a>
+              <a class="btn" href="https://www.biorxiv.org/content/10.1101/2025.11.27.690628v1" target="_blank" rel="noopener">Open Rajesh's paper</a>
+            </div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-inner">
+            <div class="notice">
+              <strong>For GitHub Pages:</strong> upload this HTML file and <code>roadmap-neuroscience.pdf</code> into the same folder. The roadmap button will then work automatically.
+            </div>
+            <p class="small" style="margin-top:16px;">
+              External links open in a new tab. The fNIRS links are curated for beginners, analysis, study design, and reproducible data formats.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="resources" class="wrap">
+      <h2>Main resource links</h2>
+      <p class="section-lead">The three things you asked to include: fNIRS resources, the neuroscience roadmap, and Rajesh's paper.</p>
+      <div class="cards">
+        <article class="resource-card">
+          <span class="tag">Guide</span>
+          <h3>fNIRS Resource Pack</h3>
+          <p>A compact guide to what fNIRS measures, when to use it, how to preprocess data, and which tools to start with.</p>
+          <a class="btn primary" href="#fnirs">Read the fNIRS resource</a>
+        </article>
+
+        <article class="resource-card">
+          <span class="tag">PDF</span>
+          <h3>Neuroscience Roadmap</h3>
+          <p>A student-facing roadmap for neuroscience routes, exams, feeder backgrounds, and institute pathways in India.</p>
+          <a class="btn" href="roadmap-neuroscience.pdf" target="_blank" rel="noopener">Open PDF</a>
+        </article>
+
+        <article class="resource-card">
+          <span class="tag">Preprint</span>
+          <h3>Rajesh's bioRxiv paper</h3>
+          <p><em>Tracking instances of task evoked oxygen influxes using a novel sensitive BLE enabled wearable fNIRS device identifies mPFC role in spatial memory.</em></p>
+          <div class="actions" style="margin-top:auto;">
+            <a class="btn" href="https://www.biorxiv.org/content/10.1101/2025.11.27.690628v1" target="_blank" rel="noopener">Open preprint</a>
+            <a class="btn" href="https://www.biorxiv.org/content/10.1101/2025.11.27.690628v1.full.pdf" target="_blank" rel="noopener">Open PDF</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="fnirs" class="wrap">
+      <div class="two-col">
+        <div>
+          <div class="eyebrow">fNIRS resource</div>
+          <h2>What is fNIRS?</h2>
+          <p class="section-lead">
+            Functional near-infrared spectroscopy is a non-invasive optical neuroimaging method. It uses near-infrared light to estimate task-related changes in oxygenated and deoxygenated haemoglobin near the cortical surface.
+          </p>
+          <p class="section-lead">
+            Its main strength is ecological flexibility: compared with fMRI, fNIRS can be more portable and easier to use during movement, social interaction, developmental studies, learning tasks, real-world cognition, and some rehabilitation contexts. Its main limitation is that it is strongest for superficial cortical signals and is sensitive to scalp/systemic physiology, motion, hair, optode coupling, and design choices.
+          </p>
+        </div>
+        <div class="panel">
+          <div class="panel-inner">
+            <h3 style="margin-top:0;">Use fNIRS when your question needs:</h3>
+            <ul class="mini-list">
+              <li><strong>Portable brain monitoring</strong><span>Workload, attention, motor tasks, naturalistic behaviour, classroom or field-like settings.</span></li>
+              <li><strong>Child / developmental compatibility</strong><span>Less intimidating than MRI for many participants and often more tolerant of natural behaviour.</span></li>
+              <li><strong>Social or interactive tasks</strong><span>Hyperscanning, face-to-face communication, teaching-learning, cooperation and competition.</span></li>
+              <li><strong>Complementary multimodal work</strong><span>Can be combined with behaviour, eye tracking, physiology, EEG, motion tracking, or clinical measures.</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="workflow" class="wrap">
+      <h2>Beginner workflow</h2>
+      <p class="section-lead">A practical route from idea to analysis. Treat this as a planning skeleton, not a substitute for a lab-specific protocol.</p>
+      <div class="flow" aria-label="fNIRS workflow steps">
+        <div class="step"><b>1</b><strong>Question</strong><span>Define the cortical region, task contrast, timing, and expected haemodynamic response.</span></div>
+        <div class="step"><b>2</b><strong>Design</strong><span>Choose block or event design, event markers, rest periods, control condition, and behavioural measures.</span></div>
+        <div class="step"><b>3</b><strong>Montage</strong><span>Plan source-detector layout, wavelengths, source-detector distance, optode labels, and short-separation channels if available.</span></div>
+        <div class="step"><b>4</b><strong>Quality</strong><span>Check coupling, hair interference, motion, saturation, scalp signal, and subject comfort before recording.</span></div>
+        <div class="step"><b>5</b><strong>Preprocess</strong><span>Convert intensity to optical density, correct motion, filter carefully, convert to HbO/HbR, and model nuisance signals.</span></div>
+        <div class="step"><b>6</b><strong>Model</strong><span>Use GLM/epochs/statistics, report HbO and HbR clearly, and correct for channels/ROIs where needed.</span></div>
+      </div>
+    </section>
+
+    <section id="tools" class="wrap">
+      <h2>Software, formats, and tutorials</h2>
+      <p class="section-lead">Use the search box to filter the resource list.</p>
+      <input class="searchbar" id="filterInput" type="search" placeholder="Search tools, tutorials, standards, Python, MATLAB, BIDS..." aria-label="Filter resource links" />
+      <div class="link-grid" id="linkGrid">
+        <a class="link-card" href="https://mne.tools/stable/auto_tutorials/preprocessing/70_fnirs_processing.html" target="_blank" rel="noopener" data-keywords="python mne preprocessing hb hbo hbr tutorial">
+          <strong>MNE-Python fNIRS preprocessing tutorial</strong>
+          <span>Python workflow: raw intensity → HbO/HbR → averages/topomaps.</span>
+        </a>
+        <a class="link-card" href="https://mne.tools/stable/auto_tutorials/io/30_reading_fnirs_data.html" target="_blank" rel="noopener" data-keywords="python mne import device data file formats">
+          <strong>MNE: importing fNIRS data</strong>
+          <span>How MNE reads device files and stores fNIRS metadata consistently.</span>
+        </a>
+        <a class="link-card" href="https://mne.tools/mne-nirs/stable/index.html" target="_blank" rel="noopener" data-keywords="python mne-nirs glm group analysis snirf decoding">
+          <strong>MNE-NIRS</strong>
+          <span>Python package extending MNE for fNIRS GLM, plotting, quality metrics, and examples.</span>
+        </a>
+        <a class="link-card" href="https://mne.tools/mne-nirs/stable/auto_examples/general/plot_50_decoding.html" target="_blank" rel="noopener" data-keywords="mvpa decoding machine learning python mne-nirs">
+          <strong>MNE-NIRS decoding example</strong>
+          <span>Example decoding analysis using MNE-Python, scikit-learn, and MNE-NIRS.</span>
+        </a>
+        <a class="link-card" href="https://github.com/BUNPC/Homer3" target="_blank" rel="noopener" data-keywords="matlab homer3 gui preprocessing atlasviewer">
+          <strong>Homer3</strong>
+          <span>Open-source MATLAB application/GUI for fNIRS processing and activation mapping.</span>
+        </a>
+        <a class="link-card" href="https://openfnirs.org/software/" target="_blank" rel="noopener" data-keywords="software list openfnirs homer brain analyzir atlasviewer bench nirs">
+          <strong>OpenfNIRS software list</strong>
+          <span>A curated list of openly accessible fNIRS processing and analysis tools.</span>
+        </a>
+        <a class="link-card" href="https://github.com/huppertt/nirs-toolbox" target="_blank" rel="noopener" data-keywords="matlab brain analyzir toolbox statistics glm">
+          <strong>NIRS Brain AnalyzIR Toolbox</strong>
+          <span>MATLAB toolbox for fNIRS data management, preprocessing, and statistics.</span>
+        </a>
+        <a class="link-card" href="https://bids-specification.readthedocs.io/en/stable/modality-specific-files/near-infrared-spectroscopy.html" target="_blank" rel="noopener" data-keywords="bids nirs snirf standard data organization">
+          <strong>BIDS: Near-Infrared Spectroscopy</strong>
+          <span>How to organize fNIRS/NIRS datasets for reproducibility.</span>
+        </a>
+        <a class="link-card" href="https://github.com/fNIRS/snirf" target="_blank" rel="noopener" data-keywords="snirf shared near infrared spectroscopy format standard">
+          <strong>SNIRF specification</strong>
+          <span>Community data format for sharing and analyzing NIRS/fNIRS data.</span>
+        </a>
+        <a class="link-card" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9993433/" target="_blank" rel="noopener" data-keywords="preregistration open science protocol fnirs study design">
+          <strong>Preregistration guide for fNIRS</strong>
+          <span>Open-science guide for transparent fNIRS study planning and reporting.</span>
+        </a>
+        <a class="link-card" href="https://www.ucl.ac.uk/brain-sciences/functional-near-infrared-spectroscopy-fnirs" target="_blank" rel="noopener" data-keywords="intro beginner overview fNIRS UCL">
+          <strong>UCL fNIRS overview</strong>
+          <span>Simple introduction to how fNIRS measures brain activity.</span>
+        </a>
+        <a class="link-card" href="https://fnirs.org/resources/data-analysis/software/" target="_blank" rel="noopener" data-keywords="society software homer3 snirf data analysis">
+          <strong>Society for fNIRS software page</strong>
+          <span>Software page listing Homer3, SNIRF, and other analysis resources.</span>
+        </a>
+      </div>
+    </section>
+
+    <section id="checklist" class="wrap">
+      <div class="two-col">
+        <div>
+          <h2>Study design checklist</h2>
+          <p class="section-lead">Good fNIRS studies are often won or lost before analysis. These are the things beginners should force themselves to write down before collecting data.</p>
+        </div>
+        <div class="panel"><div class="panel-inner">
+          <div class="checklist">
+            <div class="check">Define primary contrast and ROI before data collection.</div>
+            <div class="check">Record cap layout, optode positions, wavelengths, and source-detector distances.</div>
+            <div class="check">Add behavioural measures so the brain signal has psychological meaning.</div>
+            <div class="check">Plan short-separation / systemic physiology handling where possible.</div>
+            <div class="check">Log exact task timings and event markers.</div>
+            <div class="check">Document motion, hair/coupling issues, and exclusion rules.</div>
+            <div class="check">Report preprocessing parameters, filtering choices, and motion correction method.</div>
+            <div class="check">Keep raw data, scripts, and metadata organized using a reproducible folder structure.</div>
+          </div>
+        </div></div>
+      </div>
+    </section>
+
+    <section class="wrap">
+      <h2>A simple 2-week learning plan</h2>
+      <p class="section-lead">For students who want a fast but serious entry into fNIRS.</p>
+      <div class="cards">
+        <article class="resource-card">
+          <span class="tag">Days 1–3</span>
+          <h3>Understand the signal</h3>
+          <p>Learn HbO/HbR, haemodynamic response, source-detector geometry, superficial physiology, motion artifacts, and why fNIRS is mostly cortical-surface sensitive.</p>
+        </article>
+        <article class="resource-card">
+          <span class="tag">Days 4–8</span>
+          <h3>Run a tutorial</h3>
+          <p>Follow an MNE or Homer3 tutorial end-to-end. Do not just read it; actually run a dataset, inspect channels, and plot HbO/HbR.</p>
+        </article>
+        <article class="resource-card">
+          <span class="tag">Days 9–14</span>
+          <h3>Design a mini-study</h3>
+          <p>Draft a one-page protocol: question, task, ROI, montage, contrasts, sample size logic, preprocessing, exclusion criteria, and planned statistics.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <strong>Neuro Resource Hub</strong>
+      <p>
+        Built as a single shareable HTML file. Keep <code>roadmap-neuroscience.pdf</code> in the same folder if you want the local PDF link to work on a website.
+      </p>
+      <p class="small">
+        Last updated: June 2026. Always check tool documentation and paper pages for current versions before citing or using in a formal protocol.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    const filterInput = document.getElementById('filterInput');
+    const cards = Array.from(document.querySelectorAll('#linkGrid .link-card'));
+
+    filterInput.addEventListener('input', function () {
+      const q = this.value.trim().toLowerCase();
+      cards.forEach(card => {
+        const text = (card.innerText + ' ' + (card.dataset.keywords || '')).toLowerCase();
+        card.style.display = text.includes(q) ? 'block' : 'none';
+      });
+    });
+  </script>
+</body>
+</html>
