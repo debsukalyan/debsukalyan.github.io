@@ -1,0 +1,1467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Career Fit Explorer — Literature-Grounded Demo</title>
+  <style>
+    :root {
+      --bg: #f7f2e9;
+      --paper: #fffaf2;
+      --ink: #1b1a17;
+      --muted: #6b6257;
+      --line: #d8cbbb;
+      --accent: #5b67ff;
+      --accent-2: #00a88f;
+      --accent-3: #f2a541;
+      --soft: #ebe6ff;
+      --good: #e5f7f1;
+      --warn: #fff2d8;
+      --danger: #ffe7e1;
+      --shadow: 0 18px 45px rgba(42, 33, 20, 0.10);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(91, 103, 255, 0.12), transparent 32rem),
+        radial-gradient(circle at 90% 4%, rgba(0, 168, 143, 0.10), transparent 28rem),
+        var(--bg);
+      color: var(--ink);
+      line-height: 1.55;
+    }
+
+    a { color: #3542df; }
+
+    .wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+      gap: 28px;
+      align-items: stretch;
+      padding: 30px 0 16px;
+    }
+
+    .hero-card, .card, .results-card {
+      background: rgba(255, 250, 242, 0.92);
+      border: 1px solid rgba(216, 203, 187, 0.8);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card {
+      padding: 42px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      right: -60px;
+      top: -70px;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background: repeating-linear-gradient(135deg, rgba(91,103,255,.16), rgba(91,103,255,.16) 9px, transparent 9px, transparent 18px);
+      opacity: .9;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: #fff;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: clamp(36px, 6vw, 72px);
+      line-height: 0.96;
+      letter-spacing: -0.06em;
+      margin: 24px 0 18px;
+      max-width: 860px;
+    }
+
+    h2 {
+      font-size: clamp(26px, 4vw, 42px);
+      line-height: 1.05;
+      letter-spacing: -0.035em;
+      margin: 0 0 14px;
+    }
+
+    h3 {
+      font-size: 22px;
+      margin: 0 0 10px;
+      letter-spacing: -0.02em;
+    }
+
+    p { margin: 0 0 14px; }
+
+    .lead {
+      color: #38332d;
+      font-size: 18px;
+      max-width: 760px;
+    }
+
+    .hero-side {
+      padding: 28px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .mini-note {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px;
+    }
+
+    .mini-note strong { display: block; margin-bottom: 6px; }
+
+    .pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+
+    .pill {
+      padding: 8px 11px;
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(12px);
+      background: rgba(247, 242, 233, .82);
+      border-bottom: 1px solid rgba(216, 203, 187, 0.75);
+    }
+
+    .nav-inner {
+      max-width: 1180px;
+      margin: auto;
+      padding: 10px 24px;
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+    }
+
+    .nav a {
+      white-space: nowrap;
+      text-decoration: none;
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: 800;
+      padding: 9px 12px;
+      border-radius: 999px;
+    }
+
+    .nav a:hover { background: #fff; }
+
+    .section {
+      padding: 30px 0;
+    }
+
+    .card {
+      padding: 28px;
+      margin-bottom: 22px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .method-card {
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 18px;
+      padding: 18px;
+    }
+
+    .method-card .big {
+      font-size: 32px;
+      font-weight: 900;
+      letter-spacing: -0.05em;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .demo-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: flex-start;
+      margin-bottom: 18px;
+    }
+
+    .progress-box {
+      min-width: 250px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 14px;
+    }
+
+    .progress-track {
+      height: 10px;
+      background: #efe5d8;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 9px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      border-radius: 999px;
+      transition: width .25s ease;
+    }
+
+    .question-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .q {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 16px;
+      display: grid;
+      gap: 12px;
+      min-height: 154px;
+    }
+
+    .q small {
+      color: var(--muted);
+      font-weight: 800;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+
+    .q p { margin: 0; font-weight: 720; }
+
+    .scale {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 7px;
+      margin-top: auto;
+    }
+
+    .choice {
+      border: 1px solid var(--line);
+      background: #fffaf2;
+      color: var(--ink);
+      padding: 9px 6px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 800;
+      font-size: 12px;
+    }
+
+    .choice:hover { border-color: #8f87ff; }
+
+    .choice.active {
+      background: var(--soft);
+      color: #2020a0;
+      border-color: #8f87ff;
+      box-shadow: inset 0 0 0 1px #8f87ff;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+      align-items: center;
+    }
+
+    button.primary, button.secondary {
+      border: 0;
+      border-radius: 999px;
+      padding: 13px 18px;
+      font-weight: 900;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    button.primary {
+      background: var(--ink);
+      color: white;
+      box-shadow: 0 12px 24px rgba(0,0,0,.14);
+    }
+
+    button.secondary {
+      background: #fff;
+      color: var(--ink);
+      border: 1px solid var(--line);
+    }
+
+    .hint {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    #results {
+      scroll-margin-top: 82px;
+    }
+
+    .results-card {
+      padding: 28px;
+      margin-bottom: 20px;
+    }
+
+    .results-placeholder {
+      background: #fff;
+      border: 1px dashed #c7b8a6;
+      border-radius: 18px;
+      padding: 26px;
+      color: var(--muted);
+    }
+
+    .summary-band {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .top-career {
+      background: linear-gradient(135deg, #ffffff, #f2f1ff);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 22px;
+    }
+
+    .score-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      background: var(--ink);
+      color: #fff;
+      font-size: 28px;
+      font-weight: 950;
+      letter-spacing: -0.05em;
+      margin-bottom: 12px;
+    }
+
+    .bars {
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .bar-row {
+      display: grid;
+      grid-template-columns: 150px 1fr 42px;
+      gap: 10px;
+      align-items: center;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .bar-bg {
+      height: 12px;
+      border-radius: 999px;
+      background: #efe5d8;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      width: 0%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 16px;
+      background: #fff;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 14px;
+      border-bottom: 1px solid #eee4d8;
+      vertical-align: top;
+      font-size: 14px;
+    }
+
+    th {
+      background: #f4ecff;
+      font-size: 12px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #4e4580;
+    }
+
+    tr:last-child td { border-bottom: 0; }
+
+    .rank {
+      font-size: 22px;
+      font-weight: 950;
+      color: var(--accent);
+    }
+
+    .match {
+      display: inline-block;
+      min-width: 54px;
+      padding: 6px 9px;
+      border-radius: 999px;
+      background: var(--good);
+      color: #087863;
+      font-weight: 950;
+      text-align: center;
+    }
+
+    .taglist {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .tag {
+      border: 1px solid var(--line);
+      background: #fffaf2;
+      color: var(--muted);
+      border-radius: 999px;
+      padding: 5px 8px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    details {
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 18px;
+      padding: 16px 18px;
+      margin-bottom: 12px;
+    }
+
+    details summary {
+      cursor: pointer;
+      font-weight: 900;
+    }
+
+    .reference-list li { margin-bottom: 10px; }
+
+    .caveat {
+      background: var(--warn);
+      border: 1px solid #efd08d;
+      border-radius: 18px;
+      padding: 16px;
+    }
+
+    .privacy {
+      background: var(--good);
+      border: 1px solid #badfd3;
+      border-radius: 18px;
+      padding: 16px;
+    }
+
+    .footer {
+      padding: 26px 0 60px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .empty {
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    @media (max-width: 900px) {
+      .hero, .summary-band, .grid-2, .grid-3, .question-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card { padding: 28px; }
+
+      .demo-head {
+        flex-direction: column;
+      }
+
+      .progress-box {
+        width: 100%;
+      }
+
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+
+      thead { display: none; }
+
+      tr {
+        border: 1px solid var(--line);
+        margin-bottom: 12px;
+        border-radius: 16px;
+        overflow: hidden;
+        background: #fff;
+      }
+
+      td {
+        border-bottom: 1px solid #eee4d8;
+      }
+
+      td::before {
+        content: attr(data-label);
+        display: block;
+        font-size: 11px;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+        color: var(--muted);
+        font-weight: 900;
+        margin-bottom: 4px;
+      }
+
+      .bar-row {
+        grid-template-columns: 110px 1fr 38px;
+      }
+    }
+
+    @media print {
+      .nav, .actions, .choice, #demo, .footer { display: none !important; }
+      body { background: #fff; }
+      .card, .results-card, .hero-card, .hero-side { box-shadow: none; }
+      .wrap { max-width: 100%; }
+      a { color: #000; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav" aria-label="Page navigation">
+    <div class="nav-inner">
+      <a href="#overview">Overview</a>
+      <a href="#research">Research base</a>
+      <a href="#demo">Try the demo</a>
+      <a href="#results">Results</a>
+      <a href="#ethics">Use safely</a>
+      <a href="#references">References</a>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <section class="hero" id="overview">
+      <div class="hero-card">
+        <span class="eyebrow">Career exploration demo · 8–12 minutes</span>
+        <h1>Find career paths that fit how you like to think, work, and grow.</h1>
+        <p class="lead">
+          This is a lightweight, literature-grounded demo. It asks people to respond to simple activity cards,
+          work-value trade-offs, confidence questions, and workplace-style prompts. It then ranks broad career
+          families and explains why each path may fit.
+        </p>
+        <div class="pill-row">
+          <span class="pill">RIASEC interests</span>
+          <span class="pill">Work values</span>
+          <span class="pill">Self-efficacy</span>
+          <span class="pill">Work style</span>
+          <span class="pill">Ranked career families</span>
+        </div>
+      </div>
+
+      <aside class="hero-side hero-card">
+        <div class="mini-note">
+          <strong>What this is good for</strong>
+          A first conversation starter for students, early-career researchers, workshops, newsletters, or a website resource page.
+        </div>
+        <div class="mini-note">
+          <strong>What this is not</strong>
+          It is not a diagnostic test, aptitude test, hiring tool, or substitute for career counselling. It estimates fit from preferences, not ability.
+        </div>
+        <div class="privacy">
+          <strong>Privacy note:</strong> this standalone version runs in the browser. No responses are sent anywhere unless you edit the code to connect it to a server.
+        </div>
+      </aside>
+    </section>
+
+    <section class="section" id="research">
+      <div class="card">
+        <h2>Why these questions?</h2>
+        <p>
+          The demo combines four ideas that are common in career psychology. Each is simplified so that the experience
+          feels like a quick activity rather than a long psychometric test.
+        </p>
+
+        <div class="grid-2">
+          <div class="method-card">
+            <div class="big">01</div>
+            <h3>Interests: “What work naturally attracts you?”</h3>
+            <p>
+              The activity cards are organized around the RIASEC model: Realistic, Investigative, Artistic, Social,
+              Enterprising, and Conventional interests. These are widely used in career exploration tools such as the
+              O*NET Interest Profiler.
+            </p>
+          </div>
+
+          <div class="method-card">
+            <div class="big">02</div>
+            <h3>Work values: “What would make work feel worth it?”</h3>
+            <p>
+              The work-value prompts are inspired by the O*NET Work Importance Locator and Theory of Work Adjustment:
+              Achievement, Independence, Recognition, Relationships, Support, and Working Conditions.
+            </p>
+          </div>
+
+          <div class="method-card">
+            <div class="big">03</div>
+            <h3>Self-efficacy: “Where do you feel capable enough to try?”</h3>
+            <p>
+              Social Cognitive Career Theory argues that career interests and choices are shaped by self-efficacy,
+              expected outcomes, goals, learning experiences, and contextual support. This demo therefore asks about
+              confidence, but does not treat confidence as a replacement for skill.
+            </p>
+          </div>
+
+          <div class="method-card">
+            <div class="big">04</div>
+            <h3>Work style: “What environment helps you stay engaged?”</h3>
+            <p>
+              The final prompts use broad, non-diagnostic style signals such as novelty, depth, structure, collaboration,
+              visibility, and pressure tolerance. These are included as practical fit signals, not as a formal personality inventory.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card caveat">
+        <strong>Scientific caveat:</strong> Career fit is probabilistic, not destiny. A high match means “this path may be
+        worth exploring,” not “you should do this forever.” Access, training, mentorship, money, health, family constraints,
+        discrimination, local job markets, and chance all shape real career outcomes.
+      </div>
+    </section>
+
+    <section class="section" id="demo">
+      <div class="card">
+        <div class="demo-head">
+          <div>
+            <span class="eyebrow">Interactive demo</span>
+            <h2>Answer quickly. Do not overthink.</h2>
+            <p>
+              Use the cards below as a reflection tool. The best answers are not the “most impressive” answers;
+              they are the ones that feel most honest.
+            </p>
+          </div>
+          <div class="progress-box" aria-live="polite">
+            <strong id="progressText">0 of 50 answered</strong>
+            <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+          </div>
+        </div>
+
+        <div id="questionContainer"></div>
+
+        <div class="actions">
+          <button class="primary" id="scoreBtn" type="button">Show my ranked careers</button>
+          <button class="secondary" id="resetBtn" type="button">Reset answers</button>
+          <span class="hint">You can generate results with partial answers, but the ranking becomes more meaningful after most cards are answered.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="results">
+      <div class="results-card">
+        <span class="eyebrow">Results</span>
+        <h2>Your career-fit map</h2>
+        <div id="resultsContainer" class="results-placeholder">
+          Complete the demo and click <strong>Show my ranked careers</strong>. Your ranked career families will appear here.
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="ethics">
+      <div class="grid-2">
+        <div class="card">
+          <h2>How to use this safely</h2>
+          <p>
+            Use the output to start a conversation, shortlist internships, choose people to interview, or plan one-week
+            “try-before-you-commit” experiments. Do not use it to label people permanently.
+          </p>
+          <ul>
+            <li>Say “high fit right now,” not “your true destiny.”</li>
+            <li>Show multiple possible careers, not one fixed answer.</li>
+            <li>Include growth edges so people see how to build fit.</li>
+            <li>Encourage real-world trials: shadowing, mini-projects, coursework, volunteering, internships.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h2>How to improve this later</h2>
+          <p>
+            For a more rigorous version, collect validation data: Do the recommendations predict which paths people later
+            explore, enjoy, persist in, or perform well in? You can also add local labour-market data, salary ranges,
+            training routes, and examples of Indian/UK/global pathways.
+          </p>
+          <p>
+            A better version would also separate <strong>interest</strong>, <strong>skill</strong>, <strong>access</strong>,
+            and <strong>values</strong> instead of collapsing everything into one score.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="references">
+      <div class="card">
+        <h2>Research base and sources used</h2>
+        <ol class="reference-list">
+          <li>
+            Holland, J. L. RIASEC theory of vocational personalities and work environments. Used here as the six-interest
+            structure: Realistic, Investigative, Artistic, Social, Enterprising, Conventional.
+          </li>
+          <li>
+            O*NET Interest Profiler, National Center for O*NET Development. It measures the six RIASEC occupational
+            interests and links interest profiles to occupational exploration.
+            <a href="https://www.onetcenter.org/IP.html" target="_blank" rel="noopener">Source</a>
+          </li>
+          <li>
+            O*NET Work Importance Locator User’s Guide. Work values are framed as Achievement, Independence, Recognition,
+            Relationships, Support, and Working Conditions, grounded in Theory of Work Adjustment.
+            <a href="https://www.onetcenter.org/dl_files/WIL_zips/WIL-UG-deskp.pdf" target="_blank" rel="noopener">Source</a>
+          </li>
+          <li>
+            Lent, R. W., Brown, S. D., & Hackett, G. Social Cognitive Career Theory. Used here for the idea that
+            self-efficacy, outcome expectations, goals, and contexts shape interests and choices.
+          </li>
+          <li>
+            Nye, C. D., Su, R., Rounds, J., & Drasgow, F. (2012). Vocational interests and performance: A quantitative
+            summary of over 60 years of research. <em>Perspectives on Psychological Science</em>.
+          </li>
+          <li>
+            Ryan, R. M., & Deci, E. L. Self-Determination Theory. Used here only as background for why autonomy,
+            competence, and relatedness can matter for motivation and engagement.
+          </li>
+          <li>
+            Big Five personality literature. Used here only as a cautionary influence: broad traits can matter, but this
+            demo does not administer or interpret a validated Big Five inventory.
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>
+        Built as a standalone HTML career-exploration demo. You may edit the career database, scoring weights, questions,
+        and language to suit your audience. For serious guidance, pair this with counselling, mentorship, and real-world exploration.
+      </p>
+    </footer>
+  </main>
+
+  <script>
+    const DIMENSIONS = {
+      riasec: {
+        R: "Realistic",
+        I: "Investigative",
+        A: "Artistic",
+        S: "Social",
+        E: "Enterprising",
+        C: "Conventional"
+      },
+      values: {
+        achievement: "Achievement",
+        independence: "Independence",
+        recognition: "Recognition",
+        relationships: "Relationships",
+        support: "Support",
+        conditions: "Working conditions"
+      },
+      efficacy: {
+        analytic: "Analytic reasoning",
+        technical: "Technical/problem-solving",
+        creative: "Creative expression",
+        people: "People understanding",
+        leadership: "Leadership/persuasion",
+        structure: "Organisation/detail",
+        helping: "Helping/mentoring",
+        communication: "Communication"
+      },
+      style: {
+        novelty: "Novelty",
+        depth: "Deep focus",
+        collaboration: "Collaboration",
+        visibility: "Visibility",
+        pressure: "Pressure tolerance",
+        structure: "Structure"
+      }
+    };
+
+    const sections = [
+      {
+        id: "interests",
+        title: "1. Activity radar",
+        subtitle: "How much would you enjoy doing these activities, even before worrying about salary or prestige?",
+        group: "riasec",
+        items: [
+          ["ri1", "I", "Read about a mystery, analyse clues, and design a way to test possible explanations."],
+          ["ri2", "I", "Spend a day learning how the brain, climate, markets, or machines really work."],
+          ["ri3", "I", "Work through messy data until a hidden pattern becomes clear."],
+          ["ri4", "R", "Build, repair, test, or operate something with your hands."],
+          ["ri5", "R", "Work outdoors, in a lab, field site, studio, workshop, or practical setting."],
+          ["ri6", "R", "Use tools, instruments, sensors, hardware, or equipment to solve a real problem."],
+          ["ri7", "A", "Turn a complicated idea into a story, visual, video, design, or performance."],
+          ["ri8", "A", "Create something original where there is no single correct answer."],
+          ["ri9", "A", "Experiment with aesthetics, language, images, sound, or user experience."],
+          ["ri10", "S", "Help someone understand themselves, learn a concept, or make a difficult decision."],
+          ["ri11", "S", "Work closely with people and notice their emotions, needs, and motivations."],
+          ["ri12", "S", "Teach, mentor, counsel, coach, or support a group."],
+          ["ri13", "E", "Pitch an idea, persuade people, lead a project, or build a new venture."],
+          ["ri14", "E", "Make decisions under uncertainty and take responsibility for the outcome."],
+          ["ri15", "E", "Negotiate, network, influence, sell, or mobilise people around a goal."],
+          ["ri16", "C", "Organise information, make systems cleaner, and keep processes reliable."],
+          ["ri17", "C", "Create checklists, budgets, workflows, documentation, or dashboards."],
+          ["ri18", "C", "Make sure important details are correct before something goes out."]
+        ]
+      },
+      {
+        id: "values",
+        title: "2. Work values",
+        subtitle: "What would make a career feel worth staying in, especially after the initial excitement fades?",
+        group: "values",
+        items: [
+          ["v1", "achievement", "I want work where I can see myself improving and doing difficult things well."],
+          ["v2", "achievement", "I would enjoy a path where mastery, excellence, and challenging goals matter."],
+          ["v3", "independence", "I want freedom to choose methods, questions, projects, or schedules."],
+          ["v4", "independence", "I would rather have ownership than be told every step in advance."],
+          ["v5", "recognition", "I want my work to be visible, valued, and associated with a strong reputation."],
+          ["v6", "recognition", "Awards, status, promotion, public credit, or external validation would motivate me."],
+          ["v7", "relationships", "I care about warm relationships, good teams, and feeling connected to people at work."],
+          ["v8", "relationships", "I want work where trust, empathy, and collaboration matter every day."],
+          ["v9", "support", "I want fair supervision, mentorship, psychological safety, and people who back me up."],
+          ["v10", "support", "A healthy environment matters more to me than extreme autonomy or prestige."],
+          ["v11", "conditions", "I value stability, predictable pay, manageable hours, and clear expectations."],
+          ["v12", "conditions", "I want a career where the lifestyle and practical conditions are sustainable."]
+        ]
+      },
+      {
+        id: "efficacy",
+        title: "3. Confidence signals",
+        subtitle: "Where do you feel capable enough to try, learn, and persist if things get difficult?",
+        group: "efficacy",
+        items: [
+          ["e1", "analytic", "I can break a vague problem into smaller questions and test them logically."],
+          ["e2", "analytic", "I can learn theory, statistics, or abstract ideas if I get time and examples."],
+          ["e3", "technical", "I can become good at tools, software, instruments, code, or technical workflows."],
+          ["e4", "technical", "When something does not work, I can troubleshoot it without giving up immediately."],
+          ["e5", "creative", "I can generate fresh ideas, metaphors, visuals, stories, or alternative framings."],
+          ["e6", "creative", "I can tolerate ambiguity long enough to make something original."],
+          ["e7", "people", "I can read a room, ask good questions, and understand what people really care about."],
+          ["e8", "people", "I can notice emotional or social dynamics that others may miss."],
+          ["e9", "leadership", "I can convince people to take a project seriously."],
+          ["e10", "leadership", "I can coordinate people, make decisions, and move a group towards action."],
+          ["e11", "structure", "I can manage timelines, documentation, details, and follow-through."],
+          ["e12", "structure", "I can make a chaotic process more organised and reliable."],
+          ["e13", "helping", "I can support someone without taking over their choices."],
+          ["e14", "helping", "I can explain, mentor, or guide patiently when someone is stuck."],
+          ["e15", "communication", "I can make a complex idea understandable to a non-expert."],
+          ["e16", "communication", "I can present, write, speak, or create content that holds attention."]
+        ]
+      },
+      {
+        id: "style",
+        title: "4. Work-style fit",
+        subtitle: "What kind of environment would help you stay engaged instead of drained?",
+        group: "style",
+        items: [
+          ["s1", "novelty", "I get energy from new problems, new people, and changing contexts."],
+          ["s2", "novelty", "I would be bored if every week looked exactly the same."],
+          ["s3", "depth", "I like going deep into one hard problem for long stretches."],
+          ["s4", "depth", "I prefer depth and expertise over constantly switching topics."],
+          ["s5", "collaboration", "I do my best work when I can think aloud with other people."],
+          ["s6", "collaboration", "I want a career where teamwork is central, not occasional."],
+          ["s7", "visibility", "I am comfortable being seen, presenting, pitching, publishing, or representing an idea publicly."],
+          ["s8", "visibility", "I would enjoy a path where my voice or personal brand matters."],
+          ["s9", "pressure", "I can stay functional when there are deadlines, stakes, or uncertainty."],
+          ["s10", "pressure", "Competition or high expectations can sharpen my focus."],
+          ["s11", "structure", "I work better when goals, standards, and expectations are clear."],
+          ["s12", "structure", "I like roles with systems, accountability, and measurable progress."]
+        ]
+      }
+    ];
+
+    const scaleLabels = ["Not me", "Maybe", "Quite me", "Very me"];
+    const answers = {};
+    const allItems = sections.flatMap(s => s.items.map(item => ({ id: item[0], dim: item[1], prompt: item[2], group: s.group })));
+
+    const careers = [
+      {
+        name: "Research scientist / academic researcher",
+        summary: "Generate knowledge, design studies, analyse evidence, publish, teach, and build expertise.",
+        profile: {
+          riasec: {R:.25,I:1,A:.35,S:.35,E:.25,C:.45},
+          values: {achievement:.95,independence:.85,recognition:.55,relationships:.45,support:.35,conditions:.30},
+          efficacy: {analytic:1,technical:.75,creative:.65,people:.35,leadership:.35,structure:.60,helping:.35,communication:.55},
+          style: {novelty:.75,depth:1,collaboration:.45,visibility:.45,pressure:.55,structure:.50}
+        },
+        next: "Do a two-week literature review or mini-analysis project and ask: did the uncertainty energise me or exhaust me?",
+        caution: "Requires long training, uncertainty, rejection tolerance, and mentorship."
+      },
+      {
+        name: "Data scientist / AI analyst",
+        summary: "Use statistics, code, modelling, and domain knowledge to turn data into decisions.",
+        profile: {
+          riasec: {R:.20,I:.95,A:.30,S:.20,E:.35,C:.65},
+          values: {achievement:.80,independence:.60,recognition:.50,relationships:.30,support:.35,conditions:.65},
+          efficacy: {analytic:.95,technical:1,creative:.40,people:.25,leadership:.30,structure:.75,helping:.20,communication:.55},
+          style: {novelty:.55,depth:.85,collaboration:.40,visibility:.35,pressure:.55,structure:.70}
+        },
+        next: "Pick a public dataset and create one clear notebook that answers a real question.",
+        caution: "Strong fit improves if you enjoy debugging, statistics, and communicating uncertainty."
+      },
+      {
+        name: "UX researcher / human-behaviour researcher",
+        summary: "Study users or customers through interviews, experiments, eye-tracking, surveys, and behavioural data.",
+        profile: {
+          riasec: {R:.15,I:.80,A:.55,S:.75,E:.45,C:.45},
+          values: {achievement:.70,independence:.55,recognition:.45,relationships:.75,support:.50,conditions:.55},
+          efficacy: {analytic:.75,technical:.45,creative:.65,people:.90,leadership:.45,structure:.55,helping:.55,communication:.85},
+          style: {novelty:.75,depth:.65,collaboration:.80,visibility:.55,pressure:.55,structure:.45}
+        },
+        next: "Run five user interviews about a product and write a one-page insight report with recommendations.",
+        caution: "Needs comfort with both empathy and evidence; good UX is not just asking what people like."
+      },
+      {
+        name: "Clinical, counselling, or mental-health pathway",
+        summary: "Understand people, support change, assess problems, and work within ethical professional systems.",
+        profile: {
+          riasec: {R:.10,I:.60,A:.30,S:1,E:.20,C:.45},
+          values: {achievement:.65,independence:.40,recognition:.25,relationships:1,support:.80,conditions:.55},
+          efficacy: {analytic:.55,technical:.20,creative:.35,people:1,leadership:.25,structure:.55,helping:1,communication:.80},
+          style: {novelty:.45,depth:.70,collaboration:.70,visibility:.25,pressure:.55,structure:.55}
+        },
+        next: "Volunteer, shadow, or take a basic counselling/mental-health ethics course before committing.",
+        caution: "Requires formal qualifications, supervision, ethics, emotional boundaries, and licensing depending on country."
+      },
+      {
+        name: "Teacher, professor, trainer, or learning designer",
+        summary: "Help people learn by explaining, designing learning experiences, mentoring, and assessing progress.",
+        profile: {
+          riasec: {R:.10,I:.65,A:.55,S:.95,E:.35,C:.45},
+          values: {achievement:.70,independence:.50,recognition:.45,relationships:.90,support:.70,conditions:.55},
+          efficacy: {analytic:.55,technical:.30,creative:.60,people:.80,leadership:.60,structure:.65,helping:.95,communication:1},
+          style: {novelty:.55,depth:.60,collaboration:.70,visibility:.70,pressure:.45,structure:.60}
+        },
+        next: "Teach one concept to a beginner and observe whether you enjoy the moment they finally understand it.",
+        caution: "Good teaching needs patience, feedback loops, and design, not just knowing the topic."
+      },
+      {
+        name: "Science communicator / content creator",
+        summary: "Translate complex ideas into stories, visuals, videos, essays, talks, or public-facing resources.",
+        profile: {
+          riasec: {R:.05,I:.65,A:1,S:.55,E:.65,C:.25},
+          values: {achievement:.65,independence:.80,recognition:.80,relationships:.45,support:.30,conditions:.25},
+          efficacy: {analytic:.55,technical:.35,creative:1,people:.55,leadership:.55,structure:.35,helping:.50,communication:1},
+          style: {novelty:.90,depth:.55,collaboration:.45,visibility:1,pressure:.65,structure:.25}
+        },
+        next: "Make one explainer post or video and test whether strangers understand, save, or share it.",
+        caution: "Requires consistency, audience empathy, platform literacy, and tolerance for uneven feedback."
+      },
+      {
+        name: "Product manager / product strategist",
+        summary: "Connect users, business, design, and engineering to decide what should be built and why.",
+        profile: {
+          riasec: {R:.15,I:.65,A:.50,S:.60,E:.95,C:.55},
+          values: {achievement:.85,independence:.65,recognition:.70,relationships:.70,support:.45,conditions:.50},
+          efficacy: {analytic:.70,technical:.45,creative:.65,people:.75,leadership:.90,structure:.75,helping:.45,communication:.90},
+          style: {novelty:.85,depth:.45,collaboration:.90,visibility:.80,pressure:.85,structure:.60}
+        },
+        next: "Write a one-page product brief: user problem, evidence, solution, trade-offs, success metric.",
+        caution: "Often involves ambiguity, coordination, conflict, and decisions without perfect data."
+      },
+      {
+        name: "Entrepreneur / startup builder",
+        summary: "Identify problems, persuade people, build experiments, sell, adapt, and carry uncertainty.",
+        profile: {
+          riasec: {R:.25,I:.55,A:.65,S:.55,E:1,C:.35},
+          values: {achievement:.95,independence:1,recognition:.80,relationships:.55,support:.20,conditions:.15},
+          efficacy: {analytic:.55,technical:.40,creative:.80,people:.70,leadership:1,structure:.45,helping:.35,communication:.90},
+          style: {novelty:1,depth:.45,collaboration:.70,visibility:.90,pressure:1,structure:.20}
+        },
+        next: "Try selling or validating one tiny solution before building it fully.",
+        caution: "High autonomy comes with high uncertainty, rejection, financial risk, and emotional volatility."
+      },
+      {
+        name: "Strategy consulting / business analysis",
+        summary: "Structure ambiguous business problems, analyse evidence, make recommendations, and persuade clients.",
+        profile: {
+          riasec: {R:.05,I:.70,A:.35,S:.50,E:.90,C:.70},
+          values: {achievement:.95,independence:.45,recognition:.85,relationships:.60,support:.35,conditions:.45},
+          efficacy: {analytic:.85,technical:.45,creative:.50,people:.65,leadership:.80,structure:.90,helping:.35,communication:.90},
+          style: {novelty:.85,depth:.45,collaboration:.80,visibility:.80,pressure:.95,structure:.75}
+        },
+        next: "Take a public case prompt and build a structured recommendation deck in two hours.",
+        caution: "Often high-pressure and client-facing; lifestyle can be demanding."
+      },
+      {
+        name: "Policy analyst / think-tank / public impact",
+        summary: "Use evidence, writing, stakeholder understanding, and systems thinking to improve decisions.",
+        profile: {
+          riasec: {R:.05,I:.75,A:.45,S:.70,E:.50,C:.60},
+          values: {achievement:.75,independence:.55,recognition:.45,relationships:.75,support:.60,conditions:.60},
+          efficacy: {analytic:.80,technical:.35,creative:.50,people:.70,leadership:.55,structure:.70,helping:.65,communication:.85},
+          style: {novelty:.65,depth:.80,collaboration:.75,visibility:.55,pressure:.55,structure:.65}
+        },
+        next: "Write a policy memo on one social problem: evidence, options, trade-offs, recommendation.",
+        caution: "Impact can be indirect and slow; strong writing and patience matter."
+      },
+      {
+        name: "Social-impact, NGO, or community programme work",
+        summary: "Work with communities, run interventions, coordinate stakeholders, and support social change.",
+        profile: {
+          riasec: {R:.25,I:.45,A:.35,S:1,E:.55,C:.45},
+          values: {achievement:.60,independence:.45,recognition:.25,relationships:1,support:.75,conditions:.45},
+          efficacy: {analytic:.45,technical:.25,creative:.45,people:.95,leadership:.70,structure:.60,helping:1,communication:.75},
+          style: {novelty:.70,depth:.45,collaboration:.95,visibility:.45,pressure:.55,structure:.45}
+        },
+        next: "Volunteer for a field programme and notice whether direct human complexity motivates you.",
+        caution: "Can involve emotional labour, bureaucracy, resource constraints, and slow outcomes."
+      },
+      {
+        name: "Designer / creative technologist",
+        summary: "Combine creativity, tools, aesthetics, user needs, prototyping, and systems thinking.",
+        profile: {
+          riasec: {R:.45,I:.45,A:1,S:.40,E:.45,C:.35},
+          values: {achievement:.70,independence:.80,recognition:.65,relationships:.45,support:.35,conditions:.40},
+          efficacy: {analytic:.45,technical:.65,creative:1,people:.50,leadership:.40,structure:.45,helping:.30,communication:.70},
+          style: {novelty:1,depth:.55,collaboration:.55,visibility:.70,pressure:.55,structure:.30}
+        },
+        next: "Prototype one tiny interactive/visual idea in a weekend and show it to five users.",
+        caution: "Needs a portfolio, feedback tolerance, and practical constraints, not just taste."
+      },
+      {
+        name: "Healthcare, medicine, or allied health",
+        summary: "Use scientific knowledge, procedures, empathy, and discipline to help patients or clients.",
+        profile: {
+          riasec: {R:.55,I:.65,A:.10,S:.85,E:.20,C:.70},
+          values: {achievement:.85,independence:.30,recognition:.65,relationships:.85,support:.70,conditions:.65},
+          efficacy: {analytic:.70,technical:.70,creative:.20,people:.85,leadership:.35,structure:.85,helping:1,communication:.75},
+          style: {novelty:.45,depth:.65,collaboration:.85,visibility:.35,pressure:.85,structure:.85}
+        },
+        next: "Shadow a healthcare setting and ask whether the responsibility and routine feel meaningful.",
+        caution: "Requires formal training, regulation, ethical responsibility, and high workload."
+      },
+      {
+        name: "Operations / programme / project management",
+        summary: "Turn messy plans into reliable execution through timelines, coordination, documentation, and follow-through.",
+        profile: {
+          riasec: {R:.25,I:.45,A:.15,S:.55,E:.60,C:.95},
+          values: {achievement:.75,independence:.45,recognition:.45,relationships:.65,support:.65,conditions:.75},
+          efficacy: {analytic:.55,technical:.35,creative:.25,people:.65,leadership:.70,structure:1,helping:.45,communication:.75},
+          style: {novelty:.45,depth:.35,collaboration:.85,visibility:.55,pressure:.70,structure:1}
+        },
+        next: "Run one small event or project with a checklist, budget, timeline, and post-mortem.",
+        caution: "Success depends on details, accountability, and emotional steadiness with moving parts."
+      },
+      {
+        name: "Finance, quant, or market-research analysis",
+        summary: "Analyse numbers, risk, behaviour, markets, and decisions to guide investment or business choices.",
+        profile: {
+          riasec: {R:.05,I:.80,A:.20,S:.20,E:.70,C:.85},
+          values: {achievement:.90,independence:.45,recognition:.80,relationships:.30,support:.30,conditions:.75},
+          efficacy: {analytic:.95,technical:.75,creative:.25,people:.30,leadership:.45,structure:.85,helping:.10,communication:.60},
+          style: {novelty:.55,depth:.75,collaboration:.45,visibility:.55,pressure:.90,structure:.85}
+        },
+        next: "Build a simple model or market note and check whether risk-based reasoning interests you.",
+        caution: "Can be competitive and pressure-heavy; ethics and uncertainty matter."
+      },
+      {
+        name: "Lab, field, engineering, or technical operations",
+        summary: "Work with instruments, protocols, field systems, physical processes, safety, and practical problem-solving.",
+        profile: {
+          riasec: {R:1,I:.65,A:.10,S:.20,E:.20,C:.75},
+          values: {achievement:.70,independence:.45,recognition:.35,relationships:.35,support:.55,conditions:.65},
+          efficacy: {analytic:.65,technical:1,creative:.25,people:.25,leadership:.30,structure:.90,helping:.25,communication:.40},
+          style: {novelty:.45,depth:.70,collaboration:.45,visibility:.20,pressure:.60,structure:.90}
+        },
+        next: "Spend time in a lab, field site, workshop, or technical build and note whether hands-on troubleshooting feels rewarding.",
+        caution: "Requires patience with protocols, safety, equipment failure, and practical constraints."
+      }
+    ];
+
+    function renderQuestions() {
+      const container = document.getElementById("questionContainer");
+      container.innerHTML = "";
+
+      sections.forEach(section => {
+        const block = document.createElement("div");
+        block.className = "card";
+        block.innerHTML = `
+          <h3>${section.title}</h3>
+          <p class="hint">${section.subtitle}</p>
+          <div class="question-grid" id="${section.id}Grid"></div>
+        `;
+        container.appendChild(block);
+
+        const grid = block.querySelector(".question-grid");
+        section.items.forEach(([id, dim, prompt]) => {
+          const q = document.createElement("div");
+          q.className = "q";
+          q.innerHTML = `
+            <small>${DIMENSIONS[section.group][dim] || dim}</small>
+            <p>${prompt}</p>
+            <div class="scale" role="group" aria-label="${prompt}">
+              ${scaleLabels.map((lab, idx) => `<button class="choice" type="button" data-id="${id}" data-val="${idx}">${lab}</button>`).join("")}
+            </div>
+          `;
+          grid.appendChild(q);
+        });
+      });
+
+      document.querySelectorAll(".choice").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const id = btn.dataset.id;
+          const val = Number(btn.dataset.val);
+          answers[id] = val;
+
+          document.querySelectorAll(`.choice[data-id="${id}"]`).forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          updateProgress();
+        });
+      });
+    }
+
+    function updateProgress() {
+      const answered = Object.keys(answers).length;
+      const total = allItems.length;
+      const pct = Math.round((answered / total) * 100);
+      document.getElementById("progressText").textContent = `${answered} of ${total} answered`;
+      document.getElementById("progressFill").style.width = `${pct}%`;
+    }
+
+    function emptyScore(keys) {
+      return Object.fromEntries(keys.map(k => [k, 0]));
+    }
+
+    function computeUserProfile() {
+      const profile = {
+        riasec: emptyScore(Object.keys(DIMENSIONS.riasec)),
+        values: emptyScore(Object.keys(DIMENSIONS.values)),
+        efficacy: emptyScore(Object.keys(DIMENSIONS.efficacy)),
+        style: emptyScore(Object.keys(DIMENSIONS.style))
+      };
+
+      const counts = {
+        riasec: emptyScore(Object.keys(DIMENSIONS.riasec)),
+        values: emptyScore(Object.keys(DIMENSIONS.values)),
+        efficacy: emptyScore(Object.keys(DIMENSIONS.efficacy)),
+        style: emptyScore(Object.keys(DIMENSIONS.style))
+      };
+
+      allItems.forEach(item => {
+        if (answers[item.id] !== undefined) {
+          profile[item.group][item.dim] += answers[item.id];
+          counts[item.group][item.dim] += 1;
+        }
+      });
+
+      Object.keys(profile).forEach(group => {
+        Object.keys(profile[group]).forEach(key => {
+          const max = counts[group][key] * 3;
+          profile[group][key] = max > 0 ? profile[group][key] / max : 0;
+        });
+      });
+
+      return profile;
+    }
+
+    function cosine(user, target, keys) {
+      let dot = 0, a = 0, b = 0;
+      keys.forEach(k => {
+        const u = user[k] || 0;
+        const t = target[k] || 0;
+        dot += u * t;
+        a += u * u;
+        b += t * t;
+      });
+      if (a === 0 || b === 0) return 0;
+      return dot / (Math.sqrt(a) * Math.sqrt(b));
+    }
+
+    function scoreCareer(user, career) {
+      const interest = cosine(user.riasec, career.profile.riasec, Object.keys(DIMENSIONS.riasec));
+      const values = cosine(user.values, career.profile.values, Object.keys(DIMENSIONS.values));
+      const efficacy = cosine(user.efficacy, career.profile.efficacy, Object.keys(DIMENSIONS.efficacy));
+      const style = cosine(user.style, career.profile.style, Object.keys(DIMENSIONS.style));
+
+      const total = (0.45 * interest) + (0.20 * values) + (0.20 * efficacy) + (0.15 * style);
+      return {
+        total: Math.round(total * 100),
+        parts: {
+          interests: Math.round(interest * 100),
+          values: Math.round(values * 100),
+          confidence: Math.round(efficacy * 100),
+          style: Math.round(style * 100)
+        }
+      };
+    }
+
+    function topKeys(obj, labels, n = 3) {
+      return Object.entries(obj)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, n)
+        .map(([k, v]) => ({ key: k, label: labels[k], value: Math.round(v * 100) }));
+    }
+
+    function alignedTags(user, career) {
+      const out = [];
+      const groups = [
+        ["riasec", DIMENSIONS.riasec],
+        ["values", DIMENSIONS.values],
+        ["efficacy", DIMENSIONS.efficacy],
+        ["style", DIMENSIONS.style]
+      ];
+
+      groups.forEach(([group, labels]) => {
+        const best = Object.keys(labels)
+          .map(k => ({ k, score: (user[group][k] || 0) * (career.profile[group][k] || 0), label: labels[k] }))
+          .sort((a, b) => b.score - a.score)
+          .slice(0, 2)
+          .filter(x => x.score > 0.10);
+        best.forEach(x => out.push(x.label));
+      });
+
+      return [...new Set(out)].slice(0, 7);
+    }
+
+    function growthEdge(user, career) {
+      const candidates = [];
+      Object.keys(career.profile).forEach(group => {
+        Object.keys(career.profile[group]).forEach(k => {
+          const need = career.profile[group][k] || 0;
+          const have = user[group][k] || 0;
+          const gap = need - have;
+          if (need > 0.65 && gap > 0.25) {
+            candidates.push({ group, k, gap, label: DIMENSIONS[group][k] });
+          }
+        });
+      });
+
+      candidates.sort((a, b) => b.gap - a.gap);
+      if (candidates.length === 0) {
+        return "Your current pattern does not show an obvious mismatch. Test the fit through real projects, mentors, and internships.";
+      }
+
+      const c = candidates[0];
+      const suggestions = {
+        analytic: "try a structured reasoning or data project",
+        technical: "build comfort with tools, code, instruments, or technical workflows",
+        creative: "create a small portfolio piece and ask for feedback",
+        people: "practice interviewing, listening, and reading social context",
+        leadership: "lead a small project with real accountability",
+        structure: "use checklists, deadlines, and documentation to improve follow-through",
+        helping: "try mentoring or volunteering with supervision",
+        communication: "write, present, or teach a complex idea in simple language",
+        novelty: "sample varied projects before choosing a narrow route",
+        depth: "practise sustained focus on one difficult problem",
+        collaboration: "work in a team and reflect on your role",
+        visibility: "try presenting publicly in a low-stakes setting",
+        pressure: "test deadline-heavy work carefully and protect recovery time",
+        achievement: "set a measurable learning goal and track progress",
+        independence: "negotiate a small self-directed project",
+        recognition: "notice whether public feedback motivates or distorts you",
+        relationships: "seek environments where trust and connection are central",
+        support: "look for mentors and psychologically safe teams",
+        conditions: "compare the lifestyle reality, not only the job title",
+        R: "try hands-on work before committing",
+        I: "try a research or analysis project",
+        A: "make a creative prototype",
+        S: "do a people-facing project",
+        E: "try pitching, organising, or selling an idea",
+        C: "run a detail-heavy process from start to finish"
+      };
+      return `The biggest growth edge may be ${c.label}. Next step: ${suggestions[c.k] || "test this area through a small project"}.`;
+    }
+
+    function renderBars(title, data, labels) {
+      const rows = Object.entries(labels).map(([k, lab]) => {
+        const val = Math.round((data[k] || 0) * 100);
+        return `
+          <div class="bar-row">
+            <span>${lab}</span>
+            <span class="bar-bg"><span class="bar-fill" style="width:${val}%"></span></span>
+            <span>${val}</span>
+          </div>
+        `;
+      }).join("");
+
+      return `
+        <details>
+          <summary>${title}</summary>
+          <div class="bars">${rows}</div>
+        </details>
+      `;
+    }
+
+    function profileSentence(user) {
+      const i = topKeys(user.riasec, DIMENSIONS.riasec, 2).map(x => x.label).join(" + ") || "not enough interest data";
+      const v = topKeys(user.values, DIMENSIONS.values, 2).map(x => x.label).join(" + ") || "not enough work-value data";
+      const e = topKeys(user.efficacy, DIMENSIONS.efficacy, 2).map(x => x.label).join(" + ") || "not enough confidence data";
+      const s = topKeys(user.style, DIMENSIONS.style, 2).map(x => x.label).join(" + ") || "not enough style data";
+      return `Your current pattern leans toward ${i}. You seem to value ${v}. Your stronger confidence signals are ${e}. Your work-style preferences lean toward ${s}.`;
+    }
+
+    function buildReportText(ranked, user) {
+      const top = ranked.slice(0, 5).map((r, idx) => {
+        const tags = alignedTags(user, r.career).join(", ");
+        return `${idx + 1}. ${r.career.name} — ${r.score.total}/100. Aligns with: ${tags}. Growth edge: ${growthEdge(user, r.career)}`;
+      }).join("\n\n");
+
+      return `Career Fit Explorer Report\n\n${profileSentence(user)}\n\nTop matches:\n\n${top}\n\nNote: This is an exploratory fit estimate, not a diagnosis, aptitude test, or hiring tool. Use it to choose small real-world experiments, mentors, courses, projects, and internships.`;
+    }
+
+    function showResults() {
+      const answered = Object.keys(answers).length;
+      const user = computeUserProfile();
+      const ranked = careers
+        .map(career => ({ career, score: scoreCareer(user, career) }))
+        .sort((a, b) => b.score.total - a.score.total);
+
+      const top = ranked[0];
+      const confidenceNote = answered < 35
+        ? `<div class="caveat"><strong>Low data warning:</strong> You answered ${answered} of ${allItems.length} cards. The ranking is usable as a conversation starter, but it may change if you answer more cards.</div>`
+        : `<div class="privacy"><strong>Good coverage:</strong> You answered ${answered} of ${allItems.length} cards. The result is still exploratory, but the profile has enough information to be meaningful.</div>`;
+
+      const tableRows = ranked.map((r, idx) => {
+        const tags = alignedTags(user, r.career);
+        return `
+          <tr>
+            <td data-label="Rank"><span class="rank">${idx + 1}</span></td>
+            <td data-label="Career family">
+              <strong>${r.career.name}</strong>
+              <p class="hint">${r.career.summary}</p>
+              <div class="taglist">${tags.map(t => `<span class="tag">${t}</span>`).join("")}</div>
+            </td>
+            <td data-label="Match"><span class="match">${r.score.total}</span></td>
+            <td data-label="Why it may fit">
+              This path matches your pattern across interest, values, confidence, and work-style signals.
+              <br><br>
+              <strong>Breakdown:</strong> Interests ${r.score.parts.interests}, Values ${r.score.parts.values}, Confidence ${r.score.parts.confidence}, Style ${r.score.parts.style}.
+            </td>
+            <td data-label="Growth edge">${growthEdge(user, r.career)}<br><br><strong>Try next:</strong> ${r.career.next}<br><br><span class="hint">${r.career.caution}</span></td>
+          </tr>
+        `;
+      }).join("");
+
+      const topTags = alignedTags(user, top.career);
+      const reportText = buildReportText(ranked, user);
+
+      document.getElementById("resultsContainer").className = "";
+      document.getElementById("resultsContainer").innerHTML = `
+        ${confidenceNote}
+
+        <div class="summary-band" style="margin-top:18px;">
+          <div class="top-career">
+            <span class="eyebrow">Top suggested exploration path</span>
+            <h2>${top.career.name}</h2>
+            <p>${top.career.summary}</p>
+            <div class="taglist">${topTags.map(t => `<span class="tag">${t}</span>`).join("")}</div>
+            <p style="margin-top:14px;"><strong>Why this may work:</strong> ${profileSentence(user)}</p>
+            <p><strong>First experiment:</strong> ${top.career.next}</p>
+          </div>
+          <div class="top-career">
+            <div class="score-badge">${top.score.total}</div>
+            <h3>Fit estimate</h3>
+            <p class="hint">Weighted score: 45% interests, 20% values, 20% confidence, 15% work style. Use as a ranking aid, not a verdict.</p>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="secondary" type="button" id="copyReportBtn">Copy report</button>
+          <button class="secondary" type="button" id="downloadReportBtn">Download report</button>
+          <button class="secondary" type="button" onclick="window.print()">Print / save PDF</button>
+        </div>
+
+        <div class="card" style="box-shadow:none; margin-top:20px;">
+          <h3>Your dimension scores</h3>
+          ${renderBars("RIASEC interests", user.riasec, DIMENSIONS.riasec)}
+          ${renderBars("Work values", user.values, DIMENSIONS.values)}
+          ${renderBars("Confidence signals", user.efficacy, DIMENSIONS.efficacy)}
+          ${renderBars("Work style", user.style, DIMENSIONS.style)}
+        </div>
+
+        <div style="overflow-x:auto; margin-top:20px;">
+          <table>
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Career family</th>
+                <th>Match</th>
+                <th>Why it may fit</th>
+                <th>Growth edge + next experiment</th>
+              </tr>
+            </thead>
+            <tbody>${tableRows}</tbody>
+          </table>
+        </div>
+      `;
+
+      document.getElementById("copyReportBtn").addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(reportText);
+          document.getElementById("copyReportBtn").textContent = "Copied";
+        } catch (e) {
+          alert(reportText);
+        }
+      });
+
+      document.getElementById("downloadReportBtn").addEventListener("click", () => {
+        const blob = new Blob([reportText], { type: "text/plain;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "career-fit-explorer-report.txt";
+        a.click();
+        URL.revokeObjectURL(url);
+      });
+
+      document.getElementById("results").scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    function resetAll() {
+      Object.keys(answers).forEach(k => delete answers[k]);
+      document.querySelectorAll(".choice.active").forEach(b => b.classList.remove("active"));
+      updateProgress();
+      document.getElementById("resultsContainer").className = "results-placeholder";
+      document.getElementById("resultsContainer").innerHTML = `Complete the demo and click <strong>Show my ranked careers</strong>. Your ranked career families will appear here.`;
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    document.getElementById("scoreBtn").addEventListener("click", showResults);
+    document.getElementById("resetBtn").addEventListener("click", resetAll);
+    renderQuestions();
+    updateProgress();
+  </script>
+</body>
+</html>
