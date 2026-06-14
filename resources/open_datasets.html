@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Neuroscience Project Starter Guide</title>
+<style>
+  :root{
+    --bg:#0f1720;
+    --card:#18232f;
+    --muted:#dfe7ef;
+    --text:#f7fbff;
+    --accent:#ffb53c;
+    --accent2:#8bd3ff;
+    --line:#304454;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; font-family:Arial, Helvetica, sans-serif; background:#f3f6f9; color:#10202d; line-height:1.55;
+  }
+  .wrap{max-width:980px; margin:0 auto; padding:24px;}
+  .hero{
+    background:linear-gradient(180deg, #0e1722 0%, #152231 100%);
+    color:var(--text); border-radius:24px; padding:40px 34px; box-shadow:0 14px 40px rgba(0,0,0,.12);
+  }
+  .badge{display:inline-block; border:1.5px solid rgba(255,181,60,.8); color:#fff; padding:8px 14px; border-radius:999px; letter-spacing:.04em; font-weight:700; font-size:14px; margin-bottom:16px;}
+  h1{font-size:42px; line-height:1.08; margin:0 0 10px 0; color:var(--accent)}
+  .hero p{font-size:18px; max-width:780px; color:#e8eef4;}
+  h2{font-size:28px; margin:36px 0 16px; color:#10202d}
+  h3{font-size:22px; margin:0 0 8px; color:#10202d}
+  .grid{display:grid; grid-template-columns:1fr 1fr; gap:18px;}
+  .card{background:#fff; border:1px solid #e5ecf2; border-radius:20px; padding:22px; box-shadow:0 8px 26px rgba(10,30,50,.06);}
+  .resource{border-left:6px solid var(--accent);}
+  .small{color:#496172; font-size:15px}
+  ul{margin:10px 0 10px 20px; padding:0}
+  li{margin:6px 0}
+  a{color:#0f62a9; text-decoration:none; word-break:break-word}
+  a:hover{text-decoration:underline}
+  .links a{display:block; margin:6px 0}
+  .steps{counter-reset:item; margin:0; padding:0; list-style:none}
+  .steps li{margin:10px 0; padding-left:42px; position:relative}
+  .steps li::before{counter-increment:item; content:counter(item); position:absolute; left:0; top:0; width:28px; height:28px; background:var(--accent); color:#152231; border-radius:50%; text-align:center; line-height:28px; font-weight:800}
+  .tip{background:#fff7e7; border:1px solid #f0d9a3; border-radius:16px; padding:16px 18px; margin:14px 0;}
+  .footerbox{background:#eaf4fb; border:1px solid #cfe4f4; border-radius:18px; padding:22px;}
+  .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size:14px;}
+  .sectionlead{font-size:17px; color:#3c5364; margin-top:0}
+  .twocol{columns:2; column-gap:24px}
+  .pill{display:inline-block; padding:5px 10px; border-radius:999px; background:#eef6fc; color:#184f7d; font-size:13px; font-weight:700; margin:4px 6px 0 0}
+  @media (max-width:800px){
+    .grid{grid-template-columns:1fr}
+    .twocol{columns:1}
+    h1{font-size:34px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <section class="hero">
+    <div class="badge">NEUROSCIENCE PROJECT GUIDE</div>
+    <h1>How to build a neuroscience project with open resources</h1>
+    <p>This guide goes with the carousel on beginner-friendly neuroscience projects. The idea is simple: you do <strong>not</strong> need a wet lab or expensive equipment to start. You can use public datasets, brain atlases, and open tools to build a small but meaningful project, learn from it, and show your work clearly.</p>
+  </section>
+
+  <section>
+    <h2>What this is for</h2>
+    <p class="sectionlead">If you are interested in neuroscience and want to start doing rather than only reading, this is a good place to begin.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>Who can use this?</h3>
+        <ul>
+          <li>Students curious about neuroscience</li>
+          <li>People shifting from engineering / coding / math into neuro</li>
+          <li>Beginners who want portfolio projects</li>
+          <li>Anyone who wants a structured first step</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>What you should aim for</h3>
+        <ul>
+          <li>One small, focused question</li>
+          <li>One public dataset or atlas</li>
+          <li>Two or three clean figures</li>
+          <li>A short write-up explaining what you did and what you found</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>How to proceed in a structured way</h2>
+    <ol class="steps">
+      <li><strong>Pick a question.</strong> Example: Do brain connectivity patterns differ across tasks? Which neuron types have more complex branching? Which brain regions show higher expression of a gene of interest?</li>
+      <li><strong>Pick one resource.</strong> Do not start with five. Start with one dataset or one atlas that matches your question.</li>
+      <li><strong>Do one analysis that you can explain.</strong> A simple comparison, visualization, clustering, correlation, or exploratory summary is enough for a good beginner project.</li>
+      <li><strong>Show your work well.</strong> Your project becomes valuable when you can explain the question, the data, the method, the result, and the limitation clearly.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Project ideas built on open neuroscience resources</h2>
+    <p class="sectionlead">Below are beginner-friendly resources you can build projects on. For each one, I have added what it is, why it is useful, how to play around with it, and what kind of project can come out of it.</p>
+
+    <div class="grid">
+      <div class="card resource">
+        <h3>1) OpenNeuro</h3>
+        <p class="small"><strong>What it is:</strong> A large open repository of neuroimaging datasets—especially fMRI, EEG, MEG, iEEG and related modalities—shared in BIDS format.</p>
+        <p><strong>Why it is useful:</strong> It is one of the easiest places to start if you want real brain data without collecting it yourself.</p>
+        <p><strong>How to use it:</strong></p>
+        <ul>
+          <li>Browse by modality or task.</li>
+          <li>Choose a small dataset with a clear task.</li>
+          <li>Read the dataset description and understand the experiment.</li>
+          <li>Download a small subset first.</li>
+          <li>Use tools like <strong>MNE</strong> (for EEG/MEG) or <strong>Nilearn</strong> (for fMRI).</li>
+        </ul>
+        <p><strong>Project ideas:</strong> compare two task conditions, visualize a design, inspect EEG responses, or write a clean dataset walkthrough.</p>
+        <div class="links">
+          <a href="https://openneuro.org/">OpenNeuro main site</a>
+          <a href="https://docs.openneuro.org/">OpenNeuro documentation</a>
+          <a href="https://bids.neuroimaging.io/">BIDS standard</a>
+          <a href="https://nilearn.github.io/stable/">Nilearn</a>
+          <a href="https://mne.tools/stable/index.html">MNE</a>
+        </div>
+      </div>
+
+      <div class="card resource">
+        <h3>2) Human Connectome Project (HCP)</h3>
+        <p class="small"><strong>What it is:</strong> A major project that provides high-quality brain imaging and behavioral data, especially for studying connectivity.</p>
+        <p><strong>Why it is useful:</strong> Great if you are curious about networks, connectomes, resting-state data, or the relation between brain organization and behavior.</p>
+        <p><strong>How to use it:</strong></p>
+        <ul>
+          <li>Start by reading their overview pages.</li>
+          <li>Pick one simple focus: resting-state connectivity, a cognitive measure, or network organization.</li>
+          <li>Use the data dictionary so you do not get lost.</li>
+          <li>Do not try to analyze the full dataset on day one.</li>
+        </ul>
+        <p><strong>Project ideas:</strong> summarize network connectivity, compare measures across subjects, or create an explainer on what a connectome is and how HCP makes it possible.</p>
+        <div class="links">
+          <a href="https://www.humanconnectome.org/">Human Connectome Project</a>
+          <a href="https://db.humanconnectome.org/">HCP data access</a>
+          <a href="https://www.humanconnectome.org/study/hcp-young-adult/document/1200-subjects-data-release">HCP release information</a>
+        </div>
+      </div>
+
+      <div class="card resource">
+        <h3>3) Allen Brain Atlas</h3>
+        <p class="small"><strong>What it is:</strong> A rich brain-mapping resource from the Allen Institute with anatomical, transcriptomic, and cell-type related information.</p>
+        <p><strong>Why it is useful:</strong> Perfect if you are interested in how brain regions, genes, and cell types connect to one another.</p>
+        <p><strong>How to use it:</strong></p>
+        <ul>
+          <li>Explore the web portal first before trying advanced tools.</li>
+          <li>Pick one brain region, one marker gene, or one system.</li>
+          <li>Compare patterns across regions or species where relevant.</li>
+          <li>Use screenshots and annotated visuals to explain what you found.</li>
+        </ul>
+        <p><strong>Project ideas:</strong> gene-expression maps for a brain region, comparing marker genes, or a visual guide to a functional system.</p>
+        <div class="links">
+          <a href="https://portal.brain-map.org/">Allen Brain Atlas portal</a>
+          <a href="https://community.brain-map.org/t/documentation/2846">Allen documentation hub</a>
+          <a href="https://api.brain-map.org/">Allen API</a>
+        </div>
+      </div>
+
+      <div class="card resource">
+        <h3>4) NeuroMorpho.Org</h3>
+        <p class="small"><strong>What it is:</strong> A repository of digitally reconstructed neurons collected from studies around the world.</p>
+        <p><strong>Why it is useful:</strong> Extremely good for people who like structure, geometry, branching patterns, and computational analysis.</p>
+        <p><strong>How to use it:</strong></p>
+        <ul>
+          <li>Pick a neuron class or species.</li>
+          <li>Download a few reconstructions.</li>
+          <li>Measure total length, number of branches, asymmetry, or size.</li>
+          <li>Compare cell types visually and quantitatively.</li>
+        </ul>
+        <p><strong>Project ideas:</strong> compare pyramidal vs interneuron morphologies, create a branching-complexity infographic, or build a notebook that summarizes cell shape statistics.</p>
+        <div class="links">
+          <a href="https://neuromorpho.org/">NeuroMorpho.Org</a>
+          <a href="https://neuromorpho.org/faq.jsp">NeuroMorpho FAQ</a>
+        </div>
+      </div>
+
+      <div class="card resource">
+        <h3>5) OASIS Brain Project</h3>
+        <p class="small"><strong>What it is:</strong> Open-access structural MRI data, widely used in aging and Alzheimer’s-related work.</p>
+        <p><strong>Why it is useful:</strong> A very good entry point if you want to understand how neuroimaging connects to cognition, aging, and brain health.</p>
+        <p><strong>How to use it:</strong></p>
+        <ul>
+          <li>Read what the dataset includes and which participants are covered.</li>
+          <li>Focus on one question: aging, dementia, or structural measures.</li>
+          <li>Use existing tutorials on MRI visualization and summary analysis.</li>
+          <li>Begin with metadata and overview plots before advanced modeling.</li>
+        </ul>
+        <p><strong>Project ideas:</strong> an introductory MRI project, a guide to aging datasets, or a simple group comparison using available metadata.</p>
+        <div class="links">
+          <a href="https://sites.wustl.edu/oasisbrains/">OASIS main site</a>
+          <a href="https://sites.wustl.edu/oasisbrains/home/oasis-3/">OASIS-3</a>
+        </div>
+      </div>
+
+      <div class="card resource">
+        <h3>6) DANDI Archive</h3>
+        <p class="small"><strong>What it is:</strong> A modern open archive for neurophysiology and behavior datasets, often stored in NWB format.</p>
+        <p><strong>Why it is useful:</strong> Great if you are drawn to neural recordings, spikes, local field potentials, calcium imaging, or linked behavior-neural data.</p>
+        <p><strong>How to use it:</strong></p>
+        <ul>
+          <li>Browse the archive and filter for a manageable dataset.</li>
+          <li>Read the description carefully to understand the experimental setup.</li>
+          <li>Use NWB tools and tutorials to inspect data structure.</li>
+          <li>Make one small plot first—raster, firing rate, trial summary, or behavior alignment.</li>
+        </ul>
+        <p><strong>Project ideas:</strong> a spike-train overview, plotting neural activity across trial types, or a “how to read an NWB dataset” explainer.</p>
+        <div class="links">
+          <a href="https://www.dandiarchive.org/">DANDI Archive</a>
+          <a href="https://www.nwb.org/">NWB</a>
+          <a href="https://docs.dandiarchive.org/">DANDI docs</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>How to play around with these resources without getting overwhelmed</h2>
+    <div class="card">
+      <ul>
+        <li><strong>Start with the metadata.</strong> Before touching raw files, understand what the dataset is, how subjects/sessions are organized, and what the variables mean.</li>
+        <li><strong>Try one small output first.</strong> A histogram, a connectivity matrix, a brain-region map, or a neuron-shape comparison is enough to begin.</li>
+        <li><strong>Read one methods page, not twenty papers.</strong> You do not need to master the whole field to make a first useful project.</li>
+        <li><strong>Document your learning process.</strong> Screenshots, notes, code comments, and figure captions help a lot.</li>
+        <li><strong>Ask: what does this figure actually show?</strong> If you cannot explain it in simple language, simplify the analysis.</li>
+      </ul>
+      <div class="tip"><strong>Beginner rule:</strong> it is better to do one small project well than to touch a giant dataset badly.</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>How to show the work as a project</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>A simple project structure</h3>
+        <ol>
+          <li><strong>Question:</strong> What were you trying to find?</li>
+          <li><strong>Resource:</strong> Which dataset / atlas / archive did you use?</li>
+          <li><strong>Method:</strong> What exactly did you do?</li>
+          <li><strong>Result:</strong> What figure or output did you get?</li>
+          <li><strong>Interpretation:</strong> What does it mean?</li>
+          <li><strong>Limitation:</strong> What can this not tell you yet?</li>
+        </ol>
+      </div>
+      <div class="card">
+        <h3>Where to put it</h3>
+        <ul>
+          <li>GitHub repository with README</li>
+          <li>Google Colab notebook</li>
+          <li>A one-page project poster</li>
+          <li>LinkedIn post / carousel</li>
+          <li>Notion page or portfolio page</li>
+        </ul>
+        <p class="small">Even a clear 4–6 slide project summary can be enough if the question and figures are sharp.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Useful tools for beginners</h2>
+    <div class="card">
+      <span class="pill">Python</span>
+      <span class="pill">Jupyter</span>
+      <span class="pill">Google Colab</span>
+      <span class="pill">Pandas</span>
+      <span class="pill">Matplotlib</span>
+      <span class="pill">Numpy</span>
+      <span class="pill">Nilearn</span>
+      <span class="pill">MNE</span>
+      <span class="pill">NWB</span>
+      <span class="pill">GitHub</span>
+      <div class="links" style="margin-top:12px;">
+        <a href="https://colab.research.google.com/">Google Colab</a>
+        <a href="https://jupyter.org/">Jupyter</a>
+        <a href="https://pandas.pydata.org/">Pandas</a>
+        <a href="https://matplotlib.org/">Matplotlib</a>
+        <a href="https://numpy.org/">NumPy</a>
+        <a href="https://nilearn.github.io/stable/">Nilearn</a>
+        <a href="https://mne.tools/stable/index.html">MNE</a>
+        <a href="https://docs.github.com/en/get-started/start-your-journey/about-github-and-git">GitHub getting started</a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>A practical mini-roadmap</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Week 1</h3>
+        <ul>
+          <li>Choose one area: imaging, EEG/MEG, connectomics, neuron morphology, or brain maps.</li>
+          <li>Read the resource overview and browse examples.</li>
+          <li>Write down 2–3 possible project questions.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Week 2</h3>
+        <ul>
+          <li>Download or access a small sample.</li>
+          <li>Explore metadata and structure.</li>
+          <li>Create your first summary figure.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Week 3</h3>
+        <ul>
+          <li>Run one focused analysis.</li>
+          <li>Refine figures and notes.</li>
+          <li>Check if your question is actually being answered.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Week 4</h3>
+        <ul>
+          <li>Package the work into a clean notebook, poster, or carousel.</li>
+          <li>Add links, captions, and a short explanation.</li>
+          <li>Share it and ask for feedback.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>One final suggestion</h2>
+    <div class="footerbox">
+      <p><strong>Do not wait for the “perfect” project.</strong> A simple project that you finish and explain clearly is much more useful than a very ambitious one you never complete.</p>
+      <p>If you are new, start with one resource from this guide, make one good figure, and write one good page explaining it.</p>
+      <p class="mono">Good project formula = clear question + open resource + small analysis + clear explanation.</p>
+    </div>
+  </section>
+</div>
+</body>
+</html>
