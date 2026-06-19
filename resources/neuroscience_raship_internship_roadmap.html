@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Neuroscience RAship & Internship Roadmap</title>
+<style>
+  :root{
+    --bg:#11181d;
+    --ink:#f8f4e9;
+    --muted:#d7d0c3;
+    --card:#1c252b;
+    --card2:#202c33;
+    --accent:#f5ad3d;
+    --accent2:#ffe2a4;
+    --blue:#9cc9ff;
+    --green:#b7e39a;
+    --line:rgba(245,173,61,.45);
+    --soft:rgba(255,255,255,.08);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height:1.55;
+    background:
+      radial-gradient(circle at 6% 3%, rgba(245,173,61,.10), transparent 28%),
+      radial-gradient(circle at 92% 6%, rgba(156,201,255,.09), transparent 28%),
+      var(--bg);
+    color:var(--ink);
+  }
+  a{color:var(--accent2); text-decoration:none; overflow-wrap:anywhere}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:1100px; margin:0 auto; padding:24px}
+  .hero{
+    border:1.5px solid var(--line);
+    border-radius:28px;
+    padding:42px 36px;
+    background:linear-gradient(135deg, rgba(32,44,51,.96), rgba(17,24,29,.96));
+    box-shadow:0 20px 60px rgba(0,0,0,.22);
+  }
+  .eyebrow{
+    display:inline-block;
+    border:1.5px solid var(--line);
+    border-radius:999px;
+    padding:8px 16px;
+    font-weight:800;
+    letter-spacing:.09em;
+    font-size:12px;
+    text-transform:uppercase;
+    color:var(--accent2);
+    margin-bottom:16px;
+  }
+  h1{
+    font-size:50px;
+    line-height:1.02;
+    letter-spacing:-1.6px;
+    color:var(--accent);
+    margin:0 0 12px;
+  }
+  h2{
+    color:var(--accent);
+    font-size:32px;
+    line-height:1.1;
+    margin:42px 0 14px;
+    letter-spacing:-.5px;
+  }
+  h3{
+    color:#fff;
+    font-size:22px;
+    margin:0 0 8px;
+    line-height:1.15;
+  }
+  h4{
+    color:var(--accent2);
+    margin:18px 0 6px;
+    font-size:17px;
+  }
+  p{color:var(--muted); margin:0 0 12px}
+  .lead{font-size:18px; color:#fff; max-width:860px}
+  .toc{
+    margin-top:18px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+  }
+  .toc a{
+    display:block;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.11);
+    padding:10px 12px;
+    border-radius:14px;
+    font-weight:700;
+    color:#fff;
+  }
+  .grid{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+  .grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+  .card{
+    background:linear-gradient(180deg, rgba(32,44,51,.95), rgba(28,37,43,.95));
+    border:1px solid rgba(255,255,255,.11);
+    border-radius:22px;
+    padding:20px;
+    box-shadow:0 10px 36px rgba(0,0,0,.14);
+  }
+  .card.accent{border-left:6px solid var(--accent)}
+  .tag{
+    display:inline-block;
+    color:var(--accent);
+    font-weight:900;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    font-size:11px;
+    margin-bottom:8px;
+  }
+  .note{
+    border-left:4px solid var(--accent);
+    padding:12px 14px;
+    background:rgba(245,173,61,.09);
+    border-radius:14px;
+    margin:14px 0;
+    color:var(--muted);
+  }
+  .pill{
+    display:inline-block;
+    padding:6px 10px;
+    margin:4px 6px 4px 0;
+    border-radius:999px;
+    background:rgba(245,173,61,.12);
+    border:1px solid rgba(245,173,61,.28);
+    color:#fff;
+    font-size:13px;
+    font-weight:700;
+  }
+  ul{margin:10px 0 0 20px; padding:0; color:var(--muted)}
+  li{margin:6px 0}
+  ol{color:var(--muted)}
+  .steps{counter-reset:item; padding:0; margin:0; list-style:none}
+  .steps li{
+    position:relative;
+    padding-left:44px;
+    margin:12px 0;
+  }
+  .steps li:before{
+    counter-increment:item;
+    content:counter(item);
+    position:absolute;
+    left:0; top:-1px;
+    width:30px; height:30px;
+    border-radius:50%;
+    background:var(--accent);
+    color:#11181d;
+    font-weight:900;
+    display:grid;
+    place-items:center;
+  }
+  .table{
+    width:100%;
+    border-collapse:separate;
+    border-spacing:0 8px;
+  }
+  .table td{
+    background:rgba(255,255,255,.055);
+    border-top:1px solid rgba(255,255,255,.1);
+    border-bottom:1px solid rgba(255,255,255,.1);
+    padding:12px;
+    color:var(--muted);
+    vertical-align:top;
+  }
+  .table td:first-child{
+    border-left:1px solid rgba(255,255,255,.1);
+    border-radius:14px 0 0 14px;
+    color:#fff;
+    font-weight:900;
+    width:27%;
+  }
+  .table td:last-child{
+    border-right:1px solid rgba(255,255,255,.1);
+    border-radius:0 14px 14px 0;
+  }
+  .template{
+    white-space:pre-wrap;
+    background:#0c1216;
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:18px;
+    padding:18px;
+    color:#f9f3e7;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size:13.5px;
+    overflow:auto;
+  }
+  .linkbox{
+    margin-top:10px;
+    padding:10px 12px;
+    border-radius:14px;
+    border:1px solid rgba(245,173,61,.35);
+    background:rgba(245,173,61,.10);
+    font-size:14px;
+  }
+  .mini{font-size:13px;color:#bdb5aa}
+  .footer{
+    margin:40px 0 20px;
+    border-top:2px solid var(--line);
+    padding-top:18px;
+    color:#cfc6b8;
+  }
+  @media(max-width:850px){
+    .grid,.grid3,.toc{grid-template-columns:1fr}
+    h1{font-size:38px}
+    .hero{padding:28px 22px}
+    .wrap{padding:16px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<section class="hero">
+  <div class="eyebrow">Neuroscience RAship / Internship Roadmap</div>
+  <h1>How to find research assistantships & internships in neuroscience</h1>
+  <p class="lead">A practical guide for students who want to enter neuroscience research: how to pick a research interest, find the right professors, build small proof projects, cold email properly, and search for positions across Indian and international portals.</p>
+  <div class="toc">
+    <a href="#pick-interest">1. Pick your research lane</a>
+    <a href="#find-professors">2. Find the right professors</a>
+    <a href="#build-proof">3. Build proof projects</a>
+    <a href="#cold-email">4. Cold email well</a>
+    <a href="#portals">5. Where to find openings</a>
+    <a href="#plan">6. 30-day action plan</a>
+  </div>
+</section>
+
+<section id="basics">
+  <h2>First: what exactly are you looking for?</h2>
+  <div class="grid">
+    <div class="card accent">
+      <span class="tag">Internship</span>
+      <h3>Usually short-term exposure</h3>
+      <p>Best if you are still exploring the field. You may help with literature review, basic coding, data cleaning, behavior experiments, participant recruitment, wet-lab work, or small analysis tasks.</p>
+      <ul>
+        <li>Typical duration: 1–3 months, sometimes longer</li>
+        <li>Good for: UG / MSc / early-stage learners</li>
+        <li>Main aim: exposure + skills + clarity</li>
+      </ul>
+    </div>
+    <div class="card accent">
+      <span class="tag">RAship / project role</span>
+      <h3>Usually deeper research work</h3>
+      <p>A research assistantship is more structured. You may work on a funded project, collect data, run analyses, manage datasets, help with manuscripts, or contribute to experiments.</p>
+      <ul>
+        <li>Typical duration: 6 months to 2 years</li>
+        <li>Good for: people preparing for PhD / MS / research career</li>
+        <li>Main aim: serious project experience + recommendation letters</li>
+      </ul>
+    </div>
+  </div>
+  <div class="note"><strong>Important:</strong> do not email everyone with “I am interested in neuroscience.” Make your interest specific enough that a professor can see where you might fit.</div>
+</section>
+
+<section id="pick-interest">
+  <h2>Step 1: start with your research interest</h2>
+  <p>You do not need to know your exact thesis topic. But you should know the broad lane you are curious about. This makes the whole search much easier.</p>
+  <div class="grid3">
+    <div class="card">
+      <span class="tag">Cognitive / behavioural neuroscience</span>
+      <h3>Mind, behaviour, emotion, decision-making</h3>
+      <p>Focuses on how humans think, feel, decide, attend, remember, and behave.</p>
+      <p><strong>Useful skills:</strong> psychology basics, experiments, statistics, R/Python, reaction-time analysis, questionnaires.</p>
+      <p><strong>Example topics:</strong> attention, reward, emotion, mental health, decision-making, memory, perception.</p>
+    </div>
+    <div class="card">
+      <span class="tag">Computational neuroscience</span>
+      <h3>Models, coding, neural data</h3>
+      <p>Uses maths, statistics, machine learning, and simulations to understand brain systems.</p>
+      <p><strong>Useful skills:</strong> Python, linear algebra, probability, ML, dynamical systems, data visualization.</p>
+      <p><strong>Example topics:</strong> neural networks, reinforcement learning, sensory coding, decision models, brain simulations.</p>
+    </div>
+    <div class="card">
+      <span class="tag">Systems neuroscience</span>
+      <h3>Circuits, behavior, physiology</h3>
+      <p>Studies how neural circuits produce behaviour, often with animals or high-resolution recordings.</p>
+      <p><strong>Useful skills:</strong> neurophysiology, behavior analysis, calcium imaging, electrophysiology, signal processing.</p>
+      <p><strong>Example topics:</strong> navigation, motor control, sensory circuits, learning, sleep, decision circuits.</p>
+    </div>
+    <div class="card">
+      <span class="tag">Neuroimaging</span>
+      <h3>fMRI, EEG, MEG, brain networks</h3>
+      <p>Studies the human brain using imaging and electrophysiology tools.</p>
+      <p><strong>Useful skills:</strong> Python/MATLAB, signal processing, statistics, BIDS, Nilearn, MNE, AFNI/SPM/FSL.</p>
+      <p><strong>Example topics:</strong> emotion, attention, language, resting-state networks, clinical imaging.</p>
+    </div>
+    <div class="card">
+      <span class="tag">Molecular / cellular neuroscience</span>
+      <h3>Cells, genes, proteins, disease mechanisms</h3>
+      <p>Studies neurons and glia at molecular and cellular levels. This is a natural entry route for biology, biotechnology, microbiology, biochemistry, and life-science students.</p>
+      <p><strong>Useful skills:</strong> molecular biology, microscopy, cell culture, immunostaining, transcriptomics, animal models.</p>
+      <p><strong>Example topics:</strong> synapses, neurodegeneration, regeneration, neuroinflammation, gene expression, disease models.</p>
+    </div>
+    <div class="card">
+      <span class="tag">Neurotech / BCI / clinical</span>
+      <h3>Brain tools + translational work</h3>
+      <p>Bridges neuroscience with engineering, medicine, rehabilitation, and digital health.</p>
+      <p><strong>Useful skills:</strong> sensors, EEG, ML, UI/tools, clinical data, documentation, ethics.</p>
+      <p><strong>Example topics:</strong> BCI, sleep, epilepsy, rehabilitation, computational psychiatry, digital biomarkers.</p>
+    </div>
+  </div>
+
+  <h3 style="margin-top:26px;">How to make your interest more specific</h3>
+  <div class="card">
+    <p>Start with this sentence and fill the blanks:</p>
+    <div class="template">I am interested in [broad area] because I want to understand [specific question/problem]. I am especially curious about labs that use [method/tool/model system] to study [population/process/disorder].</div>
+    <p class="mini">Example: “I am interested in cognitive neuroscience because I want to understand how reward changes attention and emotion regulation. I am especially curious about labs that use behavioural experiments, fMRI, EEG, and computational models.”</p>
+  </div>
+</section>
+
+<section id="find-professors">
+  <h2>Step 2: find the right professors and labs</h2>
+  <p>Look for fit, not just famous names. A smaller lab that closely matches your interest is often better than a big-name lab where your email is generic.</p>
+
+  <div class="grid">
+    <div class="card">
+      <span class="tag">Where to start</span>
+      <h3>Build a lab shortlist</h3>
+      <ol class="steps">
+        <li>Start from department or centre websites.</li>
+        <li>Open each professor’s lab page.</li>
+        <li>Read the “Research” section carefully.</li>
+        <li>Open 2–3 recent papers from the lab.</li>
+        <li>Note the methods, model systems, datasets, and open positions.</li>
+        <li>Shortlist 10 labs that actually fit.</li>
+      </ol>
+    </div>
+    <div class="card">
+      <span class="tag">What to note</span>
+      <h3>Make a simple tracker</h3>
+      <table class="table">
+        <tr><td>Lab / PI</td><td>Name of professor, lab, institute.</td></tr>
+        <tr><td>Research area</td><td>What problem they study.</td></tr>
+        <tr><td>Methods</td><td>fMRI, EEG, behaviour, wet lab, animal models, ML, etc.</td></tr>
+        <tr><td>Fit</td><td>Why your background makes sense.</td></tr>
+        <tr><td>Email status</td><td>Not emailed / emailed / follow-up / reply.</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <h3 style="margin-top:28px;">Search terms that actually work</h3>
+  <div class="card">
+    <p>Use combinations like these on Google, Google Scholar, LinkedIn, and institute websites:</p>
+    <span class="pill">site:ac.in neuroscience internship</span>
+    <span class="pill">“research assistant” “neuroscience” India</span>
+    <span class="pill">“EEG” “research assistant” psychology</span>
+    <span class="pill">“fMRI” “project assistant” India</span>
+    <span class="pill">“computational neuroscience” internship</span>
+    <span class="pill">“molecular neuroscience” project assistant</span>
+    <span class="pill">“cognitive science” RA position</span>
+    <span class="pill">“neuroimaging” “JRF” “project”</span>
+  </div>
+</section>
+
+<section id="build-proof">
+  <h2>Step 3: build proof that you can contribute</h2>
+  <p>A professor is more likely to reply when your email shows evidence: a small project, a notebook, a poster, a literature summary, or a clean analysis. It does not need to be perfect. It needs to be relevant.</p>
+
+  <div class="grid">
+    <div class="card accent">
+      <span class="tag">Cognitive / behaviour project</span>
+      <h3>Run a small behavioural experiment</h3>
+      <p>Build a Stroop task, emotional Stroop task, memory task, attention task, or decision-making task using PsychoPy, jsPsych, or Gorilla-style logic.</p>
+      <ul>
+        <li>Collect pilot data from friends or demo participants.</li>
+        <li>Plot reaction time and accuracy.</li>
+        <li>Write a 1-page summary: question, task, result, limitation.</li>
+      </ul>
+      <div class="linkbox"><a href="https://www.psychopy.org/">PsychoPy</a> · <a href="https://www.jspsych.org/">jsPsych</a></div>
+    </div>
+
+    <div class="card accent">
+      <span class="tag">EEG / MEG project</span>
+      <h3>Analyze an open EEG dataset</h3>
+      <p>Use MNE-Python and an open dataset to learn event markers, epochs, ERPs, time-frequency plots, and basic preprocessing.</p>
+      <ul>
+        <li>Pick one dataset from OpenNeuro.</li>
+        <li>Make an ERP plot for two conditions.</li>
+        <li>Explain what preprocessing steps you used.</li>
+      </ul>
+      <div class="linkbox"><a href="https://mne.tools/stable/index.html">MNE-Python</a> · <a href="https://openneuro.org/">OpenNeuro</a></div>
+    </div>
+
+    <div class="card accent">
+      <span class="tag">fMRI / imaging project</span>
+      <h3>Make a beginner neuroimaging notebook</h3>
+      <p>Use Nilearn to load a sample brain image, visualize brain maps, understand masks, and compare task contrasts if the dataset provides them.</p>
+      <ul>
+        <li>Start with Nilearn examples.</li>
+        <li>Make clean visuals of brain regions or activation maps.</li>
+        <li>Write what fMRI can and cannot tell us.</li>
+      </ul>
+      <div class="linkbox"><a href="https://nilearn.github.io/stable/">Nilearn</a> · <a href="https://openneuro.org/">OpenNeuro</a></div>
+    </div>
+
+    <div class="card accent">
+      <span class="tag">Computational neuroscience project</span>
+      <h3>Build a model or reproduce a small result</h3>
+      <p>Simulate a neuron, train a simple neural network, model a decision process, or reproduce a figure from a computational neuroscience tutorial.</p>
+      <ul>
+        <li>Use Python notebooks.</li>
+        <li>Explain the model assumptions clearly.</li>
+        <li>Do not oversell it: show what the model captures and misses.</li>
+      </ul>
+      <div class="linkbox"><a href="https://compneuro.neuromatch.io/">Neuromatch Computational Neuroscience</a> · <a href="https://neuronaldynamics.epfl.ch/">Neuronal Dynamics</a></div>
+    </div>
+
+    <div class="card accent">
+      <span class="tag">Molecular neuroscience project</span>
+      <h3>Do a literature + database mini-project</h3>
+      <p>Pick a disease or process such as Alzheimer’s disease, synaptic plasticity, neuroinflammation, axon regeneration, or dopaminergic neurons. Use public papers and databases to build a small map of genes, proteins, pathways, or cell types.</p>
+      <ul>
+        <li>Use PubMed to collect 5–8 key papers.</li>
+        <li>Use Allen Brain Atlas for expression / region context.</li>
+        <li>Use STRING or GeneCards to explore gene networks.</li>
+        <li>Make one pathway diagram or gene-expression summary.</li>
+      </ul>
+      <div class="linkbox"><a href="https://pubmed.ncbi.nlm.nih.gov/">PubMed</a> · <a href="https://portal.brain-map.org/">Allen Brain Atlas</a> · <a href="https://string-db.org/">STRING</a> · <a href="https://www.genecards.org/">GeneCards</a></div>
+    </div>
+
+    <div class="card accent">
+      <span class="tag">Neurotech / BCI project</span>
+      <h3>Build a simple signal-processing demo</h3>
+      <p>If you have engineering or coding experience, show signal-processing thinking: filtering, feature extraction, classification, or a small dashboard for biosignals.</p>
+      <ul>
+        <li>Use open EEG/BCI datasets.</li>
+        <li>Show raw signal → filtered signal → feature → simple classifier.</li>
+        <li>Keep the explanation non-hype and grounded.</li>
+      </ul>
+      <div class="linkbox"><a href="https://bnci-horizon-2020.eu/database/data-sets">BNCI Horizon datasets</a> · <a href="https://mne.tools/stable/index.html">MNE</a></div>
+    </div>
+  </div>
+
+  <div class="note"><strong>How to show it:</strong> make a GitHub repository, Google Colab notebook, one-page PDF, or short carousel explaining the question, data/resource, analysis, figure, interpretation, and limitation.</div>
+</section>
+
+<section id="cold-email">
+  <h2>Step 4: cold email without sounding generic</h2>
+  <p>The goal of a cold email is not to tell your life story. It is to quickly show fit, evidence, and seriousness.</p>
+
+  <div class="grid">
+    <div class="card">
+      <span class="tag">What to include</span>
+      <h3>A good cold email has 5 parts</h3>
+      <ol class="steps">
+        <li>Who you are and your current stage.</li>
+        <li>Why their lab specifically interests you.</li>
+        <li>One sentence showing you read their work.</li>
+        <li>Your relevant skills or small proof project.</li>
+        <li>A clear ask: internship, RAship, project role, or meeting.</li>
+      </ol>
+    </div>
+
+    <div class="card">
+      <span class="tag">What to avoid</span>
+      <h3>Common mistakes</h3>
+      <ul>
+        <li>“I am passionate about neuroscience” with no specific fit.</li>
+        <li>Attaching a 6-page generic CV with no context.</li>
+        <li>Emailing 50 professors with the same text.</li>
+        <li>Asking for a PhD position when you want a short internship.</li>
+        <li>Not mentioning what you can actually contribute.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 style="margin-top:28px;">Cold email template: internship / project exposure</h3>
+  <div class="template">Subject: Inquiry about internship/project opportunity in [lab topic]
+
+Dear Prof. [Name],
+
+I am [your name], currently [your program/year] at [institution]. I am interested in [specific research area], especially [specific topic/question].
+
+I read about your lab’s work on [specific project/paper/topic]. I found [one specific thing] particularly interesting because [short reason].
+
+I have been building relevant skills in [Python/statistics/behavioural experiments/EEG/fMRI/molecular biology/etc.]. As a small proof of interest, I worked on [brief project: 1 line + link if available].
+
+I wanted to ask if there may be any possibility of contributing to your lab as a short-term intern / project student. I would be happy to help with [specific tasks you can realistically do: literature review, data cleaning, analysis, experiment coding, wet-lab assistance, etc.].
+
+I have attached my CV and included a short project link below.
+
+Thank you for your time.
+
+Best regards,
+[Your name]
+[Program, institution]
+[Email]
+[GitHub/portfolio/LinkedIn link]</div>
+
+  <h3 style="margin-top:28px;">Cold email template: RAship</h3>
+  <div class="template">Subject: Inquiry about RA/project assistant opportunities in [research area]
+
+Dear Prof. [Name],
+
+I am [your name], [current degree / recently graduated from]. I am looking for a research assistant/project role in [specific field], and your lab’s work on [specific topic] aligns closely with my interests.
+
+I was particularly interested in your recent work on [paper/project]. My understanding is that your lab studies [one-sentence summary]. I am interested in contributing because [fit with your background].
+
+My relevant experience includes:
+• [Skill/experience 1]
+• [Skill/experience 2]
+• [Small project or paper summary]
+• [Tools: Python/R/MATLAB/PsychoPy/MNE/Nilearn/molecular techniques/etc.]
+
+If there are any current or upcoming RA/project assistant positions, I would be grateful to be considered. I have attached my CV and included links to relevant work.
+
+Thank you for your time.
+
+Best regards,
+[Your name]</div>
+
+  <h3 style="margin-top:28px;">Follow-up email</h3>
+  <div class="template">Subject: Follow-up: internship/RA inquiry in [topic]
+
+Dear Prof. [Name],
+
+I hope you are doing well. I wanted to gently follow up on my earlier email regarding a possible internship/RA opportunity in your lab.
+
+I understand you may be busy, so I just wanted to check whether there may be any possibility to contribute to ongoing or upcoming work in [specific area].
+
+Thank you again for your time.
+
+Best regards,
+[Your name]</div>
+</section>
+
+<section id="cv">
+  <h2>Step 5: prepare a sharp one-page CV</h2>
+  <p>For early-stage students, a clean one-page CV is usually better than a long unfocused CV.</p>
+  <div class="grid">
+    <div class="card">
+      <span class="tag">What to highlight</span>
+      <h3>CV sections that matter</h3>
+      <ul>
+        <li>Education and current stage</li>
+        <li>Research interests in 2–3 lines</li>
+        <li>Relevant coursework</li>
+        <li>Technical skills</li>
+        <li>Research/project experience</li>
+        <li>Public links: GitHub, portfolio, poster, notebook</li>
+        <li>References only if requested</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag">Skill examples</span>
+      <h3>Write skills specifically</h3>
+      <table class="table">
+        <tr><td>Bad</td><td>“Python, neuroscience, hard-working.”</td></tr>
+        <tr><td>Better</td><td>“Python: pandas, matplotlib, basic statistics; MNE beginner EEG analysis; PsychoPy task design.”</td></tr>
+        <tr><td>Bad</td><td>“Interested in brain research.”</td></tr>
+        <tr><td>Better</td><td>“Interested in reward, attention, emotion, and cognitive control using behaviour + fMRI/EEG.”</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="portals">
+  <h2>Step 6: where to find RAships, internships, and project positions</h2>
+  <p>Use a mix of official institute pages, opportunity aggregators, LinkedIn/Twitter, and direct lab websites. Some positions are formally advertised; many are found by emailing the right professor at the right time.</p>
+
+  <h3>India-focused portals and programs</h3>
+  <div class="grid">
+    <div class="card">
+      <h3>ScholarOP</h3>
+      <p>Curated research opportunities, PhDs, postdocs, fellowships, workshops, and research-career discussions.</p>
+      <div class="linkbox"><a href="https://scholarop.com/">https://scholarop.com/</a></div>
+    </div>
+    <div class="card">
+      <h3>Science Academies SRFP</h3>
+      <p>Summer Research Fellowship Program by Indian Academy of Sciences, INSA, and NASI. Useful for research exposure across scientific areas.</p>
+      <div class="linkbox"><a href="https://webjapps.ias.ac.in/fellowship2026/index.html">SRFP 2026 official page</a></div>
+    </div>
+    <div class="card">
+      <h3>JNCASR fellowships</h3>
+      <p>JNCASR lists fellowship and extension programmes such as SRFP and project-oriented programmes.</p>
+      <div class="linkbox"><a href="https://www.jncasr.ac.in/fandeprogrammes">JNCASR fellowship programmes</a></div>
+    </div>
+    <div class="card">
+      <h3>India Science & Technology internship portal</h3>
+      <p>Government-linked internship listing portal across science and technology domains.</p>
+      <div class="linkbox"><a href="https://www.indiascienceandtechnology.gov.in/listingpage/internships">India Science & Technology internships</a></div>
+    </div>
+    <div class="card">
+      <h3>CBRAIN Internship, IISc</h3>
+      <p>For applicants interested in brain aging, neurodegenerative diseases, and multimodal datasets.</p>
+      <div class="linkbox"><a href="https://cbr-iisc.ac.in/cbrain-internship-2026/">CBRAIN Internship 2026</a></div>
+    </div>
+    <div class="card">
+      <h3>COGJET</h3>
+      <p>Cognitive Science Joint Entrance Test for admission into postgraduate/doctoral programs in Cognitive Science.</p>
+      <div class="linkbox"><a href="https://cogjet.in/">https://cogjet.in/</a></div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:28px;">Institutes / centres to watch</h3>
+  <div class="card">
+    <div class="grid3">
+      <div>
+        <h4>Cognitive / computational / systems</h4>
+        <ul>
+          <li>IISc Centre for Neuroscience</li>
+          <li>NCBS / TIFR</li>
+          <li>NBRC Manesar</li>
+          <li>IIT Gandhinagar Cognitive & Brain Sciences</li>
+          <li>CBCS Allahabad</li>
+          <li>IIT Bombay HSS / cognitive neuroscience labs</li>
+          <li>IIIT Hyderabad cognitive science / AI-adjacent labs</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Clinical / psychiatry / neuroimaging</h4>
+        <ul>
+          <li>NIMHANS</li>
+          <li>Rohini Nilekani Centre for Brain and Mind</li>
+          <li>IISc-CBR brain aging projects</li>
+          <li>Medical colleges with neuroscience/psychiatry labs</li>
+          <li>Clinical neuroimaging and sleep labs</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Molecular / cellular neuroscience</h4>
+        <ul>
+          <li>NCBS / inStem / CCAMP ecosystem</li>
+          <li>IISc biological sciences labs</li>
+          <li>NIMHANS molecular neuroscience labs</li>
+          <li>MAHE / KMC molecular neuroscience groups</li>
+          <li>DBT/ICMR-funded neurobiology labs</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:28px;">International / general portals</h3>
+  <div class="grid">
+    <div class="card">
+      <h3>LinkedIn</h3>
+      <p>Search for “neuroscience intern”, “research assistant neuroscience”, “computational neuroscience intern”, “EEG RA”, “fMRI RA”, “project assistant neuroscience”. Follow PIs and labs.</p>
+      <div class="linkbox"><a href="https://www.linkedin.com/jobs/">LinkedIn Jobs</a></div>
+    </div>
+    <div class="card">
+      <h3>Nature Careers</h3>
+      <p>Good for PhD, postdoc, RA, technician and staff scientist roles internationally.</p>
+      <div class="linkbox"><a href="https://www.nature.com/naturecareers/jobs/">Nature Careers</a></div>
+    </div>
+    <div class="card">
+      <h3>Academic Twitter / X and Bluesky</h3>
+      <p>Many labs post opportunities informally. Search hashtags and follow lab accounts.</p>
+      <div class="linkbox">Search terms: #neuroscience #PhDPosition #RAship #postdoc #neuroimaging #compneuro</div>
+    </div>
+    <div class="card">
+      <h3>Lab websites</h3>
+      <p>Many openings never appear on job portals. Check the “Join us”, “Opportunities”, “Positions”, or “People” pages of labs you like.</p>
+    </div>
+  </div>
+</section>
+
+<section id="plan">
+  <h2>30-day action plan</h2>
+  <div class="grid">
+    <div class="card">
+      <span class="tag">Week 1</span>
+      <h3>Pick lane + build tracker</h3>
+      <ul>
+        <li>Choose 2–3 research themes.</li>
+        <li>Write 5 keywords for each theme.</li>
+        <li>Make a spreadsheet of labs and PIs.</li>
+        <li>Save 3 papers from each shortlisted lab.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag">Week 2</span>
+      <h3>Build one proof project</h3>
+      <ul>
+        <li>Pick one project idea related to your lane.</li>
+        <li>Create a small analysis / literature map / notebook.</li>
+        <li>Make 1–2 clean figures or summaries.</li>
+        <li>Write a short README.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag">Week 3</span>
+      <h3>Prepare materials</h3>
+      <ul>
+        <li>Make a one-page CV.</li>
+        <li>Write 2 email templates.</li>
+        <li>Customize each email for the lab.</li>
+        <li>Upload project proof to GitHub/Drive/portfolio.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag">Week 4</span>
+      <h3>Apply and follow up</h3>
+      <ul>
+        <li>Email 8–12 carefully selected labs.</li>
+        <li>Apply to 3–5 listed opportunities.</li>
+        <li>Track replies and follow up after 7–10 days.</li>
+        <li>Keep improving your project while waiting.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Final checklist before emailing</h2>
+  <div class="card">
+    <ul>
+      <li>Did I mention the professor’s specific research area?</li>
+      <li>Did I show that I read at least one paper/project from the lab?</li>
+      <li>Did I clearly say whether I want an internship, RAship, or project role?</li>
+      <li>Did I include my CV?</li>
+      <li>Did I link one relevant project or proof of skill?</li>
+      <li>Is the email under 250–300 words?</li>
+      <li>Is the subject line specific?</li>
+    </ul>
+  </div>
+</section>
+
+<div class="footer">
+  <p><strong>Reminder:</strong> This guide is meant to help you approach neuroscience opportunities in a structured way. Always check the official institute or lab page for eligibility, deadlines, and current availability.</p>
+  <p class="mini">Last updated: June 2026</p>
+</div>
+
+</div>
+</body>
+</html>
