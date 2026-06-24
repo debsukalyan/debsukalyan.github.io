@@ -1,0 +1,1686 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Leading Neuroscience Conferences & Workshops — Global + India</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: #111a33;
+      --panel2: #17213d;
+      --text: #eef3ff;
+      --muted: #b9c4d8;
+      --accent: #70e1c8;
+      --accent2: #a9c7ff;
+      --gold: #ffd47a;
+      --pink: #ff9ab3;
+      --line: rgba(255,255,255,.12);
+      --shadow: 0 20px 60px rgba(0,0,0,.35);
+      --radius: 22px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 10% 10%, rgba(112,225,200,.18), transparent 32%),
+        radial-gradient(circle at 85% 0%, rgba(169,199,255,.18), transparent 30%),
+        linear-gradient(180deg, #080d19 0%, #0b1020 40%, #10162a 100%);
+      line-height: 1.55;
+    }
+    a { color: inherit; }
+    .wrap { max-width: 1240px; margin: 0 auto; padding: 28px; }
+    header {
+      padding: 54px 0 28px;
+      position: relative;
+    }
+    .eyebrow {
+      color: var(--accent);
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-size: .8rem;
+    }
+    h1 {
+      font-size: clamp(2.2rem, 5vw, 5.2rem);
+      line-height: .95;
+      margin: 12px 0 18px;
+      letter-spacing: -0.06em;
+      max-width: 1040px;
+    }
+    .lead { max-width: 920px; font-size: clamp(1.05rem, 1.6vw, 1.3rem); color: var(--muted); }
+    .hero-grid {
+      display:grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 30px;
+    }
+    .stat {
+      background: rgba(255,255,255,.06); border:1px solid var(--line); border-radius: var(--radius); padding: 18px;
+      box-shadow: var(--shadow);
+    }
+    .stat b { display:block; font-size: 1.8rem; color: var(--accent); }
+    .stat span { color: var(--muted); font-size: .92rem; }
+    .notice {
+      margin: 24px 0; padding: 18px 20px; border: 1px solid rgba(255,212,122,.35); background: rgba(255,212,122,.08); border-radius: var(--radius); color: #ffe8b3;
+    }
+    nav.sticky {
+      position: sticky; top: 0; z-index: 30; backdrop-filter: blur(14px);
+      background: rgba(8,13,25,.78); border-bottom: 1px solid var(--line);
+    }
+    .nav-inner { max-width:1240px; margin:0 auto; padding: 10px 28px; display:flex; gap:10px; align-items:center; overflow:auto; }
+    .nav-inner a { text-decoration:none; color: var(--muted); padding: 8px 12px; border-radius: 999px; white-space:nowrap; }
+    .nav-inner a:hover { background: rgba(255,255,255,.08); color: var(--text); }
+    section { margin: 46px 0; }
+    h2 { font-size: clamp(1.6rem, 3vw, 2.6rem); letter-spacing: -0.04em; margin:0 0 16px; }
+    .section-note { color: var(--muted); max-width: 900px; }
+    .toolbar {
+      display: grid; grid-template-columns: 1.3fr auto; gap: 12px; align-items:center; margin: 22px 0;
+    }
+    input[type="search"] {
+      width:100%; padding: 15px 18px; border-radius: 999px; border:1px solid var(--line); background: rgba(255,255,255,.08); color: var(--text); font-size: 1rem;
+      outline:none;
+    }
+    input[type="search"]::placeholder { color: #8290aa; }
+    .filter-row { display:flex; gap: 8px; flex-wrap: wrap; margin: 12px 0 0; }
+    button.filter, .toggle-btn {
+      border:1px solid var(--line); background: rgba(255,255,255,.07); color: var(--muted); padding: 9px 12px; border-radius: 999px; cursor:pointer;
+    }
+    button.filter.active, .toggle-btn.active { background: var(--accent); color:#071017; border-color: transparent; font-weight: 800; }
+    .cards { display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; }
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow);
+    }
+    .card-top { display:flex; justify-content: space-between; gap:10px; align-items:center; margin-bottom: 10px; }
+    .badge, .tier { font-size:.75rem; border-radius:999px; padding: 5px 9px; font-weight: 800; }
+    .scope-global { background: rgba(169,199,255,.16); color: #d8e4ff; }
+    .scope-india { background: rgba(112,225,200,.16); color: #c5fff2; }
+    .tier { background: rgba(255,212,122,.13); color: var(--gold); text-align:right; }
+    .card h3 { margin: 4px 0 6px; font-size: 1.12rem; line-height:1.2; letter-spacing: -0.02em; }
+    .meta { color: var(--muted); font-size:.9rem; margin-top:0; }
+    .grid2 { display:grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 14px 0; }
+    .grid2 p { margin:0; background: rgba(0,0,0,.18); border:1px solid var(--line); border-radius: 14px; padding: 10px; font-size: .88rem; }
+    .grid2 span { display:block; color: var(--accent2); font-size:.73rem; text-transform: uppercase; letter-spacing: .06em; font-weight: 800; margin-bottom:2px; }
+    .tags { display:flex; gap:6px; flex-wrap:wrap; margin: 12px 0; }
+    .chip { font-size:.74rem; color:#ccf8ef; background: rgba(112,225,200,.09); border:1px solid rgba(112,225,200,.25); padding:4px 8px; border-radius:999px; }
+    .btn { display:inline-flex; text-decoration:none; margin-top: 8px; background: rgba(255,255,255,.1); border:1px solid var(--line); padding:10px 12px; border-radius: 12px; font-weight:800; color: var(--text); }
+    .btn:hover { background: var(--accent); color:#071017; }
+    .two-col { display:grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .box { background: rgba(255,255,255,.06); border:1px solid var(--line); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); }
+    .pathway { margin: 0 0 14px; padding: 16px; border-radius: 18px; background: rgba(0,0,0,.18); border:1px solid var(--line); }
+    .pathway h3 { margin:0 0 6px; }
+    .pathway p { margin:0; color: var(--muted); }
+    table { width:100%; border-collapse: collapse; overflow:hidden; border-radius: 18px; }
+    th, td { padding: 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    th { text-align:left; color: var(--accent); background: rgba(255,255,255,.06); }
+    td { color: var(--muted); }
+    td:first-child { color: var(--text); font-weight: 700; }
+    .calendar { display:grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .month { padding: 14px; background: rgba(255,255,255,.06); border:1px solid var(--line); border-radius: 18px; }
+    .month b { display:block; color: var(--accent2); margin-bottom: 6px; }
+    .month p { margin: 0; color: var(--muted); font-size:.92rem; }
+    footer { margin: 60px 0 20px; padding-top: 24px; border-top: 1px solid var(--line); color: var(--muted); }
+    .hidden { display:none !important; }
+    .count { color: var(--accent); font-weight: 800; }
+    @media (max-width: 1000px) { .cards { grid-template-columns: repeat(2, minmax(0,1fr)); } .hero-grid, .calendar { grid-template-columns: repeat(2, 1fr); } .toolbar { grid-template-columns:1fr; } }
+    @media (max-width: 680px) { .wrap { padding:20px; } .cards, .two-col { grid-template-columns: 1fr; } .grid2 { grid-template-columns:1fr; } .hero-grid, .calendar { grid-template-columns:1fr; } h1 { font-size:2.5rem; } }
+    @media print { body { background:white; color:#111; } nav.sticky, .toolbar, .btn { display:none; } .card,.box,.stat { box-shadow:none; background:white; border:1px solid #ddd; color:#111; } .muted,.meta,p,td { color:#333; } }
+  </style>
+</head>
+<body>
+  <nav class="sticky">
+    <div class="nav-inner">
+      <a href="#top">Top</a>
+      <a href="#how">How to use</a>
+      <a href="#catalogue">Catalogue</a>
+      <a href="#india">India strategy</a>
+      <a href="#pathways">Pathways</a>
+      <a href="#watchlist">Watchlist</a>
+      <a href="#redflags">Avoid predatory events</a>
+    </div>
+  </nav>
+
+  <main class="wrap" id="top">
+    <header>
+      <div class="eyebrow">Neuroscience conference roadmap · Global + India</div>
+      <h1>Leading neuroscience conferences and workshops worth tracking</h1>
+      <p class="lead">A practical, searchable HTML guide for students and researchers who want to know where to present, learn methods, network, find collaborators, and discover PhD/postdoc/RA opportunities in neuroscience.</p>
+      <div class="hero-grid">
+        <div class="stat"><b>46</b><span>global flagship/specialist entries</span></div>
+        <div class="stat"><b>23</b><span>India-focused entries</span></div>
+        <div class="stat"><b>15</b><span>extra watchlist items</span></div>
+        <div class="stat"><b>24 June 2026</b><span>last source check</span></div>
+      </div>
+      <div class="notice"><strong>Important:</strong> Dates, cities, abstract deadlines and visa rules change. Use this as a curated map, but verify details on each official link before booking travel, paying registration, or submitting an abstract.</div>
+    </header>
+
+    <section id="how">
+      <h2>How to use this guide</h2>
+      <div class="two-col">
+        <div class="box">
+          <h3>Use conferences for different jobs</h3>
+          <p><strong>Big flagship meetings</strong> are best for exposure, networking, job hunting and broad field awareness. <strong>Specialist conferences</strong> are better for serious scientific feedback. <strong>Workshops and schools</strong> are often the highest return for students because they build skills and close mentoring gaps.</p>
+        </div>
+        <div class="box">
+          <h3>Do not chase “international” labels blindly</h3>
+          <p>A smaller, society-backed workshop can be far more valuable than a generic international conference. Prioritise official societies, named programme committees, transparent abstract review, real speakers, travel awards, and a clear scientific community.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="catalogue">
+      <h2>Searchable catalogue</h2>
+      <p class="section-note">Search by field, method, country, society, or tag. Examples: <em>fMRI</em>, <em>emotion</em>, <em>India</em>, <em>computational</em>, <em>clinical</em>, <em>workshop</em>, <em>BCI</em>.</p>
+      <div class="toolbar">
+        <input type="search" id="search" placeholder="Search conferences and workshops...">
+        <div>
+          <button class="toggle-btn active" data-scope="all">All</button>
+          <button class="toggle-btn" data-scope="global">Global</button>
+          <button class="toggle-btn" data-scope="india">India</button>
+        </div>
+      </div>
+      <div class="filter-row">
+        <button class="filter active" data-filter-type="category" data-filter="all">All categories</button>
+        <button class="filter" data-filter-type="category" data-filter="AI + neuroscience adjacent">AI + neuroscience adjacent</button><button class="filter" data-filter-type="category" data-filter="Affective science">Affective science</button><button class="filter" data-filter-type="category" data-filter="Aging / neurodegeneration">Aging / neurodegeneration</button><button class="filter" data-filter-type="category" data-filter="Basic neuroscience / brain and mind">Basic neuroscience / brain and mind</button><button class="filter" data-filter-type="category" data-filter="Biological psychiatry / translational neuroscience">Biological psychiatry / translational neuroscience</button><button class="filter" data-filter-type="category" data-filter="Brain–computer interfaces">Brain–computer interfaces</button><button class="filter" data-filter-type="category" data-filter="Clinical neurology">Clinical neurology</button><button class="filter" data-filter-type="category" data-filter="Clinical neuropsychology and cognitive neuroscience">Clinical neuropsychology and cognitive neuroscience</button><button class="filter" data-filter-type="category" data-filter="Clinical neuroscience / psychiatry / methods training">Clinical neuroscience / psychiatry / methods training</button><button class="filter" data-filter-type="category" data-filter="Clinical psychology / neurofeedback / applied neuroscience">Clinical psychology / neurofeedback / applied neuroscience</button><button class="filter" data-filter-type="category" data-filter="Cognitive computational neuroscience">Cognitive computational neuroscience</button><button class="filter" data-filter-type="category" data-filter="Cognitive neuroscience">Cognitive neuroscience</button><button class="filter" data-filter-type="category" data-filter="Cognitive neuroscience workshop">Cognitive neuroscience workshop</button><button class="filter" data-filter-type="category" data-filter="Cognitive science / AI / mind and brain">Cognitive science / AI / mind and brain</button><button class="filter" data-filter-type="category" data-filter="Cognitive science and cognitive neuroscience">Cognitive science and cognitive neuroscience</button><button class="filter" data-filter-type="category" data-filter="Computational and systems neuroscience">Computational and systems neuroscience</button><button class="filter" data-filter-type="category" data-filter="Computational neuroscience">Computational neuroscience</button><button class="filter" data-filter-type="category" data-filter="Consciousness / cognition / AI workshop">Consciousness / cognition / AI workshop</button><button class="filter" data-filter-type="category" data-filter="Consciousness science">Consciousness science</button><button class="filter" data-filter-type="category" data-filter="Epilepsy">Epilepsy</button><button class="filter" data-filter-type="category" data-filter="Epilepsy / clinical neuroscience">Epilepsy / clinical neuroscience</button><button class="filter" data-filter-type="category" data-filter="Experimental cognition and behaviour">Experimental cognition and behaviour</button><button class="filter" data-filter-type="category" data-filter="Flagship general neuroscience">Flagship general neuroscience</button><button class="filter" data-filter-type="category" data-filter="Focused frontier meetings">Focused frontier meetings</button><button class="filter" data-filter-type="category" data-filter="Institutional life-science/neuroscience events">Institutional life-science/neuroscience events</button><button class="filter" data-filter-type="category" data-filter="Institutional neuroscience events">Institutional neuroscience events</button><button class="filter" data-filter-type="category" data-filter="MRI / imaging technology">MRI / imaging technology</button><button class="filter" data-filter-type="category" data-filter="Mind, brain, consciousness / interdisciplinary">Mind, brain, consciousness / interdisciplinary</button><button class="filter" data-filter-type="category" data-filter="Molecular, cellular, circuits, disease">Molecular, cellular, circuits, disease</button><button class="filter" data-filter-type="category" data-filter="Movement disorders">Movement disorders</button><button class="filter" data-filter-type="category" data-filter="National flagship neuroscience">National flagship neuroscience</button><button class="filter" data-filter-type="category" data-filter="Neural engineering">Neural engineering</button><button class="filter" data-filter-type="category" data-filter="Neurochemistry / molecular neuroscience">Neurochemistry / molecular neuroscience</button><button class="filter" data-filter-type="category" data-filter="Neurodegeneration">Neurodegeneration</button><button class="filter" data-filter-type="category" data-filter="Neurodegeneration / dementia">Neurodegeneration / dementia</button><button class="filter" data-filter-type="category" data-filter="Neurodevelopment / methods workshop">Neurodevelopment / methods workshop</button><button class="filter" data-filter-type="category" data-filter="Neuroengineering / biomedical engineering">Neuroengineering / biomedical engineering</button><button class="filter" data-filter-type="category" data-filter="Neuroethics and society">Neuroethics and society</button><button class="filter" data-filter-type="category" data-filter="Neuroimaging and brain mapping">Neuroimaging and brain mapping</button><button class="filter" data-filter-type="category" data-filter="Neuroinformatics and open science">Neuroinformatics and open science</button><button class="filter" data-filter-type="category" data-filter="Neuropsychopharmacology / psychiatry">Neuropsychopharmacology / psychiatry</button><button class="filter" data-filter-type="category" data-filter="Neurosurgery / neurological sciences">Neurosurgery / neurological sciences</button><button class="filter" data-filter-type="category" data-filter="Neurotechnology and large-scale neuroscience">Neurotechnology and large-scale neuroscience</button><button class="filter" data-filter-type="category" data-filter="Open science / neuroimaging workshop">Open science / neuroimaging workshop</button><button class="filter" data-filter-type="category" data-filter="Opportunity portal">Opportunity portal</button><button class="filter" data-filter-type="category" data-filter="Psychological science adjacent to neuroscience">Psychological science adjacent to neuroscience</button><button class="filter" data-filter-type="category" data-filter="Psychology adjacent to cognitive neuroscience">Psychology adjacent to cognitive neuroscience</button><button class="filter" data-filter-type="category" data-filter="Psychophysiology and methods">Psychophysiology and methods</button><button class="filter" data-filter-type="category" data-filter="Regional flagship neuroscience">Regional flagship neuroscience</button><button class="filter" data-filter-type="category" data-filter="Sleep and circadian neuroscience">Sleep and circadian neuroscience</button><button class="filter" data-filter-type="category" data-filter="Sleep medicine / sleep science">Sleep medicine / sleep science</button><button class="filter" data-filter-type="category" data-filter="Sleep research">Sleep research</button><button class="filter" data-filter-type="category" data-filter="Social and affective neuroscience">Social and affective neuroscience</button><button class="filter" data-filter-type="category" data-filter="Social neuroscience">Social neuroscience</button><button class="filter" data-filter-type="category" data-filter="Training and specialist workshops">Training and specialist workshops</button><button class="filter" data-filter-type="category" data-filter="Training school">Training school</button><button class="filter" data-filter-type="category" data-filter="Vision, perception and attention">Vision, perception and attention</button><button class="filter" data-filter-type="category" data-filter="Workshop / methods training">Workshop / methods training</button><button class="filter" data-filter-type="category" data-filter="Workshop / training school">Workshop / training school</button>
+      </div>
+      <p><span class="count" id="count"></span> entries shown.</p>
+      <div class="cards" id="cards">
+        
+    <article class="card" data-scope="global" data-category="Flagship general neuroscience" data-tier="Must-track" data-tags="flagship poster networking career all-neuroscience" data-search="society for neuroscience — neuroscience annual meeting (sfn) global / north america flagship general neuroscience must-track annual october–november 2026: 14–18 nov, washington, dc; 2027: 23–27 oct, chicago usa, rotating almost everyone in neuroscience: cellular, systems, cognitive, computational, clinical, methods, industry the biggest all-domain neuroscience marketplace: posters, satellites, networking, tools, job hunting, and discovering labs across subfields. large conference + satellites + exhibitors https://www.sfn.org/meetings [&#x27;flagship&#x27;, &#x27;poster&#x27;, &#x27;networking&#x27;, &#x27;career&#x27;, &#x27;all-neuroscience&#x27;] submit an abstract early; also track satellite events, trainee sessions, and travel awards.">
+      <div class="card-top">
+        <span class="badge scope-global">Global</span>
+        <span class="tier">Must-track</span>
+      </div>
+      <h3>Society for Neuroscience — Neuroscience Annual Meeting (SfN)</h3>
+      <p class="meta"><strong>Flagship general neuroscience</strong> · Global / North America · Annual</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>October–November</p>
+        <p><span>Next / current known</span>2026: 14–18 Nov, Washington, DC; 2027: 23–27 Oct, Chicago</p>
+        <p><span>Location</span>USA, rotating</p>
+        <p><span>Format</span>Large conference + satellites + exhibitors</p>
+      </div>
+      <p><strong>Best for:</strong> Almost everyone in neuroscience: cellular, systems, cognitive, computational, clinical, methods, industry</p>
+      <p><strong>Why attend:</strong> The biggest all-domain neuroscience marketplace: posters, satellites, networking, tools, job hunting, and discovering labs across subfields.</p>
+      <p><strong>Action:</strong> Submit an abstract early; also track satellite events, trainee sessions, and travel awards.</p>
+      <div class="tags"><span class="chip">flagship</span><span class="chip">poster</span><span class="chip">networking</span><span class="chip">career</span><span class="chip">all-neuroscience</span></div>
+      <a class="btn" href="https://www.sfn.org/meetings" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="global" data-category="Flagship general neuroscience" data-tier="Must-track" data-tags="flagship europe poster workshops all-neuroscience" data-search="fens forum of neuroscience europe / global flagship general neuroscience must-track biennial june–july 2026: barcelona, 6–10 july europe, rotating researchers wanting european/global exposure across all fields of neuroscience europe’s broad flagship neuroscience forum, covering basic, cognitive, computational, translational and clinical neuroscience. large conference + symposia + technical workshops + posters https://www.fens.org/meetings/fens-forum [&#x27;flagship&#x27;, &#x27;europe&#x27;, &#x27;poster&#x27;, &#x27;workshops&#x27;, &#x27;all-neuroscience&#x27;] good target if you want broad international visibility without going to the us.">
+      <div class="card-top">
+        <span class="badge scope-global">Global</span>
+        <span class="tier">Must-track</span>
+      </div>
+      <h3>FENS Forum of Neuroscience</h3>
+      <p class="meta"><strong>Flagship general neuroscience</strong> · Europe / Global · Biennial</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>June–July</p>
+        <p><span>Next / current known</span>2026: Barcelona, 6–10 July</p>
+        <p><span>Location</span>Europe, rotating</p>
+        <p><span>Format</span>Large conference + symposia + technical workshops + posters</p>
+      </div>
+      <p><strong>Best for:</strong> Researchers wanting European/global exposure across all fields of neuroscience</p>
+      <p><strong>Why attend:</strong> Europe’s broad flagship neuroscience forum, covering basic, cognitive, computational, translational and clinical neuroscience.</p>
+      <p><strong>Action:</strong> Good target if you want broad international visibility without going to the US.</p>
+      <div class="tags"><span class="chip">flagship</span><span class="chip">Europe</span><span class="chip">poster</span><span class="chip">workshops</span><span class="chip">all-neuroscience</span></div>
+      <a class="btn" href="https://www.fens.org/meetings/fens-forum" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="global" data-category="Flagship general neuroscience" data-tier="Must-track" data-tags="flagship global-south travel-awards broad" data-search="ibro world congress of neuroscience global flagship general neuroscience must-track every ~4 years varies 2027: cape town, south africa, 13–16 september global, rotating international networking, especially across regional societies and early-career neuroscience communities ibro connects 100+ neuroscience societies and is especially valuable for global training, travel awards, and cross-country networks. world congress + symposia + posters + regional networking https://ibro.org/ibro-world-congress/ [&#x27;flagship&#x27;, &#x27;global-south&#x27;, &#x27;travel-awards&#x27;, &#x27;broad&#x27;] track travel grants early; deadlines can be much earlier than the meeting date.">
+      <div class="card-top">
+        <span class="badge scope-global">Global</span>
+        <span class="tier">Must-track</span>
+      </div>
+      <h3>IBRO World Congress of Neuroscience</h3>
+      <p class="meta"><strong>Flagship general neuroscience</strong> · Global · Every ~4 years</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>Varies</p>
+        <p><span>Next / current known</span>2027: Cape Town, South Africa, 13–16 September</p>
+        <p><span>Location</span>Global, rotating</p>
+        <p><span>Format</span>World congress + symposia + posters + regional networking</p>
+      </div>
+      <p><strong>Best for:</strong> International networking, especially across regional societies and early-career neuroscience communities</p>
+      <p><strong>Why attend:</strong> IBRO connects 100+ neuroscience societies and is especially valuable for global training, travel awards, and cross-country networks.</p>
+      <p><strong>Action:</strong> Track travel grants early; deadlines can be much earlier than the meeting date.</p>
+      <div class="tags"><span class="chip">flagship</span><span class="chip">global-south</span><span class="chip">travel-awards</span><span class="chip">broad</span></div>
+      <a class="btn" href="https://ibro.org/ibro-world-congress/" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="global" data-category="Regional flagship neuroscience" data-tier="Highly recommended" data-tags="asia regional poster networking" data-search="faons / asian-pacific neuroscience congress asia–oceania regional flagship neuroscience highly recommended periodic varies 2026: apsn–faons–hksn, hong kong, 23–26 august asia–oceania, rotating students and researchers in asia-pacific who want regional visibility and networks a strong regional platform for neuroscience education and collaboration across asian and oceanian societies. conference + symposia + posters https://www.faons.org/ [&#x27;asia&#x27;, &#x27;regional&#x27;, &#x27;poster&#x27;, &#x27;networking&#x27;] excellent alternative/complement to sfn/fens for india-based trainees.">
+      <div class="card-top">
+        <span class="badge scope-global">Global</span>
+        <span class="tier">Highly recommended</span>
+      </div>
+      <h3>FAONS / Asian-Pacific Neuroscience Congress</h3>
+      <p class="meta"><strong>Regional flagship neuroscience</strong> · Asia–Oceania · Periodic</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>Varies</p>
+        <p><span>Next / current known</span>2026: APSN–FAONS–HKSN, Hong Kong, 23–26 August</p>
+        <p><span>Location</span>Asia–Oceania, rotating</p>
+        <p><span>Format</span>Conference + symposia + posters</p>
+      </div>
+      <p><strong>Best for:</strong> Students and researchers in Asia-Pacific who want regional visibility and networks</p>
+      <p><strong>Why attend:</strong> A strong regional platform for neuroscience education and collaboration across Asian and Oceanian societies.</p>
+      <p><strong>Action:</strong> Excellent alternative/complement to SfN/FENS for India-based trainees.</p>
+      <div class="tags"><span class="chip">Asia</span><span class="chip">regional</span><span class="chip">poster</span><span class="chip">networking</span></div>
+      <a class="btn" href="https://www.faons.org/" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="global" data-category="Regional flagship neuroscience" data-tier="Highly recommended" data-tags="japan asia all-neuroscience poster" data-search="japan neuroscience society — neuro annual meeting japan / asia / global regional flagship neuroscience highly recommended annual july–august 2026: kobe, 30 july–2 august japan, rotating basic, systems, cognitive, computational and molecular neuroscience; japan/asia networking one of asia’s strongest neuroscience meetings; often jointly organised with neurochemistry/neural network societies. large national/international meeting https://neuro2026.jnss.org/en/outline.html [&#x27;japan&#x27;, &#x27;asia&#x27;, &#x27;all-neuroscience&#x27;, &#x27;poster&#x27;] check society travel awards and joint-session themes.">
+      <div class="card-top">
+        <span class="badge scope-global">Global</span>
+        <span class="tier">Highly recommended</span>
+      </div>
+      <h3>Japan Neuroscience Society — NEURO Annual Meeting</h3>
+      <p class="meta"><strong>Regional flagship neuroscience</strong> · Japan / Asia / Global · Annual</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>July–August</p>
+        <p><span>Next / current known</span>2026: Kobe, 30 July–2 August</p>
+        <p><span>Location</span>Japan, rotating</p>
+        <p><span>Format</span>Large national/international meeting</p>
+      </div>
+      <p><strong>Best for:</strong> Basic, systems, cognitive, computational and molecular neuroscience; Japan/Asia networking</p>
+      <p><strong>Why attend:</strong> One of Asia’s strongest neuroscience meetings; often jointly organised with neurochemistry/neural network societies.</p>
+      <p><strong>Action:</strong> Check society travel awards and joint-session themes.</p>
+      <div class="tags"><span class="chip">Japan</span><span class="chip">Asia</span><span class="chip">all-neuroscience</span><span class="chip">poster</span></div>
+      <a class="btn" href="https://neuro2026.jnss.org/en/outline.html" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="global" data-category="Regional flagship neuroscience" data-tier="Recommended" data-tags="canada poster broad career" data-search="canadian association for neuroscience — canadian neuroscience meeting canada / global regional flagship neuroscience recommended annual may 2026: montreal, 18–21 may canada, rotating neuroscience students and postdocs looking at canadian labs, postdocs, and collaborations a strong broad neuroscience meeting with good access to canadian neuroscience leaders and training networks. conference + posters + public lectures https://can-acn.org/meeting-2026/ [&#x27;canada&#x27;, &#x27;poster&#x27;, &#x27;broad&#x27;, &#x27;career&#x27;] useful if applying to canadian phd/postdoc labs.">
+      <div class="card-top">
+        <span class="badge scope-global">Global</span>
+        <span class="tier">Recommended</span>
+      </div>
+      <h3>Canadian Association for Neuroscience — Canadian Neuroscience Meeting</h3>
+      <p class="meta"><strong>Regional flagship neuroscience</strong> · Canada / Global · Annual</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>May</p>
+        <p><span>Next / current known</span>2026: Montreal, 18–21 May</p>
+        <p><span>Location</span>Canada, rotating</p>
+        <p><span>Format</span>Conference + posters + public lectures</p>
+      </div>
+      <p><strong>Best for:</strong> Neuroscience students and postdocs looking at Canadian labs, postdocs, and collaborations</p>
+      <p><strong>Why attend:</strong> A strong broad neuroscience meeting with good access to Canadian neuroscience leaders and training networks.</p>
+      <p><strong>Action:</strong> Useful if applying to Canadian PhD/postdoc labs.</p>
+      <div class="tags"><span class="chip">Canada</span><span class="chip">poster</span><span class="chip">broad</span><span class="chip">career</span></div>
+      <a class="btn" href="https://can-acn.org/meeting-2026/" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="global" data-category="Regional flagship neuroscience" data-tier="Recommended" data-tags="australia cognitive biological-psychiatry poster" data-search="australasian neuroscience society / neuroalliance australia–new zealand / global regional flagship neuroscience recommended annual november–december 2026: sydney, 29 nov–2 dec; joint with acns and bpa australia, rotating neuroscience, cognitive neuroscience and biological psychiatry links in australia/new zealand good regional meeting for neuroscience plus cognition and biological psychiatry, especially for students considering australia. conference + posters + society sessions https://www.ans.org.au/meetings-events/future-ans-conferences [&#x27;australia&#x27;, &#x27;cognitive&#x27;, &#x27;biological-psychiatry&#x27;, &#x27;poster&#x27;] track member discounts and student awards.">
+      <div class="card-top">
+        <span class="badge scope-global">Global</span>
+        <span class="tier">Recommended</span>
+      </div>
+      <h3>Australasian Neuroscience Society / NeuroAlliance</h3>
+      <p class="meta"><strong>Regional flagship neuroscience</strong> · Australia–New Zealand / Global · Annual</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>November–December</p>
+        <p><span>Next / current known</span>2026: Sydney, 29 Nov–2 Dec; joint with ACNS and BPA</p>
+        <p><span>Location</span>Australia, rotating</p>
+        <p><span>Format</span>Conference + posters + society sessions</p>
+      </div>
+      <p><strong>Best for:</strong> Neuroscience, cognitive neuroscience and biological psychiatry links in Australia/New Zealand</p>
+      <p><strong>Why attend:</strong> Good regional meeting for neuroscience plus cognition and biological psychiatry, especially for students considering Australia.</p>
+      <p><strong>Action:</strong> Track member discounts and student awards.</p>
+      <div class="tags"><span class="chip">Australia</span><span class="chip">cognitive</span><span class="chip">biological-psychiatry</span><span class="chip">poster</span></div>
+      <a class="btn" href="https://www.ans.org.au/meetings-events/future-ans-conferences" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="global" data-category="Cognitive neuroscience" data-tier="Must-track for cognitive neuroscience" data-tags="cognitive fmri eeg behaviour poster" data-search="cognitive neuroscience society — cns annual meeting north america / global cognitive neuroscience must-track for cognitive neuroscience annual march–april 2026: vancouver, 7–10 march; 2027: boston, 20–23 march north america, rotating human cognition, attention, memory, emotion, language, neuroimaging, eeg/meg, behaviour a focused annual home for cognitive neuroscience where behavioural, computational and imaging approaches meet. conference + symposia + posters + trainee events https://www.cogneurosociety.org/annual-meeting/ [&#x27;cognitive&#x27;, &#x27;fmri&#x27;, &#x27;eeg&#x27;, &#x27;behaviour&#x27;, &#x27;poster&#x27;] best global meeting for your kind of reward–cognition–emotion work after ohbm/sfn.">
+      <div class="card-top">
+        <span class="badge scope-global">Global</span>
+        <span class="tier">Must-track for cognitive neuroscience</span>
+      </div>
+      <h3>Cognitive Neuroscience Society — CNS Annual Meeting</h3>
+      <p class="meta"><strong>Cognitive neuroscience</strong> · North America / Global · Annual</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>March–April</p>
+        <p><span>Next / current known</span>2026: Vancouver, 7–10 March; 2027: Boston, 20–23 March</p>
+        <p><span>Location</span>North America, rotating</p>
+        <p><span>Format</span>Conference + symposia + posters + trainee events</p>
+      </div>
+      <p><strong>Best for:</strong> Human cognition, attention, memory, emotion, language, neuroimaging, EEG/MEG, behaviour</p>
+      <p><strong>Why attend:</strong> A focused annual home for cognitive neuroscience where behavioural, computational and imaging approaches meet.</p>
+      <p><strong>Action:</strong> Best global meeting for your kind of reward–cognition–emotion work after OHBM/SfN.</p>
+      <div class="tags"><span class="chip">cognitive</span><span class="chip">fMRI</span><span class="chip">EEG</span><span class="chip">behaviour</span><span class="chip">poster</span></div>
+      <a class="btn" href="https://www.cogneurosociety.org/annual-meeting/" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="global" data-category="Neuroimaging and brain mapping" data-tier="Must-track for neuroimaging" data-tags="fmri neuroimaging connectomics open-science brainhack" data-search="organization for human brain mapping — ohbm annual meeting global neuroimaging and brain mapping must-track for neuroimaging annual june 2026: bordeaux, 14–18 june; 2027: toronto, 26–30 june global, rotating fmri, mri, m/eeg, brain mapping, connectomics, computational neuroimaging, open science the main international home for human brain mapping and neuroimaging methods, with educational forums and hackathons. conference + educational courses + posters + hackathons https://www.humanbrainmapping.org/futuremeetings/ [&#x27;fmri&#x27;, &#x27;neuroimaging&#x27;, &#x27;connectomics&#x27;, &#x27;open-science&#x27;, &#x27;brainhack&#x27;] prioritise if your work has neuroimaging methods, connectivity, decoding or reproducibility components.">
+      <div class="card-top">
+        <span class="badge scope-global">Global</span>
+        <span class="tier">Must-track for neuroimaging</span>
+      </div>
+      <h3>Organization for Human Brain Mapping — OHBM Annual Meeting</h3>
+      <p class="meta"><strong>Neuroimaging and brain mapping</strong> · Global · Annual</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>June</p>
+        <p><span>Next / current known</span>2026: Bordeaux, 14–18 June; 2027: Toronto, 26–30 June</p>
+        <p><span>Location</span>Global, rotating</p>
+        <p><span>Format</span>Conference + educational courses + posters + hackathons</p>
+      </div>
+      <p><strong>Best for:</strong> fMRI, MRI, M/EEG, brain mapping, connectomics, computational neuroimaging, open science</p>
+      <p><strong>Why attend:</strong> The main international home for human brain mapping and neuroimaging methods, with educational forums and hackathons.</p>
+      <p><strong>Action:</strong> Prioritise if your work has neuroimaging methods, connectivity, decoding or reproducibility components.</p>
+      <div class="tags"><span class="chip">fMRI</span><span class="chip">neuroimaging</span><span class="chip">connectomics</span><span class="chip">open-science</span><span class="chip">brainhack</span></div>
+      <a class="btn" href="https://www.humanbrainmapping.org/FutureMeetings/" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="global" data-category="Computational and systems neuroscience" data-tier="Must-track for comp/systems" data-tags="computational systems modelling workshops selective" data-search="cosyne — computational and systems neuroscience europe / north america / global computational and systems neuroscience must-track for comp/systems annual march 2026: lisbon/cascais, 12–17 march; 2027: montreal, 11–16 march alternates europe/north america systems neuroscience, theoretical neuroscience, neural coding, decision-making, behaviour, modelling a highly selective and influential meeting bridging experimental and theoretical neuroscience. main meeting + workshops https://www.cosyne.org/ [&#x27;computational&#x27;, &#x27;systems&#x27;, &#x27;modelling&#x27;, &#x27;workshops&#x27;, &#x27;selective&#x27;] submit strong, concise work; workshops are often as valuable as the main meeting.">
+      <div class="card-top">
+        <span class="badge scope-global">Global</span>
+        <span class="tier">Must-track for comp/systems</span>
+      </div>
+      <h3>COSYNE — Computational and Systems Neuroscience</h3>
+      <p class="meta"><strong>Computational and systems neuroscience</strong> · Europe / North America / Global · Annual</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>March</p>
+        <p><span>Next / current known</span>2026: Lisbon/Cascais, 12–17 March; 2027: Montreal, 11–16 March</p>
+        <p><span>Location</span>Alternates Europe/North America</p>
+        <p><span>Format</span>Main meeting + workshops</p>
+      </div>
+      <p><strong>Best for:</strong> Systems neuroscience, theoretical neuroscience, neural coding, decision-making, behaviour, modelling</p>
+      <p><strong>Why attend:</strong> A highly selective and influential meeting bridging experimental and theoretical neuroscience.</p>
+      <p><strong>Action:</strong> Submit strong, concise work; workshops are often as valuable as the main meeting.</p>
+      <div class="tags"><span class="chip">computational</span><span class="chip">systems</span><span class="chip">modelling</span><span class="chip">workshops</span><span class="chip">selective</span></div>
+      <a class="btn" href="https://www.cosyne.org/" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="global" data-category="Cognitive computational neuroscience" data-tier="Must-track for cognition + AI + models" data-tags="ai cognitive computational models single-track" data-search="ccn — cognitive computational neuroscience global cognitive computational neuroscience must-track for cognition + ai + models annual august 2026: new york university, 3–6 august global, rotating computational models of cognition, ai–brain comparisons, behaviour, neural data, theory focused on how cognition is implemented in brains and models; excellent bridge between cognitive science, ai and neuroscience. single-track conference + tutorials/discussions https://2026.ccneuro.org/ [&#x27;ai&#x27;, &#x27;cognitive&#x27;, &#x27;computational&#x27;, &#x27;models&#x27;, &#x27;single-track&#x27;] useful if you want to connect cognitive neuroscience with modelling/mvpa/hddm.">
+      <div class="card-top">
+        <span class="badge scope-global">Global</span>
+        <span class="tier">Must-track for cognition + AI + models</span>
+      </div>
+      <h3>CCN — Cognitive Computational Neuroscience</h3>
+      <p class="meta"><strong>Cognitive computational neuroscience</strong> · Global · Annual</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>August</p>
+        <p><span>Next / current known</span>2026: New York University, 3–6 August</p>
+        <p><span>Location</span>Global, rotating</p>
+        <p><span>Format</span>Single-track conference + tutorials/discussions</p>
+      </div>
+      <p><strong>Best for:</strong> Computational models of cognition, AI–brain comparisons, behaviour, neural data, theory</p>
+      <p><strong>Why attend:</strong> Focused on how cognition is implemented in brains and models; excellent bridge between cognitive science, AI and neuroscience.</p>
+      <p><strong>Action:</strong> Useful if you want to connect cognitive neuroscience with modelling/MVPA/HDDM.</p>
+      <div class="tags"><span class="chip">AI</span><span class="chip">cognitive</span><span class="chip">computational</span><span class="chip">models</span><span class="chip">single-track</span></div>
+      <a class="btn" href="https://2026.ccneuro.org/" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="global" data-category="Computational neuroscience" data-tier="Highly recommended" data-tags="computational theory models training" data-search="cns* — annual computational neuroscience meeting, ocns global computational neuroscience highly recommended annual july 2026: halifax, 11–15 july global, rotating computational neuroscience, mathematical modelling, neural dynamics, simulation, theory a dedicated forum for computational neuroscience with a strong young-scientist presentation culture. conference + posters + workshops/tutorials https://www.cnsorg.org/cns-2026 [&#x27;computational&#x27;, &#x27;theory&#x27;, &#x27;models&#x27;, &#x27;training&#x27;] good for model-heavy work and early-career visibility.">
+      <div class="card-top">
+        <span class="badge scope-global">Global</span>
+        <span class="tier">Highly recommended</span>
+      </div>
+      <h3>CNS* — Annual Computational Neuroscience Meeting, OCNS</h3>
+      <p class="meta"><strong>Computational neuroscience</strong> · Global · Annual</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>July</p>
+        <p><span>Next / current known</span>2026: Halifax, 11–15 July</p>
+        <p><span>Location</span>Global, rotating</p>
+        <p><span>Format</span>Conference + posters + workshops/tutorials</p>
+      </div>
+      <p><strong>Best for:</strong> Computational neuroscience, mathematical modelling, neural dynamics, simulation, theory</p>
+      <p><strong>Why attend:</strong> A dedicated forum for computational neuroscience with a strong young-scientist presentation culture.</p>
+      <p><strong>Action:</strong> Good for model-heavy work and early-career visibility.</p>
+      <div class="tags"><span class="chip">computational</span><span class="chip">theory</span><span class="chip">models</span><span class="chip">training</span></div>
+      <a class="btn" href="https://www.cnsorg.org/cns-2026" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="global" data-category="Computational neuroscience" data-tier="Highly recommended" data-tags="europe computational network-neuroscience theory" data-search="bernstein conference europe / global computational neuroscience highly recommended annual september–october 2026: frankfurt, 28 sept–1 oct; 2027: lausanne, 15–18 sept europe, rotating/recurring computational neuroscience, network neuroscience, theory, modelling, neurotechnology links europe’s major computational neuroscience meeting, especially strong for theoretical and network approaches. conference + contributed talks + posters + satellite workshops https://bernstein-network.de/en/bernstein-conference/bernstein-conference-2026/ [&#x27;europe&#x27;, &#x27;computational&#x27;, &#x27;network-neuroscience&#x27;, &#x27;theory&#x27;] excellent if you want europe-based computational neuroscience contacts.">
+      <div class="card-top">
+        <span class="badge scope-global">Global</span>
+        <span class="tier">Highly recommended</span>
+      </div>
+      <h3>Bernstein Conference</h3>
+      <p class="meta"><strong>Computational neuroscience</strong> · Europe / Global · Annual</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>September–October</p>
+        <p><span>Next / current known</span>2026: Frankfurt, 28 Sept–1 Oct; 2027: Lausanne, 15–18 Sept</p>
+        <p><span>Location</span>Europe, rotating/recurring</p>
+        <p><span>Format</span>Conference + contributed talks + posters + satellite workshops</p>
+      </div>
+      <p><strong>Best for:</strong> Computational neuroscience, network neuroscience, theory, modelling, neurotechnology links</p>
+      <p><strong>Why attend:</strong> Europe’s major computational neuroscience meeting, especially strong for theoretical and network approaches.</p>
+      <p><strong>Action:</strong> Excellent if you want Europe-based computational neuroscience contacts.</p>
+      <div class="tags"><span class="chip">Europe</span><span class="chip">computational</span><span class="chip">network-neuroscience</span><span class="chip">theory</span></div>
+      <a class="btn" href="https://bernstein-network.de/en/bernstein-conference/bernstein-conference-2026/" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="global" data-category="Workshop / training school" data-tier="Must-do for skill building" data-tags="training online computational coding project" data-search="neuromatch academy — computational neuroscience online / global workshop / training school must-do for skill building annual july runs as a recurring immersive online course online, multi-time-zone students entering computational neuroscience, modelling, coding, neural data analysis accessible, practical, project-based training in comp neuro; ideal before entering cosyne/ccn/cns* communities. 3-week online academy + tutorials + projects https://neuromatch.io/computational-neuroscience/ [&#x27;training&#x27;, &#x27;online&#x27;, &#x27;computational&#x27;, &#x27;coding&#x27;, &#x27;project&#x27;] recommend strongly to msc/early phd students, especially from india where travel budgets are limited.">
+      <div class="card-top">
+        <span class="badge scope-global">Global</span>
+        <span class="tier">Must-do for skill building</span>
+      </div>
+      <h3>Neuromatch Academy — Computational Neuroscience</h3>
+      <p class="meta"><strong>Workshop / training school</strong> · Online / Global · Annual</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>July</p>
+        <p><span>Next / current known</span>Runs as a recurring immersive online course</p>
+        <p><span>Location</span>Online, multi-time-zone</p>
+        <p><span>Format</span>3-week online academy + tutorials + projects</p>
+      </div>
+      <p><strong>Best for:</strong> Students entering computational neuroscience, modelling, coding, neural data analysis</p>
+      <p><strong>Why attend:</strong> Accessible, practical, project-based training in comp neuro; ideal before entering COSYNE/CCN/CNS* communities.</p>
+      <p><strong>Action:</strong> Recommend strongly to MSc/early PhD students, especially from India where travel budgets are limited.</p>
+      <div class="tags"><span class="chip">training</span><span class="chip">online</span><span class="chip">computational</span><span class="chip">coding</span><span class="chip">project</span></div>
+      <a class="btn" href="https://neuromatch.io/computational-neuroscience/" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="global" data-category="Neuroinformatics and open science" data-tier="Highly recommended for data/tool people" data-tags="open-science neuroinformatics fair tools workshops" data-search="incf neuroinformatics assembly global neuroinformatics and open science highly recommended for data/tool people annual/periodic varies check official assembly page for current cycle global / hybrid / rotating neuroinformatics, fair data, standards, reproducibility, pipelines, tools, infrastructure a practical meeting to learn tools and standards and meet developers/infrastructure providers. assembly + tutorials + sig meetings + training workshops https://www.incf.org/activities/incf-assembly [&#x27;open-science&#x27;, &#x27;neuroinformatics&#x27;, &#x27;fair&#x27;, &#x27;tools&#x27;, &#x27;workshops&#x27;] attend if your work involves datasets, pipelines, reproducibility, or bids/nwb-style standards.">
+      <div class="card-top">
+        <span class="badge scope-global">Global</span>
+        <span class="tier">Highly recommended for data/tool people</span>
+      </div>
+      <h3>INCF Neuroinformatics Assembly</h3>
+      <p class="meta"><strong>Neuroinformatics and open science</strong> · Global · Annual/periodic</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>Varies</p>
+        <p><span>Next / current known</span>Check official assembly page for current cycle</p>
+        <p><span>Location</span>Global / hybrid / rotating</p>
+        <p><span>Format</span>Assembly + tutorials + SIG meetings + training workshops</p>
+      </div>
+      <p><strong>Best for:</strong> Neuroinformatics, FAIR data, standards, reproducibility, pipelines, tools, infrastructure</p>
+      <p><strong>Why attend:</strong> A practical meeting to learn tools and standards and meet developers/infrastructure providers.</p>
+      <p><strong>Action:</strong> Attend if your work involves datasets, pipelines, reproducibility, or BIDS/NWB-style standards.</p>
+      <div class="tags"><span class="chip">open-science</span><span class="chip">neuroinformatics</span><span class="chip">FAIR</span><span class="chip">tools</span><span class="chip">workshops</span></div>
+      <a class="btn" href="https://www.incf.org/activities/incf-assembly" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="global" data-category="Molecular, cellular, circuits, disease" data-tier="Must-track for wet-lab/circuits" data-tags="molecular cellular circuits neurodegeneration focused" data-search="cold spring harbor laboratory — neuroscience meetings usa / global molecular, cellular, circuits, disease must-track for wet-lab/circuits multiple meetings yearly throughout year 2026 examples: glia, neuronal connectivity, biological data science, neurodegenerative diseases, 3d human brain modeling cold spring harbor, usa + select courses elsewhere molecular/cellular neuroscience, circuits, neurodegeneration, glia, brain modelling small-to-mid sized focused meetings with strong scientific depth and field-building conversations. focused meetings + posters + selected talks https://meetings.cshl.edu/neuroscience-meetings [&#x27;molecular&#x27;, &#x27;cellular&#x27;, &#x27;circuits&#x27;, &#x27;neurodegeneration&#x27;, &#x27;focused&#x27;] choose a cshl meeting when your project matches the specific theme closely.">
+      <div class="card-top">
+        <span class="badge scope-global">Global</span>
+        <span class="tier">Must-track for wet-lab/circuits</span>
+      </div>
+      <h3>Cold Spring Harbor Laboratory — Neuroscience Meetings</h3>
+      <p class="meta"><strong>Molecular, cellular, circuits, disease</strong> · USA / Global · Multiple meetings yearly</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>Throughout year</p>
+        <p><span>Next / current known</span>2026 examples: Glia, Neuronal Connectivity, Biological Data Science, Neurodegenerative Diseases, 3D Human Brain Modeling</p>
+        <p><span>Location</span>Cold Spring Harbor, USA + select courses elsewhere</p>
+        <p><span>Format</span>Focused meetings + posters + selected talks</p>
+      </div>
+      <p><strong>Best for:</strong> Molecular/cellular neuroscience, circuits, neurodegeneration, glia, brain modelling</p>
+      <p><strong>Why attend:</strong> Small-to-mid sized focused meetings with strong scientific depth and field-building conversations.</p>
+      <p><strong>Action:</strong> Choose a CSHL meeting when your project matches the specific theme closely.</p>
+      <div class="tags"><span class="chip">molecular</span><span class="chip">cellular</span><span class="chip">circuits</span><span class="chip">neurodegeneration</span><span class="chip">focused</span></div>
+      <a class="btn" href="https://meetings.cshl.edu/neuroscience-meetings" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="global" data-category="Workshop / methods training" data-tier="Must-track for hands-on methods" data-tags="training methods hands-on molecular imaging" data-search="cold spring harbor laboratory — neuroscience courses &amp; workshops usa / global workshop / methods training must-track for hands-on methods multiple courses yearly summer-heavy 2026 examples: advanced molecular neuroscience, drosophila neurobiology, computational neuroscience: vision, imaging structure &amp; function cold spring harbor, usa; selected international courses hands-on intensive methods training for graduate students and postdocs cshl courses are intensive, method-heavy, and highly respected; often more career-changing than a conference. residential hands-on courses/workshops https://meetings.cshl.edu/neuroscience-courses [&#x27;training&#x27;, &#x27;methods&#x27;, &#x27;hands-on&#x27;, &#x27;molecular&#x27;, &#x27;imaging&#x27;] apply early; applications often close months before the course.">
+      <div class="card-top">
+        <span class="badge scope-global">Global</span>
+        <span class="tier">Must-track for hands-on methods</span>
+      </div>
+      <h3>Cold Spring Harbor Laboratory — Neuroscience Courses &amp; Workshops</h3>
+      <p class="meta"><strong>Workshop / methods training</strong> · USA / Global · Multiple courses yearly</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>Summer-heavy</p>
+        <p><span>Next / current known</span>2026 examples: Advanced Molecular Neuroscience, Drosophila Neurobiology, Computational Neuroscience: Vision, Imaging Structure &amp; Function</p>
+        <p><span>Location</span>Cold Spring Harbor, USA; selected international courses</p>
+        <p><span>Format</span>Residential hands-on courses/workshops</p>
+      </div>
+      <p><strong>Best for:</strong> Hands-on intensive methods training for graduate students and postdocs</p>
+      <p><strong>Why attend:</strong> CSHL courses are intensive, method-heavy, and highly respected; often more career-changing than a conference.</p>
+      <p><strong>Action:</strong> Apply early; applications often close months before the course.</p>
+      <div class="tags"><span class="chip">training</span><span class="chip">methods</span><span class="chip">hands-on</span><span class="chip">molecular</span><span class="chip">imaging</span></div>
+      <a class="btn" href="https://meetings.cshl.edu/neuroscience-courses" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="global" data-category="Focused frontier meetings" data-tier="Highly recommended" data-tags="focused retreat unpublished trainee networking" data-search="gordon research conferences / gordon research seminars — neuroscience topics global / mostly usa &amp; europe focused frontier meetings highly recommended topic-specific, often biennial mostly summer/winter depending on topic 2026 example: neurobiology of cognition, 19–24 july, waterville valley, nh small retreat-style venues, rotating deep field-specific networking, unpublished work, faculty/postdoc discussions, phd seminar exposure grcs are designed for cutting-edge unpublished research and long discussions; grs editions are especially good for trainees. small residential conference + trainee seminar https://www.grc.org/neurobiology-of-cognition-conference/2026/ [&#x27;focused&#x27;, &#x27;retreat&#x27;, &#x27;unpublished&#x27;, &#x27;trainee&#x27;, &#x27;networking&#x27;] use grc/grs for deep networks, not just poster count. apply rather than just register.">
+      <div class="card-top">
+        <span class="badge scope-global">Global</span>
+        <span class="tier">Highly recommended</span>
+      </div>
+      <h3>Gordon Research Conferences / Gordon Research Seminars — Neuroscience Topics</h3>
+      <p class="meta"><strong>Focused frontier meetings</strong> · Global / mostly USA &amp; Europe · Topic-specific, often biennial</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>Mostly summer/winter depending on topic</p>
+        <p><span>Next / current known</span>2026 example: Neurobiology of Cognition, 19–24 July, Waterville Valley, NH</p>
+        <p><span>Location</span>Small retreat-style venues, rotating</p>
+        <p><span>Format</span>Small residential conference + trainee seminar</p>
+      </div>
+      <p><strong>Best for:</strong> Deep field-specific networking, unpublished work, faculty/postdoc discussions, PhD seminar exposure</p>
+      <p><strong>Why attend:</strong> GRCs are designed for cutting-edge unpublished research and long discussions; GRS editions are especially good for trainees.</p>
+      <p><strong>Action:</strong> Use GRC/GRS for deep networks, not just poster count. Apply rather than just register.</p>
+      <div class="tags"><span class="chip">focused</span><span class="chip">retreat</span><span class="chip">unpublished</span><span class="chip">trainee</span><span class="chip">networking</span></div>
+      <a class="btn" href="https://www.grc.org/neurobiology-of-cognition-conference/2026/" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="global" data-category="Workshop / training school" data-tier="Highly recommended for trainees" data-tags="training europe stipends early-career" data-search="fens schools / fens–ibro-perc training activities europe / global applicants depending on course workshop / training school highly recommended for trainees multiple yearly varies check fens training pages and school network calls europe, rotating msc, phd and postdoctoral researchers seeking short courses and european training networks a route into advanced neuroscience training with schools, stipends and exchange opportunities. short courses, schools, exchange programmes https://www.fens.org/careers/training-activities [&#x27;training&#x27;, &#x27;europe&#x27;, &#x27;stipends&#x27;, &#x27;early-career&#x27;] track stipend deadlines; they can make european courses realistic for students.">
+      <div class="card-top">
+        <span class="badge scope-global">Global</span>
+        <span class="tier">Highly recommended for trainees</span>
+      </div>
+      <h3>FENS Schools / FENS–IBRO-PERC Training Activities</h3>
+      <p class="meta"><strong>Workshop / training school</strong> · Europe / Global applicants depending on course · Multiple yearly</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>Varies</p>
+        <p><span>Next / current known</span>Check FENS training pages and school network calls</p>
+        <p><span>Location</span>Europe, rotating</p>
+        <p><span>Format</span>Short courses, schools, exchange programmes</p>
+      </div>
+      <p><strong>Best for:</strong> MSc, PhD and postdoctoral researchers seeking short courses and European training networks</p>
+      <p><strong>Why attend:</strong> A route into advanced neuroscience training with schools, stipends and exchange opportunities.</p>
+      <p><strong>Action:</strong> Track stipend deadlines; they can make European courses realistic for students.</p>
+      <div class="tags"><span class="chip">training</span><span class="chip">Europe</span><span class="chip">stipends</span><span class="chip">early-career</span></div>
+      <a class="btn" href="https://www.fens.org/careers/training-activities" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="global" data-category="Vision, perception and attention" data-tier="Must-track for vision science" data-tags="vision perception psychophysics attention poster" data-search="vision sciences society — vss annual meeting global / usa vision, perception and attention must-track for vision science annual may 2026: st. pete beach, florida, 15–19 may; 2027: seattle, 21–25 may usa, rotating/recurring visual perception, attention, psychophysics, cognitive neuroscience, computational vision the main meeting for vision science, with a dense programme of talks, posters, symposia, satellites and workshops. conference + workshops + satellites + posters https://www.visionsciences.org/future-meetings/ [&#x27;vision&#x27;, &#x27;perception&#x27;, &#x27;psychophysics&#x27;, &#x27;attention&#x27;, &#x27;poster&#x27;] excellent for behavioural + eye-tracking + perception research.">
+      <div class="card-top">
+        <span class="badge scope-global">Global</span>
+        <span class="tier">Must-track for vision science</span>
+      </div>
+      <h3>Vision Sciences Society — VSS Annual Meeting</h3>
+      <p class="meta"><strong>Vision, perception and attention</strong> · Global / USA · Annual</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>May</p>
+        <p><span>Next / current known</span>2026: St. Pete Beach, Florida, 15–19 May; 2027: Seattle, 21–25 May</p>
+        <p><span>Location</span>USA, rotating/recurring</p>
+        <p><span>Format</span>Conference + workshops + satellites + posters</p>
+      </div>
+      <p><strong>Best for:</strong> Visual perception, attention, psychophysics, cognitive neuroscience, computational vision</p>
+      <p><strong>Why attend:</strong> The main meeting for vision science, with a dense programme of talks, posters, symposia, satellites and workshops.</p>
+      <p><strong>Action:</strong> Excellent for behavioural + eye-tracking + perception research.</p>
+      <div class="tags"><span class="chip">vision</span><span class="chip">perception</span><span class="chip">psychophysics</span><span class="chip">attention</span><span class="chip">poster</span></div>
+      <a class="btn" href="https://www.visionsciences.org/future-meetings/" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="global" data-category="Consciousness science" data-tier="Must-track for consciousness research" data-tags="consciousness philosophy cognitive ai interdisciplinary" data-search="assc — association for the scientific study of consciousness global consciousness science must-track for consciousness research annual june–july 2026: santiago de chile, 30 june–3 july global, rotating consciousness, self, agency, perception, philosophy of mind, cognitive neuroscience, ai consciousness debates a focused interdisciplinary meeting for empirical and conceptual work on consciousness. conference + satellite meetings + tutorials https://theassc.org/assc-29/ [&#x27;consciousness&#x27;, &#x27;philosophy&#x27;, &#x27;cognitive&#x27;, &#x27;ai&#x27;, &#x27;interdisciplinary&#x27;] good for researchers working at the boundary of neuroscience, cognition, philosophy and ai.">
+      <div class="card-top">
+        <span class="badge scope-global">Global</span>
+        <span class="tier">Must-track for consciousness research</span>
+      </div>
+      <h3>ASSC — Association for the Scientific Study of Consciousness</h3>
+      <p class="meta"><strong>Consciousness science</strong> · Global · Annual</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>June–July</p>
+        <p><span>Next / current known</span>2026: Santiago de Chile, 30 June–3 July</p>
+        <p><span>Location</span>Global, rotating</p>
+        <p><span>Format</span>Conference + satellite meetings + tutorials</p>
+      </div>
+      <p><strong>Best for:</strong> Consciousness, self, agency, perception, philosophy of mind, cognitive neuroscience, AI consciousness debates</p>
+      <p><strong>Why attend:</strong> A focused interdisciplinary meeting for empirical and conceptual work on consciousness.</p>
+      <p><strong>Action:</strong> Good for researchers working at the boundary of neuroscience, cognition, philosophy and AI.</p>
+      <div class="tags"><span class="chip">consciousness</span><span class="chip">philosophy</span><span class="chip">cognitive</span><span class="chip">AI</span><span class="chip">interdisciplinary</span></div>
+      <a class="btn" href="https://theassc.org/assc-29/" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="global" data-category="Social and affective neuroscience" data-tier="Must-track for social/affective neuroscience" data-tags="emotion social affective motivation poster" data-search="social &amp; affective neuroscience society — sans annual conference global / north america social and affective neuroscience must-track for social/affective neuroscience annual april 2026: san diego, 15–18 april north america, rotating emotion, social cognition, affective neuroscience, motivation, interpersonal neuroscience focused meeting for brain mechanisms supporting emotion, motivation, social cognition and affective processes. conference + posters + special sessions https://socialaffectiveneuro.org/conference/ [&#x27;emotion&#x27;, &#x27;social&#x27;, &#x27;affective&#x27;, &#x27;motivation&#x27;, &#x27;poster&#x27;] very relevant for emotion–cognition/reward work.">
+      <div class="card-top">
+        <span class="badge scope-global">Global</span>
+        <span class="tier">Must-track for social/affective neuroscience</span>
+      </div>
+      <h3>Social &amp; Affective Neuroscience Society — SANS Annual Conference</h3>
+      <p class="meta"><strong>Social and affective neuroscience</strong> · Global / North America · Annual</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>April</p>
+        <p><span>Next / current known</span>2026: San Diego, 15–18 April</p>
+        <p><span>Location</span>North America, rotating</p>
+        <p><span>Format</span>Conference + posters + special sessions</p>
+      </div>
+      <p><strong>Best for:</strong> Emotion, social cognition, affective neuroscience, motivation, interpersonal neuroscience</p>
+      <p><strong>Why attend:</strong> Focused meeting for brain mechanisms supporting emotion, motivation, social cognition and affective processes.</p>
+      <p><strong>Action:</strong> Very relevant for emotion–cognition/reward work.</p>
+      <div class="tags"><span class="chip">emotion</span><span class="chip">social</span><span class="chip">affective</span><span class="chip">motivation</span><span class="chip">poster</span></div>
+      <a class="btn" href="https://socialaffectiveneuro.org/conference/" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="global" data-category="Affective science" data-tier="Highly recommended" data-tags="emotion affect computing psychology preconference" data-search="society for affective science — sas annual conference global / north america affective science highly recommended annual march–april 2026: pittsburgh, 12–14 march north america, rotating emotion, affective science, psychology, neuroscience, affective computing, social science broader than sans and useful when emotion research crosses psychology, neuroscience, computation and application. conference + preconferences + posters https://society-for-affective-science.org/2026-sas-annual-conference/ [&#x27;emotion&#x27;, &#x27;affect&#x27;, &#x27;computing&#x27;, &#x27;psychology&#x27;, &#x27;preconference&#x27;] good outlet for behavioural emotion and interdisciplinary affect work.">
+      <div class="card-top">
+        <span class="badge scope-global">Global</span>
+        <span class="tier">Highly recommended</span>
+      </div>
+      <h3>Society for Affective Science — SAS Annual Conference</h3>
+      <p class="meta"><strong>Affective science</strong> · Global / North America · Annual</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>March–April</p>
+        <p><span>Next / current known</span>2026: Pittsburgh, 12–14 March</p>
+        <p><span>Location</span>North America, rotating</p>
+        <p><span>Format</span>Conference + preconferences + posters</p>
+      </div>
+      <p><strong>Best for:</strong> Emotion, affective science, psychology, neuroscience, affective computing, social science</p>
+      <p><strong>Why attend:</strong> Broader than SANS and useful when emotion research crosses psychology, neuroscience, computation and application.</p>
+      <p><strong>Action:</strong> Good outlet for behavioural emotion and interdisciplinary affect work.</p>
+      <div class="tags"><span class="chip">emotion</span><span class="chip">affect</span><span class="chip">computing</span><span class="chip">psychology</span><span class="chip">preconference</span></div>
+      <a class="btn" href="https://society-for-affective-science.org/2026-sas-annual-conference/" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="global" data-category="Social neuroscience" data-tier="Recommended" data-tags="social cognition development poster" data-search="society for social neuroscience — s4sn annual meeting global / north america social neuroscience recommended annual varies 2026: montreal, 23–26 august north america, rotating social cognition, social behaviour, development, neuroscience of interpersonal processes focused social neuroscience community; smaller than sfn/sans and easier for targeted networking. conference + posters https://event.fourwaves.com/s4sn2026 [&#x27;social&#x27;, &#x27;cognition&#x27;, &#x27;development&#x27;, &#x27;poster&#x27;] best if your research question is explicitly social rather than only affective.">
+      <div class="card-top">
+        <span class="badge scope-global">Global</span>
+        <span class="tier">Recommended</span>
+      </div>
+      <h3>Society for Social Neuroscience — S4SN Annual Meeting</h3>
+      <p class="meta"><strong>Social neuroscience</strong> · Global / North America · Annual</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>Varies</p>
+        <p><span>Next / current known</span>2026: Montreal, 23–26 August</p>
+        <p><span>Location</span>North America, rotating</p>
+        <p><span>Format</span>Conference + posters</p>
+      </div>
+      <p><strong>Best for:</strong> Social cognition, social behaviour, development, neuroscience of interpersonal processes</p>
+      <p><strong>Why attend:</strong> Focused social neuroscience community; smaller than SfN/SANS and easier for targeted networking.</p>
+      <p><strong>Action:</strong> Best if your research question is explicitly social rather than only affective.</p>
+      <div class="tags"><span class="chip">social</span><span class="chip">cognition</span><span class="chip">development</span><span class="chip">poster</span></div>
+      <a class="btn" href="https://event.fourwaves.com/s4sn2026" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="global" data-category="Psychophysiology and methods" data-tier="Highly recommended for EEG/physiology" data-tags="eeg erp physiology methods workshops" data-search="society for psychophysiological research — spr annual meeting global / north america psychophysiology and methods highly recommended for eeg/physiology annual october 2026: halifax, 14–17 october north america, rotating eeg/erp, autonomic physiology, emotion, attention, stress, psychophysiological methods a strong methods-and-measurement meeting for linking physiological signals to cognition and behaviour. conference + pre-conference workshops + posters https://spr.joynmeeting.com/conference [&#x27;eeg&#x27;, &#x27;erp&#x27;, &#x27;physiology&#x27;, &#x27;methods&#x27;, &#x27;workshops&#x27;] great for eeg/erp, autonomic and psychophysiology-heavy studies.">
+      <div class="card-top">
+        <span class="badge scope-global">Global</span>
+        <span class="tier">Highly recommended for EEG/physiology</span>
+      </div>
+      <h3>Society for Psychophysiological Research — SPR Annual Meeting</h3>
+      <p class="meta"><strong>Psychophysiology and methods</strong> · Global / North America · Annual</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>October</p>
+        <p><span>Next / current known</span>2026: Halifax, 14–17 October</p>
+        <p><span>Location</span>North America, rotating</p>
+        <p><span>Format</span>Conference + pre-conference workshops + posters</p>
+      </div>
+      <p><strong>Best for:</strong> EEG/ERP, autonomic physiology, emotion, attention, stress, psychophysiological methods</p>
+      <p><strong>Why attend:</strong> A strong methods-and-measurement meeting for linking physiological signals to cognition and behaviour.</p>
+      <p><strong>Action:</strong> Great for EEG/ERP, autonomic and psychophysiology-heavy studies.</p>
+      <div class="tags"><span class="chip">EEG</span><span class="chip">ERP</span><span class="chip">physiology</span><span class="chip">methods</span><span class="chip">workshops</span></div>
+      <a class="btn" href="https://spr.joynmeeting.com/conference" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="global" data-category="Experimental cognition and behaviour" data-tier="Highly recommended for cognition" data-tags="behaviour cognition attention memory experimental" data-search="psychonomic society annual meeting global / north america experimental cognition and behaviour highly recommended for cognition annual november 2026: san diego, 19–22 november north america, rotating behavioural cognition, attention, memory, decision-making, perception, methods a premier meeting for experimental cognitive psychology; valuable even without neural data. conference + spoken presentations + posters https://www.psychonomic.org/page/futuremeetings [&#x27;behaviour&#x27;, &#x27;cognition&#x27;, &#x27;attention&#x27;, &#x27;memory&#x27;, &#x27;experimental&#x27;] good if the behavioural side of your task is strong enough to stand alone.">
+      <div class="card-top">
+        <span class="badge scope-global">Global</span>
+        <span class="tier">Highly recommended for cognition</span>
+      </div>
+      <h3>Psychonomic Society Annual Meeting</h3>
+      <p class="meta"><strong>Experimental cognition and behaviour</strong> · Global / North America · Annual</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>November</p>
+        <p><span>Next / current known</span>2026: San Diego, 19–22 November</p>
+        <p><span>Location</span>North America, rotating</p>
+        <p><span>Format</span>Conference + spoken presentations + posters</p>
+      </div>
+      <p><strong>Best for:</strong> Behavioural cognition, attention, memory, decision-making, perception, methods</p>
+      <p><strong>Why attend:</strong> A premier meeting for experimental cognitive psychology; valuable even without neural data.</p>
+      <p><strong>Action:</strong> Good if the behavioural side of your task is strong enough to stand alone.</p>
+      <div class="tags"><span class="chip">behaviour</span><span class="chip">cognition</span><span class="chip">attention</span><span class="chip">memory</span><span class="chip">experimental</span></div>
+      <a class="btn" href="https://www.psychonomic.org/page/futuremeetings" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="global" data-category="Psychological science adjacent to neuroscience" data-tier="Recommended adjunct" data-tags="psychology cognition behaviour methods applied" data-search="association for psychological science — aps annual convention global psychological science adjacent to neuroscience recommended adjunct annual may 2026: barcelona, 28–30 may global, rotating cognitive, developmental, social, affective and applied psychological science with neuroscience links broad psychological science exposure, useful for behavioural/neurocognitive researchers who want applied and interdisciplinary visibility. conference + workshops + industry day + posters https://www.psychologicalscience.org/conventions/2026-aps-annual-convention [&#x27;psychology&#x27;, &#x27;cognition&#x27;, &#x27;behaviour&#x27;, &#x27;methods&#x27;, &#x27;applied&#x27;] choose when your story is psychological-science-first, not neuroscience-method-first.">
+      <div class="card-top">
+        <span class="badge scope-global">Global</span>
+        <span class="tier">Recommended adjunct</span>
+      </div>
+      <h3>Association for Psychological Science — APS Annual Convention</h3>
+      <p class="meta"><strong>Psychological science adjacent to neuroscience</strong> · Global · Annual</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>May</p>
+        <p><span>Next / current known</span>2026: Barcelona, 28–30 May</p>
+        <p><span>Location</span>Global, rotating</p>
+        <p><span>Format</span>Conference + workshops + industry day + posters</p>
+      </div>
+      <p><strong>Best for:</strong> Cognitive, developmental, social, affective and applied psychological science with neuroscience links</p>
+      <p><strong>Why attend:</strong> Broad psychological science exposure, useful for behavioural/neurocognitive researchers who want applied and interdisciplinary visibility.</p>
+      <p><strong>Action:</strong> Choose when your story is psychological-science-first, not neuroscience-method-first.</p>
+      <div class="tags"><span class="chip">psychology</span><span class="chip">cognition</span><span class="chip">behaviour</span><span class="chip">methods</span><span class="chip">applied</span></div>
+      <a class="btn" href="https://www.psychologicalscience.org/conventions/2026-aps-annual-convention" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="global" data-category="Cognitive science / AI / mind and brain" data-tier="Highly recommended adjunct" data-tags="cognitive-science ai language psychology models" data-search="cognitive science society — cogsci annual conference global cognitive science / ai / mind and brain highly recommended adjunct annual july 2026: 22–25 july global, rotating cognitive science, ai, linguistics, psychology, philosophy, education, neuroscience broadest annual cognitive science meeting; valuable for computational cognition and mind–brain modelling. conference + pre-conference workshops + proceedings https://cognitivesciencesociety.org/cogsci-2026/ [&#x27;cognitive-science&#x27;, &#x27;ai&#x27;, &#x27;language&#x27;, &#x27;psychology&#x27;, &#x27;models&#x27;] useful if your work speaks to cognition beyond neural mechanisms.">
+      <div class="card-top">
+        <span class="badge scope-global">Global</span>
+        <span class="tier">Highly recommended adjunct</span>
+      </div>
+      <h3>Cognitive Science Society — CogSci Annual Conference</h3>
+      <p class="meta"><strong>Cognitive science / AI / mind and brain</strong> · Global · Annual</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>July</p>
+        <p><span>Next / current known</span>2026: 22–25 July</p>
+        <p><span>Location</span>Global, rotating</p>
+        <p><span>Format</span>Conference + pre-conference workshops + proceedings</p>
+      </div>
+      <p><strong>Best for:</strong> Cognitive science, AI, linguistics, psychology, philosophy, education, neuroscience</p>
+      <p><strong>Why attend:</strong> Broadest annual cognitive science meeting; valuable for computational cognition and mind–brain modelling.</p>
+      <p><strong>Action:</strong> Useful if your work speaks to cognition beyond neural mechanisms.</p>
+      <div class="tags"><span class="chip">cognitive-science</span><span class="chip">AI</span><span class="chip">language</span><span class="chip">psychology</span><span class="chip">models</span></div>
+      <a class="btn" href="https://cognitivesciencesociety.org/cogsci-2026/" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="global" data-category="Neurotechnology and large-scale neuroscience" data-tier="Highly recommended for neurotech/tools" data-tags="neurotechnology tools funding circuits recording" data-search="brain initiative conference usa / global neurotechnology and large-scale neuroscience highly recommended for neurotech/tools biennial/periodic varies 2026: rockville, md, 11–13 august usa technology-driven neuroscience, tools, circuits, imaging, recording, stimulation, large programmes good for tracking future-facing tools, funding priorities, and neurotechnology-heavy neuroscience. conference + posters + community sessions https://www.nih.gov/brain/events/2026-brain-initiative-conference [&#x27;neurotechnology&#x27;, &#x27;tools&#x27;, &#x27;funding&#x27;, &#x27;circuits&#x27;, &#x27;recording&#x27;] best if you care about methods, tool development, and large-scale neuroscience funding directions.">
+      <div class="card-top">
+        <span class="badge scope-global">Global</span>
+        <span class="tier">Highly recommended for neurotech/tools</span>
+      </div>
+      <h3>BRAIN Initiative Conference</h3>
+      <p class="meta"><strong>Neurotechnology and large-scale neuroscience</strong> · USA / Global · Biennial/periodic</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>Varies</p>
+        <p><span>Next / current known</span>2026: Rockville, MD, 11–13 August</p>
+        <p><span>Location</span>USA</p>
+        <p><span>Format</span>Conference + posters + community sessions</p>
+      </div>
+      <p><strong>Best for:</strong> Technology-driven neuroscience, tools, circuits, imaging, recording, stimulation, large programmes</p>
+      <p><strong>Why attend:</strong> Good for tracking future-facing tools, funding priorities, and neurotechnology-heavy neuroscience.</p>
+      <p><strong>Action:</strong> Best if you care about methods, tool development, and large-scale neuroscience funding directions.</p>
+      <div class="tags"><span class="chip">neurotechnology</span><span class="chip">tools</span><span class="chip">funding</span><span class="chip">circuits</span><span class="chip">recording</span></div>
+      <a class="btn" href="https://www.nih.gov/brain/events/2026-brain-initiative-conference" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="global" data-category="Neuroengineering / biomedical engineering" data-tier="Recommended for neuroengineering" data-tags="neuroengineering bci signal-processing biomedical" data-search="ieee embc — engineering in medicine and biology conference global neuroengineering / biomedical engineering recommended for neuroengineering annual july–august 2026: toronto, 26–30 july global, rotating neuroengineering, biomedical devices, signal processing, bci, clinical engineering large engineering-meets-health conference with neurotechnology, bci and neural engineering tracks. conference + workshops + poster/oral sessions https://embc.embs.org/2026/ [&#x27;neuroengineering&#x27;, &#x27;bci&#x27;, &#x27;signal-processing&#x27;, &#x27;biomedical&#x27;] pick if your work has engineering, device, eeg/bci, or applied signal-processing angles.">
+      <div class="card-top">
+        <span class="badge scope-global">Global</span>
+        <span class="tier">Recommended for neuroengineering</span>
+      </div>
+      <h3>IEEE EMBC — Engineering in Medicine and Biology Conference</h3>
+      <p class="meta"><strong>Neuroengineering / biomedical engineering</strong> · Global · Annual</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>July–August</p>
+        <p><span>Next / current known</span>2026: Toronto, 26–30 July</p>
+        <p><span>Location</span>Global, rotating</p>
+        <p><span>Format</span>Conference + workshops + poster/oral sessions</p>
+      </div>
+      <p><strong>Best for:</strong> Neuroengineering, biomedical devices, signal processing, BCI, clinical engineering</p>
+      <p><strong>Why attend:</strong> Large engineering-meets-health conference with neurotechnology, BCI and neural engineering tracks.</p>
+      <p><strong>Action:</strong> Pick if your work has engineering, device, EEG/BCI, or applied signal-processing angles.</p>
+      <div class="tags"><span class="chip">neuroengineering</span><span class="chip">BCI</span><span class="chip">signal-processing</span><span class="chip">biomedical</span></div>
+      <a class="btn" href="https://embc.embs.org/2026/" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="global" data-category="Neural engineering" data-tier="Highly recommended for neural engineering" data-tags="neural-engineering bci prosthetics stimulation" data-search="ieee embs neural engineering conference — ner global neural engineering highly recommended for neural engineering biennial varies recent cycle: ner 2025; track next ner via ieee brain/embs pages global, rotating neural interfaces, stimulation, recording, prosthetics, neuromodulation, bci a specialist neural engineering meeting for researchers at the interface of neuroscience and engineering. conference + posters + demos + workshops https://brain.ieee.org/event-type/conference/ [&#x27;neural-engineering&#x27;, &#x27;bci&#x27;, &#x27;prosthetics&#x27;, &#x27;stimulation&#x27;] use for technical neuroengineering audiences rather than general neuroscience audiences.">
+      <div class="card-top">
+        <span class="badge scope-global">Global</span>
+        <span class="tier">Highly recommended for neural engineering</span>
+      </div>
+      <h3>IEEE EMBS Neural Engineering Conference — NER</h3>
+      <p class="meta"><strong>Neural engineering</strong> · Global · Biennial</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>Varies</p>
+        <p><span>Next / current known</span>Recent cycle: NER 2025; track next NER via IEEE Brain/EMBS pages</p>
+        <p><span>Location</span>Global, rotating</p>
+        <p><span>Format</span>Conference + posters + demos + workshops</p>
+      </div>
+      <p><strong>Best for:</strong> Neural interfaces, stimulation, recording, prosthetics, neuromodulation, BCI</p>
+      <p><strong>Why attend:</strong> A specialist neural engineering meeting for researchers at the interface of neuroscience and engineering.</p>
+      <p><strong>Action:</strong> Use for technical neuroengineering audiences rather than general neuroscience audiences.</p>
+      <div class="tags"><span class="chip">neural-engineering</span><span class="chip">BCI</span><span class="chip">prosthetics</span><span class="chip">stimulation</span></div>
+      <a class="btn" href="https://brain.ieee.org/event-type/conference/" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="global" data-category="Brain–computer interfaces" data-tier="Highly recommended for BCI" data-tags="bci eeg neurorehab signal-processing workshops" data-search="graz brain-computer interface conference europe / global brain–computer interfaces highly recommended for bci periodic september 2026: graz bci conference, 14–18 september graz, austria bci, eeg, motor imagery, communication interfaces, neurorehabilitation, signal processing a specialist bci meeting with workshops and deep technical discussion. conference + workshops https://bcisociety.org/other-events/ [&#x27;bci&#x27;, &#x27;eeg&#x27;, &#x27;neurorehab&#x27;, &#x27;signal-processing&#x27;, &#x27;workshops&#x27;] best for bci-specific work and neurotech students.">
+      <div class="card-top">
+        <span class="badge scope-global">Global</span>
+        <span class="tier">Highly recommended for BCI</span>
+      </div>
+      <h3>Graz Brain-Computer Interface Conference</h3>
+      <p class="meta"><strong>Brain–computer interfaces</strong> · Europe / Global · Periodic</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>September</p>
+        <p><span>Next / current known</span>2026: Graz BCI Conference, 14–18 September</p>
+        <p><span>Location</span>Graz, Austria</p>
+        <p><span>Format</span>Conference + workshops</p>
+      </div>
+      <p><strong>Best for:</strong> BCI, EEG, motor imagery, communication interfaces, neurorehabilitation, signal processing</p>
+      <p><strong>Why attend:</strong> A specialist BCI meeting with workshops and deep technical discussion.</p>
+      <p><strong>Action:</strong> Best for BCI-specific work and neurotech students.</p>
+      <div class="tags"><span class="chip">BCI</span><span class="chip">EEG</span><span class="chip">neurorehab</span><span class="chip">signal-processing</span><span class="chip">workshops</span></div>
+      <a class="btn" href="https://bcisociety.org/other-events/" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="global" data-category="Neuroethics and society" data-tier="Recommended adjunct" data-tags="ethics neurotech policy ai society" data-search="international neuroethics society — neuroethics meeting global neuroethics and society recommended adjunct annual april 2026: stanford, lucca and stellenbosch hubs, 15–17 april global hubs / hybrid formats neuroethics, neurorights, ai/brain technologies, clinical ethics, policy, philosophy essential if your neuroscience/neurotech work has societal, legal or ethical implications. conference + mentorship sessions + hybrid/global hubs https://neuroethicssociety.org/meeting/ [&#x27;ethics&#x27;, &#x27;neurotech&#x27;, &#x27;policy&#x27;, &#x27;ai&#x27;, &#x27;society&#x27;] pair this with neurotech/bci work to understand translational and societal constraints.">
+      <div class="card-top">
+        <span class="badge scope-global">Global</span>
+        <span class="tier">Recommended adjunct</span>
+      </div>
+      <h3>International Neuroethics Society — Neuroethics Meeting</h3>
+      <p class="meta"><strong>Neuroethics and society</strong> · Global · Annual</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>April</p>
+        <p><span>Next / current known</span>2026: Stanford, Lucca and Stellenbosch hubs, 15–17 April</p>
+        <p><span>Location</span>Global hubs / hybrid formats</p>
+        <p><span>Format</span>Conference + mentorship sessions + hybrid/global hubs</p>
+      </div>
+      <p><strong>Best for:</strong> Neuroethics, neurorights, AI/brain technologies, clinical ethics, policy, philosophy</p>
+      <p><strong>Why attend:</strong> Essential if your neuroscience/neurotech work has societal, legal or ethical implications.</p>
+      <p><strong>Action:</strong> Pair this with neurotech/BCI work to understand translational and societal constraints.</p>
+      <div class="tags"><span class="chip">ethics</span><span class="chip">neurotech</span><span class="chip">policy</span><span class="chip">AI</span><span class="chip">society</span></div>
+      <a class="btn" href="https://neuroethicssociety.org/meeting/" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="global" data-category="Clinical neurology" data-tier="Must-track for clinical neurology" data-tags="clinical neurology cme translational trials" data-search="aan — american academy of neurology annual meeting global / usa clinical neurology must-track for clinical neurology annual april–may 2026: chicago and online, 18–22 april; 2027: washington, dc, 1–5 may usa + online clinical neurology, translational neuroscience, clinical trials, disease-focused research one of the biggest clinical neurology education and science meetings. conference + education + cme + posters + online access https://www.aan.com/events/annual-meeting [&#x27;clinical&#x27;, &#x27;neurology&#x27;, &#x27;cme&#x27;, &#x27;translational&#x27;, &#x27;trials&#x27;] best for clinical/translational visibility, not basic neuroscience alone.">
+      <div class="card-top">
+        <span class="badge scope-global">Global</span>
+        <span class="tier">Must-track for clinical neurology</span>
+      </div>
+      <h3>AAN — American Academy of Neurology Annual Meeting</h3>
+      <p class="meta"><strong>Clinical neurology</strong> · Global / USA · Annual</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>April–May</p>
+        <p><span>Next / current known</span>2026: Chicago and online, 18–22 April; 2027: Washington, DC, 1–5 May</p>
+        <p><span>Location</span>USA + online</p>
+        <p><span>Format</span>Conference + education + CME + posters + online access</p>
+      </div>
+      <p><strong>Best for:</strong> Clinical neurology, translational neuroscience, clinical trials, disease-focused research</p>
+      <p><strong>Why attend:</strong> One of the biggest clinical neurology education and science meetings.</p>
+      <p><strong>Action:</strong> Best for clinical/translational visibility, not basic neuroscience alone.</p>
+      <div class="tags"><span class="chip">clinical</span><span class="chip">neurology</span><span class="chip">CME</span><span class="chip">translational</span><span class="chip">trials</span></div>
+      <a class="btn" href="https://www.aan.com/events/annual-meeting" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="global" data-category="Clinical neurology" data-tier="Must-track for clinical neurology" data-tags="clinical neurology europe teaching panels" data-search="ean — european academy of neurology congress europe / global clinical neurology must-track for clinical neurology annual june–july 2026: geneva, 27–30 june europe, rotating clinical neurology, neurodegeneration, epilepsy, movement disorders, stroke, ms, neuromuscular fields europe’s major neurology congress with scientific panels and partner-society sessions. congress + teaching courses + panels + posters https://www.ean.org/congress2026 [&#x27;clinical&#x27;, &#x27;neurology&#x27;, &#x27;europe&#x27;, &#x27;teaching&#x27;, &#x27;panels&#x27;] attend if your work has clinical neurology relevance.">
+      <div class="card-top">
+        <span class="badge scope-global">Global</span>
+        <span class="tier">Must-track for clinical neurology</span>
+      </div>
+      <h3>EAN — European Academy of Neurology Congress</h3>
+      <p class="meta"><strong>Clinical neurology</strong> · Europe / Global · Annual</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>June–July</p>
+        <p><span>Next / current known</span>2026: Geneva, 27–30 June</p>
+        <p><span>Location</span>Europe, rotating</p>
+        <p><span>Format</span>Congress + teaching courses + panels + posters</p>
+      </div>
+      <p><strong>Best for:</strong> Clinical neurology, neurodegeneration, epilepsy, movement disorders, stroke, MS, neuromuscular fields</p>
+      <p><strong>Why attend:</strong> Europe’s major neurology congress with scientific panels and partner-society sessions.</p>
+      <p><strong>Action:</strong> Attend if your work has clinical neurology relevance.</p>
+      <div class="tags"><span class="chip">clinical</span><span class="chip">neurology</span><span class="chip">Europe</span><span class="chip">teaching</span><span class="chip">panels</span></div>
+      <a class="btn" href="https://www.ean.org/congress2026" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="global" data-category="Neurodegeneration / dementia" data-tier="Must-track for dementia research" data-tags="dementia alzheimer biomarkers clinical neurodegeneration" data-search="aaic — alzheimer’s association international conference global neurodegeneration / dementia must-track for dementia research annual july–august 2026: london and online, 12–15 july global, rotating + online alzheimer’s disease, dementia, biomarkers, clinical trials, neurodegeneration, public health a major global forum for dementia science, translational research, biomarkers and clinical advances. conference + posters + online/hybrid components https://aaic.alz.org/ [&#x27;dementia&#x27;, &#x27;alzheimer&#x27;, &#x27;biomarkers&#x27;, &#x27;clinical&#x27;, &#x27;neurodegeneration&#x27;] best disease-specific meeting for dementia/neurodegeneration work.">
+      <div class="card-top">
+        <span class="badge scope-global">Global</span>
+        <span class="tier">Must-track for dementia research</span>
+      </div>
+      <h3>AAIC — Alzheimer’s Association International Conference</h3>
+      <p class="meta"><strong>Neurodegeneration / dementia</strong> · Global · Annual</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>July–August</p>
+        <p><span>Next / current known</span>2026: London and online, 12–15 July</p>
+        <p><span>Location</span>Global, rotating + online</p>
+        <p><span>Format</span>Conference + posters + online/hybrid components</p>
+      </div>
+      <p><strong>Best for:</strong> Alzheimer’s disease, dementia, biomarkers, clinical trials, neurodegeneration, public health</p>
+      <p><strong>Why attend:</strong> A major global forum for dementia science, translational research, biomarkers and clinical advances.</p>
+      <p><strong>Action:</strong> Best disease-specific meeting for dementia/neurodegeneration work.</p>
+      <div class="tags"><span class="chip">dementia</span><span class="chip">Alzheimer</span><span class="chip">biomarkers</span><span class="chip">clinical</span><span class="chip">neurodegeneration</span></div>
+      <a class="btn" href="https://aaic.alz.org/" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="global" data-category="Neurodegeneration" data-tier="Highly recommended" data-tags="alzheimer parkinson neurodegeneration biomarkers trials" data-search="ad/pd — international conference on alzheimer’s and parkinson’s diseases global neurodegeneration highly recommended annual/periodic march–april check official cycle for current year global, rotating neurodegeneration, parkinson’s, alzheimer’s, biomarkers, therapeutics strong disease-mechanism and therapeutic focus for major neurodegenerative disorders. conference + industry/clinical trial sessions + posters https://adpd.kenes.com/ [&#x27;alzheimer&#x27;, &#x27;parkinson&#x27;, &#x27;neurodegeneration&#x27;, &#x27;biomarkers&#x27;, &#x27;trials&#x27;] pair with aaic or mds depending on your disease focus.">
+      <div class="card-top">
+        <span class="badge scope-global">Global</span>
+        <span class="tier">Highly recommended</span>
+      </div>
+      <h3>AD/PD — International Conference on Alzheimer’s and Parkinson’s Diseases</h3>
+      <p class="meta"><strong>Neurodegeneration</strong> · Global · Annual/periodic</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>March–April</p>
+        <p><span>Next / current known</span>Check official cycle for current year</p>
+        <p><span>Location</span>Global, rotating</p>
+        <p><span>Format</span>Conference + industry/clinical trial sessions + posters</p>
+      </div>
+      <p><strong>Best for:</strong> Neurodegeneration, Parkinson’s, Alzheimer’s, biomarkers, therapeutics</p>
+      <p><strong>Why attend:</strong> Strong disease-mechanism and therapeutic focus for major neurodegenerative disorders.</p>
+      <p><strong>Action:</strong> Pair with AAIC or MDS depending on your disease focus.</p>
+      <div class="tags"><span class="chip">Alzheimer</span><span class="chip">Parkinson</span><span class="chip">neurodegeneration</span><span class="chip">biomarkers</span><span class="chip">trials</span></div>
+      <a class="btn" href="https://adpd.kenes.com/" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="global" data-category="Movement disorders" data-tier="Must-track for movement disorders" data-tags="movement-disorders parkinson clinical basal-ganglia" data-search="international parkinson and movement disorder society congress global movement disorders must-track for movement disorders annual september–october 2026: seoul, 4–8 october global, rotating parkinson’s disease, movement disorders, basal ganglia, clinical trials, translational neuroscience the leading specialist meeting for movement disorders and parkinson’s research. congress + teaching + posters + late-breaking abstracts https://www.mdscongress.org/ [&#x27;movement-disorders&#x27;, &#x27;parkinson&#x27;, &#x27;clinical&#x27;, &#x27;basal-ganglia&#x27;] choose for parkinson/motor-control disease questions.">
+      <div class="card-top">
+        <span class="badge scope-global">Global</span>
+        <span class="tier">Must-track for movement disorders</span>
+      </div>
+      <h3>International Parkinson and Movement Disorder Society Congress</h3>
+      <p class="meta"><strong>Movement disorders</strong> · Global · Annual</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>September–October</p>
+        <p><span>Next / current known</span>2026: Seoul, 4–8 October</p>
+        <p><span>Location</span>Global, rotating</p>
+        <p><span>Format</span>Congress + teaching + posters + late-breaking abstracts</p>
+      </div>
+      <p><strong>Best for:</strong> Parkinson’s disease, movement disorders, basal ganglia, clinical trials, translational neuroscience</p>
+      <p><strong>Why attend:</strong> The leading specialist meeting for movement disorders and Parkinson’s research.</p>
+      <p><strong>Action:</strong> Choose for Parkinson/motor-control disease questions.</p>
+      <div class="tags"><span class="chip">movement-disorders</span><span class="chip">Parkinson</span><span class="chip">clinical</span><span class="chip">basal-ganglia</span></div>
+      <a class="btn" href="https://www.mdscongress.org/" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="global" data-category="Epilepsy" data-tier="Must-track for epilepsy" data-tags="epilepsy eeg clinical networks surgery" data-search="international league against epilepsy — international epilepsy congress / regional congresses global epilepsy must-track for epilepsy world and regional cycles varies track ilae congress calendar global, rotating epilepsy, eeg, seizure networks, neurophysiology, surgery, paediatric neurology the central international society ecosystem for epilepsy research and practice. congress + teaching courses + posters + clinical sessions https://www.ilae.org/congresses [&#x27;epilepsy&#x27;, &#x27;eeg&#x27;, &#x27;clinical&#x27;, &#x27;networks&#x27;, &#x27;surgery&#x27;] for epilepsy work, ilae/econ beats general neuroscience meetings.">
+      <div class="card-top">
+        <span class="badge scope-global">Global</span>
+        <span class="tier">Must-track for epilepsy</span>
+      </div>
+      <h3>International League Against Epilepsy — International Epilepsy Congress / Regional Congresses</h3>
+      <p class="meta"><strong>Epilepsy</strong> · Global · World and regional cycles</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>Varies</p>
+        <p><span>Next / current known</span>Track ILAE congress calendar</p>
+        <p><span>Location</span>Global, rotating</p>
+        <p><span>Format</span>Congress + teaching courses + posters + clinical sessions</p>
+      </div>
+      <p><strong>Best for:</strong> Epilepsy, EEG, seizure networks, neurophysiology, surgery, paediatric neurology</p>
+      <p><strong>Why attend:</strong> The central international society ecosystem for epilepsy research and practice.</p>
+      <p><strong>Action:</strong> For epilepsy work, ILAE/ECON beats general neuroscience meetings.</p>
+      <div class="tags"><span class="chip">epilepsy</span><span class="chip">EEG</span><span class="chip">clinical</span><span class="chip">networks</span><span class="chip">surgery</span></div>
+      <a class="btn" href="https://www.ilae.org/congresses" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="global" data-category="Biological psychiatry / translational neuroscience" data-tier="Highly recommended" data-tags="psychiatry mental-health biomarkers neuroimaging translational" data-search="society of biological psychiatry — sobp annual meeting global / usa biological psychiatry / translational neuroscience highly recommended annual april–may 2026: new york, 30 apr–2 may usa, rotating biological psychiatry, computational psychiatry, biomarkers, mental health neuroscience, neuroimaging a strong psychiatric neuroscience meeting for mechanistic and translational research. conference + symposia + posters https://sobp.org/2026-sobp-annual-meeting/ [&#x27;psychiatry&#x27;, &#x27;mental-health&#x27;, &#x27;biomarkers&#x27;, &#x27;neuroimaging&#x27;, &#x27;translational&#x27;] best if your cognitive neuroscience has psychiatric/clinical framing.">
+      <div class="card-top">
+        <span class="badge scope-global">Global</span>
+        <span class="tier">Highly recommended</span>
+      </div>
+      <h3>Society of Biological Psychiatry — SOBP Annual Meeting</h3>
+      <p class="meta"><strong>Biological psychiatry / translational neuroscience</strong> · Global / USA · Annual</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>April–May</p>
+        <p><span>Next / current known</span>2026: New York, 30 Apr–2 May</p>
+        <p><span>Location</span>USA, rotating</p>
+        <p><span>Format</span>Conference + symposia + posters</p>
+      </div>
+      <p><strong>Best for:</strong> Biological psychiatry, computational psychiatry, biomarkers, mental health neuroscience, neuroimaging</p>
+      <p><strong>Why attend:</strong> A strong psychiatric neuroscience meeting for mechanistic and translational research.</p>
+      <p><strong>Action:</strong> Best if your cognitive neuroscience has psychiatric/clinical framing.</p>
+      <div class="tags"><span class="chip">psychiatry</span><span class="chip">mental-health</span><span class="chip">biomarkers</span><span class="chip">neuroimaging</span><span class="chip">translational</span></div>
+      <a class="btn" href="https://sobp.org/2026-sobp-annual-meeting/" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="global" data-category="Neuropsychopharmacology / psychiatry" data-tier="Prestige specialist" data-tags="neuropsychopharmacology psychiatry translational selective" data-search="acnp — american college of neuropsychopharmacology annual meeting global / usa neuropsychopharmacology / psychiatry prestige specialist annual december check acnp annual meeting page for current cycle usa, rotating neuropsychopharmacology, psychiatry, drug mechanisms, circuits, translational mental health high-level specialist meeting; often more selective and clinically/translationally oriented. annual meeting + panels + posters; membership/invitation structures may matter https://acnp.org/annual-meeting/ [&#x27;neuropsychopharmacology&#x27;, &#x27;psychiatry&#x27;, &#x27;translational&#x27;, &#x27;selective&#x27;] track eligibility and sponsor/mentor routes early.">
+      <div class="card-top">
+        <span class="badge scope-global">Global</span>
+        <span class="tier">Prestige specialist</span>
+      </div>
+      <h3>ACNP — American College of Neuropsychopharmacology Annual Meeting</h3>
+      <p class="meta"><strong>Neuropsychopharmacology / psychiatry</strong> · Global / USA · Annual</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>December</p>
+        <p><span>Next / current known</span>Check ACNP annual meeting page for current cycle</p>
+        <p><span>Location</span>USA, rotating</p>
+        <p><span>Format</span>Annual meeting + panels + posters; membership/invitation structures may matter</p>
+      </div>
+      <p><strong>Best for:</strong> Neuropsychopharmacology, psychiatry, drug mechanisms, circuits, translational mental health</p>
+      <p><strong>Why attend:</strong> High-level specialist meeting; often more selective and clinically/translationally oriented.</p>
+      <p><strong>Action:</strong> Track eligibility and sponsor/mentor routes early.</p>
+      <div class="tags"><span class="chip">neuropsychopharmacology</span><span class="chip">psychiatry</span><span class="chip">translational</span><span class="chip">selective</span></div>
+      <a class="btn" href="https://acnp.org/annual-meeting/" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="global" data-category="Neuropsychopharmacology / psychiatry" data-tier="Highly recommended" data-tags="psychiatry europe psychopharmacology brain-disorders" data-search="ecnp congress — european college of neuropsychopharmacology europe / global neuropsychopharmacology / psychiatry highly recommended annual september–october track ecnp congress pages for current cycle europe, rotating psychiatric neuroscience, psychopharmacology, computational psychiatry, clinical trials, translational brain science major european platform for brain disorders, psychiatry, drug development and translational neuroscience. congress + educational sessions + posters https://www.ecnp.eu/congress2026/ecnpcongress [&#x27;psychiatry&#x27;, &#x27;europe&#x27;, &#x27;psychopharmacology&#x27;, &#x27;brain-disorders&#x27;] useful for mental-health neuroscience and translational psychiatry.">
+      <div class="card-top">
+        <span class="badge scope-global">Global</span>
+        <span class="tier">Highly recommended</span>
+      </div>
+      <h3>ECNP Congress — European College of Neuropsychopharmacology</h3>
+      <p class="meta"><strong>Neuropsychopharmacology / psychiatry</strong> · Europe / Global · Annual</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>September–October</p>
+        <p><span>Next / current known</span>Track ECNP congress pages for current cycle</p>
+        <p><span>Location</span>Europe, rotating</p>
+        <p><span>Format</span>Congress + educational sessions + posters</p>
+      </div>
+      <p><strong>Best for:</strong> Psychiatric neuroscience, psychopharmacology, computational psychiatry, clinical trials, translational brain science</p>
+      <p><strong>Why attend:</strong> Major European platform for brain disorders, psychiatry, drug development and translational neuroscience.</p>
+      <p><strong>Action:</strong> Useful for mental-health neuroscience and translational psychiatry.</p>
+      <div class="tags"><span class="chip">psychiatry</span><span class="chip">Europe</span><span class="chip">psychopharmacology</span><span class="chip">brain-disorders</span></div>
+      <a class="btn" href="https://www.ecnp.eu/congress2026/ECNPcongress" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="global" data-category="Sleep and circadian neuroscience" data-tier="Must-track for sleep" data-tags="sleep circadian eeg clinical workshops" data-search="sleep — apss annual meeting global / usa sleep and circadian neuroscience must-track for sleep annual june 2026: sleep 2026, apss annual meeting usa, rotating sleep, circadian rhythms, clinical sleep medicine, eeg, cognition, health premier sleep science and clinical sleep medicine conference with workshops and large multidisciplinary attendance. conference + workshops + posters + clinical education https://www.sleepmeeting.org/ [&#x27;sleep&#x27;, &#x27;circadian&#x27;, &#x27;eeg&#x27;, &#x27;clinical&#x27;, &#x27;workshops&#x27;] use for sleep/circadian/eeg work rather than general neuroscience.">
+      <div class="card-top">
+        <span class="badge scope-global">Global</span>
+        <span class="tier">Must-track for sleep</span>
+      </div>
+      <h3>SLEEP — APSS Annual Meeting</h3>
+      <p class="meta"><strong>Sleep and circadian neuroscience</strong> · Global / USA · Annual</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>June</p>
+        <p><span>Next / current known</span>2026: SLEEP 2026, APSS annual meeting</p>
+        <p><span>Location</span>USA, rotating</p>
+        <p><span>Format</span>Conference + workshops + posters + clinical education</p>
+      </div>
+      <p><strong>Best for:</strong> Sleep, circadian rhythms, clinical sleep medicine, EEG, cognition, health</p>
+      <p><strong>Why attend:</strong> Premier sleep science and clinical sleep medicine conference with workshops and large multidisciplinary attendance.</p>
+      <p><strong>Action:</strong> Use for sleep/circadian/EEG work rather than general neuroscience.</p>
+      <div class="tags"><span class="chip">sleep</span><span class="chip">circadian</span><span class="chip">EEG</span><span class="chip">clinical</span><span class="chip">workshops</span></div>
+      <a class="btn" href="https://www.sleepmeeting.org/" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="global" data-category="MRI / imaging technology" data-tier="Recommended for MRI-heavy work" data-tags="mri imaging methods physics technical" data-search="ismrm annual meeting global mri / imaging technology recommended for mri-heavy work annual may track ismrm annual meeting pages global, rotating mri physics, acquisition, reconstruction, diffusion mri, fmri methods, neuroimaging technology not neuroscience-only, but essential for mri methods and technical neuroimaging. conference + educational courses + posters + technical sessions https://www.ismrm.org/ [&#x27;mri&#x27;, &#x27;imaging&#x27;, &#x27;methods&#x27;, &#x27;physics&#x27;, &#x27;technical&#x27;] choose if your contribution is mri-methodological rather than cognitive-neuroscience-first.">
+      <div class="card-top">
+        <span class="badge scope-global">Global</span>
+        <span class="tier">Recommended for MRI-heavy work</span>
+      </div>
+      <h3>ISMRM Annual Meeting</h3>
+      <p class="meta"><strong>MRI / imaging technology</strong> · Global · Annual</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>May</p>
+        <p><span>Next / current known</span>Track ISMRM annual meeting pages</p>
+        <p><span>Location</span>Global, rotating</p>
+        <p><span>Format</span>Conference + educational courses + posters + technical sessions</p>
+      </div>
+      <p><strong>Best for:</strong> MRI physics, acquisition, reconstruction, diffusion MRI, fMRI methods, neuroimaging technology</p>
+      <p><strong>Why attend:</strong> Not neuroscience-only, but essential for MRI methods and technical neuroimaging.</p>
+      <p><strong>Action:</strong> Choose if your contribution is MRI-methodological rather than cognitive-neuroscience-first.</p>
+      <div class="tags"><span class="chip">MRI</span><span class="chip">imaging</span><span class="chip">methods</span><span class="chip">physics</span><span class="chip">technical</span></div>
+      <a class="btn" href="https://www.ismrm.org/" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="global" data-category="AI + neuroscience adjacent" data-tier="Recommended adjunct for computational people" data-tags="ai ml neuroai workshops representation" data-search="neurips / iclr / icml workshops relevant to neuroscience global ai + neuroscience adjacent recommended adjunct for computational people annual iclr: apr/may; icml: july; neurips: dec check workshop calls each year global, rotating computational neuroscience, ai models of brain/behaviour, representation learning, neuroai not neuroscience conferences, but important when your work contributes to ml/ai models of brains or behaviour. large ai conferences + specialist workshops https://neurips.cc/ [&#x27;ai&#x27;, &#x27;ml&#x27;, &#x27;neuroai&#x27;, &#x27;workshops&#x27;, &#x27;representation&#x27;] target workshops first; main conference acceptance is ml-standard and very competitive.">
+      <div class="card-top">
+        <span class="badge scope-global">Global</span>
+        <span class="tier">Recommended adjunct for computational people</span>
+      </div>
+      <h3>NeurIPS / ICLR / ICML workshops relevant to neuroscience</h3>
+      <p class="meta"><strong>AI + neuroscience adjacent</strong> · Global · Annual</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>ICLR: Apr/May; ICML: July; NeurIPS: Dec</p>
+        <p><span>Next / current known</span>Check workshop calls each year</p>
+        <p><span>Location</span>Global, rotating</p>
+        <p><span>Format</span>Large AI conferences + specialist workshops</p>
+      </div>
+      <p><strong>Best for:</strong> Computational neuroscience, AI models of brain/behaviour, representation learning, neuroAI</p>
+      <p><strong>Why attend:</strong> Not neuroscience conferences, but important when your work contributes to ML/AI models of brains or behaviour.</p>
+      <p><strong>Action:</strong> Target workshops first; main conference acceptance is ML-standard and very competitive.</p>
+      <div class="tags"><span class="chip">AI</span><span class="chip">ML</span><span class="chip">neuroAI</span><span class="chip">workshops</span><span class="chip">representation</span></div>
+      <a class="btn" href="https://neurips.cc/" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="global" data-category="Open science / neuroimaging workshop" data-tier="Highly recommended for practical skills" data-tags="hackathon open-science neuroimaging bids coding" data-search="brainhack global / ohbm brainhack / open neuroimaging hackathons global / local hubs open science / neuroimaging workshop highly recommended for practical skills annual and local events often around ohbm or local cycles track brainhack/ohbm event pages each year global hubs / online / local open neuroimaging, coding, bids, reproducible workflows, collaborative projects hands-on project-based route into neuroimaging tools and open-science communities. hackathon + tutorials + collaborative projects https://brainhack.org/ [&#x27;hackathon&#x27;, &#x27;open-science&#x27;, &#x27;neuroimaging&#x27;, &#x27;bids&#x27;, &#x27;coding&#x27;] best low-cost way to learn practical tools and meet collaborators.">
+      <div class="card-top">
+        <span class="badge scope-global">Global</span>
+        <span class="tier">Highly recommended for practical skills</span>
+      </div>
+      <h3>Brainhack Global / OHBM Brainhack / Open Neuroimaging Hackathons</h3>
+      <p class="meta"><strong>Open science / neuroimaging workshop</strong> · Global / Local hubs · Annual and local events</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>Often around OHBM or local cycles</p>
+        <p><span>Next / current known</span>Track Brainhack/OHBM event pages each year</p>
+        <p><span>Location</span>Global hubs / online / local</p>
+        <p><span>Format</span>Hackathon + tutorials + collaborative projects</p>
+      </div>
+      <p><strong>Best for:</strong> Open neuroimaging, coding, BIDS, reproducible workflows, collaborative projects</p>
+      <p><strong>Why attend:</strong> Hands-on project-based route into neuroimaging tools and open-science communities.</p>
+      <p><strong>Action:</strong> Best low-cost way to learn practical tools and meet collaborators.</p>
+      <div class="tags"><span class="chip">hackathon</span><span class="chip">open-science</span><span class="chip">neuroimaging</span><span class="chip">BIDS</span><span class="chip">coding</span></div>
+      <a class="btn" href="https://brainhack.org/" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="india" data-category="National flagship neuroscience" data-tier="Must-track in India" data-tags="india flagship poster travel-awards broad" data-search="indian academy of neurosciences — ian annual meeting india national flagship neuroscience must-track in india annual often october–november 2026: xliv annual meeting, nbrc manesar, 6–9 october india, rotating indian phd students, postdocs and faculty across basic, systems, cognitive, molecular and clinical neuroscience the broadest basic neuroscience society meeting in india; good for national visibility and networking. annual conference + symposia + posters + awards/travel support https://neuroscienceacademy.org.in/ [&#x27;india&#x27;, &#x27;flagship&#x27;, &#x27;poster&#x27;, &#x27;travel-awards&#x27;, &#x27;broad&#x27;] default india-level neuroscience conference to track every year.">
+      <div class="card-top">
+        <span class="badge scope-india">India</span>
+        <span class="tier">Must-track in India</span>
+      </div>
+      <h3>Indian Academy of Neurosciences — IAN Annual Meeting</h3>
+      <p class="meta"><strong>National flagship neuroscience</strong> · India · Annual</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>Often October–November</p>
+        <p><span>Next / current known</span>2026: XLIV Annual Meeting, NBRC Manesar, 6–9 October</p>
+        <p><span>Location</span>India, rotating</p>
+        <p><span>Format</span>Annual conference + symposia + posters + awards/travel support</p>
+      </div>
+      <p><strong>Best for:</strong> Indian PhD students, postdocs and faculty across basic, systems, cognitive, molecular and clinical neuroscience</p>
+      <p><strong>Why attend:</strong> The broadest basic neuroscience society meeting in India; good for national visibility and networking.</p>
+      <p><strong>Action:</strong> Default India-level neuroscience conference to track every year.</p>
+      <div class="tags"><span class="chip">India</span><span class="chip">flagship</span><span class="chip">poster</span><span class="chip">travel-awards</span><span class="chip">broad</span></div>
+      <a class="btn" href="https://neuroscienceacademy.org.in/" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="india" data-category="Cognitive science and cognitive neuroscience" data-tier="Must-track in India for cognition" data-tags="india cognition cognitive-neuroscience ai workshops" data-search="annual conference of cognitive science — accs india / south asia cognitive science and cognitive neuroscience must-track in india for cognition annual december 2026: accs-13, university of hyderabad, 12–14 december; safal 10–11 december india, rotating cognitive science, cognitive psychology, cognitive neuroscience, linguistics, ai, philosophy, education india’s flagship interdisciplinary cognitive science conference; strong fit for behaviour, fmri, cognition and language work. conference + workshops + keynotes + posters/orals https://www.accs2026.com/ [&#x27;india&#x27;, &#x27;cognition&#x27;, &#x27;cognitive-neuroscience&#x27;, &#x27;ai&#x27;, &#x27;workshops&#x27;] for indian cognitive neuroscience, this is the most natural national meeting.">
+      <div class="card-top">
+        <span class="badge scope-india">India</span>
+        <span class="tier">Must-track in India for cognition</span>
+      </div>
+      <h3>Annual Conference of Cognitive Science — ACCS</h3>
+      <p class="meta"><strong>Cognitive science and cognitive neuroscience</strong> · India / South Asia · Annual</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>December</p>
+        <p><span>Next / current known</span>2026: ACCS-13, University of Hyderabad, 12–14 December; SAFAL 10–11 December</p>
+        <p><span>Location</span>India, rotating</p>
+        <p><span>Format</span>Conference + workshops + keynotes + posters/orals</p>
+      </div>
+      <p><strong>Best for:</strong> Cognitive science, cognitive psychology, cognitive neuroscience, linguistics, AI, philosophy, education</p>
+      <p><strong>Why attend:</strong> India’s flagship interdisciplinary cognitive science conference; strong fit for behaviour, fMRI, cognition and language work.</p>
+      <p><strong>Action:</strong> For Indian cognitive neuroscience, this is the most natural national meeting.</p>
+      <div class="tags"><span class="chip">India</span><span class="chip">cognition</span><span class="chip">cognitive-neuroscience</span><span class="chip">AI</span><span class="chip">workshops</span></div>
+      <a class="btn" href="https://www.accs2026.com/" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="india" data-category="Cognitive neuroscience workshop" data-tier="Highly recommended for trainees" data-tags="india iisc cognition training workshop" data-search="bangalore cognition workshop — iisc centre for neuroscience india cognitive neuroscience workshop highly recommended for trainees periodic varies; recent editions around june 2026: 7th bangalore cognition workshop announced by iisc cns iisc bengaluru cognitive neuroscience, behaviour, fmri/eeg, computational cognition, early-career training a compact workshop-style setting with strong faculty/student interaction and relevance to cognitive neuroscience in india. workshop + lectures + discussions + public lecture in some editions https://cns.iisc.ac.in/ [&#x27;india&#x27;, &#x27;iisc&#x27;, &#x27;cognition&#x27;, &#x27;training&#x27;, &#x27;workshop&#x27;] ideal for undergrads/msc/phd students entering cognitive neuroscience.">
+      <div class="card-top">
+        <span class="badge scope-india">India</span>
+        <span class="tier">Highly recommended for trainees</span>
+      </div>
+      <h3>Bangalore Cognition Workshop — IISc Centre for Neuroscience</h3>
+      <p class="meta"><strong>Cognitive neuroscience workshop</strong> · India · Periodic</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>Varies; recent editions around June</p>
+        <p><span>Next / current known</span>2026: 7th Bangalore Cognition Workshop announced by IISc CNS</p>
+        <p><span>Location</span>IISc Bengaluru</p>
+        <p><span>Format</span>Workshop + lectures + discussions + public lecture in some editions</p>
+      </div>
+      <p><strong>Best for:</strong> Cognitive neuroscience, behaviour, fMRI/EEG, computational cognition, early-career training</p>
+      <p><strong>Why attend:</strong> A compact workshop-style setting with strong faculty/student interaction and relevance to cognitive neuroscience in India.</p>
+      <p><strong>Action:</strong> Ideal for undergrads/MSc/PhD students entering cognitive neuroscience.</p>
+      <div class="tags"><span class="chip">India</span><span class="chip">IISc</span><span class="chip">cognition</span><span class="chip">training</span><span class="chip">workshop</span></div>
+      <a class="btn" href="https://cns.iisc.ac.in/" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="india" data-category="Consciousness / cognition / AI workshop" data-tier="Recommended specialist" data-tags="india consciousness iisc ai philosophy" data-search="neuroscience of consciousness workshop — iisc centre for neuroscience india consciousness / cognition / ai workshop recommended specialist periodic varies 2025/2026 cycle listed on iisc cns events pages; check current call iisc bengaluru consciousness, self, agency, cognitive science, neuroscience, ai, psychiatry, philosophy one of the few india-based workshops explicitly connecting consciousness science with neuroscience, ai and philosophy. in-person focused meeting/workshop https://cns.iisc.ac.in/neuroconsciousness-neurocon2/ [&#x27;india&#x27;, &#x27;consciousness&#x27;, &#x27;iisc&#x27;, &#x27;ai&#x27;, &#x27;philosophy&#x27;] best for interdisciplinary students who want consciousness science beyond pure psychology.">
+      <div class="card-top">
+        <span class="badge scope-india">India</span>
+        <span class="tier">Recommended specialist</span>
+      </div>
+      <h3>Neuroscience of Consciousness Workshop — IISc Centre for Neuroscience</h3>
+      <p class="meta"><strong>Consciousness / cognition / AI workshop</strong> · India · Periodic</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>Varies</p>
+        <p><span>Next / current known</span>2025/2026 cycle listed on IISc CNS events pages; check current call</p>
+        <p><span>Location</span>IISc Bengaluru</p>
+        <p><span>Format</span>In-person focused meeting/workshop</p>
+      </div>
+      <p><strong>Best for:</strong> Consciousness, self, agency, cognitive science, neuroscience, AI, psychiatry, philosophy</p>
+      <p><strong>Why attend:</strong> One of the few India-based workshops explicitly connecting consciousness science with neuroscience, AI and philosophy.</p>
+      <p><strong>Action:</strong> Best for interdisciplinary students who want consciousness science beyond pure psychology.</p>
+      <div class="tags"><span class="chip">India</span><span class="chip">consciousness</span><span class="chip">IISc</span><span class="chip">AI</span><span class="chip">philosophy</span></div>
+      <a class="btn" href="https://cns.iisc.ac.in/neuroconsciousness-neurocon2/" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="india" data-category="Clinical neurology" data-tier="Must-track for clinical neurology in India" data-tags="india clinical neurology cme abstracts" data-search="indian academy of neurology — iancon india clinical neurology must-track for clinical neurology in india annual october–november 2026: jaipur, 28 oct–1 nov india, rotating neurologists, clinician-scientists, clinical neuroscience, neurology residents, translational projects india’s major neurology meeting; best for clinical neurology exposure and neurologist networks. annual conference + abstracts + cme/teaching + workshops https://www.iancon2026jaipur.com/ [&#x27;india&#x27;, &#x27;clinical&#x27;, &#x27;neurology&#x27;, &#x27;cme&#x27;, &#x27;abstracts&#x27;] use if your work speaks to neurologists or clinical populations.">
+      <div class="card-top">
+        <span class="badge scope-india">India</span>
+        <span class="tier">Must-track for clinical neurology in India</span>
+      </div>
+      <h3>Indian Academy of Neurology — IANCON</h3>
+      <p class="meta"><strong>Clinical neurology</strong> · India · Annual</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>October–November</p>
+        <p><span>Next / current known</span>2026: Jaipur, 28 Oct–1 Nov</p>
+        <p><span>Location</span>India, rotating</p>
+        <p><span>Format</span>Annual conference + abstracts + CME/teaching + workshops</p>
+      </div>
+      <p><strong>Best for:</strong> Neurologists, clinician-scientists, clinical neuroscience, neurology residents, translational projects</p>
+      <p><strong>Why attend:</strong> India’s major neurology meeting; best for clinical neurology exposure and neurologist networks.</p>
+      <p><strong>Action:</strong> Use if your work speaks to neurologists or clinical populations.</p>
+      <div class="tags"><span class="chip">India</span><span class="chip">clinical</span><span class="chip">neurology</span><span class="chip">CME</span><span class="chip">abstracts</span></div>
+      <a class="btn" href="https://www.iancon2026jaipur.com/" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="india" data-category="Neurosurgery / neurological sciences" data-tier="Must-track for neurosurgery/clinical neuro" data-tags="india clinical neurosurgery neurology workshops" data-search="neurological society of india — nsicon india neurosurgery / neurological sciences must-track for neurosurgery/clinical neuro annual december 2026: ahmedabad, 10–13 december india, rotating neurosurgery, clinical neurological sciences, neurotrauma, neuro-oncology, spine, neurotechnology translation major indian clinical-neurological congregation with neurosurgery and allied neuroscience emphasis. conference + workshops + clinical sessions + posters https://www.nsicon2026.com/ [&#x27;india&#x27;, &#x27;clinical&#x27;, &#x27;neurosurgery&#x27;, &#x27;neurology&#x27;, &#x27;workshops&#x27;] best for clinical/neurosurgical networks rather than basic cognitive neuroscience.">
+      <div class="card-top">
+        <span class="badge scope-india">India</span>
+        <span class="tier">Must-track for neurosurgery/clinical neuro</span>
+      </div>
+      <h3>Neurological Society of India — NSICON</h3>
+      <p class="meta"><strong>Neurosurgery / neurological sciences</strong> · India · Annual</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>December</p>
+        <p><span>Next / current known</span>2026: Ahmedabad, 10–13 December</p>
+        <p><span>Location</span>India, rotating</p>
+        <p><span>Format</span>Conference + workshops + clinical sessions + posters</p>
+      </div>
+      <p><strong>Best for:</strong> Neurosurgery, clinical neurological sciences, neurotrauma, neuro-oncology, spine, neurotechnology translation</p>
+      <p><strong>Why attend:</strong> Major Indian clinical-neurological congregation with neurosurgery and allied neuroscience emphasis.</p>
+      <p><strong>Action:</strong> Best for clinical/neurosurgical networks rather than basic cognitive neuroscience.</p>
+      <div class="tags"><span class="chip">India</span><span class="chip">clinical</span><span class="chip">neurosurgery</span><span class="chip">neurology</span><span class="chip">workshops</span></div>
+      <a class="btn" href="https://www.nsicon2026.com/" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="india" data-category="Neurochemistry / molecular neuroscience" data-tier="Must-track for molecular/neurochemistry India" data-tags="india neurochemistry molecular workshop neuropharmacology" data-search="society for neurochemistry, india — snci annual meeting india neurochemistry / molecular neuroscience must-track for molecular/neurochemistry india annual september–november 2026: 40th snci annual meeting, pondicherry university, 24–26 september; pre-conference workshop 21–23 september india, rotating neurochemistry, neuropharmacology, molecular/cellular neuroscience, neurodegeneration, bioinformatics india’s specialist society platform for neurochemistry and molecular neuroscience, with hands-on training/workshops. annual meeting + pre-conference workshop + posters/orals https://snci.co.in/ [&#x27;india&#x27;, &#x27;neurochemistry&#x27;, &#x27;molecular&#x27;, &#x27;workshop&#x27;, &#x27;neuropharmacology&#x27;] best for wet-lab and molecular neuroscience students.">
+      <div class="card-top">
+        <span class="badge scope-india">India</span>
+        <span class="tier">Must-track for molecular/neurochemistry India</span>
+      </div>
+      <h3>Society for Neurochemistry, India — SNCI Annual Meeting</h3>
+      <p class="meta"><strong>Neurochemistry / molecular neuroscience</strong> · India · Annual</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>September–November</p>
+        <p><span>Next / current known</span>2026: 40th SNCI Annual Meeting, Pondicherry University, 24–26 September; pre-conference workshop 21–23 September</p>
+        <p><span>Location</span>India, rotating</p>
+        <p><span>Format</span>Annual meeting + pre-conference workshop + posters/orals</p>
+      </div>
+      <p><strong>Best for:</strong> Neurochemistry, neuropharmacology, molecular/cellular neuroscience, neurodegeneration, bioinformatics</p>
+      <p><strong>Why attend:</strong> India’s specialist society platform for neurochemistry and molecular neuroscience, with hands-on training/workshops.</p>
+      <p><strong>Action:</strong> Best for wet-lab and molecular neuroscience students.</p>
+      <div class="tags"><span class="chip">India</span><span class="chip">neurochemistry</span><span class="chip">molecular</span><span class="chip">workshop</span><span class="chip">neuropharmacology</span></div>
+      <a class="btn" href="https://snci.co.in/" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="india" data-category="Epilepsy / clinical neuroscience" data-tier="Must-track for epilepsy India" data-tags="india epilepsy eeg clinical workshops" data-search="econ — joint conference of indian epilepsy association and indian epilepsy society india epilepsy / clinical neuroscience must-track for epilepsy india annual/periodic joint conference varies 2026: ludhiana, 7–9 august; pre-conference workshops 6 august india, rotating epilepsy, eeg, seizure networks, neurology residents, clinical neurophysiology, epilepsy surgery india’s specialist epilepsy meeting with workshops and trainee-oriented clinical sessions. conference + pre-conference workshops + abstracts + quiz/cpc sessions https://www.ianindia.org/events_list [&#x27;india&#x27;, &#x27;epilepsy&#x27;, &#x27;eeg&#x27;, &#x27;clinical&#x27;, &#x27;workshops&#x27;] best indian meeting for eeg/epilepsy-focused clinical neuroscience.">
+      <div class="card-top">
+        <span class="badge scope-india">India</span>
+        <span class="tier">Must-track for epilepsy India</span>
+      </div>
+      <h3>ECON — Joint Conference of Indian Epilepsy Association and Indian Epilepsy Society</h3>
+      <p class="meta"><strong>Epilepsy / clinical neuroscience</strong> · India · Annual/periodic joint conference</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>Varies</p>
+        <p><span>Next / current known</span>2026: Ludhiana, 7–9 August; pre-conference workshops 6 August</p>
+        <p><span>Location</span>India, rotating</p>
+        <p><span>Format</span>Conference + pre-conference workshops + abstracts + quiz/CPC sessions</p>
+      </div>
+      <p><strong>Best for:</strong> Epilepsy, EEG, seizure networks, neurology residents, clinical neurophysiology, epilepsy surgery</p>
+      <p><strong>Why attend:</strong> India’s specialist epilepsy meeting with workshops and trainee-oriented clinical sessions.</p>
+      <p><strong>Action:</strong> Best Indian meeting for EEG/epilepsy-focused clinical neuroscience.</p>
+      <div class="tags"><span class="chip">India</span><span class="chip">epilepsy</span><span class="chip">EEG</span><span class="chip">clinical</span><span class="chip">workshops</span></div>
+      <a class="btn" href="https://www.ianindia.org/events_list" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="india" data-category="Sleep medicine / sleep science" data-tier="Highly recommended for sleep India" data-tags="india sleep clinical eeg workshop" data-search="sleepcon — indian sleep disorders association india sleep medicine / sleep science highly recommended for sleep india annual varies 2026: new delhi; workshop 26 june, conference 27–28 june india, rotating sleep medicine, sleep physiology, clinical sleep disorders, eeg/psg, circadian health clinical sleep medicine society meeting with workshop-heavy training relevance. workshop + conference + abstract sessions https://www.isda.co.in/sleep-conferences/sleepcon-2026/ [&#x27;india&#x27;, &#x27;sleep&#x27;, &#x27;clinical&#x27;, &#x27;eeg&#x27;, &#x27;workshop&#x27;] best for sleep-clinic, psg and clinical sleep medicine exposure.">
+      <div class="card-top">
+        <span class="badge scope-india">India</span>
+        <span class="tier">Highly recommended for sleep India</span>
+      </div>
+      <h3>SLEEPCON — Indian Sleep Disorders Association</h3>
+      <p class="meta"><strong>Sleep medicine / sleep science</strong> · India · Annual</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>Varies</p>
+        <p><span>Next / current known</span>2026: New Delhi; workshop 26 June, conference 27–28 June</p>
+        <p><span>Location</span>India, rotating</p>
+        <p><span>Format</span>Workshop + conference + abstract sessions</p>
+      </div>
+      <p><strong>Best for:</strong> Sleep medicine, sleep physiology, clinical sleep disorders, EEG/PSG, circadian health</p>
+      <p><strong>Why attend:</strong> Clinical sleep medicine society meeting with workshop-heavy training relevance.</p>
+      <p><strong>Action:</strong> Best for sleep-clinic, PSG and clinical sleep medicine exposure.</p>
+      <div class="tags"><span class="chip">India</span><span class="chip">sleep</span><span class="chip">clinical</span><span class="chip">EEG</span><span class="chip">workshop</span></div>
+      <a class="btn" href="https://www.isda.co.in/sleep-conferences/sleepcon-2026/" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="india" data-category="Sleep research" data-tier="Recommended specialist" data-tags="india sleep circadian research clinical" data-search="india sleep — indian society for sleep research india sleep research recommended specialist triennial + updates/events varies 2026: india sleep, pondicherry, 23–25 october; international sleep update, new delhi, 28 feb–1 mar india, rotating sleep and circadian research, sleep medicine, clinical and basic sleep science research-oriented sleep society activities and training/certification ecosystem in india. conference + updates + exams/certification activities https://issr.in/ [&#x27;india&#x27;, &#x27;sleep&#x27;, &#x27;circadian&#x27;, &#x27;research&#x27;, &#x27;clinical&#x27;] track along with sleepcon if sleep is central to your work.">
+      <div class="card-top">
+        <span class="badge scope-india">India</span>
+        <span class="tier">Recommended specialist</span>
+      </div>
+      <h3>India Sleep — Indian Society for Sleep Research</h3>
+      <p class="meta"><strong>Sleep research</strong> · India · Triennial + updates/events</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>Varies</p>
+        <p><span>Next / current known</span>2026: India Sleep, Pondicherry, 23–25 October; International Sleep Update, New Delhi, 28 Feb–1 Mar</p>
+        <p><span>Location</span>India, rotating</p>
+        <p><span>Format</span>Conference + updates + exams/certification activities</p>
+      </div>
+      <p><strong>Best for:</strong> Sleep and circadian research, sleep medicine, clinical and basic sleep science</p>
+      <p><strong>Why attend:</strong> Research-oriented sleep society activities and training/certification ecosystem in India.</p>
+      <p><strong>Action:</strong> Track along with SLEEPCON if sleep is central to your work.</p>
+      <div class="tags"><span class="chip">India</span><span class="chip">sleep</span><span class="chip">circadian</span><span class="chip">research</span><span class="chip">clinical</span></div>
+      <a class="btn" href="https://issr.in/" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="india" data-category="Clinical neuropsychology and cognitive neuroscience" data-tier="Highly recommended specialist" data-tags="india nimhans neuropsychology cognitive clinical" data-search="i-cncnc — international conference on clinical neuropsychology and cognitive neuroscience, nimhans india / global clinical neuropsychology and cognitive neuroscience highly recommended specialist new/specialist conference; track future editions varies 2026: nimhans bengaluru; pre-conference workshop 4 march, conference 5–7 march nimhans bengaluru clinical neuropsychology, cognitive neuroscience, brain–behaviour relationships, neuropsychological assessment and intervention strong bridge between clinical neuropsychology and cognitive neuroscience in india’s premier mental health/neuroscience institute. pre-conference workshop + conference + abstracts https://icncnc2026.com/ [&#x27;india&#x27;, &#x27;nimhans&#x27;, &#x27;neuropsychology&#x27;, &#x27;cognitive&#x27;, &#x27;clinical&#x27;] very relevant for psychology-to-neuroscience and clinical cognition audiences.">
+      <div class="card-top">
+        <span class="badge scope-india">India</span>
+        <span class="tier">Highly recommended specialist</span>
+      </div>
+      <h3>I-CNCNC — International Conference on Clinical Neuropsychology and Cognitive Neuroscience, NIMHANS</h3>
+      <p class="meta"><strong>Clinical neuropsychology and cognitive neuroscience</strong> · India / Global · New/specialist conference; track future editions</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>Varies</p>
+        <p><span>Next / current known</span>2026: NIMHANS Bengaluru; pre-conference workshop 4 March, conference 5–7 March</p>
+        <p><span>Location</span>NIMHANS Bengaluru</p>
+        <p><span>Format</span>Pre-conference workshop + conference + abstracts</p>
+      </div>
+      <p><strong>Best for:</strong> Clinical neuropsychology, cognitive neuroscience, brain–behaviour relationships, neuropsychological assessment and intervention</p>
+      <p><strong>Why attend:</strong> Strong bridge between clinical neuropsychology and cognitive neuroscience in India’s premier mental health/neuroscience institute.</p>
+      <p><strong>Action:</strong> Very relevant for psychology-to-neuroscience and clinical cognition audiences.</p>
+      <div class="tags"><span class="chip">India</span><span class="chip">NIMHANS</span><span class="chip">neuropsychology</span><span class="chip">cognitive</span><span class="chip">clinical</span></div>
+      <a class="btn" href="https://icncnc2026.com/" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="india" data-category="Clinical neuroscience / psychiatry / methods training" data-tier="Must-track as a portal" data-tags="india nimhans clinical workshops portal" data-search="nimhans conferences and workshops portal india clinical neuroscience / psychiatry / methods training must-track as a portal multiple events yearly throughout year portal updated with current conferences and workshops nimhans bengaluru and associated venues clinical neuroscience, psychiatry, psychology, public health, neuroimaging, methods workshops nimhans is a central indian hub for mental health and neurosciences; many high-value events do not recur under a single brand name. workshops, symposia, seminars, conferences https://www.nimhans.ac.in/announcements/conference-and-workshops-announcement [&#x27;india&#x27;, &#x27;nimhans&#x27;, &#x27;clinical&#x27;, &#x27;workshops&#x27;, &#x27;portal&#x27;] check monthly; many opportunities are short-deadline.">
+      <div class="card-top">
+        <span class="badge scope-india">India</span>
+        <span class="tier">Must-track as a portal</span>
+      </div>
+      <h3>NIMHANS Conferences and Workshops Portal</h3>
+      <p class="meta"><strong>Clinical neuroscience / psychiatry / methods training</strong> · India · Multiple events yearly</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>Throughout year</p>
+        <p><span>Next / current known</span>Portal updated with current conferences and workshops</p>
+        <p><span>Location</span>NIMHANS Bengaluru and associated venues</p>
+        <p><span>Format</span>Workshops, symposia, seminars, conferences</p>
+      </div>
+      <p><strong>Best for:</strong> Clinical neuroscience, psychiatry, psychology, public health, neuroimaging, methods workshops</p>
+      <p><strong>Why attend:</strong> NIMHANS is a central Indian hub for mental health and neurosciences; many high-value events do not recur under a single brand name.</p>
+      <p><strong>Action:</strong> Check monthly; many opportunities are short-deadline.</p>
+      <div class="tags"><span class="chip">India</span><span class="chip">NIMHANS</span><span class="chip">clinical</span><span class="chip">workshops</span><span class="chip">portal</span></div>
+      <a class="btn" href="https://www.nimhans.ac.in/announcements/conference-and-workshops-announcement" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="india" data-category="Basic neuroscience / brain and mind" data-tier="Highly recommended specialist" data-tags="india ncbs basic brain-mind symposium" data-search="ncbs / centre for brain and mind — neuroscience research symposium / manotsava india basic neuroscience / brain and mind highly recommended specialist periodic varies 2026: manotsava, ncbs, 13–17 december listed on ncbs events ncbs bengaluru basic neuroscience, brain and mind research, systems/circuit/cognitive interfaces, early-career networking ncbs/cbm is one of india’s strongest research environments for interdisciplinary brain science. research symposium + lectures + posters/sessions depending on edition https://www.ncbs.res.in/events [&#x27;india&#x27;, &#x27;ncbs&#x27;, &#x27;basic&#x27;, &#x27;brain-mind&#x27;, &#x27;symposium&#x27;] track ncbs event pages for short workshops and research symposia.">
+      <div class="card-top">
+        <span class="badge scope-india">India</span>
+        <span class="tier">Highly recommended specialist</span>
+      </div>
+      <h3>NCBS / Centre for Brain and Mind — Neuroscience Research Symposium / Manotsava</h3>
+      <p class="meta"><strong>Basic neuroscience / brain and mind</strong> · India · Periodic</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>Varies</p>
+        <p><span>Next / current known</span>2026: Manotsava, NCBS, 13–17 December listed on NCBS events</p>
+        <p><span>Location</span>NCBS Bengaluru</p>
+        <p><span>Format</span>Research symposium + lectures + posters/sessions depending on edition</p>
+      </div>
+      <p><strong>Best for:</strong> Basic neuroscience, brain and mind research, systems/circuit/cognitive interfaces, early-career networking</p>
+      <p><strong>Why attend:</strong> NCBS/CBM is one of India’s strongest research environments for interdisciplinary brain science.</p>
+      <p><strong>Action:</strong> Track NCBS event pages for short workshops and research symposia.</p>
+      <div class="tags"><span class="chip">India</span><span class="chip">NCBS</span><span class="chip">basic</span><span class="chip">brain-mind</span><span class="chip">symposium</span></div>
+      <a class="btn" href="https://www.ncbs.res.in/events" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="india" data-category="Training school" data-tier="Must-track for trainees" data-tags="india ibro training travel-support early-career" data-search="ibro-supported neuroscience schools in india india / asia-pacific training school must-track for trainees varies by call and host varies 2026 example: ibro-supported school hosted by nbrc, gurugram, 15–19 september india, rotating host institutions msc/phd students, early postdocs, hands-on neuroscience methods, international exposure ibro schools are often the highest-impact training opportunities for students with limited conference budgets. short school + lectures + hands-on sessions + trainee selection https://ibro.org/ibro-supported-schools-2026/ [&#x27;india&#x27;, &#x27;ibro&#x27;, &#x27;training&#x27;, &#x27;travel-support&#x27;, &#x27;early-career&#x27;] prioritise over passive conference attendance if you are building skills.">
+      <div class="card-top">
+        <span class="badge scope-india">India</span>
+        <span class="tier">Must-track for trainees</span>
+      </div>
+      <h3>IBRO-supported Neuroscience Schools in India</h3>
+      <p class="meta"><strong>Training school</strong> · India / Asia-Pacific · Varies by call and host</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>Varies</p>
+        <p><span>Next / current known</span>2026 example: IBRO-supported school hosted by NBRC, Gurugram, 15–19 September</p>
+        <p><span>Location</span>India, rotating host institutions</p>
+        <p><span>Format</span>Short school + lectures + hands-on sessions + trainee selection</p>
+      </div>
+      <p><strong>Best for:</strong> MSc/PhD students, early postdocs, hands-on neuroscience methods, international exposure</p>
+      <p><strong>Why attend:</strong> IBRO schools are often the highest-impact training opportunities for students with limited conference budgets.</p>
+      <p><strong>Action:</strong> Prioritise over passive conference attendance if you are building skills.</p>
+      <div class="tags"><span class="chip">India</span><span class="chip">IBRO</span><span class="chip">training</span><span class="chip">travel-support</span><span class="chip">early-career</span></div>
+      <a class="btn" href="https://ibro.org/ibro-supported-schools-2026/" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="india" data-category="Neurodevelopment / methods workshop" data-tier="Recommended specialist" data-tags="india neurodevelopment ncbs instem workshop" data-search="bric-instem / ncbs — building brains and neurodevelopment workshops india neurodevelopment / methods workshop recommended specialist periodic varies 2025 example listed; track future editions through instem/ncbs/indiabioscience bangalore life science cluster neurodevelopment, model systems, organoids, developmental disorders, methods training useful specialist workshops for students entering development, cellular neuroscience and disease models. workshop + talks + training sessions https://instem.res.in/events/building-brains/ [&#x27;india&#x27;, &#x27;neurodevelopment&#x27;, &#x27;ncbs&#x27;, &#x27;instem&#x27;, &#x27;workshop&#x27;] track indiabioscience and institute event pages for newer editions.">
+      <div class="card-top">
+        <span class="badge scope-india">India</span>
+        <span class="tier">Recommended specialist</span>
+      </div>
+      <h3>BRIC-inStem / NCBS — Building Brains and Neurodevelopment Workshops</h3>
+      <p class="meta"><strong>Neurodevelopment / methods workshop</strong> · India · Periodic</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>Varies</p>
+        <p><span>Next / current known</span>2025 example listed; track future editions through inStem/NCBS/IndiaBioscience</p>
+        <p><span>Location</span>Bangalore Life Science Cluster</p>
+        <p><span>Format</span>Workshop + talks + training sessions</p>
+      </div>
+      <p><strong>Best for:</strong> Neurodevelopment, model systems, organoids, developmental disorders, methods training</p>
+      <p><strong>Why attend:</strong> Useful specialist workshops for students entering development, cellular neuroscience and disease models.</p>
+      <p><strong>Action:</strong> Track IndiaBioscience and institute event pages for newer editions.</p>
+      <div class="tags"><span class="chip">India</span><span class="chip">neurodevelopment</span><span class="chip">NCBS</span><span class="chip">inStem</span><span class="chip">workshop</span></div>
+      <a class="btn" href="https://instem.res.in/events/building-brains/" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="india" data-category="Aging / neurodegeneration" data-tier="Recommended specialist" data-tags="india aging dementia iisc brain-health" data-search="centre for brain research, iisc — aging brain research workshops india aging / neurodegeneration recommended specialist periodic varies track cbr events page for current editions iisc bengaluru aging, dementia, longitudinal cohorts, brain health, neurodegeneration, population neuroscience important india-based bridge between aging, brain health, neurodegeneration and population-level research. workshop / symposium https://cbr-iisc.ac.in/events-aging-brain-research-workshop-nov2024/ [&#x27;india&#x27;, &#x27;aging&#x27;, &#x27;dementia&#x27;, &#x27;iisc&#x27;, &#x27;brain-health&#x27;] useful for neurodegeneration/aging students who want india-specific datasets and cohorts.">
+      <div class="card-top">
+        <span class="badge scope-india">India</span>
+        <span class="tier">Recommended specialist</span>
+      </div>
+      <h3>Centre for Brain Research, IISc — Aging Brain Research Workshops</h3>
+      <p class="meta"><strong>Aging / neurodegeneration</strong> · India · Periodic</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>Varies</p>
+        <p><span>Next / current known</span>Track CBR events page for current editions</p>
+        <p><span>Location</span>IISc Bengaluru</p>
+        <p><span>Format</span>Workshop / symposium</p>
+      </div>
+      <p><strong>Best for:</strong> Aging, dementia, longitudinal cohorts, brain health, neurodegeneration, population neuroscience</p>
+      <p><strong>Why attend:</strong> Important India-based bridge between aging, brain health, neurodegeneration and population-level research.</p>
+      <p><strong>Action:</strong> Useful for neurodegeneration/aging students who want India-specific datasets and cohorts.</p>
+      <div class="tags"><span class="chip">India</span><span class="chip">aging</span><span class="chip">dementia</span><span class="chip">IISc</span><span class="chip">brain-health</span></div>
+      <a class="btn" href="https://cbr-iisc.ac.in/events-aging-brain-research-workshop-nov2024/" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="india" data-category="Psychology adjacent to cognitive neuroscience" data-tier="Recommended adjunct" data-tags="india psychology behaviour cognition adjacent" data-search="naop — national academy of psychology india annual convention india psychology adjacent to cognitive neuroscience recommended adjunct annual varies 2026: 35th convention, iim shillong, 29 april–1 may india, rotating psychology, cognition, social/clinical/organisational psychology, methods, behaviour-first research not a neuroscience conference, but useful for behavioural scientists and cognitive researchers in india. convention + symposia + paper/poster sessions https://www.iimshillong.ac.in/events-and-conferences/conferences/naop2026/ [&#x27;india&#x27;, &#x27;psychology&#x27;, &#x27;behaviour&#x27;, &#x27;cognition&#x27;, &#x27;adjacent&#x27;] choose when your work is psychological/behavioural rather than neural-method-first.">
+      <div class="card-top">
+        <span class="badge scope-india">India</span>
+        <span class="tier">Recommended adjunct</span>
+      </div>
+      <h3>NAOP — National Academy of Psychology India Annual Convention</h3>
+      <p class="meta"><strong>Psychology adjacent to cognitive neuroscience</strong> · India · Annual</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>Varies</p>
+        <p><span>Next / current known</span>2026: 35th Convention, IIM Shillong, 29 April–1 May</p>
+        <p><span>Location</span>India, rotating</p>
+        <p><span>Format</span>Convention + symposia + paper/poster sessions</p>
+      </div>
+      <p><strong>Best for:</strong> Psychology, cognition, social/clinical/organisational psychology, methods, behaviour-first research</p>
+      <p><strong>Why attend:</strong> Not a neuroscience conference, but useful for behavioural scientists and cognitive researchers in India.</p>
+      <p><strong>Action:</strong> Choose when your work is psychological/behavioural rather than neural-method-first.</p>
+      <div class="tags"><span class="chip">India</span><span class="chip">psychology</span><span class="chip">behaviour</span><span class="chip">cognition</span><span class="chip">adjacent</span></div>
+      <a class="btn" href="https://www.iimshillong.ac.in/events-and-conferences/conferences/naop2026/" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="india" data-category="Clinical psychology / neurofeedback / applied neuroscience" data-tier="Recommended adjunct" data-tags="india clinical-psychology neurofeedback eeg applied" data-search="clinical psychology society of india — cpsicon and neurofeedback workshops india clinical psychology / neurofeedback / applied neuroscience recommended adjunct annual + workshops varies 2026: cpsicon guwahati; eeg neurofeedback training 10–12 november india, rotating clinical psychology, neurofeedback, applied cognitive neuroscience, mental health practice useful applied/clinical platform, particularly if neuroscience content connects to assessment, intervention or neurofeedback. conference + certification workshops + regional events https://www.cpsindia.org.in/ [&#x27;india&#x27;, &#x27;clinical-psychology&#x27;, &#x27;neurofeedback&#x27;, &#x27;eeg&#x27;, &#x27;applied&#x27;] good for applied neuro/clinical audiences, not basic neuroscience.">
+      <div class="card-top">
+        <span class="badge scope-india">India</span>
+        <span class="tier">Recommended adjunct</span>
+      </div>
+      <h3>Clinical Psychology Society of India — CPSICON and Neurofeedback Workshops</h3>
+      <p class="meta"><strong>Clinical psychology / neurofeedback / applied neuroscience</strong> · India · Annual + workshops</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>Varies</p>
+        <p><span>Next / current known</span>2026: CPSICON Guwahati; EEG neurofeedback training 10–12 November</p>
+        <p><span>Location</span>India, rotating</p>
+        <p><span>Format</span>Conference + certification workshops + regional events</p>
+      </div>
+      <p><strong>Best for:</strong> Clinical psychology, neurofeedback, applied cognitive neuroscience, mental health practice</p>
+      <p><strong>Why attend:</strong> Useful applied/clinical platform, particularly if neuroscience content connects to assessment, intervention or neurofeedback.</p>
+      <p><strong>Action:</strong> Good for applied neuro/clinical audiences, not basic neuroscience.</p>
+      <div class="tags"><span class="chip">India</span><span class="chip">clinical-psychology</span><span class="chip">neurofeedback</span><span class="chip">EEG</span><span class="chip">applied</span></div>
+      <a class="btn" href="https://www.cpsindia.org.in/" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="india" data-category="Mind, brain, consciousness / interdisciplinary" data-tier="Selective adjunct" data-tags="india consciousness iks cognition interdisciplinary" data-search="mind, brain, consciousness conference — iit mandi / iks-mha india mind, brain, consciousness / interdisciplinary selective adjunct periodic varies 2026 edition listed by iit mandi iit mandi consciousness, cognition, philosophy, mental health, indian knowledge systems, contemplative science a niche interdisciplinary space; useful if your work connects mind/brain science with consciousness, meditation, yoga or indian knowledge systems. conference + keynotes + interdisciplinary sessions https://iksmha.iitmandi.ac.in/mbcc/2026/ [&#x27;india&#x27;, &#x27;consciousness&#x27;, &#x27;iks&#x27;, &#x27;cognition&#x27;, &#x27;interdisciplinary&#x27;] attend only if the theme fits your work; not a replacement for accs/ian.">
+      <div class="card-top">
+        <span class="badge scope-india">India</span>
+        <span class="tier">Selective adjunct</span>
+      </div>
+      <h3>Mind, Brain, Consciousness Conference — IIT Mandi / IKS-MHA</h3>
+      <p class="meta"><strong>Mind, brain, consciousness / interdisciplinary</strong> · India · Periodic</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>Varies</p>
+        <p><span>Next / current known</span>2026 edition listed by IIT Mandi</p>
+        <p><span>Location</span>IIT Mandi</p>
+        <p><span>Format</span>Conference + keynotes + interdisciplinary sessions</p>
+      </div>
+      <p><strong>Best for:</strong> Consciousness, cognition, philosophy, mental health, Indian knowledge systems, contemplative science</p>
+      <p><strong>Why attend:</strong> A niche interdisciplinary space; useful if your work connects mind/brain science with consciousness, meditation, yoga or Indian knowledge systems.</p>
+      <p><strong>Action:</strong> Attend only if the theme fits your work; not a replacement for ACCS/IAN.</p>
+      <div class="tags"><span class="chip">India</span><span class="chip">consciousness</span><span class="chip">IKS</span><span class="chip">cognition</span><span class="chip">interdisciplinary</span></div>
+      <a class="btn" href="https://iksmha.iitmandi.ac.in/mbcc/2026/" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="india" data-category="Opportunity portal" data-tier="Must-track as a portal" data-tags="india portal workshops training opportunities" data-search="indiabioscience events calendar — neuroscience-relevant listings india opportunity portal must-track as a portal continuously updated throughout year check current listings and filters india, all institutions finding short workshops, symposia, schools, internships, dbt/wellcome/embo/ibro-linked events many strong indian workshops are one-off or institute-hosted; a portal is more reliable than tracking names only. listings portal https://indiabioscience.org/events [&#x27;india&#x27;, &#x27;portal&#x27;, &#x27;workshops&#x27;, &#x27;training&#x27;, &#x27;opportunities&#x27;] check every 2–4 weeks when searching for training opportunities.">
+      <div class="card-top">
+        <span class="badge scope-india">India</span>
+        <span class="tier">Must-track as a portal</span>
+      </div>
+      <h3>IndiaBioscience Events Calendar — Neuroscience-relevant listings</h3>
+      <p class="meta"><strong>Opportunity portal</strong> · India · Continuously updated</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>Throughout year</p>
+        <p><span>Next / current known</span>Check current listings and filters</p>
+        <p><span>Location</span>India, all institutions</p>
+        <p><span>Format</span>Listings portal</p>
+      </div>
+      <p><strong>Best for:</strong> Finding short workshops, symposia, schools, internships, DBT/Wellcome/EMBO/IBRO-linked events</p>
+      <p><strong>Why attend:</strong> Many strong Indian workshops are one-off or institute-hosted; a portal is more reliable than tracking names only.</p>
+      <p><strong>Action:</strong> Check every 2–4 weeks when searching for training opportunities.</p>
+      <div class="tags"><span class="chip">India</span><span class="chip">portal</span><span class="chip">workshops</span><span class="chip">training</span><span class="chip">opportunities</span></div>
+      <a class="btn" href="https://indiabioscience.org/events" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="india" data-category="Institutional neuroscience events" data-tier="Recommended for Bengaluru network" data-tags="india iisc bengaluru symposium students" data-search="iisc centre for neuroscience symposium / open day / department events india institutional neuroscience events recommended for bengaluru network multiple events yearly throughout year track iisc cns news/events page iisc bengaluru students around bengaluru, prospective applicants, cognitive/systems/computational neuroscience audiences good local network-builder; especially useful for students trying to understand indian neuroscience labs. symposium, open day, workshops, talks https://cns.iisc.ac.in/newsevents/ [&#x27;india&#x27;, &#x27;iisc&#x27;, &#x27;bengaluru&#x27;, &#x27;symposium&#x27;, &#x27;students&#x27;] best local entry point for people wanting to enter neuroscience from psychology/biology/engineering.">
+      <div class="card-top">
+        <span class="badge scope-india">India</span>
+        <span class="tier">Recommended for Bengaluru network</span>
+      </div>
+      <h3>IISc Centre for Neuroscience Symposium / Open Day / Department Events</h3>
+      <p class="meta"><strong>Institutional neuroscience events</strong> · India · Multiple events yearly</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>Throughout year</p>
+        <p><span>Next / current known</span>Track IISc CNS news/events page</p>
+        <p><span>Location</span>IISc Bengaluru</p>
+        <p><span>Format</span>Symposium, open day, workshops, talks</p>
+      </div>
+      <p><strong>Best for:</strong> Students around Bengaluru, prospective applicants, cognitive/systems/computational neuroscience audiences</p>
+      <p><strong>Why attend:</strong> Good local network-builder; especially useful for students trying to understand Indian neuroscience labs.</p>
+      <p><strong>Action:</strong> Best local entry point for people wanting to enter neuroscience from psychology/biology/engineering.</p>
+      <div class="tags"><span class="chip">India</span><span class="chip">IISc</span><span class="chip">Bengaluru</span><span class="chip">symposium</span><span class="chip">students</span></div>
+      <a class="btn" href="https://cns.iisc.ac.in/newsevents/" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="india" data-category="Institutional life-science/neuroscience events" data-tier="Recommended as a portal" data-tags="india ncbs bengaluru workshops basic-science" data-search="ncbs / bangalore life science cluster events india institutional life-science/neuroscience events recommended as a portal multiple events yearly throughout year track ncbs events page ncbs, instem, c-camp, tigs campus, bengaluru basic biology, systems neuroscience, computational biology, imaging, model organisms, neurodevelopment many high-quality indian short courses and workshops are hosted in the bangalore life science cluster. seminars, workshops, schools, symposia https://www.ncbs.res.in/events [&#x27;india&#x27;, &#x27;ncbs&#x27;, &#x27;bengaluru&#x27;, &#x27;workshops&#x27;, &#x27;basic-science&#x27;] track this portal if you want hands-on biological and imaging methods exposure.">
+      <div class="card-top">
+        <span class="badge scope-india">India</span>
+        <span class="tier">Recommended as a portal</span>
+      </div>
+      <h3>NCBS / Bangalore Life Science Cluster Events</h3>
+      <p class="meta"><strong>Institutional life-science/neuroscience events</strong> · India · Multiple events yearly</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>Throughout year</p>
+        <p><span>Next / current known</span>Track NCBS events page</p>
+        <p><span>Location</span>NCBS, inStem, C-CAMP, TIGS campus, Bengaluru</p>
+        <p><span>Format</span>Seminars, workshops, schools, symposia</p>
+      </div>
+      <p><strong>Best for:</strong> Basic biology, systems neuroscience, computational biology, imaging, model organisms, neurodevelopment</p>
+      <p><strong>Why attend:</strong> Many high-quality Indian short courses and workshops are hosted in the Bangalore Life Science Cluster.</p>
+      <p><strong>Action:</strong> Track this portal if you want hands-on biological and imaging methods exposure.</p>
+      <div class="tags"><span class="chip">India</span><span class="chip">NCBS</span><span class="chip">Bengaluru</span><span class="chip">workshops</span><span class="chip">basic-science</span></div>
+      <a class="btn" href="https://www.ncbs.res.in/events" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+
+    <article class="card" data-scope="india" data-category="Training and specialist workshops" data-tier="Highly recommended as a funding/training route" data-tags="india embo training methods international" data-search="dbt/wellcome trust india alliance and embo india-hosted neuroscience workshops india / international training and specialist workshops highly recommended as a funding/training route varies by call throughout year track india alliance, embo, indiabioscience and host institute pages india, rotating host institutes phd students and postdocs needing intensive methods training, international faculty exposure, and travel support some of the strongest india-based workshops are one-off international schools rather than recurring branded conferences. workshops, embo courses, short schools, method training https://indiabioscience.org/events [&#x27;india&#x27;, &#x27;embo&#x27;, &#x27;training&#x27;, &#x27;methods&#x27;, &#x27;international&#x27;] search by method keywords: fmri, eeg, calcium imaging, connectomics, organoids, single-cell, computational neuroscience.">
+      <div class="card-top">
+        <span class="badge scope-india">India</span>
+        <span class="tier">Highly recommended as a funding/training route</span>
+      </div>
+      <h3>DBT/Wellcome Trust India Alliance and EMBO India-hosted neuroscience workshops</h3>
+      <p class="meta"><strong>Training and specialist workshops</strong> · India / International · Varies by call</p>
+      <div class="grid2">
+        <p><span>Typical timing</span>Throughout year</p>
+        <p><span>Next / current known</span>Track India Alliance, EMBO, IndiaBioscience and host institute pages</p>
+        <p><span>Location</span>India, rotating host institutes</p>
+        <p><span>Format</span>Workshops, EMBO courses, short schools, method training</p>
+      </div>
+      <p><strong>Best for:</strong> PhD students and postdocs needing intensive methods training, international faculty exposure, and travel support</p>
+      <p><strong>Why attend:</strong> Some of the strongest India-based workshops are one-off international schools rather than recurring branded conferences.</p>
+      <p><strong>Action:</strong> Search by method keywords: fMRI, EEG, calcium imaging, connectomics, organoids, single-cell, computational neuroscience.</p>
+      <div class="tags"><span class="chip">India</span><span class="chip">EMBO</span><span class="chip">training</span><span class="chip">methods</span><span class="chip">international</span></div>
+      <a class="btn" href="https://indiabioscience.org/events" target="_blank" rel="noopener">Official link ↗</a>
+    </article>
+      </div>
+    </section>
+
+    <section id="india">
+      <h2>India-specific strategy</h2>
+      <div class="two-col">
+        <div class="box">
+          <h3>Best default choices in India</h3>
+          <p>For broad neuroscience, track <strong>Indian Academy of Neurosciences (IAN)</strong>. For cognitive science/cognitive neuroscience, track <strong>ACCS</strong>. For clinical neurology, track <strong>IANCON</strong>. For neurosurgery/clinical neurological sciences, track <strong>NSICON</strong>. For molecular/neurochemistry, track <strong>SNCI</strong>. For workshops, track <strong>IISc, NIMHANS, NCBS, NBRC, IndiaBioscience and IBRO schools</strong>.</p>
+        </div>
+        <div class="box">
+          <h3>For students trying to enter neuroscience</h3>
+          <p>Do not wait for a big international poster. First attend India-based workshops and society meetings, build a small project, learn methods, and meet labs. A good path is: <strong>ACCS/IAN → workshop/school → poster → global meeting</strong>.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="pathways">
+      <h2>Recommended pathways by profile</h2>
+      <div class="pathway"><h3>Undergrad / MSc entering neuroscience</h3><p>Start with ACCS, IAN, IndiaBioscience-listed workshops, Neuromatch Academy, IBRO schools, IISc/NCBS/NIMHANS events. Then aim for SfN/FENS/IBRO if you have a poster.</p></div><div class="pathway"><h3>Cognitive neuroscience PhD</h3><p>India: ACCS + Bangalore Cognition Workshop + IAN. Global: CNS, OHBM, SANS/SAS, SPR, VSS, CCN, SfN. Pick based on whether your strongest contribution is behaviour, fMRI/EEG, emotion or modelling.</p></div><div class="pathway"><h3>Computational neuroscience / neuroAI</h3><p>Start with Neuromatch Academy, CNS*, CCN, COSYNE, Bernstein, INCF, Brainhack, and selected NeurIPS/ICLR/ICML workshops. In India, track ACCS, IISc brain-computation events, NCBS/IndiaBioscience listings.</p></div><div class="pathway"><h3>Molecular/cellular/systems neuroscience</h3><p>India: IAN, SNCI, NCBS/inStem workshops, IBRO schools. Global: SfN, FENS, CSHL meetings/courses, GRC/GRS, JNS NEURO, FAONS.</p></div><div class="pathway"><h3>Clinical neuroscience / neurology</h3><p>India: IANCON, NSICON, ECON, SLEEPCON/India Sleep, I-CNCNC, NIMHANS workshops. Global: AAN, EAN, AAIC, MDS Congress, ILAE congresses, SOBP/ECNP depending on disorder.</p></div><div class="pathway"><h3>Neurotechnology / BCI / neuroengineering</h3><p>Global: BRAIN Initiative Conference, IEEE EMBC, IEEE NER, Graz BCI, NeuroTechX listings, INCF, Brainhack. India: watch IIT/NIMHANS/defence/medical-device BCI workshops and IndiaBioscience listings.</p></div>
+    </section>
+
+    <section id="calendar">
+      <h2>Rough yearly calendar</h2>
+      <p class="section-note">This is a planning map, not a substitute for official deadlines. Abstract deadlines are often 3–8 months before the meeting.</p>
+      <div class="calendar">
+        <div class="month"><b>Jan–Feb</b><p>Track CSHL/GRC/FENS/IBRO school applications; many summer course deadlines appear early.</p></div>
+        <div class="month"><b>Mar–Apr</b><p>CNS, COSYNE, SAS, SANS, SOBP, AAN, Neuroethics, many clinical/affective meetings.</p></div>
+        <div class="month"><b>May–Jun</b><p>OHBM, VSS, CAN, APS, EAN, SLEEP, many neuroimaging and psychology meetings.</p></div>
+        <div class="month"><b>Jul–Aug</b><p>FENS, AAIC, CCN, CNS*, Neuromatch, JNS NEURO, FAONS, BRAIN Initiative, BCI meetings.</p></div>
+        <div class="month"><b>Sep–Oct</b><p>Bernstein, MDS Congress, SPR, IAN, SNCI, IANCON, ECON/epilepsy events depending on year.</p></div>
+        <div class="month"><b>Nov–Dec</b><p>SfN, Psychonomics, NSICON, ACCS, CSHL neurodegeneration/brain modeling meetings, NCBS symposia.</p></div>
+        <div class="month"><b>All year</b><p>NIMHANS, NCBS, IISc, IndiaBioscience, IBRO and institute-specific workshops.</p></div>
+        <div class="month"><b>Always</b><p>Look for travel awards before abstract deadlines; visa planning often needs 2–4 months.</p></div>
+      </div>
+    </section>
+
+    <section id="watchlist">
+      <h2>Extra watchlist</h2>
+      <div class="two-col">
+        <div class="box">
+          <h3>Global specialist meetings to watch</h3>
+          <table>
+            <thead><tr><th>Name</th><th>Area</th><th>Link</th><th>Why track</th></tr></thead>
+            <tbody><tr><td>Flux Society Congress</td><td>Developmental cognitive neuroscience</td><td><a href="https://fluxsociety.org/" target="_blank" rel="noopener">Open ↗</a></td><td>Track for adolescent/child brain development, developmental cognition and neurodevelopmental disorders.</td></tr><tr><td>International Neuropsychological Society (INS) Meetings</td><td>Neuropsychology</td><td><a href="https://www.the-ins.org/" target="_blank" rel="noopener">Open ↗</a></td><td>Track for clinical and experimental neuropsychology, assessment and brain–behaviour research.</td></tr><tr><td>Society for Developmental Cognitive Neuroscience / developmental brain meetings</td><td>Developmental neuroscience</td><td><a href="https://fluxsociety.org/" target="_blank" rel="noopener">Open ↗</a></td><td>Use Flux and related meetings for developmental cognitive neuroscience.</td></tr><tr><td>International Congress of Neuroendocrinology / Society for Behavioral Neuroendocrinology</td><td>Hormones, brain and behaviour</td><td><a href="https://sbn.org/" target="_blank" rel="noopener">Open ↗</a></td><td>Specialist path for stress, sex hormones, social behaviour and endocrine-brain mechanisms.</td></tr><tr><td>International Behavioral Neuroscience Society (IBNS)</td><td>Behavioural neuroscience</td><td><a href="https://ibnsconnect.org/" target="_blank" rel="noopener">Open ↗</a></td><td>Good for behaviour, animal models, motivation, learning, affect and translational behavioural neuroscience.</td></tr><tr><td>World Congress of Neurology</td><td>Clinical neurology</td><td><a href="https://wfneurology.org/world-congress-of-neurology" target="_blank" rel="noopener">Open ↗</a></td><td>Large global clinical neurology congress; track especially for international clinical networks.</td></tr><tr><td>European Sleep Research Society — Sleep Europe</td><td>Sleep research</td><td><a href="https://esrs.eu/sleep-congress/" target="_blank" rel="noopener">Open ↗</a></td><td>Europe’s leading sleep medicine and sleep research congress.</td></tr><tr><td>International Congress of Clinical Neurophysiology</td><td>Clinical neurophysiology</td><td><a href="https://www.ifcn.info/" target="_blank" rel="noopener">Open ↗</a></td><td>For EEG, EMG, clinical neurophysiology, epilepsy and neuromuscular practice.</td></tr><tr><td>Society for Neuroscience in Anesthesiology and Critical Care (SNACC)</td><td>Neurocritical care / perioperative neuroscience</td><td><a href="https://www.snacc.org/" target="_blank" rel="noopener">Open ↗</a></td><td>Niche but useful for neurocritical care and perioperative brain research.</td></tr><tr><td>International Society for Magnetic Resonance in Medicine — ISMRM</td><td>MRI methods</td><td><a href="https://www.ismrm.org/" target="_blank" rel="noopener">Open ↗</a></td><td>MRI-heavy methods and physics; highly relevant to fMRI/diffusion method developers.</td></tr></tbody>
+          </table>
+        </div>
+        <div class="box">
+          <h3>India portals and emerging areas</h3>
+          <table>
+            <thead><tr><th>Name</th><th>Area</th><th>Link</th><th>Why track</th></tr></thead>
+            <tbody><tr><td>NBRC events and schools</td><td>Brain research / training</td><td><a href="https://nbrc.ac.in/" target="_blank" rel="noopener">Open ↗</a></td><td>Track for neuroscience schools, workshops, seminars and national meetings hosted by NBRC.</td></tr><tr><td>AIIMS / NIMHANS / SCTIMST / CMC neurology CME events</td><td>Clinical neuroscience</td><td><a href="https://www.nimhans.ac.in/announcements/conference-and-workshops-announcement" target="_blank" rel="noopener">Open ↗</a></td><td>Clinical neuroscience opportunities are often hospital/institute-specific rather than society-branded.</td></tr><tr><td>IIT/IISc/IIIT cognitive science and neuroAI workshops</td><td>Cognition + AI + computation</td><td><a href="https://indiabioscience.org/events" target="_blank" rel="noopener">Open ↗</a></td><td>Search by keywords: cognitive science, neuroAI, computational neuroscience, brain-computation, fMRI.</td></tr><tr><td>Indian BCI / neurotechnology workshops</td><td>Neurotechnology</td><td><a href="https://www.pib.gov.in/" target="_blank" rel="noopener">Open ↗</a></td><td>This area is emerging in India; track one-off BCI, defence, IIT and medical-device workshops.</td></tr><tr><td>Psychology and clinical psychology conventions</td><td>Behaviour / clinical cognition</td><td><a href="https://www.cpsindia.org.in/" target="_blank" rel="noopener">Open ↗</a></td><td>Useful adjuncts when the work is psychological, clinical or applied rather than basic neuroscience.</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="redflags">
+      <h2>Red flags: conferences to avoid</h2>
+      <div class="box">
+        <p>Many fake or low-value events use neuroscience, psychology, psychiatry, AI and neurology keywords to attract students. Before paying, check these red flags:</p>
+        <ul><li>Conference name is extremely generic: ‘World Brain Summit’, ‘International Conference on Neuroscience and Neurology’ with no known society behind it.</li><li>Website promises Scopus/WoS publication as the main selling point rather than scientific programme quality.</li><li>Same organiser runs hundreds of unrelated conferences on the same dates/cities.</li><li>No real programme committee, no named speakers, or copied speaker photos.</li><li>Peer review takes 24–72 hours and acceptance seems automatic after payment.</li><li>Venue is vague, registration fee is unusually high, and refund/contact details are weak.</li></ul>
+      </div>
+    </section>
+
+    <section id="source-note">
+      <h2>Source note</h2>
+      <div class="box">
+        <p>This guide prioritises official society, institute, and conference websites. Examples include SfN, FENS, IBRO, OHBM, COSYNE, CCN, Bernstein Network, CSHL, Neuromatch, INCF, AAN, EAN, AAIC, MDS, IAN, IANCON, NSICON, SNCI, NIMHANS, NCBS, IISc CNS and ACCS. It is meant to be a curated roadmap, not a live database.</p>
+      </div>
+    </section>
+
+    <footer>
+      <p><strong>Compiled:</strong> 24 June 2026. Designed as a shareable HTML resource for neuroscience students and early-career researchers.</p>
+    </footer>
+  </main>
+
+  <script>
+    const search = document.getElementById('search');
+    const cards = Array.from(document.querySelectorAll('.card'));
+    const count = document.getElementById('count');
+    let activeScope = 'all';
+    let activeCategory = 'all';
+
+    function applyFilters() {
+      const q = search.value.trim().toLowerCase();
+      let shown = 0;
+      cards.forEach(card => {
+        const matchesSearch = !q || card.dataset.search.includes(q) || card.dataset.tags.includes(q);
+        const matchesScope = activeScope === 'all' || card.dataset.scope === activeScope;
+        const matchesCategory = activeCategory === 'all' || card.dataset.category === activeCategory;
+        const show = matchesSearch && matchesScope && matchesCategory;
+        card.classList.toggle('hidden', !show);
+        if (show) shown++;
+      });
+      count.textContent = shown;
+    }
+
+    search.addEventListener('input', applyFilters);
+    document.querySelectorAll('.toggle-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeScope = btn.dataset.scope;
+        applyFilters();
+      });
+    });
+    document.querySelectorAll('.filter').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeCategory = btn.dataset.filter;
+        applyFilters();
+      });
+    });
+    applyFilters();
+  </script>
+</body>
+</html>
