@@ -1,0 +1,658 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="An in-depth guide to landmark women neuroscientists, their core discoveries, classic papers, key concepts, and videos/interviews to explore further.">
+<meta name="theme-color" content="#111416">
+<title>Women Who Shaped Neuroscience — Deep Guide</title>
+<style>
+:root{
+  --bg:#0f1316;--bg2:#171d21;--card:#1b2328;--card2:#20292f;--line:#334048;
+  --ink:#f7f3eb;--muted:#bcc6c7;--soft:#d8dfdd;--orange:#f4a62a;--orange2:#ffc35f;
+  --green:#87c7b1;--purple:#b39ddb;--shadow:0 18px 50px rgba(0,0,0,.28);--max:1220px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:82px}
+body{margin:0;color:var(--ink);font:16px/1.65 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+background:radial-gradient(circle at 90% 5%,rgba(244,166,42,.15),transparent 24rem),radial-gradient(circle at 8% 45%,rgba(135,199,177,.10),transparent 25rem),var(--bg)}
+a{color:inherit}
+.wrap{max-width:var(--max);margin:auto;padding-inline:22px}
+.progress{position:fixed;top:0;left:0;height:4px;width:0;background:linear-gradient(90deg,var(--orange),#fff,var(--orange2));z-index:999}
+nav{position:sticky;top:0;z-index:100;background:rgba(15,19,22,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.navin{min-height:72px;display:flex;align-items:center;gap:12px}
+.brand{display:flex;gap:10px;align-items:center;text-decoration:none;font-weight:950;letter-spacing:.04em}
+.brand i{width:40px;height:40px;border-radius:12px;border:1px solid var(--orange);display:grid;place-items:center;color:var(--orange);font-style:normal}
+.navlinks{margin-left:auto;display:flex;gap:4px;flex-wrap:wrap}
+.navlinks a{text-decoration:none;color:var(--muted);font-size:.85rem;font-weight:850;padding:9px 10px;border-radius:10px}
+.navlinks a:hover{background:var(--card);color:var(--ink)}
+.hero{padding:72px 0 36px}
+.eyebrow{display:inline-block;border:1px solid var(--orange);border-radius:10px;padding:7px 12px;text-transform:uppercase;font-size:.74rem;letter-spacing:.14em;font-weight:900}
+.hero-grid{display:grid;grid-template-columns:1.1fr .75fr;gap:38px;align-items:center}
+h1,h2,h3,h4{line-height:1.08;margin:0}
+h1{font-size:clamp(3rem,7vw,6.2rem);letter-spacing:-.05em;text-transform:uppercase;max-width:850px}
+h1 span{color:var(--orange)}
+.lead{font-size:1.16rem;color:var(--muted);max-width:780px;margin:22px 0}
+.hero-panel{background:linear-gradient(160deg,var(--card),var(--bg2));border:1px solid var(--line);border-radius:26px;padding:24px;box-shadow:var(--shadow)}
+.hero-panel h3{font-size:1.1rem;text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px;color:var(--orange2)}
+.hero-panel ul{margin:0;padding-left:18px;color:var(--soft)}
+.hero-panel li+li{margin-top:9px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}
+.chip{border:1px solid var(--line);background:var(--card);color:var(--muted);padding:7px 10px;border-radius:999px;font-size:.74rem;font-weight:850}
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;border:1px solid var(--line);padding:12px 16px;border-radius:999px;background:var(--card);font-weight:900}
+.btn.primary{background:var(--orange);color:#161a1d;border-color:var(--orange)}
+section{padding:62px 0}
+.section-head{display:grid;grid-template-columns:1fr .8fr;gap:24px;align-items:end;margin-bottom:24px}
+.section-head small{display:block;color:var(--orange);text-transform:uppercase;letter-spacing:.14em;font-weight:950;margin-bottom:8px}
+.section-head h2{font-size:clamp(2rem,5vw,4.4rem);letter-spacing:-.04em;text-transform:uppercase}
+.section-head p{margin:0;color:var(--muted)}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.note,.mini-card,.timeline,.reader-box,.cta-box,.gloss-card,.profile,.path-card{background:linear-gradient(160deg,var(--card),var(--bg2));border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow)}
+.note{padding:18px 20px;color:var(--muted)}
+.note strong{color:var(--ink)}
+.toc{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.toc a{text-decoration:none;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;display:block}
+.toc a b{display:block;color:var(--orange);font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+.toc a span{color:var(--soft);font-weight:800}
+.timeline{padding:20px}
+.timeline-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.time-item{background:#12181b;border:1px solid var(--line);padding:16px;border-radius:16px}
+.time-item strong{display:block;color:var(--orange2);font-size:1.2rem}
+.time-item b{display:block;margin:6px 0;color:var(--ink)}
+.time-item span{display:block;color:var(--muted);font-size:.88rem}
+.profile-stack{display:grid;gap:16px}
+.profile{padding:24px}
+.profile-top{display:grid;grid-template-columns:76px 1fr;gap:18px;align-items:start}
+.avatar{width:72px;height:72px;border-radius:20px;border:2px solid var(--orange);display:grid;place-items:center;color:var(--orange);font-size:2rem;background:#111618}
+.tag{display:inline-flex;gap:6px;align-items:center;font-size:.73rem;text-transform:uppercase;letter-spacing:.12em;font-weight:950;color:var(--orange2)}
+.profile h3{font-size:clamp(1.8rem,3vw,2.7rem);text-transform:uppercase;margin:4px 0 8px}
+.profile .one-liner{color:var(--muted);margin:0;max-width:900px}
+.profile-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px}
+.profile-grid>div{background:#12181b;border:1px solid var(--line);border-radius:16px;padding:15px}
+.profile-grid h4{font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--orange2);margin-bottom:8px}
+.profile-grid p,.profile-grid ul{margin:0;color:var(--soft);font-size:.9rem}
+.profile-grid ul{padding-left:18px}
+.profile-grid li+li{margin-top:6px}
+.links{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px}
+.links a{text-decoration:none;border:1px solid var(--line);background:var(--card2);border-radius:999px;padding:10px 12px;font-size:.78rem;font-weight:850}
+.links a:hover{border-color:var(--orange);color:var(--orange2)}
+.reader-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.reader-box,.path-card,.gloss-card,.mini-card,.cta-box{padding:20px}
+.reader-box h3,.path-card h3,.gloss-card h3,.mini-card h3,.cta-box h3{font-size:1.18rem;text-transform:uppercase;letter-spacing:.02em;margin-bottom:10px}
+.reader-box p,.path-card p,.gloss-card p,.mini-card p,.cta-box p{margin:0;color:var(--muted)}
+.reader-box ul,.path-card ul,.gloss-card ul,.mini-card ul{margin:12px 0 0;padding-left:18px;color:var(--soft)}
+.reader-box li+li,.path-card li+li,.gloss-card li+li,.mini-card li+li{margin-top:7px}
+.path-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.gloss-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.cta-box{padding:24px;border:1px solid rgba(244,166,42,.45);background:linear-gradient(160deg,rgba(244,166,42,.10),rgba(23,29,33,.95))}
+.footer{padding:50px 0 70px;color:#aeb8b7}
+.footer p{margin:8px 0}
+.small{font-size:.9rem;color:var(--muted)}
+.kicker{color:var(--orange);font-weight:900;text-transform:uppercase;letter-spacing:.12em;font-size:.75rem;margin-bottom:7px}
+@media (max-width:1080px){
+  .hero-grid,.section-head,.grid-2,.reader-grid,.path-grid,.gloss-grid{grid-template-columns:1fr}
+  .timeline-grid{grid-template-columns:repeat(2,1fr)}
+  .toc{grid-template-columns:repeat(2,1fr)}
+  .profile-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:700px){
+  .navlinks{display:none}
+  .timeline-grid,.toc,.profile-grid{grid-template-columns:1fr}
+  .profile-top{grid-template-columns:1fr}
+  h1{font-size:2.6rem}
+}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<nav>
+  <div class="wrap navin">
+    <a class="brand" href="#top"><i>🧠</i><span>Women Who Shaped Neuroscience</span></a>
+    <div class="navlinks">
+      <a href="#how">How to use</a>
+      <a href="#profiles">Scientists</a>
+      <a href="#concepts">Core concepts</a>
+      <a href="#reading">Reading path</a>
+      <a href="#videos">Videos</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero wrap" id="top">
+  <span class="eyebrow">Deep follow-up guide</span>
+  <div class="hero-grid">
+    <div>
+      <h1><span>Women</span> who shaped neuroscience</h1>
+      <p class="lead">This guide is designed as the long-form document you can send after your carousel. It goes beyond names and awards. For each scientist, it explains <strong>what problem she changed</strong>, <strong>the core idea behind her best-known work</strong>, <strong>classic papers to begin with</strong>, <strong>key figures or concepts to remember</strong>, and <strong>where to read or watch more</strong>.</p>
+      <div class="btns">
+        <a class="btn primary" href="#profiles">Start with the scientists</a>
+        <a class="btn" href="#reading">See the reading path</a>
+      </div>
+      <div class="chips">
+        <span class="chip">memory</span>
+        <span class="chip">development</span>
+        <span class="chip">navigation</span>
+        <span class="chip">face perception</span>
+        <span class="chip">basal ganglia</span>
+        <span class="chip">brain stimulation</span>
+        <span class="chip">model organisms</span>
+        <span class="chip">circuits & behaviour</span>
+      </div>
+    </div>
+    <aside class="hero-panel">
+      <h3>What is inside</h3>
+      <ul>
+        <li><strong>12 landmark women neuroscientists</strong> across cognitive, systems, developmental, cellular and clinical neuroscience.</li>
+        <li><strong>Plain-language summaries</strong> of their most influential discoveries.</li>
+        <li><strong>Classic papers</strong> to start reading, plus why those papers mattered.</li>
+        <li><strong>Key concepts / figures to remember</strong> so the literature becomes easier to follow.</li>
+        <li><strong>Video and interview suggestions</strong> using direct search links you can open quickly.</li>
+      </ul>
+    </aside>
+  </div>
+</header>
+
+<section id="how">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <small>Start here</small>
+        <h2>How to use this guide</h2>
+      </div>
+      <p>There are many ways to read this. If you are a beginner, start with the timeline and the “why she matters” summaries. If you are a student, use the classic-paper links and reading path. If you are making content, the “key figure to remember” boxes are the fastest way to extract the central idea.</p>
+    </div>
+
+    <div class="toc">
+      <a href="#profiles"><b>01</b><span>Scientist profiles</span></a>
+      <a href="#concepts"><b>02</b><span>Core ideas & figures</span></a>
+      <a href="#reading"><b>03</b><span>Reading pathway</span></a>
+      <a href="#videos"><b>04</b><span>Video & interview suggestions</span></a>
+    </div>
+
+    <div class="grid-2" style="margin-top:16px">
+      <div class="note"><strong>Important note:</strong> “Top” is always subjective. So this guide is better understood as a list of <strong>landmark and highly influential women neuroscientists</strong> whose work changed how we think about the brain.</div>
+      <div class="note"><strong>How the links work:</strong> to keep this shareable and durable, many resource buttons point to <strong>PubMed / Google Scholar / YouTube search links</strong>. That way, even if a site changes, your audience can still land in the right place.</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <small>Big picture</small>
+        <h2>A quick timeline</h2>
+      </div>
+      <p>One way to understand the history of neuroscience is to watch the main questions evolve: <strong>How do neurons grow?</strong> → <strong>How does the brain store memory?</strong> → <strong>How do circuits compute?</strong> → <strong>How does the brain navigate, recognize, feel, and change?</strong></p>
+    </div>
+    <div class="timeline">
+      <div class="timeline-grid">
+        <div class="time-item"><strong>1950s–60s</strong><b>Growth & memory</b><span>Rita Levi-Montalcini on nerve growth factor; Brenda Milner on memory after hippocampal damage.</span></div>
+        <div class="time-item"><strong>1970s–90s</strong><b>Development & cortex</b><span>Carla Shatz on neural development; Patricia Goldman-Rakic on prefrontal cortex and working memory.</span></div>
+        <div class="time-item"><strong>1990s–2000s</strong><b>Selective systems</b><span>Nancy Kanwisher on face selectivity; Eleanor Maguire on hippocampus and navigation; Ann Graybiel on habits.</span></div>
+        <div class="time-item"><strong>2000s–present</strong><b>Maps, circuits & intervention</b><span>May-Britt Moser on grid cells; Helen Mayberg on depression circuits; Cori Bargmann and Eve Marder on circuit logic.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="profiles">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <small>Main section</small>
+        <h2>Landmark scientist profiles</h2>
+      </div>
+      <p>Each card answers five questions: <strong>Who is she?</strong> <strong>What did she change?</strong> <strong>What classic paper should I start with?</strong> <strong>What figure or concept should I remember?</strong> <strong>Where can I read or watch more?</strong></p>
+    </div>
+
+    <div class="profile-stack">
+
+      <article class="profile" id="milner">
+        <div class="profile-top">
+          <div class="avatar">🧠</div>
+          <div>
+            <span class="tag">Memory systems · Neuropsychology</span>
+            <h3>Brenda Milner</h3>
+            <p class="one-liner">Brenda Milner helped establish one of the most important ideas in all of cognitive neuroscience: <strong>memory is not a single thing</strong>. Different brain systems support different kinds of memory.</p>
+          </div>
+        </div>
+        <div class="profile-grid">
+          <div><h4>Why she matters</h4><p>By studying patients with brain lesions—especially the famous patient H.M.—Milner showed that severe damage to the medial temporal lobes can destroy the ability to form new episodic memories while leaving other abilities relatively intact.</p></div>
+          <div><h4>Classic paper</h4><p><strong>Scoville & Milner (1957)</strong>, “Loss of recent memory after bilateral hippocampal lesions.” The paper became foundational because it tied a specific memory impairment to a specific brain region.</p></div>
+          <div><h4>Core insight</h4><p>The hippocampus is crucial for forming new declarative memories, but <strong>procedural learning</strong> can survive. This opened the door to the distinction between episodic, semantic and procedural memory systems.</p></div>
+          <div><h4>Figure to remember</h4><p>The classic contrast: <strong>H.M. cannot remember recent events, yet can improve on tasks like mirror tracing</strong>. The “impairment + preserved skill learning” pattern is the key figure in words.</p></div>
+        </div>
+        <div class="links">
+          <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Loss+of+recent+memory+after+bilateral+hippocampal+lesions" target="_blank" rel="noopener">Classic paper (PubMed search)</a>
+          <a href="https://scholar.google.com/scholar?q=Brenda+Milner+memory+paper" target="_blank" rel="noopener">Scholar search</a>
+          <a href="https://www.youtube.com/results?search_query=Brenda+Milner+interview+memory" target="_blank" rel="noopener">Video / interview search</a>
+        </div>
+      </article>
+
+      <article class="profile" id="rita">
+        <div class="profile-top">
+          <div class="avatar">🌱</div>
+          <div>
+            <span class="tag">Development · Neurobiology</span>
+            <h3>Rita Levi-Montalcini</h3>
+            <p class="one-liner">Rita Levi-Montalcini co-discovered <strong>nerve growth factor (NGF)</strong>, one of the molecules that transformed developmental neuroscience.</p>
+          </div>
+        </div>
+        <div class="profile-grid">
+          <div><h4>Why she matters</h4><p>Her work showed that neural development is not only about fixed anatomy—it is also regulated by chemical signals that support neuronal growth and survival.</p></div>
+          <div><h4>Classic paper</h4><p>Her early chick embryo and tumor-graft experiments with collaborators laid the path to NGF. Start by reading a good review of NGF history alongside the original line of work.</p></div>
+          <div><h4>Core insight</h4><p>Neurons compete for trophic support. Growth factors help determine whether neurons survive, grow and connect properly during development.</p></div>
+          <div><h4>Figure to remember</h4><p>The classic developmental picture: <strong>neurite outgrowth increasing in response to NGF</strong>. It is one of the images that made molecular control of neural growth vivid.</p></div>
+        </div>
+        <div class="links">
+          <a href="https://www.nobelprize.org/prizes/medicine/1986/levi-montalcini/facts/" target="_blank" rel="noopener">Nobel profile</a>
+          <a href="https://scholar.google.com/scholar?q=Rita+Levi-Montalcini+NGF+paper" target="_blank" rel="noopener">Scholar search</a>
+          <a href="https://www.youtube.com/results?search_query=Rita+Levi-Montalcini+interview+NGF" target="_blank" rel="noopener">Video / interview search</a>
+        </div>
+      </article>
+
+      <article class="profile" id="goldmanrakic">
+        <div class="profile-top">
+          <div class="avatar">⏳</div>
+          <div>
+            <span class="tag">Prefrontal cortex · Working memory</span>
+            <h3>Patricia Goldman-Rakic</h3>
+            <p class="one-liner">Goldman-Rakic made the prefrontal cortex central to modern thinking about <strong>working memory, executive control, and persistent neural activity</strong>.</p>
+          </div>
+        </div>
+        <div class="profile-grid">
+          <div><h4>Why she matters</h4><p>She built a bridge between single-neuron physiology, primate behaviour and cognition. Her work helped show how prefrontal neurons can maintain task-relevant information across delays.</p></div>
+          <div><h4>Classic paper</h4><p><strong>Goldman-Rakic (1995)</strong>, “Cellular basis of working memory.” A classic entry point because it links behaviour, cortex and microcircuit computation.</p></div>
+          <div><h4>Core insight</h4><p>Working memory is not magic—it emerges from organized neural circuits that can sustain information over short periods, especially in the dorsolateral prefrontal cortex.</p></div>
+          <div><h4>Figure to remember</h4><p>Delayed-response tasks and neurons that keep firing during the delay. That <strong>sustained activity over time</strong> became one of the iconic figures of cognitive neuroscience.</p></div>
+        </div>
+        <div class="links">
+          <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Cellular+basis+of+working+memory+Goldman-Rakic" target="_blank" rel="noopener">Classic paper (PubMed search)</a>
+          <a href="https://scholar.google.com/scholar?q=Patricia+Goldman-Rakic+working+memory" target="_blank" rel="noopener">Scholar search</a>
+          <a href="https://www.youtube.com/results?search_query=Patricia+Goldman-Rakic+working+memory" target="_blank" rel="noopener">Video search</a>
+        </div>
+      </article>
+
+      <article class="profile" id="moser">
+        <div class="profile-top">
+          <div class="avatar">🧭</div>
+          <div>
+            <span class="tag">Navigation · Spatial coding</span>
+            <h3>May-Britt Moser</h3>
+            <p class="one-liner">May-Britt Moser co-discovered <strong>grid cells</strong>, giving neuroscience one of its most elegant coding schemes for space.</p>
+          </div>
+        </div>
+        <div class="profile-grid">
+          <div><h4>Why she matters</h4><p>The Moser lab helped explain how the brain represents position and movement, extending earlier hippocampal place-cell work into a broader navigation system.</p></div>
+          <div><h4>Classic paper</h4><p><strong>Hafting, Fyhn, Molden, Moser & Moser (2005)</strong>, “Microstructure of a spatial map in the entorhinal cortex.”</p></div>
+          <div><h4>Core insight</h4><p>Grid cells fire in multiple locations arranged in a <strong>hexagonal lattice</strong>. This suggested that the brain contains an internal coordinate system for navigation.</p></div>
+          <div><h4>Figure to remember</h4><p>The famous firing map with <strong>regular hexagonal fields</strong>. It is one of the most recognizable visual figures in modern systems neuroscience.</p></div>
+        </div>
+        <div class="links">
+          <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Microstructure+of+a+spatial+map+in+the+entorhinal+cortex" target="_blank" rel="noopener">Classic paper (PubMed search)</a>
+          <a href="https://www.nobelprize.org/prizes/medicine/2014/may-britt-moser/facts/" target="_blank" rel="noopener">Nobel profile</a>
+          <a href="https://www.youtube.com/results?search_query=May-Britt+Moser+grid+cells+lecture" target="_blank" rel="noopener">Lecture / interview search</a>
+        </div>
+      </article>
+
+      <article class="profile" id="shatz">
+        <div class="profile-top">
+          <div class="avatar">👶</div>
+          <div>
+            <span class="tag">Development · Plasticity</span>
+            <h3>Carla Shatz</h3>
+            <p class="one-liner">Carla Shatz transformed our understanding of <strong>how neural circuits are wired during development</strong>, especially through activity-dependent mechanisms.</p>
+          </div>
+        </div>
+        <div class="profile-grid">
+          <div><h4>Why she matters</h4><p>Her work showed that neural activity is not just a consequence of brain wiring—it is also one of the forces that helps create and refine that wiring.</p></div>
+          <div><h4>Classic paper</h4><p>Start with her work on visual system development and activity-dependent refinement, then move to later papers on unexpected roles of immune molecules such as MHC class I in the brain.</p></div>
+          <div><h4>Core insight</h4><p>Early spontaneous and sensory-driven activity helps sculpt neural circuits. Development is therefore both genetic and activity-dependent.</p></div>
+          <div><h4>Figure to remember</h4><p><strong>Ocular dominance / retinogeniculate refinement diagrams</strong>: messy early connectivity gradually becomes precise through patterned activity.</p></div>
+        </div>
+        <div class="links">
+          <a href="https://scholar.google.com/scholar?q=Carla+Shatz+visual+system+development" target="_blank" rel="noopener">Scholar search</a>
+          <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Carla+Shatz+activity+dependent+development" target="_blank" rel="noopener">PubMed search</a>
+          <a href="https://www.youtube.com/results?search_query=Carla+Shatz+lecture+brain+development" target="_blank" rel="noopener">Lecture / interview search</a>
+        </div>
+      </article>
+
+      <article class="profile" id="kanwisher">
+        <div class="profile-top">
+          <div class="avatar">🙂</div>
+          <div>
+            <span class="tag">fMRI · Face perception</span>
+            <h3>Nancy Kanwisher</h3>
+            <p class="one-liner">Nancy Kanwisher is widely associated with the discovery and development of the concept of the <strong>fusiform face area (FFA)</strong>.</p>
+          </div>
+        </div>
+        <div class="profile-grid">
+          <div><h4>Why she matters</h4><p>Her work became central in debates about modularity: does the brain contain regions specialized for particular categories such as faces, places and bodies?</p></div>
+          <div><h4>Classic paper</h4><p><strong>Kanwisher, McDermott & Chun (1997)</strong>, “The fusiform face area: a module in human extrastriate cortex specialized for face perception.”</p></div>
+          <div><h4>Core insight</h4><p>Some cortical regions show reliable selectivity for specific categories. That gave a concrete neural foothold for questions about recognition and domain specificity.</p></div>
+          <div><h4>Figure to remember</h4><p>The brain image highlighting the <strong>fusiform face area</strong> and the contrast between stronger response to faces than to other visual categories.</p></div>
+        </div>
+        <div class="links">
+          <a href="https://pubmed.ncbi.nlm.nih.gov/?term=The+fusiform+face+area+a+module+in+human+extrastriate+cortex+specialized+for+face+perception" target="_blank" rel="noopener">Classic paper (PubMed search)</a>
+          <a href="https://scholar.google.com/scholar?q=Nancy+Kanwisher+FFA" target="_blank" rel="noopener">Scholar search</a>
+          <a href="https://www.youtube.com/results?search_query=Nancy+Kanwisher+lecture+face+area" target="_blank" rel="noopener">Lecture / interview search</a>
+        </div>
+      </article>
+
+      <article class="profile" id="maguire">
+        <div class="profile-top">
+          <div class="avatar">🗺️</div>
+          <div>
+            <span class="tag">Navigation · Structural MRI</span>
+            <h3>Eleanor Maguire</h3>
+            <p class="one-liner">Eleanor Maguire helped make the hippocampus famous beyond the lab through work on <strong>spatial memory, scene construction and London taxi drivers</strong>.</p>
+          </div>
+        </div>
+        <div class="profile-grid">
+          <div><h4>Why she matters</h4><p>Her work connected real-world expertise with measurable brain differences, showing how experience and cognition can be reflected in brain structure and function.</p></div>
+          <div><h4>Classic paper</h4><p><strong>Maguire et al. (2000)</strong>, “Navigation-related structural change in the hippocampi of taxi drivers.”</p></div>
+          <div><h4>Core insight</h4><p>The hippocampus is deeply involved in building and using internal spatial representations. Long-term navigational expertise appears linked with hippocampal structural differences.</p></div>
+          <div><h4>Figure to remember</h4><p>The comparison showing <strong>posterior hippocampal differences in taxi drivers</strong> versus controls—one of the most cited images in experience-dependent plasticity discussions.</p></div>
+        </div>
+        <div class="links">
+          <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Navigation-related+structural+change+in+the+hippocampi+of+taxi+drivers" target="_blank" rel="noopener">Classic paper (PubMed search)</a>
+          <a href="https://scholar.google.com/scholar?q=Eleanor+Maguire+taxi+drivers+hippocampus" target="_blank" rel="noopener">Scholar search</a>
+          <a href="https://www.youtube.com/results?search_query=Eleanor+Maguire+hippocampus+interview" target="_blank" rel="noopener">Video / interview search</a>
+        </div>
+      </article>
+
+      <article class="profile" id="graybiel">
+        <div class="profile-top">
+          <div class="avatar">🔁</div>
+          <div>
+            <span class="tag">Basal ganglia · Habits</span>
+            <h3>Ann Graybiel</h3>
+            <p class="one-liner">Ann Graybiel made the basal ganglia central to our understanding of <strong>habits, action sequences and chunking</strong>.</p>
+          </div>
+        </div>
+        <div class="profile-grid">
+          <div><h4>Why she matters</h4><p>Graybiel helped move habit from a vague behavioural label to a concrete circuit-level problem involving corticostriatal loops and action patterns.</p></div>
+          <div><h4>Classic paper</h4><p>Start with review-style entries on habits and the evaluative brain, then read task-based papers on basal ganglia activity during action chunking.</p></div>
+          <div><h4>Core insight</h4><p>As behaviours become habitual, the brain appears to represent them differently, often showing <strong>chunking</strong> of action sequences into more automatic units.</p></div>
+          <div><h4>Figure to remember</h4><p>The pattern where neural activity brackets the <strong>start and end of a learned action sequence</strong>—a signature image for habit chunking.</p></div>
+        </div>
+        <div class="links">
+          <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Ann+Graybiel+habits+rituals+evaluative+brain" target="_blank" rel="noopener">Classic review (PubMed search)</a>
+          <a href="https://scholar.google.com/scholar?q=Ann+Graybiel+habit+chunking" target="_blank" rel="noopener">Scholar search</a>
+          <a href="https://www.youtube.com/results?search_query=Ann+Graybiel+habits+lecture" target="_blank" rel="noopener">Lecture search</a>
+        </div>
+      </article>
+
+      <article class="profile" id="bargmann">
+        <div class="profile-top">
+          <div class="avatar">🪱</div>
+          <div>
+            <span class="tag">Model organisms · Circuits & genes</span>
+            <h3>Cori Bargmann</h3>
+            <p class="one-liner">Cori Bargmann showed how an apparently simple organism like <strong>C. elegans</strong> can reveal deep principles linking genes, circuits and behaviour.</p>
+          </div>
+        </div>
+        <div class="profile-grid">
+          <div><h4>Why she matters</h4><p>Her work made small nervous systems intellectually powerful: with defined circuits and genetics, they let us ask sharp mechanistic questions about behaviour.</p></div>
+          <div><h4>Classic paper</h4><p>Start with her seminal studies on olfaction and neural control of behaviour in <em>C. elegans</em>, then move to later work on social behaviour and circuit logic.</p></div>
+          <div><h4>Core insight</h4><p>Behaviour can be dissected from genes to neurons to circuits. Simpler systems can reveal organizing principles that generalize far beyond the worm.</p></div>
+          <div><h4>Figure to remember</h4><p>A compact circuit diagram showing <strong>identified sensory neurons feeding into behavioural outputs</strong>. This is the power of tractable model organisms.</p></div>
+        </div>
+        <div class="links">
+          <a href="https://scholar.google.com/scholar?q=Cori+Bargmann+C+elegans+olfaction" target="_blank" rel="noopener">Scholar search</a>
+          <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Cori+Bargmann+behavior+C.+elegans" target="_blank" rel="noopener">PubMed search</a>
+          <a href="https://www.youtube.com/results?search_query=Cori+Bargmann+lecture+interview" target="_blank" rel="noopener">Lecture / interview search</a>
+        </div>
+      </article>
+
+      <article class="profile" id="marder">
+        <div class="profile-top">
+          <div class="avatar">🎛️</div>
+          <div>
+            <span class="tag">Circuits · Neuromodulation</span>
+            <h3>Eve Marder</h3>
+            <p class="one-liner">Eve Marder changed how neuroscientists think about <strong>circuit robustness, variability and neuromodulation</strong>.</p>
+          </div>
+        </div>
+        <div class="profile-grid">
+          <div><h4>Why she matters</h4><p>Her studies of small rhythmic circuits, especially the stomatogastric ganglion, showed that similar outputs can arise from different parameter combinations.</p></div>
+          <div><h4>Classic paper</h4><p>Begin with her reviews on central pattern generators and degeneracy in neural circuits. They are unusually readable and conceptually rich.</p></div>
+          <div><h4>Core insight</h4><p>Neural circuits are not rigid machines. The same behaviour can be produced by different internal configurations, which has huge implications for modelling and interpretation.</p></div>
+          <div><h4>Figure to remember</h4><p>A small rhythmic circuit with multiple ionic and synaptic parameters producing a stable output—illustrating <strong>degeneracy</strong> and robustness.</p></div>
+        </div>
+        <div class="links">
+          <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Eve+Marder+central+pattern+generators+review" target="_blank" rel="noopener">Classic review (PubMed search)</a>
+          <a href="https://scholar.google.com/scholar?q=Eve+Marder+neuromodulation+degeneracy" target="_blank" rel="noopener">Scholar search</a>
+          <a href="https://www.youtube.com/results?search_query=Eve+Marder+lecture" target="_blank" rel="noopener">Lecture / interview search</a>
+        </div>
+      </article>
+
+      <article class="profile" id="akil">
+        <div class="profile-top">
+          <div class="avatar">💭</div>
+          <div>
+            <span class="tag">Affect · Stress · Psychiatry</span>
+            <h3>Huda Akil</h3>
+            <p class="one-liner">Huda Akil has been hugely influential in affective neuroscience, especially in linking <strong>stress, pain, emotion and psychiatric biology</strong>.</p>
+          </div>
+        </div>
+        <div class="profile-grid">
+          <div><h4>Why she matters</h4><p>Akil helped create bridges between basic neuroscience and mental health, arguing that emotional and psychiatric phenomena can be studied rigorously at molecular, circuit and systems levels.</p></div>
+          <div><h4>Classic paper</h4><p>Start with broad reviews on stress, neuroplasticity and the biology of mood disorders, then move into specific translational work.</p></div>
+          <div><h4>Core insight</h4><p>Stress and affect are not peripheral to brain science. They are central biological processes with measurable circuit, molecular and behavioural signatures.</p></div>
+          <div><h4>Figure to remember</h4><p>Conceptual maps linking <strong>stress systems, reward, affect and resilience</strong>. Her influence is especially strong at the level of integrative frameworks.</p></div>
+        </div>
+        <div class="links">
+          <a href="https://scholar.google.com/scholar?q=Huda+Akil+stress+plasticity+review" target="_blank" rel="noopener">Scholar search</a>
+          <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Huda+Akil+stress+review" target="_blank" rel="noopener">PubMed search</a>
+          <a href="https://www.youtube.com/results?search_query=Huda+Akil+interview+lecture" target="_blank" rel="noopener">Lecture / interview search</a>
+        </div>
+      </article>
+
+      <article class="profile" id="mayberg">
+        <div class="profile-top">
+          <div class="avatar">⚡</div>
+          <div>
+            <span class="tag">Clinical neuroscience · Brain stimulation</span>
+            <h3>Helen Mayberg</h3>
+            <p class="one-liner">Helen Mayberg helped make depression research more circuit-based, especially through work on <strong>deep brain stimulation (DBS)</strong> and brain-network models of mood disorders.</p>
+          </div>
+        </div>
+        <div class="profile-grid">
+          <div><h4>Why she matters</h4><p>She reframed treatment-resistant depression as a disorder of dysfunctional circuits that may, in some cases, be modulated with targeted intervention.</p></div>
+          <div><h4>Classic paper</h4><p><strong>Mayberg et al. (2005)</strong>, “Deep brain stimulation for treatment-resistant depression.” A landmark in translational and interventional neuroscience.</p></div>
+          <div><h4>Core insight</h4><p>Psychiatric illness can be studied as network dysfunction. This helps connect imaging, symptoms and treatment into a shared framework.</p></div>
+          <div><h4>Figure to remember</h4><p>The network diagram linking <strong>subgenual cingulate and broader mood circuits</strong>, plus early clinical response trajectories in DBS studies.</p></div>
+        </div>
+        <div class="links">
+          <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Deep+brain+stimulation+for+treatment-resistant+depression+Mayberg" target="_blank" rel="noopener">Classic paper (PubMed search)</a>
+          <a href="https://scholar.google.com/scholar?q=Helen+Mayberg+depression+DBS" target="_blank" rel="noopener">Scholar search</a>
+          <a href="https://www.youtube.com/results?search_query=Helen+Mayberg+depression+lecture" target="_blank" rel="noopener">Lecture / interview search</a>
+        </div>
+      </article>
+
+      <article class="profile" id="diamond">
+        <div class="profile-top">
+          <div class="avatar">🌿</div>
+          <div>
+            <span class="tag">Plasticity · Enriched environment</span>
+            <h3>Marian Diamond</h3>
+            <p class="one-liner">Marian Diamond became one of the public faces of neuroplasticity through work showing that the brain can change in response to enriched experience.</p>
+          </div>
+        </div>
+        <div class="profile-grid">
+          <div><h4>Why she matters</h4><p>Her work was crucial in popularizing the idea that the brain is dynamic rather than fixed. That influence reached far beyond academia.</p></div>
+          <div><h4>Classic paper</h4><p>Start with her enriched-environment studies in rodents and then read later summaries on cortical plasticity.</p></div>
+          <div><h4>Core insight</h4><p>Experience can alter the brain’s structure and function. Plasticity is not limited to early development.</p></div>
+          <div><h4>Figure to remember</h4><p>The classic comparison between animals in <strong>enriched versus less enriched environments</strong>, often linked to cortical or synaptic differences.</p></div>
+        </div>
+        <div class="links">
+          <a href="https://scholar.google.com/scholar?q=Marian+Diamond+enriched+environment+brain" target="_blank" rel="noopener">Scholar search</a>
+          <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Marian+Diamond+enriched+environment" target="_blank" rel="noopener">PubMed search</a>
+          <a href="https://www.youtube.com/results?search_query=Marian+Diamond+lecture+brain" target="_blank" rel="noopener">Lecture / interview search</a>
+        </div>
+      </article>
+
+      <article class="profile" id="honourable">
+        <div class="profile-top">
+          <div class="avatar">✨</div>
+          <div>
+            <span class="tag">More names to keep exploring</span>
+            <h3>Additional women neuroscientists worth reading</h3>
+            <p class="one-liner">If you want to expand the list, continue with these names: <strong>Susan Greenfield</strong> (public neuroscience, consciousness), <strong>Catherine Dulac</strong> (social behaviour, circuits), <strong>Lisa Feldman Barrett</strong> (affect, constructed emotion), <strong>Mu-ming Poo’s collaborators such as Nancy Ip</strong> (neurotrophins, development), <strong>Kafui Dzirasa’s collaborators like Kay Tye</strong> (circuits of emotion), <strong>Vivian Tabar</strong> (neural stem-cell translation), and <strong>Flora Vaccarino</strong> (developmental neurobiology).</p>
+          </div>
+        </div>
+        <div class="profile-grid">
+          <div><h4>Best use of this list</h4><p>Treat this as a “where next?” section. Once someone has understood the main landmark figures above, these names help them branch into social neuroscience, affect, neurodevelopment, and translational neuroscience.</p></div>
+          <div><h4>How to explore</h4><p>Use review papers first, then move to a scientist’s signature empirical paper, then a lecture or interview. This three-step route is the fastest way to gain both depth and context.</p></div>
+          <div><h4>Good habit</h4><p>Whenever you read one landmark paper, ask: <strong>What question made this paper necessary?</strong> <strong>What method made it possible?</strong> <strong>What changed after it?</strong></p></div>
+          <div><h4>Suggested searches</h4><ul><li>“<em>name</em> review neuroscience”</li><li>“<em>name</em> lecture”</li><li>“<em>name</em> most cited paper”</li></ul></div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section id="concepts">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <small>Core ideas</small>
+        <h2>The figures and concepts to remember</h2>
+      </div>
+      <p>If your audience remembers these concepts, they will already understand a surprising amount of modern neuroscience history.</p>
+    </div>
+
+    <div class="gloss-grid">
+      <div class="gloss-card"><h3>Multiple memory systems</h3><p>From Brenda Milner: memory is not unitary. Episodic/declarative memory and procedural learning can dissociate.</p><ul><li>Key image: H.M. impairment + mirror-tracing improvement</li><li>Takeaway: cognition is fractionated across systems</li></ul></div>
+      <div class="gloss-card"><h3>Nerve growth factor</h3><p>From Rita Levi-Montalcini: neurons require molecular growth support.</p><ul><li>Key image: neurite outgrowth / survival</li><li>Takeaway: development is chemically regulated</li></ul></div>
+      <div class="gloss-card"><h3>Persistent activity</h3><p>From Patricia Goldman-Rakic: neurons can maintain information across a delay.</p><ul><li>Key image: prefrontal firing during working-memory delay</li><li>Takeaway: working memory has circuit mechanisms</li></ul></div>
+      <div class="gloss-card"><h3>Grid-cell lattice</h3><p>From May-Britt Moser: spatial coding can be periodic and geometrically structured.</p><ul><li>Key image: hexagonal firing map</li><li>Takeaway: the brain has an internal metric for space</li></ul></div>
+      <div class="gloss-card"><h3>Activity-dependent wiring</h3><p>From Carla Shatz: neural activity helps sculpt developing circuits.</p><ul><li>Key image: connectivity refinement</li><li>Takeaway: development is not purely hard-wired</li></ul></div>
+      <div class="gloss-card"><h3>Category selectivity</h3><p>From Nancy Kanwisher: specialized cortical responses can emerge for certain categories.</p><ul><li>Key image: FFA activation</li><li>Takeaway: cortex may show functional specialization</li></ul></div>
+      <div class="gloss-card"><h3>Experience-dependent plasticity</h3><p>From Eleanor Maguire and Marian Diamond: experience can shape brain structure or function.</p><ul><li>Key image: taxi-driver hippocampus / enriched environments</li><li>Takeaway: the brain changes with use</li></ul></div>
+      <div class="gloss-card"><h3>Habit chunking</h3><p>From Ann Graybiel: repeated action sequences become represented in compressed, efficient forms.</p><ul><li>Key image: start–end bracketing activity</li><li>Takeaway: automaticity has circuit signatures</li></ul></div>
+      <div class="gloss-card"><h3>Degeneracy & robustness</h3><p>From Eve Marder: similar outputs can arise from different circuit parameter sets.</p><ul><li>Key image: multiple solutions, same behaviour</li><li>Takeaway: biology is flexible, not one-to-one</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section id="reading">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <small>Study plan</small>
+        <h2>A reading path for beginners</h2>
+      </div>
+      <p>If someone comments <strong>BRAIN</strong> and wants to go deeper, this is a good progression: start broad, then read classic papers, then watch lectures, then compare themes across scientists.</p>
+    </div>
+
+    <div class="path-grid">
+      <div class="path-card">
+        <div class="kicker">Stage 1</div>
+        <h3>Get the story first</h3>
+        <p>Start with short biographies and broad explainers. The goal is not technical mastery yet. The goal is to know who changed what.</p>
+        <ul>
+          <li>Read one short profile per scientist.</li>
+          <li>Write down the main discovery in one line.</li>
+          <li>Group each scientist by theme: memory, development, navigation, clinical, etc.</li>
+        </ul>
+      </div>
+      <div class="path-card">
+        <div class="kicker">Stage 2</div>
+        <h3>Read one classic paper each</h3>
+        <p>Do not try to read everything. For each scientist, read one flagship paper or review and answer three questions.</p>
+        <ul>
+          <li>What was the question?</li>
+          <li>What method was used?</li>
+          <li>What changed after this paper?</li>
+        </ul>
+      </div>
+      <div class="path-card">
+        <div class="kicker">Stage 3</div>
+        <h3>Compare ideas across fields</h3>
+        <p>This is where real understanding starts. Compare how different scientists approached the brain.</p>
+        <ul>
+          <li>Milner vs Kanwisher: cognition from lesions vs fMRI</li>
+          <li>Shatz vs Marder: circuits developing vs circuits stabilizing</li>
+          <li>Moser vs Maguire: navigation cells vs real-world navigation expertise</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="reader-grid" style="margin-top:16px">
+      <div class="reader-box"><h3>If you are from psychology</h3><p>Begin with Milner, Kanwisher, Maguire, Graybiel and Mayberg. These names connect well to cognition, behaviour and clinical questions.</p><ul><li>Good entry papers: H.M., FFA, taxi drivers</li><li>Then expand to working memory and depression circuits</li></ul></div>
+      <div class="reader-box"><h3>If you are from biology</h3><p>Begin with Rita Levi-Montalcini, Carla Shatz, Cori Bargmann and Marian Diamond.</p><ul><li>Focus on development, molecules and model systems</li><li>Then move into systems-level questions</li></ul></div>
+      <div class="reader-box"><h3>If you are from engineering / data</h3><p>Begin with Goldman-Rakic, Moser, Marder, Kanwisher and Mayberg.</p><ul><li>These names link naturally to models, signals and computation</li><li>Then connect to imaging and circuit intervention</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section id="videos">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <small>Watch more</small>
+        <h2>Video and interview suggestions</h2>
+      </div>
+      <p>Instead of pretending there is always one best video, this section gives efficient search links that usually surface lectures, interviews, panel talks, Nobel content, and institution-hosted explainers.</p>
+    </div>
+
+    <div class="reader-grid">
+      <div class="reader-box"><h3>Best platforms to search</h3><ul><li>YouTube for lectures, interviews and panels</li><li>Nobel Prize site for Nobel-related scientists</li><li>Google Scholar for the most cited paper trail</li><li>University / institute pages for official profiles</li></ul></div>
+      <div class="reader-box"><h3>Search phrases that work well</h3><ul><li>“<em>name</em> lecture”</li><li>“<em>name</em> interview”</li><li>“<em>name</em> keynote neuroscience”</li><li>“<em>name</em> Nobel lecture”</li><li>“<em>paper title</em> explained”</li></ul></div>
+      <div class="reader-box"><h3>Nice workflow</h3><ul><li>Read a short profile first</li><li>Watch a 20–40 minute lecture</li><li>Then open the classic paper</li><li>End by summarizing the scientist’s contribution in your own words</li></ul></div>
+    </div>
+
+    <div class="mini-card" style="margin-top:16px">
+      <h3>Quick video finder links</h3>
+      <div class="links">
+        <a href="https://www.youtube.com/results?search_query=Brenda+Milner+interview" target="_blank" rel="noopener">Brenda Milner</a>
+        <a href="https://www.youtube.com/results?search_query=Rita+Levi-Montalcini+interview" target="_blank" rel="noopener">Rita Levi-Montalcini</a>
+        <a href="https://www.youtube.com/results?search_query=Patricia+Goldman-Rakic+working+memory" target="_blank" rel="noopener">Patricia Goldman-Rakic</a>
+        <a href="https://www.youtube.com/results?search_query=May-Britt+Moser+grid+cells" target="_blank" rel="noopener">May-Britt Moser</a>
+        <a href="https://www.youtube.com/results?search_query=Carla+Shatz+lecture" target="_blank" rel="noopener">Carla Shatz</a>
+        <a href="https://www.youtube.com/results?search_query=Nancy+Kanwisher+lecture" target="_blank" rel="noopener">Nancy Kanwisher</a>
+        <a href="https://www.youtube.com/results?search_query=Eleanor+Maguire+hippocampus" target="_blank" rel="noopener">Eleanor Maguire</a>
+        <a href="https://www.youtube.com/results?search_query=Ann+Graybiel+habits" target="_blank" rel="noopener">Ann Graybiel</a>
+        <a href="https://www.youtube.com/results?search_query=Cori+Bargmann+lecture" target="_blank" rel="noopener">Cori Bargmann</a>
+        <a href="https://www.youtube.com/results?search_query=Eve+Marder+lecture" target="_blank" rel="noopener">Eve Marder</a>
+        <a href="https://www.youtube.com/results?search_query=Huda+Akil+lecture" target="_blank" rel="noopener">Huda Akil</a>
+        <a href="https://www.youtube.com/results?search_query=Helen+Mayberg+depression" target="_blank" rel="noopener">Helen Mayberg</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="cta-box">
+      <h3>Final takeaway</h3>
+      <p>The cleanest way to understand scientific influence is not to memorize names. It is to ask: <strong>What invisible question did this person make visible?</strong> Brenda Milner made memory systems visible. Rita Levi-Montalcini made growth factors visible. Patricia Goldman-Rakic made working memory circuits visible. May-Britt Moser made spatial codes visible. Carla Shatz made developmental refinement visible. Nancy Kanwisher made functional selectivity visible. That is why these scientists matter.</p>
+      <p style="margin-top:12px">If you are sharing this with your audience, you can frame it like this: <strong>“Read this slowly. Pick two scientists. Read one classic paper each. Then tell me which question you want to understand next.”</strong></p>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <p><strong>Women Who Shaped Neuroscience — Deep Guide</strong></p>
+    <p class="small">Created as a shareable follow-up document for students and curious readers. Educational, non-exhaustive, and designed to make the literature easier to enter.</p>
+    <p class="small">Tip: If you want to extend this into a part 2, you could do “classic experiments in neuroscience”, “top books to start with”, or “how to read a neuroscience paper without getting overwhelmed.”</p>
+  </div>
+</footer>
+
+<script>
+const progress = document.getElementById('progress');
+window.addEventListener('scroll', () => {
+  const h = document.documentElement;
+  const total = h.scrollHeight - h.clientHeight;
+  const scrolled = total > 0 ? (h.scrollTop / total) * 100 : 0;
+  progress.style.width = scrolled + '%';
+});
+</script>
+</body>
+</html>
